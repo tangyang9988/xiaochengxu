@@ -180,10 +180,12 @@ Page({
             height: 220, //图表展示内容高度
         })
     },
+    // 折线图
     getMothElectro: function (e) {
         var windowWidth = 320;
         try {
             var res = wx.getSystemInfoSync();
+            console.log()
             windowWidth = res.windowWidth;
         } catch (e) {
             console.error('getSystemInfoSync failed!');

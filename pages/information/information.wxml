@@ -1,270 +1,321 @@
-<!-- 选择公司 -->
-<van-row>
-	<van-col span="6" offset="1">
-		<view class="circleProgress" ></view>
-	</van-col>
-	<van-col span="17">
-		<van-dropdown-menu>
-			<van-dropdown-item style="font-size:18px;" value="{{companySelectValue}}" options="{{ companyDropMenu }}" bind:change="onChange" />
-		</van-dropdown-menu>
-	</van-col>
-	<!-- <van-col span="8"></van-col> -->
-</van-row>
+<!-- 整体内容开始 -->
+<view class="infoHeader">
+	<!-- 选择公司 -->
+	<van-row>
+	
+	<van-col span="10" offset="2" >
+			<view >
+				<van-dropdown-menu  overlay close-on-click-overlay>
+					<van-dropdown-item  value="{{companySelectValue}}" options="{{ companyDropMenu }}" bind:change="onChange" />
+				</van-dropdown-menu>
+			</view>
+		</van-col>
+		<van-col span="4"  offset="4">
+			<image class="tupian" style="width:50px;height:50px;" src="/pages/images/touxiang.png"></image>
+		</van-col>
+		
 
-<!-- 当日未完成审核量 -->
-<van-row>
-	<van-col span="1" offset="1" style="font-size:12px;color:#999999;">
-		<view style="width: 5px;height: 15px; background: #E4EAFB;"></view>
-	</van-col>
-	<van-col span="9" style="font-size:9px;color:#999999;">当日未完成审核量 (个)</van-col>
-	<van-col span="1" offset="1">
-		<view class="circleProgress" style=" background-color: #2C65F7; margin-top:4px;"></view>
-	</van-col>
-	<van-col span="5" style="font-size:9px;color:#999999;">占比{{information.daily_dosage_percentage}}</van-col>
-  	<van-col span="1" offset="1">
-		<view class="circleProgress" style=" background-color: #E4ECFF; margin-top:4px;"></view>
-	</van-col>
-	<van-col span="4" style="font-size:9px;color:#999999;">总量{{information.daily_all_dosage}}</van-col> 
-</van-row>
+	</van-row>
+</view>
 
-<view style="width: 5px;height: 10px; "></view>
 
-<!-- 进度条 -->
-<van-row>
-	<van-col span="6" offset="2">
-		<view style="margin-left:10px;">
-			<p class="progressNote">{{information.daily_not_finish_count}}</p>
-		</view>
-	</van-col>
+<view class="content">
 
-	<van-col offset="2" span="12" style="margin-top:5px;height:21px;padding-top:5px;">
-		<van-progress stroke-width="8" percentage="{{information.daily_dosage_percentage_number}}" />
-	</van-col>
-</van-row>
+	<!-- todo 所有的栅栏固定高度，把内容撑到最下面 -->
+	<van-row>
+		<van-col span="1"></van-col>
 
-<!-- 当日药剂消耗量 -->
-<!-- <van-cell title="当日药剂消耗量(kg)" value="库存：{{information.company_storage_sum}}">
-</van-cell> -->
-<view style="width: 5px;height: 15px; "></view>
-<van-row >
-	<van-col span="1" offset="1" style="font-size:12px;color:#999999;">
-		<view style="width: 5px;height: 15px; background: #E4EAFB;"></view>
-	</van-col>
-	<van-col span="7"  style="font-size:9px;color:#999999;">当日药剂消耗量 (kg)</van-col>
-	<van-col span="1" offset="1">
-		<view class="circleProgress" style=" background-color: #f2826a; margin-top:4px;"></view>
-	</van-col>
-	<van-col span="4" style="font-size:9px;color:#999999;">占比{{information.daily_consume_percentage_str}}</van-col>
-   	<van-col span="1" >
-		<view class="circleProgress" style=" background-color: #E4ECFF; margin-top:4px;"></view>
-	</van-col>
-	<van-col span="8" style="font-size:9px;color:#999999;">库存{{information.company_storage_sum}}</van-col>
-</van-row>
+		<van-col span="22" offset="1">
+			<view class="mainContent">
+				<!-- 主内容开始 -->
 
-<view style="width: 5px;height: 10px; "></view>
+				<!-- 当日未完成审核量 -->
+				<view style="height:30px; margin-top:10px;padding-top:20px;">
+				<van-row>
+					<van-col span="1" offset="1" style="font-size:12px;color:#999999;">
+						<view style="width: 5px;height: 15px; background: #E4EAFB;"></view>
+					</van-col>
+					<van-col span="9" style="font-size:9px;color:#999999;">当日未完成审核量 (个)</van-col>
+					<van-col span="1" offset="1">
+						<view class="circleProgress" style=" background-color: #2C65F7; margin-top:4px;"></view>
+					</van-col>
+					<van-col span="5" style="font-size:9px;color:#999999;">占比{{information.daily_dosage_percentage}}</van-col>
+					<van-col span="1" offset="1">
+						<view class="circleProgress" style=" background-color: #E4ECFF; margin-top:4px;"></view>
+					</van-col>
+					<van-col span="4" style="font-size:9px;color:#999999;">总量{{information.daily_all_dosage}}</van-col>
+				</van-row>
+				</view>
+				
 
-<van-row>
-	<van-col span="6" offset="2">
-		<view style="margin-left:10px;">
-			<p class="progressNote">{{information.daily_consume}}</p>
-		</view>
-	</van-col>
+				<!-- <view style="width: 5px;height: 10px; "></view> -->
 
-	<van-col offset="2" span="12" style="margin-top:5px;height:21px;padding-top:5px;">
-		<van-progress stroke-width="8" color="#f2826a" percentage="{{information.daily_consume_percentage}}" />
-	</van-col>
-</van-row>
+				<!-- 审核量进度条 -->
+				<van-row>
+					<van-col span="6" offset="2">
+						<view style="margin-left:10px;">
+							<p class="progressNote">{{information.daily_not_finish_count}}</p>
+						</view>
+					</van-col>
 
-<!-- 饼状图---开始 -->
-<van-row>
-	<van-col span="12">
-		<view>
-			<canvas canvas-id="ringCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
-		</view>
-	</van-col>
-  <!-- 题注 -->
-	<van-col span="12">
-		<block wx:for="{{echartMedicineList}}">
-      <view style="width: 5px;height: 5px; "></view>
-			<van-row >
-				<van-col span="3">
-					<view class="circle" style=" background-color: {{item.color}}; margin-top:7px;"></view>
-				</van-col>
-				<van-col span="21">
-					<p style="font-size:11px"> {{item.name}} {{item.data}}kg </p>
-				</van-col>
-				<!-- <van-col span="8">span: 8</van-col> -->
-			</van-row>
-		</block>
-	</van-col>
-</van-row>
-<!-- 饼状图---结束 -->
+					<van-col offset="2" span="12" style="margin-top:5px;height:21px;padding-top:5px;">
+						<van-progress stroke-width="8" percentage="{{information.daily_dosage_percentage_number}}" />
+					</van-col>
+				</van-row>
 
-<!-- 进出水水质 -->
-<van-row>
-	<van-col span="1" offset="1" style="font-size:12px;color:#999999;">
-		<view style="width: 5px;height: 15px; background: #E4EAFB;"></view>
-	</van-col>
-	<van-col span="10" style="font-size:9px;color:#999999;">当日进出水水质 (mg/L)</van-col>
-</van-row>
+				<!-- 当日药剂消耗量 -->
 
-<view style="width: 5px;height: 10px; "></view>
+				<view style="height:30px; margin-top:10px;padding-top:20px;">
+					<van-row>
+					<van-col span="1" offset="1" style="font-size:12px;color:#999999;">
+						<view style="width: 5px;height: 15px; background: #E4EAFB;"></view>
+					</van-col>
+					<van-col span="7" style="font-size:9px;color:#999999;">当日药剂消耗量 (kg)</van-col>
+					<van-col span="1" offset="1">
+						<view class="circleProgress" style=" background-color: #f2826a; margin-top:4px;"></view>
+					</van-col>
+					<van-col span="4" style="font-size:9px;color:#999999;">占比{{information.daily_consume_percentage_str}}</van-col>
+					<van-col span="1">
+						<view class="circleProgress" style=" background-color: #E4ECFF; margin-top:4px;"></view>
+					</van-col>
+					<van-col span="8" style="font-size:9px;color:#999999;">库存{{information.company_storage_sum}}</van-col>
+				</van-row>
+				
+				</view>
+			
 
-<van-tabs active="a"  line-width="1px" 	border="">
-	<van-tab   title="{{information.WaterQuality.cod_name}}" name="a">
-		<view>
-			<!-- style="margin-left:10px;margin-top:5px;" -->
-			<van-row>
-				<van-col span="8" offset="1" >
-					<view class="waterData">{{information.WaterQuality.cod}} mg/L</view>
-				</van-col>
-				<van-col  span="8" offset="3">
-					<view class="waterData">{{information.WaterQuality.cod_out}} mg/L</view>
-				</van-col>
-			</van-row>
-      
-			<van-row>
-				<van-col span="8" offset="1">
-					<view class="waterNote">进水口(化验数据)</view>
-				</van-col>
-				<van-col span="8" offset="3">
-					<view class="waterNote">出水口(化验数据)</view>
-				</van-col>
-			</van-row>
-		</view>
-	</van-tab>
-	<van-tab title="{{information.WaterQuality.bod5_name}}" name="information.WaterQuality.bod5_name">
-		<van-row>
-			<van-col span="8" offset="1">
-				<view class="waterData">{{information.WaterQuality.bod5}} mg/L</view>
-			</van-col>
-			<van-col span="8" offset="3">
-				<view class="waterData">{{information.WaterQuality.bod5_out}} mg/L</view>
-			</van-col>
-		</van-row>
-		<van-row>
-			<van-col span="8" offset="1">
-				<view class="waterNote">进水口(化验数据)</view>
-			</van-col>
-			<van-col span="8" offset="3">
-				<view class="waterNote">出水口(化验数据)</view>
-			</van-col>
-		</van-row>
-	</van-tab>
-	<van-tab title="{{information.WaterQuality.ammonia_nitrogen_name}}" name="information.WaterQuality.ammonia_nitrogen_name">
-		<!-- {{information.WaterQuality.ammonia_nitrogen}} {{information.WaterQuality.ammonia_nitrogen_out}} -->
-		<van-row>
-			<van-col span="8" offset="1">
-				<view class="waterData">{{information.WaterQuality.ammonia_nitrogen}} mg/L</view>
-			</van-col>
-			<van-col span="8" offset="3">
-				<view class="waterData">{{information.WaterQuality.ammonia_nitrogen_out}} mg/L</view>
-			</van-col>
-		</van-row>
-		<van-row>
-			<van-col span="8" offset="1">
-				<view class="waterNote">进水口(化验数据)</view>
-			</van-col>
-			<van-col span="8" offset="3">
-				<view class="waterNote">出水口(化验数据)</view>
-			</van-col>
-		</van-row>
-	</van-tab>
-	<van-tab title="{{information.WaterQuality.phosphorus_name}} " name="information.WaterQuality.phosphorus_name">
-		<!-- {{information.WaterQuality.phosphorus}} {{information.WaterQuality.phosphorus_out}} -->
-		<van-row>
-			<van-col span="8" offset="1">
-				<view class="waterData">{{information.WaterQuality.phosphorus}} mg/L</view>
-			</van-col>
-			<van-col span="8" offset="3">
-				<view class="waterData">{{information.WaterQuality.phosphorus_out}} mg/L</view>
-			</van-col>
-		</van-row>
-		<van-row>
-			<van-col span="8" offset="1">
-				<view class="waterNote">进水口(化验数据)</view>
-			</van-col>
-			<van-col span="8" offset="3">
-				<view class="waterNote">出水口(化验数据)</view>
-			</van-col>
-		</van-row>
-	</van-tab>
-	<van-tab title="{{information.WaterQuality.ss_name}}" name="information.WaterQuality.ss_name">
-		<!-- {{information.WaterQuality.ss}} {{information.WaterQuality.ss_out}} -->
-		<van-row>
-			<van-col span="8" offset="1">
-				<view class="waterData">{{information.WaterQuality.ss}} mg/L</view>
-			</van-col>
-			<van-col span="8" offset="3">
-				<view class="waterData">{{information.WaterQuality.ss_out}} mg/L</view>
-			</van-col>
-		</van-row>
-		<van-row>
-			<van-col span="8" offset="1">
-				<view class="waterNote">进水口(化验数据)</view>
-			</van-col>
-			<van-col span="8" offset="3">
-				<view class="waterNote">出水口(化验数据)</view>
-			</van-col>
-		</van-row>
-	</van-tab>
-	<van-tab title="{{information.WaterQuality.nitrogen_name}}" name="information.nitrogen_name">
-		<!-- {{information.WaterQuality.nitrogen}} {{information.WaterQuality.nitrogen_out}} -->
-		<van-row>
-			<van-col span="8" offset="1">
-				<view class="waterData">{{information.WaterQuality.nitrogen}} mg/L</view>
-			</van-col>
-			<van-col span="8" offset="3">
-				<view class="waterData">{{information.WaterQuality.nitrogen_out}} mg/L</view>
-			</van-col>
-		</van-row>
-		<van-row>
-			<van-col span="8" offset="1">
-				<view class="waterNote">进水口(化验数据)</view>
-			</van-col>
-			<van-col span="8" offset="3">
-				<view class="waterNote">出水口(化验数据)</view>
-			</van-col>
-		</van-row>
+				<!-- <view style="width: 5px;height: 10px; "></view> -->
 
-	</van-tab>
-	<van-tab title="{{information.WaterQuality.chromaticity_name}}" name="information.chromaticity_name">
-		<!-- {{information.WaterQuality.chromaticity}} {{information.WaterQuality.chromaticity_out}} -->
+				<van-row>
+					<van-col span="6" offset="2">
+						<view style="margin-left:10px;">
+							<p class="progressNote">{{information.daily_consume}}</p>
+						</view>
+					</van-col>
 
-		<van-row>
-			<van-col span="8" offset="1">
-				<view class="waterData">{{information.WaterQuality.chromaticity}} mg/L</view>
-			</van-col>
-			<van-col span="8" offset="3">
-				<view class="waterData">{{information.WaterQuality.chromaticity_out}} mg/L</view>
-			</van-col>
-		</van-row>
-		<van-row>
-			<van-col span="8" offset="1">
-				<view class="waterNote">进水口(化验数据)</view>
-			</van-col>
-			<van-col span="8" offset="3">
-				<view class="waterNote">出水口(化验数据)</view>
-			</van-col>
-		</van-row>
-	</van-tab>
-	<van-tab title="{{information.WaterQuality.ph_name}}" name="information.ph_name">
-		<!-- {{information.WaterQuality.ph}} {{information.WaterQuality.ph_out}} -->
-		<van-row>
-			<van-col span="8" offset="1">
-				<view class="waterData">{{information.WaterQuality.ph}} mg/L</view>
-			</van-col>
-			<van-col span="8" offset="3">
-				<view class="waterData">{{information.WaterQuality.ph_out}} mg/L</view>
-			</van-col>
-		</van-row>
-		<van-row>
-			<van-col span="8" offset="1">
-				<view class="waterNote">进水口(化验数据)</view>
-			</van-col>
-			<van-col span="8" offset="3">
-				<view class="waterNote">出水口(化验数据)</view>
-			</van-col>
-		</van-row>
-	</van-tab>
-</van-tabs>
+
+
+					<van-col offset="2" span="12" style="margin-top:5px;height:21px;padding-top:5px;">
+						<van-progress stroke-width="8" color="#f2826a" percentage="{{information.daily_consume_percentage}}" />
+					</van-col>
+				</van-row>
+
+				<!-- 饼状图---开始 -->
+				<view style="height:220px;">
+					<van-row>
+					<van-col span="12">
+						<view>
+							<canvas canvas-id="ringCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
+						</view>
+					</van-col>
+					<!-- 题注 -->
+					<van-col span="10" offset="2">
+						<block wx:for="{{echartMedicineList}}">
+							<view style="width: 5px;height: 5px; "></view>
+							<van-row>
+								<van-col span="3">
+									<view class="circle" style=" background-color: {{item.color}}; margin-top:7px;"></view>
+								</van-col>
+								<van-col span="21">
+									<p style="font-size:11px"> {{item.name}} {{item.data}}kg </p>
+								</van-col>
+								<!-- <van-col span="8">span: 8</van-col> -->
+							</van-row>
+						</block>
+					</van-col>
+				</van-row>
+				</view>
+			
+				<!-- 饼状图---结束 -->
+
+				<!-- 进出水水质 -->
+				<van-row>
+					<van-col span="1" offset="1" style="font-size:12px;color:#999999;">
+						<view style="width: 5px;height: 15px; background: #E4EAFB;"></view>
+					</van-col>
+					<van-col span="10" style="font-size:9px;color:#999999;">当日进出水水质 (mg/L)</van-col>
+				</van-row>
+
+				<view style="width: 5px;height: 7px; "></view>
+
+				<view style="margin-left:10px;margin-bottom:20px;">
+				<van-tabs active="a" line-width="1px" border="" >
+					<van-tab title="{{information.WaterQuality.cod_name}}" name="a">
+						<view >
+							<!-- style="margin-left:10px;margin-top:5px;" -->
+							<van-row>
+								<van-col span="8" offset="1">
+									<view class="waterData">{{information.WaterQuality.cod}} mg/L</view>
+								</van-col>
+								<van-col span="8" offset="3">
+									<view class="waterData">{{information.WaterQuality.cod_out}} mg/L</view>
+								</van-col>
+							</van-row>
+
+							<van-row>
+								<van-col span="8" offset="1">
+									<view class="waterNote">进水口(化验数据)</view>
+								</van-col>
+								<van-col span="8" offset="3">
+									<view class="waterNote">出水口(化验数据)</view>
+								</van-col>
+							</van-row>
+						</view>
+					</van-tab>
+					<van-tab title="{{information.WaterQuality.bod5_name}}" name="information.WaterQuality.bod5_name">
+						<van-row>
+							<van-col span="8" offset="1">
+								<view class="waterData">{{information.WaterQuality.bod5}} mg/L</view>
+							</van-col>
+							<van-col span="8" offset="3">
+								<view class="waterData">{{information.WaterQuality.bod5_out}} mg/L</view>
+							</van-col>
+						</van-row>
+						<van-row>
+							<van-col span="8" offset="1">
+								<view class="waterNote">进水口(化验数据)</view>
+							</van-col>
+							<van-col span="8" offset="3">
+								<view class="waterNote">出水口(化验数据)</view>
+							</van-col>
+						</van-row>
+					</van-tab>
+					<van-tab title="{{information.WaterQuality.ammonia_nitrogen_name}}" name="information.WaterQuality.ammonia_nitrogen_name">
+						<!-- {{information.WaterQuality.ammonia_nitrogen}} {{information.WaterQuality.ammonia_nitrogen_out}} -->
+						<van-row>
+							<van-col span="8" offset="1">
+								<view class="waterData">{{information.WaterQuality.ammonia_nitrogen}} mg/L</view>
+							</van-col>
+							<van-col span="8" offset="3">
+								<view class="waterData">{{information.WaterQuality.ammonia_nitrogen_out}} mg/L</view>
+							</van-col>
+						</van-row>
+						<van-row>
+							<van-col span="8" offset="1">
+								<view class="waterNote">进水口(化验数据)</view>
+							</van-col>
+							<van-col span="8" offset="3">
+								<view class="waterNote">出水口(化验数据)</view>
+							</van-col>
+						</van-row>
+					</van-tab>
+					<van-tab title="{{information.WaterQuality.phosphorus_name}} " name="information.WaterQuality.phosphorus_name">
+						<!-- {{information.WaterQuality.phosphorus}} {{information.WaterQuality.phosphorus_out}} -->
+						<van-row>
+							<van-col span="8" offset="1">
+								<view class="waterData">{{information.WaterQuality.phosphorus}} mg/L</view>
+							</van-col>
+							<van-col span="8" offset="3">
+								<view class="waterData">{{information.WaterQuality.phosphorus_out}} mg/L</view>
+							</van-col>
+						</van-row>
+						<van-row>
+							<van-col span="8" offset="1">
+								<view class="waterNote">进水口(化验数据)</view>
+							</van-col>
+							<van-col span="8" offset="3">
+								<view class="waterNote">出水口(化验数据)</view>
+							</van-col>
+						</van-row>
+					</van-tab>
+					<van-tab title="{{information.WaterQuality.ss_name}}" name="information.WaterQuality.ss_name">
+						<!-- {{information.WaterQuality.ss}} {{information.WaterQuality.ss_out}} -->
+						<van-row>
+							<van-col span="8" offset="1">
+								<view class="waterData">{{information.WaterQuality.ss}} mg/L</view>
+							</van-col>
+							<van-col span="8" offset="3">
+								<view class="waterData">{{information.WaterQuality.ss_out}} mg/L</view>
+							</van-col>
+						</van-row>
+						<van-row>
+							<van-col span="8" offset="1">
+								<view class="waterNote">进水口(化验数据)</view>
+							</van-col>
+							<van-col span="8" offset="3">
+								<view class="waterNote">出水口(化验数据)</view>
+							</van-col>
+						</van-row>
+					</van-tab>
+					<van-tab title="{{information.WaterQuality.nitrogen_name}}" name="information.nitrogen_name">
+						<!-- {{information.WaterQuality.nitrogen}} {{information.WaterQuality.nitrogen_out}} -->
+						<van-row>
+							<van-col span="8" offset="1">
+								<view class="waterData">{{information.WaterQuality.nitrogen}} mg/L</view>
+							</van-col>
+							<van-col span="8" offset="3">
+								<view class="waterData">{{information.WaterQuality.nitrogen_out}} mg/L</view>
+							</van-col>
+						</van-row>
+						<van-row>
+							<van-col span="8" offset="1">
+								<view class="waterNote">进水口(化验数据)</view>
+							</van-col>
+							<van-col span="8" offset="3">
+								<view class="waterNote">出水口(化验数据)</view>
+							</van-col>
+						</van-row>
+
+					</van-tab>
+					<van-tab title="{{information.WaterQuality.chromaticity_name}}" name="information.chromaticity_name">
+						<!-- {{information.WaterQuality.chromaticity}} {{information.WaterQuality.chromaticity_out}} -->
+
+						<van-row>
+							<van-col span="8" offset="1">
+								<view class="waterData">{{information.WaterQuality.chromaticity}} mg/L</view>
+							</van-col>
+							<van-col span="8" offset="3">
+								<view class="waterData">{{information.WaterQuality.chromaticity_out}} mg/L</view>
+							</van-col>
+						</van-row>
+						<van-row>
+							<van-col span="8" offset="1">
+								<view class="waterNote">进水口(化验数据)</view>
+							</van-col>
+							<van-col span="8" offset="3">
+								<view class="waterNote">出水口(化验数据)</view>
+							</van-col>
+						</van-row>
+					</van-tab>
+					<van-tab title="{{information.WaterQuality.ph_name}}" name="information.ph_name">
+						<!-- {{information.WaterQuality.ph}} {{information.WaterQuality.ph_out}} -->
+						<van-row>
+							<van-col span="8" offset="1">
+								<view class="waterData">{{information.WaterQuality.ph}} mg/L</view>
+							</van-col>
+							<van-col span="8" offset="3">
+								<view class="waterData">{{information.WaterQuality.ph_out}} mg/L</view>
+							</van-col>
+						</van-row>
+						<van-row>
+							<van-col span="8" offset="1">
+								<view class="waterNote">进水口(化验数据)</view>
+							</van-col>
+							<van-col span="8" offset="3">
+								<view class="waterNote">出水口(化验数据)</view>
+							</van-col>
+						</van-row>
+					</van-tab>
+				</van-tabs>
+				
+				
+				
+				</view>
+				
+
+
+				<!-- 主内容结束 -->
+			</view>
+
+
+
+
+		</van-col>
+
+		<van-col span="1"></van-col>
+	</van-row>
+
+
+
+</view>
+<!-- 整体内容结束 -->

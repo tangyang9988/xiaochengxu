@@ -33,7 +33,7 @@ Page({
     http.Post('/app/maotai/company/query', {}, function (res) {
       var company = res.data.data;
       var companyMenu = [];
-      console.log(res)
+     
       var j = 0;
       var len = 0;
       for (j = 0, len = company.length; j < len; j++) {
@@ -83,11 +83,11 @@ Page({
         var storageMedicine = [];
         var j = 0;
         var len = 0;
-        console.log("medicine length:", storageList.length);
+        
         for (j = 0, len = storageList.length; j < len; j++) {
           storageMedicine.push({
             name: storageList[j].medicine_name,
-            data: storageList[j].daily_consume_percentage_number,
+            data: storageList[j].daily_consume,
             stroke: false,
             color: '#64C676'
           });
@@ -108,8 +108,7 @@ Page({
           echartMedicineList: storageMedicine,
           loading: false
         })
-        console.log("name:" + that.data.medicineSimpleList)
-        console.log("echarts  length:", storageMedicine.length);
+       
         //渲染饼状图数据
         var windowWidth = 320;
         try {
@@ -118,7 +117,7 @@ Page({
         } catch (e) {
           console.error('getSystemInfoSync failed!');
         }
-        var windowWdithHalf = windowWidth / 2;
+        var windowWdithHalf = windowWidth / 5*2;
         ringChart = new wxCharts({
           animation: true,
           canvasId: 'ringCanvas',
@@ -149,8 +148,7 @@ Page({
           padding: 0
         });
         ringChart.addEventListener('renderComplete', () => {
-          console.log('renderComplete');
-          console.log(ringChart.subtitle);
+          
         });
         setTimeout(() => {
           ringChart.stopAnimation();
@@ -164,25 +162,23 @@ Page({
   },
 
   onChange(event) {
-    console.log(event)
-    console.log("触发change事件")
+   
     this.setData({ companySelectValue: event.detail })
-    console.log("select companyid:", this.data.companySelectValue)
+  
     this.initDraw();
     //this.onLoad();
   },
 
   touchHandler: function (e) {
     var that = this;
-    console.log(ringChart.getCurrentDataIndex(e));
-    console.log(ringChart.opts.subtitle.name);
+   
     var medicineIndex = ringChart.getCurrentDataIndex(e);
-    console.log(this.data.medicineList);
+   
     // console.log(this.data.information);
     ringChart.opts.subtitle.name = this.data.medicineList[medicineIndex].medicine_name;
-    console.log(ringChart.opts.subtitle.name);
+   
     ringChart.opts.title.name = this.data.medicineList[medicineIndex].daily_consume_percentage_number;
-    console.log(ringChart.opts.title.name);
+   
   },
   updateData: function () {
     ringChart.updateData({
@@ -205,17 +201,17 @@ Page({
 
     //获取信息仓数据
     http.Post('/app/dosage_review/today', params, function (res) {
-      console.log(res)
+      
       var storage = res.data.data;
       var storageList = res.data.data.DailyEveryMedicineConsume
       var storageMedicine = [];
       var j = 0;
       var len = 0;
-      console.log("medicine length:", storageList.length);
+      
       for (j = 0, len = storageList.length; j < len; j++) {
         storageMedicine.push({
           name: storageList[j].medicine_name,
-          data: storageList[j].daily_consume_percentage_number,
+          data: storageList[j].daily_consume,
           stroke: false,
           color: '#64C676'
         });
@@ -237,17 +233,17 @@ Page({
         daily_not_finish_count: res.data.data.daily_not_finish_count,
         loading: false
       })
-      console.log("name:" + that.data.medicineSimpleList)
-      console.log("echarts  length:", storageMedicine.length);
+      
       //渲染饼状图数据
       var windowWidth = 320;
       try {
         var res = wx.getSystemInfoSync();
         windowWidth = res.windowWidth;
+        console.log("屏幕宽度：",windowWidth)
       } catch (e) {
         console.error('getSystemInfoSync failed!');
       }
-      var windowWdithHalf = windowWidth / 2;
+      var windowWdithHalf = windowWidth / 5*2;
       if (storageMedicine.length == 0) {
         //没有数据赋值默认值，防止程序崩溃
         storageMedicine.push({
@@ -280,7 +276,7 @@ Page({
         series: storageMedicine,
         disablePieStroke: true,
         width: windowWdithHalf,
-        height: 200,
+        height: 250,
         dataLabel: false,
         legend: false,
         background: '#f5f5f5',
