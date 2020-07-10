@@ -1,0 +1,45 @@
+/* pages/dosinganalysis/dosinganalysis.wxss */
+.canvas {
+  width: 400px;
+  height: 240px;
+}
+.ringCanvas {
+  width: 400px;
+  height: 150px;
+}
+.ring {
+  margin-left: -8%;
+  width: 200px;
+  height: 150px;
+}
+.ringRight{
+  margin-left: 50%;
+  width: 200px;
+  height: 150px;
+}
+.title{
+  font-size: small;
+}
+.circleIn{
+  width: 8px;
+  height: 8px;
+  background-color:#64C676;
+  border-radius: 50%; 
+  display: inline-block;
+  margin-left:40% ;
+}
+.circleOut{
+  width: 10px;
+  height: 10px;
+  background-color:#F8C322;
+  border-radius: 50%; 
+  display: inline-block;
+  margin-left:30% ;
+}
+page{
+  /* background:rgba(230, 221, 221, 0.871); */
+  background:#F8F8F8;
+}
+
+
+

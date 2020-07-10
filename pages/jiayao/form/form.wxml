@@ -1,0 +1,111 @@
+<!-- <van-cell-group>
+  <van-field
+    value="{{dosing_time}}"
+    label="加药时间"
+    placeholder="2020-07-03 10:00:00"
+    border="{{ true }}"
+    bind:change="onChange1"/>
+</van-cell-group> -->
+<!-- <van-cell-group>
+  <van-field
+    value="{{dosing_time}}"
+    label="加药时间"
+    label-class="label-justify"
+    border="{{ true }}"
+    bind:click="showPopup"/>
+<van-cell title="药品名称" value="{{dosing_time}}"  bind:click="showPopup" />
+</van-cell-group> -->
+<van-row>
+  <van-col span="7">
+    <van-cell title="加药时间"/>
+  </van-col>
+  <van-col span="17">
+   <van-cell title="{{dosing_time}}"  bind:click="showTimePop" />
+   <van-popup show="{{ showTime }}" position="bottom" custom-style="height: 50%;">
+    <van-datetime-picker
+    type="datetime"
+    value="{{ currentDate }}"
+    bind:confirm="confirm"
+    bind:cancel="onClose"/>
+    </van-popup>
+  </van-col>
+</van-row>
+<van-row>
+  <van-col span="7">
+    <van-cell title="加药点位"/>
+  </van-col>
+  <van-col span="17">
+   <van-cell title="{{position}}"  bind:click="showPositionPop" />
+    <van-popup show="{{ showPosition }}" position="bottom" custom-style="height: 50%;">
+      <van-picker columns="{{ columns }}" default-index="{{ 1 }}"  title="加药点位" show-toolbar bind:confirm="onConfirm" bind:cancel="onCancel" />
+    </van-popup>
+  </van-col>
+</van-row>
+<van-row>
+  <van-col span="7">
+    <van-cell title="药剂名称"/>
+  </van-col>
+  <van-col span="17">
+   <van-cell title="{{medicine_name}}"  bind:click="showNamePop" />
+    <van-popup show="{{ showName }}" value-key="text" position="bottom" custom-style="height: 50%;">
+      <van-picker columns="{{ option }}" default-index="{{ 0 }}"  title="选择药品" show-toolbar bind:confirm="nameConfirm" bind:cancel="nameCancel" />
+    </van-popup>
+  </van-col>
+</van-row>
+<!-- <van-cell-group>
+  <van-field
+    value="{{position}}"
+    label="加药点位"
+    placeholder="2020-07-03 10:00:00"
+    border="{{ true }}"
+    bind:change="onChange2"/>
+</van-cell-group> -->
+
+<!-- <van-cell-group>
+  <van-field
+    value="{{medicine_id}}"
+    label="药剂名称"
+    placeholder="111"
+    border="{{ true }}"
+    bind:change="onChange3"/>
+</van-cell-group> -->
+<van-row>
+  <van-col span="7">
+    <van-cell title="加药量"/>
+  </van-col>
+  <van-col span="17">
+    <van-field
+    value="{{medicine_count}}"
+    clickable
+    type="digit"
+    bind:change="onChange4"/>
+  </van-col>
+</van-row>
+<van-row>
+  <van-col span="7">
+    <van-cell title="加药员"/>
+  </van-col>
+  <van-col span="17">
+    <van-field
+    disabled
+    value="{{'张晓明'}}"/>
+  </van-col>
+</van-row>
+  <!-- <van-field
+    value="{{medicine_count}}"
+    label="加药量"
+    clickable
+    type="digit"
+    bind:change="onChange4"/> -->
+  <!-- <van-field
+    value="张晓明"
+    label="加药员"/> -->
+<van-button round type="info" style="display:flex;width:100%;margin-top:25%;margin-top:8%;margin-bottom:5%" bindtap="submit">提交</van-button>
+<!-- <van-button type="primary" size="large" bind:click="onClickButtonSubmit">登录</van-button> -->
+<van-button round plain type="info" style="display:flex;width:100%;" bindtap="cancle">取消</van-button>
+<!-- </form> -->
+
+
+
+
+

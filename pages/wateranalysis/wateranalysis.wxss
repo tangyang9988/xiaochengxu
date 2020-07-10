@@ -1,0 +1,62 @@
+/* pages/dosinganalysis/dosinganalysis.wxss */
+.canvas1 {
+  width: 400px;
+  height: 200px;
+}
+.canvas2 {
+  width: 400px;
+  height: 240px;
+  margin-left: 3%;
+}
+.ringCanvas {
+  width: 400px;
+  height: 150px;
+}
+.ring {
+  margin-left: -8%;
+  width: 200px;
+  height: 150px;
+}
+.ringRight{
+  margin-left: 50%;
+  width: 200px;
+  height: 150px;
+}
+
+.circleIn{
+  width: 12px;
+  height: 12px;
+  background-color:#628DFC;
+  border-radius: 50%; 
+  display: inline-block;
+  margin-left:30% ;
+}
+.circleOut{
+  width: 10px;
+  height: 10px;
+  background-color:#F8C322;
+  border-radius: 50%; 
+  display: inline-block;
+  margin-left:30% ;
+}
+.circleEmpty{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%; 
+  display: inline-block;
+  margin-left:30% ;
+}
+.water{
+  font-size: small;
+  margin-top:2px
+}
+.left{
+  margin-left:5%;
+}
+/* page{
+  background:rgba(248,248,248,1);
+} */
+
+
+
+

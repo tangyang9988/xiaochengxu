@@ -1,0 +1,113 @@
+<view style="margin:15px 20px;background:#fff">
+<van-row>
+  <van-col span="6">
+    <van-dropdown-menu>
+      <van-dropdown-item value="{{value}}" options="{{ option }}" bind:change="onChange"/>
+    </van-dropdown-menu>
+  </van-col>
+    <van-col span="9">
+    <van-cell title="{{start_time}}"  bind:click="showStartPop" />
+    <van-popup show="{{ showStart }}" position="top" custom-style="height: 50%;">
+      <van-datetime-picker
+      type="date"
+      bind:confirm="confirm"
+      bind:cancel="onClose"/>
+      </van-popup>
+    </van-col>
+    <van-col span="9">
+    <van-cell title="{{end_time}}"  bind:click="showEndPop" />
+    <van-popup show="{{ showEnd }}" position="top" custom-style="height: 50%;">
+      <van-datetime-picker
+      type="date"
+      bind:confirm="onConfirm"
+      bind:cancel="onCancel"/>
+      </van-popup>
+    </van-col>
+</van-row>
+<van-cell title="加药分析数据图" value="(kg)"></van-cell>
+<van-row>
+    <van-col span="2">
+    <view class="circleIn"></view>
+    </van-col>
+    <van-col span="5">
+    <span class="title">{{'片碱'}}</span>
+    </van-col>
+    <van-col span="4">
+    <van-tag plain round large>225.6(kg)</van-tag>
+    </van-col>
+</van-row>
+<view class="">
+  <van-row>
+    <van-col span="8">
+        <canvas canvas-id="ringCanvas" class="ring" bindtouchstart="touchHandler"></canvas>
+    </van-col>
+    <van-col span="10">
+       <van-row>
+       <!-- <van-col style="margin:10% 10% 10% 10%" span="1">eee</van-col> -->
+       </van-row>
+    </van-col>
+  </van-row>
+    <!-- <view>调用stopAnimation终止动画，并监听渲染完成事件</view>
+    <button type="primary" bindtap="updateData" style="margin-top:30rpx">更新title</button> -->
+
+</view>
+<view class="">
+<van-cell title="消耗量环比分析图" value="(%)"></van-cell>
+<van-row>
+    <van-col span="2">
+    <view class="circleIn"></view>
+    </van-col>
+    <van-col span="6">
+    <span class="title">{{relative_ration_max_str}}</span>
+    </van-col>
+    <van-col span="4">
+    <van-tag plain round>最大值</van-tag>
+    </van-col>
+</van-row>
+
+<van-row>
+    <van-col span="2">
+    <view class="circleIn"></view>
+    </van-col>
+    <van-col span="5">
+    <span class="title">{{relative_ration_min_str}}</span>
+    </van-col>
+    <van-col span="4">
+    <van-tag plain round>最小值</van-tag>
+    </van-col>
+</van-row>
+  <canvas
+  style="width: 400px; height: 200px;"
+  canvas-id="yueEle"
+  binderror="canvasIdErrorCallback"
+  ></canvas>
+</view>
+<view class="">
+  <van-cell title="日销消耗量数值" value="(kg)"></van-cell>
+  <van-row>
+      <van-col span="2">
+      <view class="circleIn"></view>
+      </van-col>
+      <van-col span="5">
+      <span class="title">{{one_dosage_period_max}}</span>
+      </van-col>
+      <van-col span="4">
+      <van-tag plain round>最大值</van-tag>
+      </van-col>
+  </van-row>
+
+  <van-row>
+      <van-col span="2">
+      <view class="circleIn"></view>
+      </van-col>
+      <van-col span="5">
+      <span class="title">{{one_dosage_period_min}}</span>
+      </van-col>
+      <van-col span="4">
+      <van-tag plain round>最小值</van-tag>
+      </van-col>
+  </van-row>
+  <!-- <canvas class="canvas" canvas-id="columnGraph{{ item.id }}"></canvas> -->
+  <canvas canvas-id="columnCanvas" disable-scroll="true" class="canvas"></canvas>
+</view>
+</view>

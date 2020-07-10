@@ -1,0 +1,87 @@
+/* 进度条样式覆盖 */
+.van-progress {
+  margin-top: 10px;
+}
+
+/* 圆形 */
+.circle {
+  display: block;
+  border-radius: 50%;
+  height: 8px;
+  width: 8px;
+  margin: 0;
+  background-color: black;
+}
+
+/* 进度条circle */
+.circleProgress {
+  display: block;
+  border-radius: 50%;
+  height: 8px;
+  width: 8px;
+  margin: 0;
+}
+
+/* 水质第一行 */
+.waterData {
+  font-size: 14px;
+  font-weight: 700;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+
+/* 水质第二行 */
+.waterNote {
+  font-size: 10px;
+  color: #999999;
+  margin-left: 10px;
+}
+
+/* 进度条标题 */
+.progressNote {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* 选项卡的class van-ellipsis van-tap van-tap--actice style= */
+
+/* 标签默认样式 最里层*/
+.van-ellipsis {
+ height: 25px;
+ font-size: 12px;
+ font-weight: 400;
+ line-height: 20px; 
+ margin-top: 2px;
+
+}
+
+.van-tab {
+  font-size: 12px;
+}
+
+/* 覆盖标签激活样式 */
+.van-tab--active {
+  /* width: 56px;
+  height: 24px; */
+  background: rgba(44, 101, 247, 1);
+  border-radius: 12px;
+  /* 激活时文字样式 */
+  color: #FFFFFF;
+}
+
+
+
+/* tap选项卡文字样式 */
+.tapTitleFont {
+  /* font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500; */
+  color: rgba(255, 255, 255, 1);
+  /* line-height: 20px; */
+}
+
+
+
+/* tap下划线的样式 */
+/* .van-tabs__line {
+  background-color:#FFFFFF;
+} */

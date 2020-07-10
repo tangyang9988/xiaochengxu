@@ -1,0 +1,22 @@
+<van-search
+  value="{{ value }}"
+  placeholder="请输入搜索关键词"
+  show-action
+  bind:search="onSearch"
+  bind:cancel="onCancel"
+/>
+<view class="body">
+  <view class="tr bg-w">
+    <view class="th">药剂名称</view>
+    <view class="th">出入库</view>
+    <view class="th">库存量（kg）</view>
+  </view>
+  <block wx:for="{{listData}}" wx:key="{{code}}">
+    <view class="tr bg-g">
+      <view class="td">{{item.medicine_id}}</view>
+      <view class="td">{{item.change_status}}</view>
+      <view class="td">{{item.storage_amount}}</view>
+    </view>
+  </block>
+
+</view>

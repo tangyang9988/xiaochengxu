@@ -1,0 +1,64 @@
+<!-- form表单 -->
+<van-row>
+  <van-col span="6">
+    <van-cell title="进出水" />
+  </van-col>
+  <van-col span="16">
+      <van-cell title="{{columns_name}}"  bind:click="showPopup" />
+    <van-popup show="{{ show }}" closeable position="bottom" custom-style="height: 25%;" bind:close="onClose">
+      <van-picker title="选择" columns="{{ columns }}" default-index="{{ 1 }}" bind:change="onChange" />
+    </van-popup>
+    </van-col>
+</van-row>
+<van-cell-group>
+  <van-field
+    v-model="cod"
+    label="COD"
+    placeholder="请输入COD(mg/L)"
+    bind:change="onChange1"/>
+</van-cell-group>
+<van-cell-group>
+  <van-field
+    name="BOD5"
+    label="BOD5"
+    placeholder="请输入BOD5(mg/L)"
+    border="{{ true }}"
+    bind:change="onChange2"/>
+</van-cell-group>
+<van-cell-group>
+  <van-field
+    name="ammonia "
+    label="氨氮"
+    placeholder="请输入氨氮(mg/L)"
+    border="{{ true }}"
+    bind:change="onChange3"/>
+</van-cell-group>
+<van-cell-group>
+  <van-field
+    name="phosphorus"
+    label="总磷"
+    placeholder="请输入总磷(mg/L)"
+    border="{{ true }}"
+    bind:change="onChange4"/>
+  <van-field
+    name="ss"
+    label="SS"
+    placeholder="请输入SS(mg/L)"
+    border="{{ true }}"
+    bind:change="onChange5"/>
+      <van-field
+    name="chroma"
+    label="色度"
+    placeholder="请输入色度(mg/L)"
+    border="{{ true }}"
+    bind:change="onChange6"/>
+</van-cell-group>
+  <van-cell-group>
+  <van-field
+    v-model="username"
+    value="化验员"
+    label="化验员"
+    border="{{ true }}"/>
+  </van-cell-group>
+    <van-button round type="info" style="display:flex;width:100%;margin-top:10%;margin-bottom:5%" bind:click="submit">提交</van-button>
+    <van-button round plain type="info" style="display:flex;width:100%;" bindtap="cancle">取消</van-button>

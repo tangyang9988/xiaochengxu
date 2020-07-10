@@ -1,0 +1,77 @@
+/**index.wxss**/
+.phone{
+  display: flex;
+  flex-direction: bottom;
+  margin-top: 10%;
+}
+.tupian{
+  display: flex;
+  direction: center;
+  width:84px; 
+  height:71px; 
+}
+.widget_arrow{
+  width:84px; 
+  height:80px; 
+  margin:20px 270px 32px 21px;
+}
+.header{
+  width:375px;
+  height:122px;
+}
+.info{
+  position: absolute;
+  margin:25px 150px 75px 80px;
+}
+.body{
+  flex-direction:row;
+}
+.module{
+  display: flex;
+  flex-direction: center;
+  width:160px; 
+  height:159px; 
+  margin:18px 18px 16px 16px;
+  background: #FFFFFF;
+}
+.bottom {
+  margin-top: 70px;
+}
+.circle{    width: 60px;      height: 60px;      background-color:#DBDAFF; border-radius: 50%;-moz-border-radius: 50%;-webkit-border-radius: 50%;    }
+/* .data_2{
+  display: flex; margin:18px 23px 16px 16px;
+  height: 160px;
+  width: 160px;
+} */
+
+/* 数据统计 */
+/* 加药 */
+.bg_1 { background-color: rgb(212, 186, 247);}
+/* 审核 */
+.bg_2 { background-color: rgb(243, 199, 134);}
+/* 库存 */
+.bg_3 { background-color:rgb(194, 245, 165);}
+/* 个人信息 */
+.bg_5 { background-color: #FFB8AA;}
+/* 水质分析 */
+.bg_6 { background-color: rgb(150, 204, 245);}
+/* 加药分析 */
+.bg_7 { background-color: rgb(169, 245, 242);}
+/* 信息仓 */
+.bg_8 { background-color: #DCC4F3;}
+.yao{width: 35px; height: 35px;display: flex;
+  margin:20px 30px 11px 18px }
+
+.datalist { display: flex; margin:0;flex-wrap:wrap }
+.data_one { flex: 1; margin:30rpx 15rpx 0rpx 25rpx; padding: 10rpx 30rpx; height: 140rpx;width: 150rpx; border-radius: 10rpx;}
+  .data_title { width: 100%; font-size: 28rpx; height: 40rpx; line-height: 40rpx; color: #fff;margin-left: 10rpx;}
+  .data_data { display: flex; height: 90rpx; align-items: flex-end;}
+    .data_ico { flex: 0.2; } 
+      .data_ico image { width: 50rpx; height: 50rpx;}
+    .data_num { flex: 0.8; text-align: right; font-size:56rpx; color: #fff; margin-right: 20rpx; font-family: 'Bebas'}
+    
+page{
+  /* background:rgba(230, 221, 221, 0.871); */
+  background:rgba(248,248,248,1);
+}
+

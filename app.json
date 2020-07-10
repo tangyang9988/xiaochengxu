@@ -1,0 +1,63 @@
+{
+  "usingComponents": {
+    "van-cell": "/@vant/weapp/dist/cell/index",
+    "van-cell-group": "/@vant/weapp/dist/cell-group/index",
+    "van-field": "/@vant/weapp/dist/field/index",
+    "van-button": "/@vant/weapp/dist/button/index",
+    "van-card": "/@vant/weapp/dist/card/index",
+    "van-row": "/@vant/weapp/dist/row/index",
+    "van-col": "@vant/weapp/dist/col/index",
+    "van-search": "@vant/weapp/dist/search/index",
+    "van-switch": "@vant/weapp/dist/switch/index",
+    "van-popup": "@vant/weapp/dist/popup/index",
+    "van-picker": "@vant/weapp/dist/picker/index",
+    "van-tab": "@vant/weapp/dist/tab/index",
+    "van-tabs": "@vant/weapp/dist/tabs/index",
+    "van-radio": "@vant/weapp/dist/radio/index",
+    "van-radio-group": "@vant/weapp/dist/radio-group/index",
+    "van-dropdown-menu": "@vant/weapp/dist/dropdown-menu/index",
+    "van-dropdown-item": "@vant/weapp/dist/dropdown-item/index",
+    "van-datetime-picker": "@vant/weapp/dist/datetime-picker/index",
+    "van-tag": "@vant/weapp/dist/tag/index"
+  },
+  "pages":[ 
+
+    "pages/login/login",
+    "pages/audit/audit",
+    "pages/edit/edit",
+
+    "pages/index/index",
+
+    "pages/hedit/hedit",
+
+    "pages/huayan/form/form",
+    "pages/huayan/audit/audit",
+    "pages/huayan/edit/edit",
+  
+    "pages/jiayao/form/form",
+    "pages/jiayao/audit/audit",
+    "pages/jiayao/edit/edit",
+
+    "pages/userInfo/userInfo",
+    "pages/cangku/storageIn/storageIn",
+    "pages/cangku/storage/storage",
+    "pages/cangku/storageBasic/storageBasic",
+    "pages/cangku/stockInOut/stockInOut",
+
+    "pages/wateranalysis/wateranalysis",
+    "pages/dosinganalysis/dosinganalysis"
+
+    
+    
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#2C65F7",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle":"white",
+    "backgroundColor": "#F8F8F8",
+    "background": "#F8F8F8"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,76 @@
+<!-- <form bindsubmit="formSubmit" method="post" action="http地址" name="myform" id="myform"> -->
+<van-cell-group>
+<van-cell title="药品名称" value="{{medicine_name}}" />
+<van-cell title="供应商" value="{{supplier}}" />
+<van-row>
+  <van-col span="10">
+    <van-cell title="低库存阀值设置"/>
+  </van-col>
+  <van-col span="14">
+   <van-field
+    value="{{minimum}}"
+    border="{{ true }}"
+    bind:change="onChange"/>
+  </van-col>
+</van-row>
+
+  <van-row>
+    <van-col span="12">
+      <van-cell title="是否用于工艺流程"/>
+    </van-col>
+    <van-col span="12">
+    <van-cell>
+    <van-switch checked="{{ is_process }}" bind:change="onChange" size="24px" />
+    </van-cell>
+    </van-col>
+  </van-row>
+
+  <van-cell title="库存数量" value="{{storage_amount}}" />
+</van-cell-group>
+<!-- <van-cell-group>
+  <van-field
+   value="LANCHUANG"
+    label="供应商"
+    border="{{ true }}"
+    bind:change="onChange2"/>
+</van-cell-group>
+<van-cell-group>
+  <van-field
+   value="10kg"
+    label="低库存阀值设置"
+    border="{{ true }}"
+    bind:change="onChange2"/>
+</van-cell-group>
+<van-cell-group>
+  <van-field
+   value="10kg"
+    label="低库存阀值设置"
+    border="{{ true }}"
+    bind:change="onChange2"/>
+<van-switch checked="{{ checked }}" size="24px" />
+</van-cell-group>
+<van-cell-group>
+  <van-field
+   value="10kg"
+   width="300px"
+    label="是否用于工艺流程"
+    border="{{ true }}"
+    bind:change="onChange2"/>
+</van-cell-group>
+<van-cell-group>
+  <van-field
+    value="156kg"
+    label="入库数量"
+    border="{{ true }}"
+    bind:change="onChange3"/>
+</van-cell-group> -->
+
+<van-button round type="info" style="display:flex;width:100%;margin-top:15%;margin-bottom:5%" bindtap="modify">修改</van-button>
+<!-- <van-button type="primary" size="large" bind:click="onClickButtonSubmit">登录</van-button> -->
+<van-button round plain type="info" style="display:flex;width:100%;" bindtap="cancle">取消</van-button>
+<!-- </form> -->
+
+
+
+
+

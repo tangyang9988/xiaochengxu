@@ -1,0 +1,76 @@
+
+<van-cell-group>
+  <van-field
+    value="{{cod}}"
+    label="COD"
+    border="{{ true }}"
+    bind:change="onChange1"/>
+</van-cell-group>
+<van-cell-group>
+  <van-field
+    value="{{bod5}}"
+    label="BOD5"
+    border="{{ true }}"
+     bind:change="onChange"/>
+</van-cell-group>
+<van-cell-group>
+  <van-field
+    value="{{ammonia_nitrogen}}"
+    label="氨氮"
+    border="{{ true }}"
+    bind:change="onChange3"/>
+</van-cell-group>
+<van-cell-group>
+  <van-field
+    value="{{phosphorus}}"
+    label="总磷"
+    border="{{ true }}"
+    bind:change="onChange4"/>
+</van-cell-group>
+<van-cell-group>
+  <van-field
+    value="{{nitrogen}}"
+    label="总氮"
+    border="{{ true }}"
+    bind:change="onChange4"/>
+</van-cell-group>
+<van-cell-group>
+  <van-field
+    value="{{ss}}"
+    label="SS"
+    border="{{ true }}"
+    bind:change="onChange4"/>
+</van-cell-group>
+<van-cell-group>
+  <van-field
+    value="{{chromaticity}}"
+    label="色度"
+    border="{{ true }}"
+    bind:change="onChange4"/>
+</van-cell-group>
+<van-cell-group>
+  <van-field
+    value="{{ph}}"
+    label="PH"
+    border="{{ true }}"
+    bind:change="onChange4"/>
+</van-cell-group>
+  <van-cell-group>
+  <van-field
+    value="张晓明"
+    label="化验员"
+    placeholder="请输入加药员"
+    border="{{ true }}"/>
+</van-cell-group>
+<van-cell-group>
+  <van-field
+    value="{{advice}}"
+    label="审核意见"
+    type="textarea"
+    placeholder="请输入审核意见"
+    rows="1"
+    autosize
+    bind:change="onChange"/>
+</van-cell-group>
+<van-button round type="info" style="display:flex;width:100%;margin-top:3%;margin-bottom:2%" bindtap="agree">同意</van-button>
+<van-button round type="danger" style="display:flex;width:100%;" bindtap="agree">驳回</van-button>
