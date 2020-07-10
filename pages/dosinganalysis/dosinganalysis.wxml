@@ -27,10 +27,10 @@
 <van-cell title="加药分析数据图" value="(kg)"></van-cell>
 <van-row>
     <van-col span="2">
-    <view class="circleIn"></view>
+    <view class="circleIn" style=" background-color: {{color}};"></view>
     </van-col>
     <van-col span="5">
-    <span class="title">{{'片碱'}}</span>
+    <span class="title">{{medicine_name}}</span>
     </van-col>
     <van-col span="4">
     <van-tag plain round large>225.6(kg)</van-tag>
@@ -38,14 +38,23 @@
 </van-row>
 <view class="">
   <van-row>
-    <van-col span="8">
+    <van-col span="14">
         <canvas canvas-id="ringCanvas" class="ring" bindtouchstart="touchHandler"></canvas>
     </van-col>
-    <van-col span="10">
-       <van-row>
-       <!-- <van-col style="margin:10% 10% 10% 10%" span="1">eee</van-col> -->
-       </van-row>
-    </van-col>
+					<van-col span="10">
+						<block wx:for="{{echartMedicineList}}">
+							<view style="width: 5px;height: 5px; "></view>
+							<van-row>
+								<van-col span="3">
+									<view class="circle" style=" background-color: {{item.color}}; margin-top:7px;"></view>
+								</van-col>
+								<van-col span="21">
+									<p style="font-size:10px"> {{item.name}}</p>
+								</van-col>
+								<!-- <van-col span="8">span: 8</van-col> -->
+							</van-row>
+						</block>
+					</van-col>
   </van-row>
     <!-- <view>调用stopAnimation终止动画，并监听渲染完成事件</view>
     <button type="primary" bindtap="updateData" style="margin-top:30rpx">更新title</button> -->

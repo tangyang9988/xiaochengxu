@@ -16,9 +16,11 @@ Page({
             //     value: 159280864452
             // }
         ],
-        medicine_name: "",
-        medicine_id: 159332570586,
-        value:"片碱",
+        medicine_name: "片碱",
+        medicine_id:159332570586,
+        medicine_count:"",
+        value:159332570586,
+        color:"#64C676",
         start_time:"2020-07-01",
         end_time:"2020-07-07",
         showStart:false,
@@ -27,13 +29,16 @@ Page({
         "dosage_period":"",
         "categories": [],
         "periodData": [],
+        echartMedicineList: [],
         "one_dosage_period_max":"",
         "one_dosage_period_min":"",
         "relative_ration_max_str":"",
         "relative_ration_min_str":"",
     },
     onChange(event){
+        debugger
         this.setData({medicine_id:Number(event.detail)})
+        this.getNameAndColor(this.data.medicine_id)
         this.onLoad();
     },
     showStartPop() {
@@ -62,6 +67,15 @@ Page({
       onCancel() {
         this.setData({ showEnd: false });
       },
+      getNameAndColor(medicine_id){
+        var option = this.data.option
+        for (var i = 0; i < option.length; i++) {
+            if(medicine_id==option[i].value){
+                this.setData({"medicine_name":option[i].text}) 
+                this.setData({"color":option[i].color}) 
+            }
+      }
+    },
       //时间戳转换方法    date:时间戳数字
      formatDate(date) {
         var date = new Date(date);
@@ -106,12 +120,12 @@ Page({
                 }
             },
             title: {
-                name: '40%',
+                name: this.data.medicine_count,
                 color: '#4A4A4A',
                 fontSize: 15
             },
             subtitle: {
-                name: '片碱',
+                name: this.data.medicine_name,
                 color: '#4A4A4A',
                 fontSize: 10
             },
@@ -328,11 +342,22 @@ Page({
         http.Post('/app/dosage_review/dosage/period', params, function (res) {
             var dosage_period = res.data.data.dosage_period
             var medicineList =[]
+            var color;
             for (var i = 0; i < dosage_period.length; i++) {
                 // that.setData({medicine_id:Number(dosage_period[0].id)})
                 // that.setData({medicine_name:dosage_period[0].medicine_name})
-                medicineList.push({value: dosage_period[i].id,text: dosage_period[i].medicine_name});
+                switch (dosage_period[i].medicine_name) {
+                    case "活性炭": color = '#F8C322'; break;
+                    case "PAM(阳离子)": color = '#5553CE'; break;
+                    case "PAM(阴离子)": color = '#F65050'; break;
+                    case "片碱": color = '#64C676'; break;
+                    case "PAC": color = '#669AFF'; break;
+                    case "葡萄糖": color = '#FF9100'; break;
+                    case "NaCO3": color = '#FFFF03'; break;
+                  }
+                medicineList.push({text: dosage_period[i].medicine_name,value: dosage_period[i].id,color:color});
             }
+
             that.setData({"option":medicineList})
             console.log(that.data.option)
             // for (var i = 0; i < res.data.data.one_dosage_period.length; i++) {
@@ -341,6 +366,30 @@ Page({
             // that.setData({"categories":res.data.data.x_date})
             // that.setData({"periodData":res.data.data.one_dosage_period})
             // that.lineChart.data
+            var storageMedicine = [];
+            var j = 0;
+            var len = 0;
+        
+            for (j = 0, len = dosage_period.length; j < len; j++) {
+              storageMedicine.push({
+                name: dosage_period[j].medicine_name,
+                data: dosage_period[j].daily_consume,
+                stroke: false,
+                color: '#64C676'
+              });
+              switch (dosage_period[j].medicine_name) {
+                case "活性炭": storageMedicine[j].color = '#F8C322'; break;
+                case "PAM(阳离子)": storageMedicine[j].color = '#5553CE'; break;
+                case "PAM(阴离子)": storageMedicine[j].color = '#F65050'; break;
+                case "片碱": storageMedicine[j].color = '#64C676'; break;
+                case "PAC": storageMedicine[j].color = '#669AFF'; break;
+                case "葡萄糖": storageMedicine[j].color = '#FF9100'; break;
+                case "NaCO3": storageMedicine[j].color = '#FFFF03'; break;
+              }
+            }
+            that.setData({
+              echartMedicineList: storageMedicine
+            })
             that.setData({
                 "categories": res.data.data.x_date
             })

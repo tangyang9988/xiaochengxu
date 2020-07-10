@@ -7,6 +7,14 @@
   width: 400px;
   height: 150px;
 }
+.circle{
+  width: 8px;
+  height: 8px;
+  background-color:#628DFC;
+  border-radius: 50%; 
+  display: inline-block;
+  margin-left:10% 10%;
+}
 .ring {
   margin-left: -8%;
   width: 200px;
@@ -18,7 +26,7 @@
   height: 150px;
 }
 .title{
-  font-size: small;
+  font-size: 11px;
 }
 .circleIn{
   width: 8px;
@@ -27,14 +35,6 @@
   border-radius: 50%; 
   display: inline-block;
   margin-left:40% ;
-}
-.circleOut{
-  width: 10px;
-  height: 10px;
-  background-color:#F8C322;
-  border-radius: 50%; 
-  display: inline-block;
-  margin-left:30% ;
 }
 page{
   /* background:rgba(230, 221, 221, 0.871); */
