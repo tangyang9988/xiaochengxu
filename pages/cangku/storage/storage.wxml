@@ -6,11 +6,7 @@
   bind:cancel="onCancel"
 />
 <view class="body">
-  <view class="tr bg-w">
-    <view class="th">药剂名称</view>
-    <view class="th">库存量（kg）</view>
-  </view>
-  <block wx:for="{{listData}}" wx:key="{{code}}">
+  <block wx:for="{{listData}}" wx:key="{{code}}" >
   <navigator url='../storageBasic/storageBasic?storage_id={{item.id}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&supplier={{item.supplier}}&minimum={{item.minimum}}&is_process={{item.is_process}}&storage_amount={{item.storage_amount}}'>
     <view class="tr bg-g">
       <view class="td">{{item.medicine_name}}</view>

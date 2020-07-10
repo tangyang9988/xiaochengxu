@@ -9,11 +9,6 @@ function Post(api, params, success) {
     data: params,
     success: function(res) {
       success(res)
-     wx.showToast({
-        title: '成功!',
-        icon: 'success',
-        duration: 1000//持续的时间
-      })
     },
     fail: function() {
       wx.showToast({

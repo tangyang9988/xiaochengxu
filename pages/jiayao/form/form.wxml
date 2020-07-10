@@ -102,7 +102,7 @@
     label="加药员"/> -->
 <van-button round type="info" style="display:flex;width:100%;margin-top:25%;margin-top:8%;margin-bottom:5%" bindtap="submit">提交</van-button>
 <!-- <van-button type="primary" size="large" bind:click="onClickButtonSubmit">登录</van-button> -->
-<van-button round plain type="info" style="display:flex;width:100%;" bindtap="cancle">取消</van-button>
+<van-button round plain type="info" style="display:flex;width:100%;" bindtap="cancle">重置</van-button>
 <!-- </form> -->
 
 

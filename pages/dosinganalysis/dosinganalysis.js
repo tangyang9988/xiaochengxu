@@ -23,6 +23,7 @@ Page({
         end_time:"2020-07-07",
         showStart:false,
         showEnd:false,
+        windowWidth:'',
         "dosage_period":"",
         "categories": [],
         "periodData": [],
@@ -168,13 +169,7 @@ Page({
     },
     // 柱状图
     columnShow: function (type, c1, c2) {
-        var windowWidth = 320;
-        try {
-            var res = wx.getSystemInfoSync();
-            windowWidth = res.windowWidth;
-        } catch (e) {
-            console.error('getSystemInfoSync failed!');
-        }
+        
         // let column = {
         //     canvasId: 'columnGraph', // canvas-id
         //     type: 'column', // 图表类型，可选值为pie, line, column, area, ring
@@ -247,19 +242,13 @@ Page({
                 }
             },
             // dataPointShape: true, //是否在图标上显示数据点标志
-            width: windowWidth, //图表展示内容宽度
+            width: this.data.windowWidth, //图表展示内容宽度
             height: 220, //图表展示内容高度
         })
     },
     getMothElectro: function (e) {
         console.log(this.data.categories)
-        var windowWidth = 320;
-        try {
-            var res = wx.getSystemInfoSync();
-            windowWidth = res.windowWidth;
-        } catch (e) {
-            console.error('getSystemInfoSync failed!');
-        }
+        
         yuelineChart = new wxCharts({ //当月用电折线图配置
             canvasId: 'yueEle',
             type: 'line',
@@ -307,7 +296,7 @@ Page({
                 max: 20,
                 min: 0
             },
-            width: windowWidth,
+            width: this.data.windowWidth,
             height: 200,
             dataLabel: false,
             dataPointShape: true,
@@ -317,6 +306,15 @@ Page({
         });
     },
     onLoad: function (e) {
+        wx.getSystemInfo({
+          success: (result) => {
+            console.log(result)
+            this.setData({
+                windowWidth:result.windowWidth-40
+            },()=>{console.log("屏幕宽度："+this.data.windowWidth)})
+          },
+        })
+
         var start_time = this.data.start_time
         var end_time = this.data.end_time
         //加载接口

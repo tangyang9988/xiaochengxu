@@ -165,6 +165,7 @@ Page({
   })
   },
   submit:function(){
+    var that = this
     var params ={
       "dosing_time":this.data.dosing_time,
       "position":this.data.position,
@@ -173,8 +174,32 @@ Page({
       "status":1,
       "user_id":1
     };
-    http.Post('/app/dosage/add', params, function (res) {
+    wx.showModal({
+      title: '提示',
+      content: '是否确认提交加药单',
+      success(res){
+        if (res.confirm) {
+          http.Post('/app/dosage/add', params, function (res) {
+            const { data } = res
+            if (data.code === 200) {
+              wx.showToast({ title: '提交加药单成功', icon :'success',duration: 2000 })
+              that.clearData()
+            } else  wx.showToast({ title: '提交加药单失败', })
+          })
+        } 
+      },
+      fail(res){ wx.showToast({ title: '提交加药单失败', }) }
     })
-
+  },
+  cancle: function(){
+    this.clearData()
+  },
+  clearData() {
+    this.setData({
+      dosing_time:'',
+      position:'',
+      medicine_name:'',
+      medicine_count:''
+    })
   }
 });
