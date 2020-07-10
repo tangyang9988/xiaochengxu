@@ -1,5 +1,7 @@
 //index.js
 //获取应用实例
+var util = require('../../utils/storage.js');
+
 const app = getApp()
 Page({
   data: {
@@ -89,6 +91,8 @@ Page({
     //     }
     //   })
     // }
+  },
+  onShow:function(){
   },
   getUserInfo: function(e) {
     console.log(e)

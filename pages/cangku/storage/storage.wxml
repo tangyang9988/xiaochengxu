@@ -1,22 +1,35 @@
-<van-search
+<!-- <van-search
   value="{{ value }}"
   placeholder="请输入搜索关键词"
   show-action
   bind:search="onSearch"
   bind:cancel="onCancel"
-/>
+/> -->
 <view class="body">
-  <block wx:for="{{listData}}" wx:key="{{code}}" >
+  <!-- <block wx:for="{{listData}}" wx:key="{{code}}" >
   <navigator url='../storageBasic/storageBasic?storage_id={{item.id}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&supplier={{item.supplier}}&minimum={{item.minimum}}&is_process={{item.is_process}}&storage_amount={{item.storage_amount}}'>
-    <view class="tr bg-g">
-      <view class="td">{{item.medicine_name}}</view>
-      <view class="td">{{item.storage_amount}}</view>
+    <view class="item">
+      <view class="tr bg-g">
+        <view class="td">{{item.medicine_name}}</view>
+        <view class="td">{{item.storage_amount}}</view>
+      </view>
+      <view class='pannel'></view>
     </view>
     </navigator>
-    <!-- <view class="tr" wx:else>
-      <view class="td">{{item.medicine_name}}</view>
-      <view class="td">{{item.storage_amount}}</view>
-    </view> -->
-  </block>
+  </block> -->
+  <scroll-view scroll-y style="height:{{screenHeight}}px;">
+    <view wx:for="{{listData}}" wx:key="{{item.code}}">
+      <view class="item" data-gId='{{item}}' bindtap="onNavigateTo">
+        <view class="tr {{item.is_active === 0 ? 'bg-g-disable' : 'bg-g'}}">
+          <view class="td">
+            <view>{{item.medicine_name}}</view>
+            <view style="color:#C9CBD3;">{{item.supplier}}</view>
+          </view>
+          <view class="td" style="font-size:14px;color:{{ item.is_active === 1 && item.storage_amount < item.minimum ? '#FF5E67' : ''}}">{{item.storage_amount}}</view>
+        </view>
+        <view class='pannel' style="background-color:{{item.is_active === 0 ? '#C9CBD3' : item.storage_amount < item.minimum ? '#FF5E67' : '#628DFC'}}"></view>
+      </view>
+    </view>
+  </scroll-view>
 
 </view>

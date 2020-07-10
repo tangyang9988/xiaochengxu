@@ -2,6 +2,7 @@
 let app = getApp();
 Page({
   data: {
+    medicinelist:[],
     medicine_name:"",
     medicine_count:"",
     supplier:"",
@@ -10,9 +11,11 @@ Page({
     supplierColumns: ['供应商1', '供应商2', '供应商3', '供应商4'],
   },
   onChange(event) {
-    this.setData({medicine_name :event.detail.value})
-    console.log(event.detail)
     const { picker, value, index } = event.detail;
+
+    const { medicinelist } = this.data
+    this.setData({medicine_name :event.detail.value,supplier: medicinelist[index].supplier})
+    console.log(event.detail)
   },
   onChange2(event) {
     this.setData({supplier :event.detail.value})
@@ -54,8 +57,15 @@ Page({
         //   // list.add(datas.data.medicine_name); 
         // }
         console.log(that.list)
+        console.log(datas)
+        let list = []
+        const { data } = datas
+        for(let i =0;i<data.length;i++) {
+          list.push(data[i].medicine_name)
+        }
         that.setData({//循环完后，再对list进行赋值
-          columns: datas.data,
+          columns: list,
+          medicinelist: data
         })
       },
       fail: function (res) {
