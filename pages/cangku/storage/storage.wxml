@@ -31,7 +31,7 @@
       </view>
     </view>
   </scroll-view>
-  <view class="addBtn {{usr_id === 2 || usr_id === 3 ? 'show' : 'hidden'}}" hover-class="hover" bindtap="onAddMedicine" >
+  <view class="addBtn {{usr_id === 2  ? 'show' : 'hidden'}}" hover-class="hover" bindtap="onAddMedicine" >
     新增药品
   </view>
 </view>

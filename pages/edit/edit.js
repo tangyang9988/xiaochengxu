@@ -136,6 +136,13 @@ agree:function(){
       "is_dosage":1
     };
     http.Post('/app/dosage_review/add', params, function (res) {
+      const { data } = res
+      if( data.code === 200 ){
+        wx.showToast({ title: '已审批', icon:'success',duration:2000 })
+        setTimeout(() => {
+        wx.navigateBack({})
+        }, 2000);
+      }else wx.showToast({ title: '审批失败',duration:2000 })
     })
   }else if(this.data.user_id==3){
     var params ={
@@ -149,6 +156,13 @@ agree:function(){
       "content":this.data.content
     };
     http.Post('/app/maotai/modify_dosage', params, function (res) {
+      const { data } = res
+      if( data.code === 200 ){
+        wx.showToast({ title: '已审批', icon:'success',duration:2000 })
+        setTimeout(() => {
+        wx.navigateBack({})
+        }, 2000);
+      }else wx.showToast({ title: '审批失败',duration:2000 })
     })
   }
 },
@@ -161,6 +175,13 @@ reject:function(){
     "is_dosage":1
   };
   http.Post('/app/dosage_review/add', params, function (res) {
+    const { data } = res
+    if( data.code === 200 ){
+      wx.showToast({ title: '已驳回', icon:'success',duration:2000 })
+      setTimeout(() => {
+      wx.navigateBack({})
+      }, 2000);
+    }else wx.showToast({ title: '驳回失败',duration:2000 })
   })
 }
 })

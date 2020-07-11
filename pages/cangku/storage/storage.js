@@ -27,7 +27,7 @@ Page({
     wx.getSystemInfo({
       success: (result) => {
         console.log(result)
-        this.setData({ screenHeight: usr_id === 7 ? result.windowHeight - 80 : result.windowHeight - 20 })
+        this.setData({ screenHeight: usr_id ===2 ? result.windowHeight - 80 : result.windowHeight - 20 })
       },
     })
   },
@@ -36,10 +36,12 @@ Page({
    * @param { item子项 } e 
    */
   onItemClick(e) {
-    console.log(e)
-    const { gid } = e.currentTarget.dataset
-    const url = `../storageBasic/storageBasic?storage_id=${gid.id}&medicine_id=${gid.medicine_id}&medicine_name=${gid.medicine_name}&supplier=${gid.supplier}&minimum=${gid.minimum}&is_process=${gid.is_process}&storage_amount=${gid.storage_amount}`
-    this.onNavigateTo(url)
+    const { usr_id } = this.data 
+    if(usr_id === 2){
+      const { gid } = e.currentTarget.dataset
+      const url = `../storageBasic/storageBasic?storage_id=${gid.id}&medicine_id=${gid.medicine_id}&medicine_name=${gid.medicine_name}&supplier=${gid.supplier}&minimum=${gid.minimum}&is_process=${gid.is_process}&storage_amount=${gid.storage_amount}`
+      this.onNavigateTo(url)
+    }
   },
   /**
    * 新增药品点击事件
