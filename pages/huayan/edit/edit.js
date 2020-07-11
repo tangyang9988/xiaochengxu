@@ -86,6 +86,13 @@ Page({
         "ph":Number(this.data.ph)
     };
     http.Post('/app/water_quality/modify', params, function (res) {
+      const { data } = res
+      if( data.code === 200 ){
+        wx.showToast({ title: '已审批', icon:'success',duration:2000 })
+        setTimeout(() => {
+        wx.navigateBack({})
+        }, 2000);
+      }else wx.showToast({ title: '审批失败',duration:2000 })
     })
     }
     if(this.data.usr_id ==2){
@@ -97,6 +104,13 @@ Page({
         "is_dosage":this.data.is_dosage
       };
       http.Post('/app/water_quality/add', params, function (res) {
+        const { data } = res
+      if( data.code === 200 ){
+        wx.showToast({ title: '已审批', icon:'success',duration:2000 })
+        setTimeout(() => {
+        wx.navigateBack({})
+        }, 2000);
+      }else wx.showToast({ title: '审批失败',duration:2000 })
       })
     }
     if(this.data.usr_id ==3){
@@ -114,6 +128,13 @@ Page({
         "review_status":5,
       };
       http.Post('/app/maotai/modify_water', params, function (res) {
+        const { data } = res
+      if( data.code === 200 ){
+        wx.showToast({ title: '已审批', icon:'success',duration:2000 })
+        setTimeout(() => {
+        wx.navigateBack({})
+        }, 2000);
+      }else wx.showToast({ title: '审批失败',duration:2000 })
       })
     }
 
@@ -136,13 +157,14 @@ Page({
             if (data.code === 200) {
               wx.showToast({ title: '驳回成功', icon :'success',duration: 2000 })
               that.clearData()
+              setTimeout(() => {
+                wx.navigateBack({})
+              }, 2000);
             } else  wx.showToast({ title: '驳回失败', })
           })
         } 
       },
       fail(res){ wx.showToast({ title: '驳回失败', }) }
     })
-
-
   }
 });
