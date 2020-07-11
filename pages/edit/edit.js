@@ -174,14 +174,23 @@ reject:function(){
     "review_status":2,
     "is_dosage":1
   };
-  http.Post('/app/dosage_review/add', params, function (res) {
+  wx.showModal({
+    title: '提示',
+    content: '是否驳回',
+    success(res){
+      if (res.confirm) {
+    http.Post('/app/dosage_review/add', params, function (res) {
     const { data } = res
-    if( data.code === 200 ){
-      wx.showToast({ title: '已驳回', icon:'success',duration:2000 })
-      setTimeout(() => {
-      wx.navigateBack({})
-      }, 2000);
-    }else wx.showToast({ title: '驳回失败',duration:2000 })
-  })
+            if (data.code === 200) {
+              wx.showToast({ title: '驳回成功', icon :'success',duration: 2000 })
+              setTimeout(() => {
+                wx.navigateBack({})
+              }, 2000);
+            } else  wx.showToast({ title: '驳回失败', })
+          })
+        } 
+      },
+      fail(res){ wx.showToast({ title: '驳回失败', }) }
+    })
 }
 })
