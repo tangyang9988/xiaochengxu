@@ -75,7 +75,7 @@ Page({
         // var dateCount=(end_time.getTime()-start_time.getTime())/(1000*60*60*24);/*不用考虑闰年否*/
         // if(Number(dateCount)>7){
         // }
-        this.setData({start_time: date});
+        this.setData({start_time: date,transCanvs:false });
         this.setData({ showStart: false });
         const { end_time } = this.data
         if ( this.validStr(end_time) ) {
@@ -93,7 +93,7 @@ Page({
       // 结束时间
       onConfirm(event) {
         var date = this.formatDate(event.detail)
-        this.setData({end_time: date});
+        this.setData({end_time: date,transCanvs:false });
         this.setData({ showEnd: false });
         const { start_time } = this.data
         if ( this.validStr(start_time) ) {
