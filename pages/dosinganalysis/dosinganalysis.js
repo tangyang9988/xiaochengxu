@@ -34,24 +34,36 @@ Page({
         "one_dosage_period_min":"",
         "relative_ration_max_str":"",
         "relative_ration_min_str":"",
+        "canvsPie":"",
+        "canvsLine":"",
+        "canvsHistogram":"",
+        "transCanvs":false
+    },
+    onOpen(){
+        console.log("true")
+        this.setData({transCanvs:true})
+    },
+    onCloseDropdown(){
+        console.log("false")
+        this.setData({transCanvs:false})
+        this.onGetInfo()
     },
     onChange(event){
-        debugger
         this.setData({medicine_id:Number(event.detail)})
         this.getNameAndColor(this.data.medicine_id)
-        this.onLoad();
+        this.onGetInfo()
     },
     showStartPop() {
-        this.setData({ showStart: true });
+        this.setData({ showStart: true, transCanvs:true});
       },
       showEndPop() {
-        this.setData({ showEnd: true });
+        this.setData({ showEnd: true,transCanvs:true });
       },
       // 开始时间
       confirm(event) {
         var date = this.formatDate(event.detail)
         this.setData({start_time: date});
-        this.setData({ showStart: false });
+        this.setData({ showStart: false,transCanvs:false });
 
         const { end_time } = this.data
         if ( this.validStr(end_time) ) {
@@ -70,10 +82,9 @@ Page({
       onConfirm(event) {
         var date = this.formatDate(event.detail)
         this.setData({end_time: date});
-        this.setData({ showEnd: false });
+        this.setData({ showEnd: false,transCanvs:false });
 
         const { start_time } = this.data
-        console.log(start_time)
         if ( this.validStr(start_time) ) {
             var str = this.companyDateTime(start_time,date)
             if ( this.validStr(str)) {
@@ -280,8 +291,6 @@ Page({
         })
     },
     getMothElectro: function (e) {
-        console.log(this.data.categories)
-        
         yuelineChart = new wxCharts({ //当月用电折线图配置
             canvasId: 'yueEle',
             type: 'line',
@@ -348,10 +357,8 @@ Page({
             "company_id": 1,
             "medicine_id": this.data.medicine_id
         };
-        console.log(params)
         var that = this;
         http.Post('/app/dosage_review/dosage/period', params, function (res) {
-            console.log(res)
             var dosage_period = res.data.data.dosage_period
             var medicineList =[]
             var color;
@@ -371,7 +378,6 @@ Page({
             }
 
             that.setData({"option":medicineList})
-            console.log(that.data.option)
             // for (var i = 0; i < res.data.data.one_dosage_period.length; i++) {
             //     data.push(res.data.data.one_dosage_period[i]);
             // }
@@ -431,15 +437,17 @@ Page({
        })
        this.getSystemInfo()
        this.onGetInfo()
+     
+       this.setCanvsPieImage()
+       this.setCanvsLineImage()
+       this.setCanvsHistogramImage()
     },
-   
     getSystemInfo(){
         wx.getSystemInfo({
             success: (result) => {
-              console.log(result)
               this.setData({
                   windowWidth:result.windowWidth-40
-              },()=>{console.log("屏幕宽度："+this.data.windowWidth)})
+              })
             },
           })
     },
@@ -458,7 +466,6 @@ Page({
          var ms = end_date.getTime() - start_date.getTime()
           //转换成天数
          var day = parseInt(ms / (1000 * 60 * 60 * 24))
-         console.log(day)
         if (start_date > end_date) str =  '开始时间不得大于结束时间'
         else if (day < 0 || day > 7) str = '时间跨度不得大于一周'
         else str = ''
@@ -476,5 +483,53 @@ Page({
         const month = (monthformat < 10 && monthformat != 0 ? '0' + monthformat : monthformat) + '-';
         const day = dateFormat.getDate() + '';
         return year + month + day;
-    }
+    },
+    setCanvsPieImage(){
+        var that = this
+        setTimeout(() => {
+            wx.canvasToTempFilePath({
+                canvasId: 'ringCanvas',
+                success: function(res) {
+                    console.log("图片")
+                    console.log(res)
+                  that.setData({ canvsPie: res.tempFilePath});
+                },
+                fail:function(res){
+                    console.log(res)
+                }
+              },this)
+        }, 2000);
+    },
+    setCanvsLineImage(){
+        var that = this
+        setTimeout(() => {
+            wx.canvasToTempFilePath({
+                canvasId: 'yueEle',
+                success: function(res) {
+                    console.log("图片")
+                    console.log(res)
+                  that.setData({ canvsLine: res.tempFilePath});
+                },
+                fail:function(res){
+                    console.log(res)
+                }
+              },this)
+        }, 2000);
+    },
+    setCanvsHistogramImage(){
+        var that = this
+        setTimeout(() => {
+            wx.canvasToTempFilePath({
+                canvasId: 'columnCanvas',
+                success: function(res) {
+                    console.log("图片")
+                    console.log(res)
+                  that.setData({ canvsHistogram: res.tempFilePath});
+                },
+                fail:function(res){
+                    console.log(res)
+                }
+              },this)
+        }, 2000);
+    },
 })

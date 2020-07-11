@@ -12,10 +12,11 @@ Page({
       storage_amount:"",
   },
   onLoad: function (options) {      //options专门用于接受数据的
+    console.log(options)
     this.setData({
       storage_id: Number(options.storage_id),
       medicine_name: options.medicine_name,
-      is_process: options.is_process === 0 ? false : true,
+      is_process: options.is_process === "0" ? false : true,
       minimum: options.minimum,
       supplier: options.supplier,
       storage_amount: options.storage_amount

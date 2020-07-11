@@ -35,15 +35,15 @@
 					<van-col span="1" offset="1" style="font-size:12px;color:#999999;">
 						<view style="width: 5px;height: 15px; background: #E4EAFB;"></view>
 					</van-col>
-					<van-col span="9" style="font-size:9px;color:#999999;">当日未完成审核量 (个)</van-col>
+					<van-col span="9" style="font-size:10px;color:#999999;">当日未完成审核量 (个)</van-col>
 					<van-col span="1" offset="1">
 						<view class="circleProgress" style=" background-color: #2C65F7; margin-top:4px;"></view>
 					</van-col>
-					<van-col span="5" style="font-size:9px;color:#999999;">占比{{information.daily_dosage_percentage}}</van-col>
+					<van-col span="5" style="font-size:10px;color:#999999;">占比{{information.daily_dosage_percentage}}</van-col>
 					<van-col span="1" offset="1">
 						<view class="circleProgress" style=" background-color: #E4ECFF; margin-top:4px;"></view>
 					</van-col>
-					<van-col span="4" style="font-size:9px;color:#999999;">总量{{information.daily_all_dosage}}</van-col>
+					<van-col span="4" style="font-size:10px;color:#999999;">总量{{information.daily_all_dosage}}</van-col>
 				</van-row>
 				</view>
 				
@@ -53,7 +53,7 @@
 				<!-- 审核量进度条 -->
 				<van-row>
 					<van-col span="6" offset="2">
-						<view style="margin-left:10px;">
+						<view >
 							<p class="progressNote">{{information.daily_not_finish_count}}</p>
 						</view>
 					</van-col>
@@ -70,15 +70,15 @@
 					<van-col span="1" offset="1" style="font-size:12px;color:#999999;">
 						<view style="width: 5px;height: 15px; background: #E4EAFB;"></view>
 					</van-col>
-					<van-col span="7" style="font-size:9px;color:#999999;">当日药剂消耗量 (kg)</van-col>
+					<van-col span="7" style="font-size:10px;color:#999999;">当日药剂消耗量 (kg)</van-col>
 					<van-col span="1" offset="1">
 						<view class="circleProgress" style=" background-color: #f2826a; margin-top:4px;"></view>
 					</van-col>
-					<van-col span="4" style="font-size:9px;color:#999999;">占比{{information.daily_consume_percentage_str}}</van-col>
+					<van-col span="4" style="font-size:10px;color:#999999;">占比{{information.daily_consume_percentage_str}}</van-col>
 					<van-col span="1">
 						<view class="circleProgress" style=" background-color: #E4ECFF; margin-top:4px;"></view>
 					</van-col>
-					<van-col span="8" style="font-size:9px;color:#999999;">库存{{information.company_storage_sum}}</van-col>
+					<van-col span="8" style="font-size:10px;color:#999999;">库存{{information.company_storage_sum}}</van-col>
 				</van-row>
 				
 				</view>
@@ -88,7 +88,7 @@
 
 				<van-row>
 					<van-col span="6" offset="2">
-						<view style="margin-left:10px;">
+						<view >
 							<p class="progressNote">{{information.daily_consume}}</p>
 						</view>
 					</van-col>

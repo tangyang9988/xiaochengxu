@@ -43,7 +43,7 @@ page{
 
 /* 进度条标题 */
 .progressNote {
-  font-size: 14px;
+  font-size: 25px;
   font-weight: 700;
 }
 
@@ -124,4 +124,9 @@ page{
   /* font-size: 25px  !important;
   font-weight: 500 !important;
   line-height: 20px !important; */
+}
+
+
+scroll-view{
+  width: 90% ! important;
 }

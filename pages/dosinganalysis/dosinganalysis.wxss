@@ -41,5 +41,20 @@ page{
   background:#F8F8F8;
 }
 
-
-
+/* vant 组件固定样式调整 */
+/* .van-dropdown-menu__title{
+  background-color: #2C65F7;
+  border-radius: 5px;
+} */
+/* .van-ellipsis{
+  color:#fff;
+} */
+.van-popup--top {
+  width: 89% !important;
+  margin: 0 20px !important;
+  z-index: 999 !important;
+}
+.canvas {
+  z-index: 0;
+}
+  

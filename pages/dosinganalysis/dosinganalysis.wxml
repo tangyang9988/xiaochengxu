@@ -2,7 +2,7 @@
 <van-row>
   <van-col span="6">
     <van-dropdown-menu>
-      <van-dropdown-item value="{{value}}" options="{{ option }}" bind:change="onChange"/>
+      <van-dropdown-item value="{{value}}" options="{{ option }}" bind:change="onChange" bind:open='onOpen' bind:closed='onCloseDropdown'/>
     </van-dropdown-menu>
   </van-col>
     <van-col span="9">
@@ -18,6 +18,7 @@
     <van-cell title="{{end_time}}"  bind:click="showEndPop" />
     <van-popup show="{{ showEnd }}" position="top" custom-style="height: 50%;">
       <van-datetime-picker
+      bindtap='onSelect'
       type="date"
       bind:confirm="onConfirm"
       bind:cancel="onCancel"/>
@@ -39,7 +40,8 @@
 <view class="">
   <van-row>
     <van-col span="14">
-        <canvas canvas-id="ringCanvas" class="ring" bindtouchstart="touchHandler"></canvas>
+        <canvas wx:if="{{!transCanvs}}"  canvas-id="ringCanvas"  class="ring" bindtouchstart="touchHandler"></canvas>
+        <image wx:else src="{{canvsPie}}" style="width: 260px; height: 180px;" />
     </van-col>
 					<van-col span="10">
 						<block wx:for="{{echartMedicineList}}">
@@ -86,10 +88,12 @@
     </van-col>
 </van-row>
   <canvas
+  wx:if="{{!transCanvs}}"
   style="width: 320px; height: 200px;"
   canvas-id="yueEle"
   binderror="canvasIdErrorCallback"
   ></canvas>
+   <image wx:else src="{{canvsLine}}" style="width: 260px; height: 180px;" />
 </view>
 <view class="">
   <van-cell title="日销消耗量数值" value="(kg)"></van-cell>
@@ -117,6 +121,7 @@
       </van-col>
   </van-row>
   <!-- <canvas class="canvas" canvas-id="columnGraph{{ item.id }}"></canvas> -->
-  <canvas canvas-id="columnCanvas" disable-scroll="true" class="canvas"></canvas>
+  <canvas wx:if="{{!transCanvs}}" canvas-id="columnCanvas" disable-scroll="true" class="canvas"></canvas>
+   <image wx:else src="{{canvsHistogram}}" style="width: 260px; height: 180px;" />
 </view>
 </view>
