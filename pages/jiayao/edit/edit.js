@@ -30,18 +30,14 @@ Page({
   //   this.setData({medicine_id:Number(event.detail)})
   // },
   onChange4(event) {
-    var regNum=new RegExp('^[0-9]*$');
-    var rsNum=regNum.exec(event.detail);
-    if(!rsNum){
-      setTimeout(()=>{
-          wx.showToast({
-              title: '只能输入数字',
-              icon: 'none'
-          })
-      },1000);
-      return
+  if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+    wx.showToast({
+      title: '请输入数字值,最多2位小数',
+      icon: 'none'
+    })
+  }else{
+    this.setData({"medicine_count":event.detail})
   }
-  this.setData({medicine_count:Number(event.detail)})
   },
   showTimePop() {
     this.setData({ showTime: true });
@@ -114,23 +110,23 @@ Page({
       position: options.position,
       medicine_id: Number(options.medicine_id),
       medicine_name:options.medicine_name,
-      medicine_count: Number(options.medicine_count)
+      medicine_count: parseFloat(options.medicine_count)
     })
   },
 agree:function(){
-  let  that =this;
+  var usr_id = wx.getStorageSync('usr_id');
   var params={
     "dosage_id":this.data.id,
     "review_status":3,
-    "user_id":1,
+    "user_id":usr_id,
     "dosing_time":this.data.dosing_time,
     "position":this.data.position,
-    "medicine_id":this.data.medicine_id,
-    "medicine_count":this.data.medicine_count,
+    "medicine_id":Number(this.data.medicine_id),
+    "medicine_count":parseFloat(this.data.medicine_count),
   }
   http.Post('/app/dosage/modify', params,function (res) {
     var datas=res.data;//res.data就是从后台接收到的值
-     that.setData({//循环完后，再对list进行赋值
+     this.setData({//循环完后，再对list进行赋值
        List: datas.data,
        loading: false
      })
