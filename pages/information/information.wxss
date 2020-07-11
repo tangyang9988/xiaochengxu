@@ -130,3 +130,8 @@ page{
 scroll-view{
   width: 90% ! important;
 }
+
+.marbot20{
+  margin-bottom: 20px !important;
+  padding-bottom: 20px;
+}

@@ -139,8 +139,8 @@
 
 				<view style="width: 5px;height: 7px; "></view>
 
-				<view style="margin-left:10px;margin-bottom:20px;">
-				<van-tabs active="a" line-width="1px" border="" >
+				<view style="margin-left:10px;" class="marbot20">
+				<van-tabs active="a" line-width="0px" border="" >
 					<van-tab title="{{information.WaterQuality.cod_name}}" name="a">
 						<view >
 							<!-- style="margin-left:10px;margin-top:5px;" -->
