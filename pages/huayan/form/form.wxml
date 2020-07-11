@@ -12,14 +12,16 @@
 </van-row>
 <van-cell-group>
   <van-field
-    v-model="cod"
-    label="COD"
+  label="COD"
+    type="digit"
+    value="{{cod}}"
     placeholder="请输入COD(mg/L)"
     bind:change="onChange1"/>
 </van-cell-group>
 <van-cell-group>
   <van-field
-    name="BOD5"
+    type="digit"
+    value="{{bo5}}"
     label="BOD5"
     placeholder="请输入BOD5(mg/L)"
     border="{{ true }}"
@@ -27,7 +29,8 @@
 </van-cell-group>
 <van-cell-group>
   <van-field
-    name="ammonia "
+    type="digit"
+    value="{{ammonia_nitrogen}}"
     label="氨氮"
     placeholder="请输入氨氮(mg/L)"
     border="{{ true }}"
@@ -35,23 +38,40 @@
 </van-cell-group>
 <van-cell-group>
   <van-field
-    name="phosphorus"
+      type="digit"
+    value="{{phosphorus}}"
     label="总磷"
     placeholder="请输入总磷(mg/L)"
     border="{{ true }}"
     bind:change="onChange4"/>
   <van-field
-    name="ss"
+    type="digit"
+    value="{{nitrogen}}"
+    label="总氮"
+    placeholder="请输入总磷(mg/L)"
+    border="{{ true }}"
+    bind:change="onChange5"/>
+  <van-field
+    type="digit"
+    value="{{ss}}"
     label="SS"
     placeholder="请输入SS(mg/L)"
     border="{{ true }}"
-    bind:change="onChange5"/>
-      <van-field
-    name="chroma"
-    label="色度"
-    placeholder="请输入色度(mg/L)"
-    border="{{ true }}"
     bind:change="onChange6"/>
+    <van-field
+    type="digit"
+    value="{{chromaticity}}"
+    label="色度"
+    placeholder="请输入色度"
+    border="{{ true }}"
+    bind:change="onChange7"/>
+    <van-field
+    type="digit"
+    value="{{ph}}"
+    label="PH"
+    placeholder="请输入PH"
+    border="{{ true }}"
+    bind:change="onChange8"/>
 </van-cell-group>
   <van-cell-group>
   <van-field

@@ -18,7 +18,8 @@
     "van-dropdown-menu": "@vant/weapp/dist/dropdown-menu/index",
     "van-dropdown-item": "@vant/weapp/dist/dropdown-item/index",
     "van-datetime-picker": "@vant/weapp/dist/datetime-picker/index",
-    "van-tag": "@vant/weapp/dist/tag/index"
+    "van-tag": "@vant/weapp/dist/tag/index",
+    "van-progress": "@vant/weapp/dist/progress/index"
   },
   "pages":[ 
     "pages/login/login",

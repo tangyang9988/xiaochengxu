@@ -26,7 +26,8 @@ Page({
         ],
         option1: "COD",
         detection_name: 'cod',
-        start_time:"2020-07-01",
+        currentDate: new Date().getTime(),
+        start_time: "2020-07-01",
         end_time:"2020-07-07",
         showStart:false,
         showEnd:false,
@@ -41,6 +42,11 @@ Page({
         "out_data":[],
         
     },
+    onInput(event) {
+        this.setData({
+          currentDate: event.detail,
+        });
+      },
     onChange(event){
         this.data.detection_name=event.detail
         this.onLoad();
@@ -53,8 +59,18 @@ Page({
       },
       // 开始时间
       confirm(event) {
-        var date = this.formatDate(event.detail)
-        this.setData({start_time: date});
+        debugger
+        var start_time = this.formatDate(event.detail)
+        var end_time =this.data.end_time
+        if(end_time<start_time){
+            wx.showToast({
+              title: '时间范围错误',
+            })
+        }
+        // var dateCount=(end_time.getTime()-start_time.getTime())/(1000*60*60*24);/*不用考虑闰年否*/
+        // if(Number(dateCount)>7){
+        // }
+        this.setData({start_time: start_time});
         this.setData({ showStart: false });
         this.onLoad();
       },

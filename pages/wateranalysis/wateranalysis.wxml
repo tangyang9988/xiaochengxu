@@ -15,9 +15,11 @@
     <van-cell title="{{start_time}}"  bind:click="showStartPop" />
     <van-popup show="{{ showStart }}" position="top" custom-style="height: 50%;">
       <van-datetime-picker
+      value="{{ currentDate }}"
       type="date"
       bind:confirm="confirm"
-      bind:cancel="onClose"/>
+      bind:cancel="onClose"
+      bind:input="onInput"/>
       </van-popup>
     </van-col>
     <van-col span="9">
@@ -25,6 +27,7 @@
     <van-popup show="{{ showEnd }}" position="top" custom-style="height: 50%;">
       <van-datetime-picker
       type="date"
+      value="{{ currentDate }}"
       bind:confirm="onConfirm"
       bind:cancel="onCancel"/>
       </van-popup>
