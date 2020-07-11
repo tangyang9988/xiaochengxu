@@ -1,22 +1,45 @@
-<van-search
+<!-- <van-search
   value="{{ value }}"
   placeholder="请输入搜索关键词"
   show-action
   bind:search="onSearch"
   bind:cancel="onCancel"
-/>
+/> -->
 <view class="body">
-  <view class="tr bg-w">
+  <!-- <view class="tr bg-w">
     <view class="th">药剂名称</view>
     <view class="th">出入库</view>
     <view class="th">库存量（kg）</view>
-  </view>
-  <block wx:for="{{listData}}" wx:key="{{code}}">
+  </view> -->
+  <!-- <block wx:for="{{listData}}" wx:key="{{item.id}}">
     <view class="tr bg-g">
       <view class="td">{{item.medicine_id}}</view>
       <view class="td">{{item.change_status}}</view>
-      <view class="td">{{item.storage_amount}}</view>
+      <view class="td">{{item.change_amount}}</view>
     </view>
-  </block>
+  </block> -->
+
+  <!-- 出入库日志列表 -->
+  <scroll-view scroll-y style="height:{{screenHeight}}px;">
+    <view wx:for="{{listData}}" wx:key="{{item.id}}">
+      <view class="item" data-gId='{{item}}' >
+        <view class="tr {{'bg-g'}}">
+          <view class="td">
+            <view style="font-size:12px; font-weight: 400;line-height: 20px;">{{item.medicine_name}}</view>
+            <!-- <view style="color:#C9CBD3;">{{item.supplier}}</view> -->
+          </view>
+          <view class="td">
+             <view class="td" style="font-size:14px; margin-right:10px; font-weight: 400;line-height: 20px; color:{{''}}">{{item.change_amount}}</view>
+            <!-- <view style="color:#C9CBD3;">{{item.supplier}}</view> -->
+          </view>
+        
+          <view  style="font-size:12px;margin-right:20px; font-weight: 400;line-height: 20px;">{{item.change_status?'出库':'入库'}}</view>
+          <!-- <view class="td" style="font-size:14px;color:{{ item.change_status === 1  ? '#FF5E67' : ''}}">{{item.updated_at}}</view> -->
+        </view>
+        <!-- <view class='pannel' style="background-color:{{item.change_status === 0 ? '#C9CBD3' : '#628DFC'}}"></view> -->
+      </view>
+    </view>
+  </scroll-view>
+
 
 </view>

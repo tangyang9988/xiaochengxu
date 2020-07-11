@@ -28,41 +28,89 @@ Page({
     })
   },
   onChange1(event) {
-    this.setData({cod:Number(event.detail)})
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({cod:event.detail})
+    }
   },
   onChange2(event) {
-    this.setData({bod5:Number(event.detail)})
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({bod5:event.detail})
+    }
   },
   onChange3(event) {
-    this.setData({ammonia_nitrogen:Number(event.detail)})
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({ammonia_nitrogen:event.detail})
+    }
+
   },
   onChange4(event) {
-    this.setData({phosphorus:Number(event.detail)})
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({phosphorus:event.detail})
+    }
+
   },
   onChange5(event) {
-    this.setData({nitrogen:Number(event.detail)})
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({nitrogen:event.detail})
+    }
+
   },
   onChange6(event) {
-    this.setData({ss:Number(event.detail)})
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({ss:event.detail})
+    }
+
   },
   onChange7(event) {
-    this.setData({chromaticity:Number(event.detail)})
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({chromaticity:event.detail})
+    }
   },
   onChange8(event) {
-    this.setData({ph:Number(event.detail)})
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({ph:event.detail})
+    }
   },
-  // verification:function(value){
-  //   const reg = /[^\d+(,\d\d\d)*.\d+$]/g;
-  //   if (reg.test(value)) {
-  //     setTimeout(()=>{
-  //       wx.showToast({
-  //           title: '只能输入数字',
-  //           icon: 'none'
-  //       })
-  //   },1000);
-  //   return
-  //   }
-  // },
   onClose() {
     this.setData({ show: false });
   },

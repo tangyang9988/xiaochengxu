@@ -117,5 +117,32 @@ Page({
       })
     }
 
+  },
+  reject:function(){
+    var params={
+      "dosage_id":this.data.id,
+      "content":this.data.advice,
+      "user_id":this.data.usr_id,
+      "review_status":4,
+      "is_dosage":this.data.is_dosage
+    };
+    wx.showModal({
+      title: '提示',
+      content: '是否驳回',
+      success(res){
+        if (res.confirm) {
+          http.Post('/app/dosage_review/add', params, function (res) {
+            const { data } = res
+            if (data.code === 200) {
+              wx.showToast({ title: '驳回成功', icon :'success',duration: 2000 })
+              that.clearData()
+            } else  wx.showToast({ title: '驳回失败', })
+          })
+        } 
+      },
+      fail(res){ wx.showToast({ title: '驳回失败', }) }
+    })
+
+
   }
 });

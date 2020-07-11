@@ -12,9 +12,10 @@
 </van-row>
 <van-cell-group>
   <van-field
-  label="COD"
+    label="COD"
     type="digit"
     value="{{cod}}"
+    clickable
     placeholder="请输入COD(mg/L)"
     bind:change="onChange1"/>
 </van-cell-group>
