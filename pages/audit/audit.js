@@ -18,12 +18,12 @@ Page({
     this.onLoad();
   },
   onLoad: function (options) {
-    debugger
-    if(options==undefined){
-      var usr_id=this.data.usr_id
-    }else{
-      var usr_id=Number(options.usr_id)
-    }
+    // if(options==undefined){
+    //   var usr_id=this.data.usr_id
+    // }else{
+    //   var usr_id=Number(options.usr_id)
+    // }
+    var usr_id = wx.getStorageSync('usr_id');
     var that = this //很重要，一定要写
     that.setData({usr_id:usr_id})
     var params={

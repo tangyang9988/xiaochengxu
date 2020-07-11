@@ -38,11 +38,12 @@ Page({
     this.setData({ show2: false });
   },
   onLoad: function () {
+    var usr_id = wx.getStorageSync('usr_id');
     var that = this       //很重要，一定要写
     wx.request({
       url: 'http://172.20.0.70:8088/app/storage/query',//和后台交互的地址，默认是json数据交互，由于我的就是json，这里就没有对header进行编写
       data: {
-        "user_id":1
+        "user_id":usr_id
       },
       method: 'POST',
       header: {
@@ -77,12 +78,13 @@ Page({
     })
   },
   submit:function(){
+    var usr_id = wx.getStorageSync('usr_id');
     var that=this;
     wx.request({  
     url: 'http://172.20.0.70:8088/app/storage/put_in_amount', 
     data:{
       medicine_name:that.data.medicine_name,
-      user_id:1,
+      user_id:usr_id,
       supplier:that.data.supplier,
     },
     method:'POST',

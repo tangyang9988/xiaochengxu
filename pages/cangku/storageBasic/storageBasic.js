@@ -63,27 +63,6 @@ Page({
     console.log(dosing_time)
   },
   modify:function(){
-    //   wx.request({  
-    //   url: 'http://172.20.0.70:8088/app/storage/medicine/modify', 
-    //   data:{
-    //     storage_id:this.data.medicine_id,
-    //     medicine_name:this.data.medicine_name,
-    //     is_process:Number(this.data.is_process),
-    //     minimum:Number(this.data.minimum),
-    //     supplier:this.data.supplier
-    //   },
-    //   method:'POST',
-    //   header: {  
-    //     'content-type': 'application/json'
-    //   },  
-    //   success: function (res) {
-    //     wx.showToast({
-    //       title: '修改成功',
-    //       icon: 'success',
-    //       duration: 2000//持续的时间
-    //     })
-    //   },
-    // })
 
     //http 请求是异步的，必须重新赋值this
     var that =this;

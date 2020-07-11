@@ -52,9 +52,10 @@ Page({
     this.setData({ show: false });
   },
   onLoad: function (options) {  
+    var usr_id = wx.getStorageSync('usr_id');
     this.setData({
       id: Number(options.id),
-      usr_id: Number(options.usr_id),
+      usr_id: Number(usr_id),
       status: Number(options.status),
       is_dosage:Number(options.is_dosage),
       cod: Number(options.cod),

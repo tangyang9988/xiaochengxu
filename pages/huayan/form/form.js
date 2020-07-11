@@ -60,8 +60,9 @@ Page({
     this.setData({ show: false });
   },
   submit:function(e){
+    var usr_id = wx.getStorageSync('usr_id');
     var params ={
-        "user_id":10,
+        "user_id":usr_id,
         "is_in":this.data.is_in,
         "cod":Number(this.data.cod),
         "cod_name":"cod",

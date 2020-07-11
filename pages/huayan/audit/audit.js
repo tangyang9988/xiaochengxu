@@ -12,7 +12,8 @@ Page({
      status:""
   },
   onLoad: function (options) {
-    this.setData({usr_id:Number(options.usr_id)})
+    var usr_id = wx.getStorageSync('usr_id');
+    this.setData({usr_id:Number(usr_id)})
     this.setData({status:Number(options.status)})
     var params={
       "user_id":10

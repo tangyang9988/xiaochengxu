@@ -90,8 +90,9 @@ Page({
     return YY + MM + DD +" "+hh + mm + ss;
  },
   onLoad: function (options) {     //options专门用于接受数据的
+    var usr_id = wx.getStorageSync('usr_id');
     var params={
-      "user_id":1
+      "user_id":usr_id
     }
     let  that =this;
     if(Number(options.status)==2){

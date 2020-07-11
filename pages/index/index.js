@@ -35,7 +35,8 @@ Page({
     var userName;
     var title;
     var desc;
-    var usr_id = Number(options.id)
+    // var usr_id = Number(options.id)
+    var usr_id = wx.getStorageSync('usr_id');
     if(usr_id==1){
       userName="张晓明";
       title = "加药员";

@@ -137,9 +137,11 @@ Page({
     var ss = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
     return YY + MM + DD +" "+hh + mm + ss;
  },
-  onLoad: function (options) {     //options专门用于接受数据的
+  onLoad: function (options) {
+    debugger          //options专门用于接受数据的
+    var usr_id = wx.getStorageSync('usr_id');
     var params={
-      "user_id":1
+      "user_id":usr_id
     }
     //http 请求是异步的，必须重新赋值this
     let  that =this;

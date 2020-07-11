@@ -41,55 +41,16 @@ Page({
   },
 
 agree:function(){
+  var usr_id = wx.getStorageSync('usr_id');
   var params={
     "dosage_id":this.data.id,
     "content":this.data.advice,
-    "user_id":2,
+    "user_id":usr_id,
     "review_status":4,
     "is_dosage":0
   };
   http.Post('/app/water_quality/add', params, function (res) {
   })
-
-//   wx.request({
-//   url: 'http://172.20.0.70:8088/app/water_quality/modify',
-//   // data:{
-//   //   "id":this.data.id,
-//   //   "cod":this.data.cod,
-//   //   "bod5":this.data.bod5,
-//   //   "ammonia_nitrogen":this.data.ammonia_nitrogen,
-//   //   "phosphorus":this.data.phosphorus,
-//   //   "nitrogen":this.data.nitrogen,
-//   //   "ss":this.data.ss,
-//   //   "chromaticity":this.data.chromaticity,
-//   //   "ph":this.data.ph,
-//   //   "status":3
-//   // },
-//   data:{
-//     "dosage_id":this.data.id,
-//     "content":this.data.advice,
-//     "user_id":10,
-//     "review_status":4
-//   },
-//   method:'POST',
-//   header: {  
-//     'content-type': 'application/json'
-//   },  
-//   success: function (res) {
-//     wx.showToast({
-//       title: '审核成功',
-//       icon: 'success',
-//       duration: 2000//持续的时间
-//     })
-//   },
-//   fail: function (res) {
-//     wx.showToast({
-//       title: '审核失败',
-//       icon: 'fail',
-//       duration: 2000//持续的时间
-//     })
-//   },
-// })
 
 }
 })

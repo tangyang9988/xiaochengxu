@@ -10,9 +10,11 @@ Page({
      loading: true
   },
   onLoad: function (option) {
+    debugger
     var that = this//很重要，一定要写
+    var usr_id = wx.getStorageSync('usr_id');
     var params={
-      "user_id":1
+      "user_id":usr_id
     }
 
     http.Post('/app/dosage/query', params,function (res) {

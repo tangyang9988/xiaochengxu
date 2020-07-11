@@ -20,7 +20,11 @@ Page({
   
  // 登录 
   login: function () { 
-  let usr_id = this.data.phone;
+  let usr_id = Number(this.data.phone);
+  wx.setStorage({
+    key: 'usr_id',
+    data: usr_id
+  });
   if(this.data.phone.length == 0 || this.data.password.length == 0){ 
     wx.showToast({ 
       title: '用户名和密码不能为空', 

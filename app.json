@@ -21,7 +21,6 @@
     "van-tag": "@vant/weapp/dist/tag/index"
   },
   "pages":[ 
-
     "pages/login/login",
     "pages/audit/audit",
     "pages/edit/edit",
@@ -46,6 +45,7 @@
 
     "pages/wateranalysis/wateranalysis",
     "pages/dosinganalysis/dosinganalysis"
+
 
     
     
