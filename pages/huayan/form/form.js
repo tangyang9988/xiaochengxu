@@ -28,35 +28,27 @@ Page({
     })
   },
   onChange1(event) {
-    this.verification(event.detail)
     this.setData({cod:Number(event.detail)})
   },
   onChange2(event) {
-    this.verification(event.detail)
     this.setData({bod5:Number(event.detail)})
   },
   onChange3(event) {
-    this.verification(event.detail)
     this.setData({ammonia_nitrogen:Number(event.detail)})
   },
   onChange4(event) {
-    this.verification(event.detail)
     this.setData({phosphorus:Number(event.detail)})
   },
   onChange5(event) {
-    this.verification(event.detail)
     this.setData({nitrogen:Number(event.detail)})
   },
   onChange6(event) {
-    this.verification(event.detail)
     this.setData({ss:Number(event.detail)})
   },
   onChange7(event) {
-    this.verification(event.detail)
     this.setData({chromaticity:Number(event.detail)})
   },
   onChange8(event) {
-    this.verification(event.detail)
     this.setData({ph:Number(event.detail)})
   },
   // verification:function(value){

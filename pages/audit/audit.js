@@ -9,12 +9,12 @@ Page({
      pendingList: [],
      disapproveList: [],
      approveList: [],
-     radio:"药剂审核",
+     radio:'1',
     //加载样式是否显示
      loading: true
   },
   onChange(event) {
-    this.setData({radio: event.detail.title});
+    this.setData({radio: event.detail});
     this.onLoad();
   },
   onLoad: function (options) {
@@ -42,7 +42,7 @@ Page({
         var pendingListCP=[];
         var disapproveListCP=[];
         var approveListCP=[];
-        if(that.data.radio=='药剂审核'){
+        if(that.data.radio=='1'){
           for(var i=0;i<dosageList.length;i++){
             if(dosageList[i].status==1||dosageList[i].status==3){
               pendingListCP.push(dosageList[i])
@@ -53,7 +53,7 @@ Page({
             }
           }
           that.setData({totalList: dosageList})
-        }else if(that.data.radio=='水质审核'){
+        }else if(that.data.radio=='2'){
           for(var i=0;i<waterList.length;i++){
             if(waterList[i].status==1||waterList[i].status==3){
               pendingListCP.push(waterList[i])

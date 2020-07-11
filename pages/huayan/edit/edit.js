@@ -12,6 +12,7 @@ Page({
     bod5:"",
     ammonia_nitrogen:"",
     phosphorus:"",
+    nitrogen:"",
     ss:"",
     chromaticity:"",
     ph:"",
@@ -42,7 +43,7 @@ Page({
   onChange7(event) {
     this.setData({chromaticity :event.detail})
   },
-  onChange7(event) {
+  onChange8(event) {
     this.setData({ph :event.detail})
   },
   onChange(event) {
@@ -79,6 +80,7 @@ Page({
         "bo5":Number(this.data.bod5),
         "ammonia_nitrogen":Number(this.data.ammonia_nitrogen),
         "phosphorus":Number(this.data.phosphorus),
+        "nitrogen": Number(this.data.nitrogen),
         "ss":Number(this.data.ss),
         "chromaticity":Number(this.data.chromaticity),
         "ph":Number(this.data.ph)

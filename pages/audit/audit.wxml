@@ -1,23 +1,22 @@
 
   <!-- <loading hidden="{{!loading}}">加载中</loading> -->
-  <!-- <van-cell style="display:flex;">
+  <view style="margin-left:5%">
+  <van-cell>
     <van-radio-group value="{{ radio }}" bind:change="onChange">
         <van-row>
             <van-col span="12">
-                <van-radio name="1">加药</van-radio>
+                <van-radio name="1">药剂审核</van-radio>
             </van-col>
-            <van-col span="12">
-                <van-radio name="2">化验</van-radio>
+            <van-col span="10">
+                <van-radio name="2">水质审核</van-radio>
             </van-col>
         </van-row>
     </van-radio-group>
-</van-cell> -->
-<view style="margin-top:12px">
-<van-tabs type="card" color="#2C65F7" active="{{radio}}" bind:change="onChange" >
-  <van-tab title="药剂审核" name="药剂审核">
+</van-cell>
+</view>
   <!-- 运维人员 -->
 <!-- 加药 -->
-<van-tabs animated active="all" wx:if="{{radio=='药剂审核'}}" color="#2C65F7" >
+<van-tabs animated active="all" wx:if="{{radio=='1'}}" color="#2C65F7" >
   <van-tab title="全部" name="all" title-style="color:#2C65F7;font-size:500">
     <!-- <block v-if="" class="" wx:for="{{totalList}}">
     <navigator url='../edit/edit?usr_id={{usr_id}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}'>
@@ -143,10 +142,8 @@
   </view>
   </van-tab>
 </van-tabs>
-</van-tab>
-  <van-tab title="水质审核" name="水质审核">
 <!-- 化验 -->
-<van-tabs animated active="all" wx:if="{{radio=='水质审核'}}" color="#2C65F7" border>
+<van-tabs animated active="all" wx:if="{{radio=='2'}}" color="#2C65F7" border>
   <van-tab title="全部" name="all"  >
 
     <!-- <block v-if="" class="" wx:for="{{totalList}}">
@@ -282,8 +279,5 @@
   </van-tab>
 </van-tabs>
 
-  </van-tab>
-</van-tabs>
-</view>
 
 
