@@ -124,7 +124,7 @@
      </view>
     </view>
 <!-- 库管员 -->
-  <view class="datalist" wx:if="{{usr_id==7}}">
+  <!-- <view class="datalist" wx:if="{{usr_id==7}}">
     <navigator url='../cangku/storageIn/storageIn'>
         <view class="data_one bg_1">
           <view class="data_title">填报入库</view>
@@ -136,17 +136,6 @@
           </view>
         </view>
     </navigator>
-    <!-- <navigator url='../cangku/storageIn/storageIn'>
-        <view class="data_one bg_4">
-          <view class="data_title">药品基本管理</view>
-          <view class="data_data">
-            <view class="data_ico">
-            <image class="yao" src='/pages/images/编组.png'></image>
-            </view>
-            <view class="data_num">{{isHandled}}</view>
-          </view>
-        </view>
-    </navigator> -->
     <navigator url='../cangku/storage/storage'>
     <view class="data_one bg_3">
       <view class="data_title">库存管理</view>
@@ -181,18 +170,7 @@
         </view>
       </view>
     </navigator>
-   <!-- <navigator url='../line/line'>
-      <view class="data_one bg_4">
-        <view class="data_title">加药分析</view>
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/编组.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-      </view>
-     </navigator> -->
-  </view>
+  </view> -->
   <!-- 运维 -->
   <view class="datalist" wx:if="{{usr_id==2}}">
     <navigator url='../audit/audit?usr_id={{usr_id}}'>
@@ -228,6 +206,28 @@
         </view>
       </view>
      </navigator>
+    <navigator url='../cangku/storageIn/storageIn'>
+        <view class="data_one bg_1">
+          <view class="data_title">填报入库</view>
+          <view class="data_data">
+            <view class="data_ico">
+            <image class="yao" src='/pages/images/ruku.png'></image>
+            </view>
+            <view class="data_num">{{isHandled}}</view>
+          </view>
+        </view>
+    </navigator>
+    <navigator url='../cangku/stockInOut/stockInOut'>
+    <view class="data_one bg_2">
+      <view class="data_title">出入库日志</view>
+      <view class="data_data">
+        <view class="data_ico">
+          <image class="yao" src='/pages/images/rizhi.png'></image>
+        </view>
+        <view class="data_num">{{isHandled}}</view>
+      </view>
+    </view>
+    </navigator>
     <navigator url='../cangku/storage/storage'>
       <view class="data_one bg_3">
         <view class="data_title">库存情况</view>
