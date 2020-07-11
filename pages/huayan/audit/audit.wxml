@@ -23,7 +23,7 @@
     </navigator>
   </block> -->
   <view class="cards" wx:for="{{List}}" wx:for-item="item" wx:key="item">
- <navigator class="nav" url='../edit/edit?id={{item.id}}&status={{item.status}}&usr_id={{usr_id}}&content={{item.content}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}'>
+ <navigator class="nav" url='../edit/edit?id={{item.id}}&status={{item.status}}&usr_id={{usr_id}}&content={{item.content}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}&advice={{item.reviews}}'>
 
 		<view class="column">
 			<view class="card-desc">

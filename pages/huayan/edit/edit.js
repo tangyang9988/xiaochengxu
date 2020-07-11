@@ -22,29 +22,89 @@ Page({
     this.setData({ show: true });
   },
   onChange1(event) {
-    console.log(event)
-    this.setData({cod :event.detail})
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({cod :event.detail})
+    }
   },
   onChange2(event) {
-    this.setData({bod5 :event.detail})
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({bod5 :event.detail})
+    }
+
   },
   onChange3(event) {
-    this.setData({ammonia_nitrogen :event.detail})
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({ammonia_nitrogen :event.detail})
+    }
+
   },
   onChange4(event) {
-    this.setData({phosphorus :event.detail})
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({phosphorus :event.detail})
+    }
+
   },
   onChange5(event) {
-    this.setData({nitrogen :event.detail})
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({nitrogen :event.detail})
+    }
+
   },
   onChange6(event) {
-    this.setData({ss :event.detail})
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({ss :event.detail})
+    }
   },
   onChange7(event) {
-    this.setData({chromaticity :event.detail})
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({chromaticity :event.detail})
+    }
+
   },
   onChange8(event) {
-    this.setData({ph :event.detail})
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({ph :event.detail})
+    }
   },
   onChange(event) {
     this.setData({advice :event.detail})
@@ -52,7 +112,7 @@ Page({
   onClose() {
     this.setData({ show: false });
   },
-  onLoad: function (options) {  
+  onLoad: function (options) {
     var usr_id = wx.getStorageSync('usr_id');
     this.setData({
       id: Number(options.id),
@@ -67,7 +127,7 @@ Page({
       ss: Number(options.ss),
       chromaticity: Number(options.chromaticity),
       ph: Number(options.ph),
-      advice: options.content
+      advice: options.advice
     })
   },
   agree:function(e){
@@ -103,7 +163,7 @@ Page({
         "review_status":4,
         "is_dosage":this.data.is_dosage
       };
-      http.Post('/app/water_quality/add', params, function (res) {
+      http.Post('/app/dosage_review/add', params, function (res) {
         const { data } = res
       if( data.code === 200 ){
         wx.showToast({ title: '已审批', icon:'success',duration:2000 })
@@ -144,7 +204,7 @@ Page({
       "dosage_id":this.data.id,
       "content":this.data.advice,
       "user_id":this.data.usr_id,
-      "review_status":4,
+      "review_status":2,
       "is_dosage":this.data.is_dosage
     };
     wx.showModal({

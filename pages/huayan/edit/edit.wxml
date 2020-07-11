@@ -135,13 +135,6 @@
     border="{{ true }}"
     bind:change="onChange8"/>
 </van-cell-group>
-  <van-cell-group>
-  <van-field
-    v-model="username"
-    value="化验员"
-    label="化验员"
-    border="{{ true }}"/>
-  </van-cell-group>
     <van-cell-group>
     <van-field
       disabled
@@ -152,6 +145,14 @@
       rows="1"
       autosize/>
   </van-cell-group>
+  <van-cell-group>
+  <van-field
+    v-model="username"
+    value="化验员"
+    label="化验员"
+    border="{{ true }}"/>
+  </van-cell-group>
+
 
   <van-button round type="info" style="display:flex;width:100%;margin-top:10%;margin-bottom:5%" bind:click="agree">重新提交</van-button>
   <van-button round plain type="info" style="display:flex;width:100%;" bindtap="cancle">取消</van-button>
