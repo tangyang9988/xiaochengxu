@@ -1,3 +1,5 @@
+@import '../../style/icon-font.wxss';
+@import '../../app.wxss';
 .nav {
   position: relative;
   width: 100%;
@@ -96,3 +98,33 @@ page{
   /* background:rgba(230, 221, 221, 0.871); */
   background:rgba(248,248,248,1);
 }
+
+
+
+.data_none{
+  height: 100px;
+  width: 100px;
+  margin-top:100px;
+  margin: 100px auto;
+  line-height: 100px;
+  text-align: center;
+}
+.class_none{
+  color: #8a8a8a;
+}
+/* .class_none::after{
+  font-family: 'none' !important;
+  font-size: 38px;
+  font-style: normal;
+
+  position: absolute;
+  top: 75px;
+  left: 45%;
+
+  content: '\e60b';
+
+  color: #8a8a8a;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} */

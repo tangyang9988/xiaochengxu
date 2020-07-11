@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'none';  /* project id 1701111 */
+  src: url('https://at.alicdn.com/t/font_1701111_v9g4u66nxk.eot');
+  src: url('https://at.alicdn.com/t/font_1701111_v9g4u66nxk.eot?#iefix') format('embedded-opentype'),
+  url('https://at.alicdn.com/t/font_1701111_v9g4u66nxk.woff2') format('woff2'),
+  url('https://at.alicdn.com/t/font_1701111_v9g4u66nxk.woff') format('woff'),
+  url('https://at.alicdn.com/t/font_1701111_v9g4u66nxk.ttf') format('truetype'),
+  url('https://at.alicdn.com/t/font_1701111_v9g4u66nxk.svg#iconfont') format('svg');
+}

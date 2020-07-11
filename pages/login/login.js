@@ -37,12 +37,7 @@ Page({
   // title: '登录成功', 
   // icon: 'success', 
   // duration: 2000 
-  // }) 
-  wx.setStorage({
-    data: usr_id,
-    key: 'usr_id',
-  })
-
+  // })
   wx.navigateTo({
     url: '../index/index?id='+usr_id
   })

@@ -21,8 +21,8 @@ Page({
         medicine_count:"",
         value:159332570586,
         color:"#64C676",
-        start_time:"2020-07-01",
-        end_time:"2020-07-07",
+        start_time:"",
+        end_time:"",
         showStart:false,
         showEnd:false,
         windowWidth:'',
@@ -52,7 +52,16 @@ Page({
         var date = this.formatDate(event.detail)
         this.setData({start_time: date});
         this.setData({ showStart: false });
-        this.onLoad();
+
+        const { end_time } = this.data
+        if ( this.validStr(end_time) ) {
+            var str = this.companyDateTime(date,end_time)
+            if ( this.validStr(str)) {
+                wx.showToast({
+                  title: str, icon : 'none', duration: 2000,
+                })
+            }  else this.onGetInfo()
+        }
       },
       onClose() {
         this.setData({ showStart: false });
@@ -62,7 +71,17 @@ Page({
         var date = this.formatDate(event.detail)
         this.setData({end_time: date});
         this.setData({ showEnd: false });
-        this.onLoad();
+
+        const { start_time } = this.data
+        console.log(start_time)
+        if ( this.validStr(start_time) ) {
+            var str = this.companyDateTime(start_time,date)
+            if ( this.validStr(str)) {
+                wx.showToast({
+                  title: str, icon : 'none', duration: 2000,
+                })
+            } else this.onGetInfo()
+        }
       },
       onCancel() {
         this.setData({ showEnd: false });
@@ -319,16 +338,7 @@ Page({
             }
         });
     },
-    onLoad: function (e) {
-        wx.getSystemInfo({
-          success: (result) => {
-            console.log(result)
-            this.setData({
-                windowWidth:result.windowWidth-40
-            },()=>{console.log("屏幕宽度："+this.data.windowWidth)})
-          },
-        })
-
+    onGetInfo(){
         var start_time = this.data.start_time
         var end_time = this.data.end_time
         //加载接口
@@ -338,8 +348,10 @@ Page({
             "company_id": 1,
             "medicine_id": this.data.medicine_id
         };
+        console.log(params)
         var that = this;
         http.Post('/app/dosage_review/dosage/period', params, function (res) {
+            console.log(res)
             var dosage_period = res.data.data.dosage_period
             var medicineList =[]
             var color;
@@ -411,6 +423,58 @@ Page({
             that.columnShow();
             that.getMothElectro();
         })
-
+    },
+    onLoad: function (e) {
+       this.setData({
+        start_time:this.getStartDate(),
+        end_time:this.dateFormat(new Date())
+       })
+       this.getSystemInfo()
+       this.onGetInfo()
+    },
+   
+    getSystemInfo(){
+        wx.getSystemInfo({
+            success: (result) => {
+              console.log(result)
+              this.setData({
+                  windowWidth:result.windowWidth-40
+              },()=>{console.log("屏幕宽度："+this.data.windowWidth)})
+            },
+          })
+    },
+    validStr(str){
+        if( str === '' || str === null || typeof(str) === undefined) return false
+        else return true
+    },
+    companyDateTime(start_time,end_time){
+        var str = ''
+         //日期格式化
+         var start_date = new Date(start_time.replace(/-/g, "/"))
+         var end_date = new Date(end_time.replace(/-/g, "/"))
+         //转成毫秒数
+         var start = start_date.getTime()
+         var end = end_date.getTime()
+         var ms = end_date.getTime() - start_date.getTime()
+          //转换成天数
+         var day = parseInt(ms / (1000 * 60 * 60 * 24))
+         console.log(day)
+        if (start_date > end_date) str =  '开始时间不得大于结束时间'
+        else if (day < 0 || day > 7) str = '时间跨度不得大于一周'
+        else str = ''
+        return str
+    },
+    getStartDate(){
+        var span = new Date().getTime();
+        var start = span - (1000 * 60 * 60 * 24 * 6)
+        return this.formatDate(new Date(start))
+    },
+    dateFormat(dateFormat) {
+        // date = (date + '').replace(/-/g, '/');
+        const year = dateFormat.getFullYear() + '-';
+        var monthformat = dateFormat.getMonth() + 1
+        const month = (monthformat < 10 && monthformat != 0 ? '0' + monthformat : monthformat) + '-';
+        const day = dateFormat.getDate() + '';
+        return year + month + day;
     }
 })

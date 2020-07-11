@@ -19,7 +19,7 @@
   </block> -->
   <scroll-view scroll-y style="height:{{screenHeight}}px;">
     <view wx:for="{{listData}}" wx:key="{{item.code}}">
-      <view class="item" data-gId='{{item}}' bindtap="onNavigateTo">
+      <view class="item" data-gId='{{item}}' bindtap="onItemClick" hover-class="hover" >
         <view class="tr {{item.is_active === 0 ? 'bg-g-disable' : 'bg-g'}}">
           <view class="td">
             <view>{{item.medicine_name}}</view>
@@ -31,5 +31,7 @@
       </view>
     </view>
   </scroll-view>
-
+  <view class="addBtn {{usr_id === 7 ? 'show' : 'hidden'}}" hover-class="hover" bindtap="onAddMedicine" >
+    新增药品
+  </view>
 </view>

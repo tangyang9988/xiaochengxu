@@ -31,7 +31,10 @@
       </view>
     </navigator>
   </block> -->
-  <view class="cards" wx:for="{{totalList}}" wx:for-item="item" wx:key="item">
+   <view class="data_none {{totalList.length === 0 ? 'show' : 'hidden'}}" >
+    <span class="class_none">暂无数据</span>
+  </view>
+  <view class="cards {{totalList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{totalList}}" wx:for-item="item" wx:key="item">
   <navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}'>
       <view class="column">
         <view class="card-desc">
@@ -59,7 +62,10 @@
       </view>
     </navigator>
   </block> -->
-  <view class="cards" wx:for="{{pendingList}}" wx:for-item="item" wx:key="item">
+  <view class="data_none {{pendingList.length === 0 ? 'show' : 'hidden'}}" >
+    <span class="class_none">暂无数据</span>
+  </view>
+  <view class="cards {{pendingList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{pendingList}}" wx:for-item="item" wx:key="item">
     <navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}'>
       <view class="column">
         <view class="card-desc">
@@ -87,7 +93,10 @@
       </view>
     </navigator>
   </block> -->
-    <view class="cards" wx:for="{{disapproveList}}" wx:for-item="item" wx:key="item">
+   <view class="data_none {{disapproveList.length === 0 ? 'show' : 'hidden'}}" >
+    <span class="class_none">暂无数据</span>
+  </view>
+    <view class="cards {{disapproveList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{disapproveList}}" wx:for-item="item" wx:key="item">
     <navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}'>
       <view class="column">
         <view class="card-desc">
@@ -115,7 +124,10 @@
       </view>
     </navigator>
   </block> -->
-  <view class="cards" wx:for="{{approveList}}" wx:for-item="item" wx:key="item">
+   <view class="data_none {{approveList.length === 0 ? 'show' : 'hidden'}}" >
+    <span class="class_none">暂无数据</span>
+  </view>
+  <view class="cards {{approveList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{approveList}}" wx:for-item="item" wx:key="item">
     <navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_count={{item.medicine_count}}'>
       <view class="column">
         <view class="card-desc">
@@ -150,7 +162,10 @@
       </view>
     </navigator>
   </block> -->
-  <view class="cards" wx:for="{{totalList}}" wx:for-item="item" wx:key="item">
+   <view class="data_none {{totalList.length === 0 ? 'show' : 'hidden'}}" >
+    <span class="class_none">暂无数据</span>
+  </view>
+  <view class="cards {{totalList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{totalList}}" wx:for-item="item" wx:key="item">
     <navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}'>
       <view class="column">
         <view class="card-desc">
@@ -180,7 +195,10 @@
       </view>
     </navigator>
   </block> -->
-  <view class="cards" wx:for="{{pendingList}}" wx:for-item="item" wx:key="item">
+   <view class="data_none {{pendingList.length === 0? 'show' : 'hidden'}}" >
+    <span class="class_none">暂无数据</span>
+  </view>
+  <view class="cards {{pendingList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{pendingList}}" wx:for-item="item" wx:key="item">
     <navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}'>
       <view class="column">
         <view class="card-desc">
@@ -210,7 +228,10 @@
       </view>
     </navigator>
   </block> -->
-  <view class="cards" wx:for="{{disapproveList}}" wx:for-item="item" wx:key="item">
+   <view class="data_none {{disapproveList.length === 0 ? 'show' : 'hidden'}}" >
+    <span class="class_none">暂无数据</span>
+  </view>
+  <view class="cards  {{disapproveList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{disapproveList}}" wx:for-item="item" wx:key="item">
     <navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}'>
       <view class="column">
         <view class="card-desc">
@@ -240,7 +261,10 @@
       </view>
     </navigator>
   </block> -->
-    <view class="cards" wx:for="{{approveList}}" wx:for-item="item" wx:key="item">
+    <view class="data_none {{approveList.length === 0 ? 'show' : 'hidden'}}" >
+    <span class="class_none">暂无数据</span>
+  </view>
+    <view class="cards  {{approveList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{approveList}}" wx:for-item="item" wx:key="item">
     <navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}'>
       <view class="column">
         <view class="card-desc">

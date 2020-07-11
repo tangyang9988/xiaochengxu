@@ -20,7 +20,7 @@ page{
   background-color: #f5f5f5;
 }
 .body{
-  padding:20rpx;
+  padding:24rpx;
 }
 
 .table {
@@ -90,6 +90,26 @@ page{
   align-items: center;
   font-size :medium;
 }
+.addBtn{
+  text-align: center;
+  height: 3rem;
+  line-height: 3rem;
+  border-radius: 5px;
+  border: 3rpx solid #2C65F7;
+  color: #2C65F7;
+}
+.hover{
+  position: relative;
+  top: 3rpx;
+  left: 3rpx;
+  box-shadow:0px 0px 8px rgba(0, 0, 0, .1) inset; 
+}
+.hidden{
+  display: none;
+}
+.show{
+  display: block;
+}
 
 
 .search{
@@ -114,6 +134,7 @@ page{
  body{
    margin-top:17px 16px 0px 16px;
  }
+ 
  /* page{
   background:#F8F8F8;
 } */
