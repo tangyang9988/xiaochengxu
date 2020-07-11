@@ -41,7 +41,7 @@
   <van-row>
     <van-col span="14">
         <canvas wx:if="{{!transCanvs}}"  canvas-id="ringCanvas"  class="ring" bindtouchstart="touchHandler"></canvas>
-        <image wx:else src="{{canvsPie}}" style="width: 260px; height: 180px;" />
+        <image wx:else src="{{canvsPie}}" style="width: {{windowWidth}}px; height: 180px;" />
     </van-col>
 					<van-col span="10">
 						<block wx:for="{{echartMedicineList}}">
@@ -93,7 +93,7 @@
   canvas-id="yueEle"
   binderror="canvasIdErrorCallback"
   ></canvas>
-   <image wx:else src="{{canvsLine}}" style="width: 260px; height: 180px;" />
+   <image wx:else src="{{canvsLine}}" style="width: {{windowWidth}}px; height: 180px;" />
 </view>
 <view class="">
   <van-cell title="日销消耗量数值" value="(kg)"></van-cell>
@@ -122,6 +122,6 @@
   </van-row>
   <!-- <canvas class="canvas" canvas-id="columnGraph{{ item.id }}"></canvas> -->
   <canvas wx:if="{{!transCanvs}}" canvas-id="columnCanvas" disable-scroll="true" class="canvas"></canvas>
-   <image wx:else src="{{canvsHistogram}}" style="width: 260px; height: 180px;" />
+   <image wx:else src="{{canvsHistogram}}" style="width:{{windowWidth}}px; height: 180px;" />
 </view>
 </view>

@@ -20,8 +20,20 @@ Page({
     companyValue: 0,
     companyDropMenu: [],
     companySelectValue: 0,
-    disabled:true
+    disabled:true,
+    canvsRing:'',
+    "transCanvs":false
   },
+  onOpen(){
+    console.log("true")
+    this.setData({transCanvs:true})
+  },
+  onCloseDropdown(){
+    console.log("false")
+    this.setData({transCanvs:false})
+    this.onLoad()
+  },
+
   onLoad: function (options) {
     // var usr_id = Number(options.usr_id)
     var that = this//很重要，一定要写
@@ -158,7 +170,7 @@ Page({
 
 
     })
-
+    this.getCanvsRing()
   },
 
   onChange(event) {
@@ -287,5 +299,19 @@ Page({
         ringChart.stopAnimation();
       }, 500);
     })
+  },
+  getCanvsRing(){
+    var that = this
+    setTimeout(() => {
+        wx.canvasToTempFilePath({
+            canvasId: 'ringCanvas',
+            success: function(res) {
+              that.setData({ canvsRing: res.tempFilePath});
+            },
+            fail:function(res){
+                console.log(res)
+            }
+          },this)
+    }, 2000);
   }
 })

@@ -95,7 +95,7 @@ Page({
         }
       },
       onCancel() {
-        this.setData({ showEnd: false });
+        this.setData({ showEnd: false,transCanvs:false });
       },
       getNameAndColor(medicine_id){
         var option = this.data.option
@@ -508,7 +508,7 @@ Page({
                 success: function(res) {
                     console.log("图片")
                     console.log(res)
-                  that.setData({ canvsLine: res.tempFilePath});
+                  that.setData({ canvsLine: res.tempFilePath},()=>{console.log(that.data.canvsLine)});
                 },
                 fail:function(res){
                     console.log(res)
@@ -522,8 +522,6 @@ Page({
             wx.canvasToTempFilePath({
                 canvasId: 'columnCanvas',
                 success: function(res) {
-                    console.log("图片")
-                    console.log(res)
                   that.setData({ canvsHistogram: res.tempFilePath});
                 },
                 fail:function(res){
@@ -531,5 +529,5 @@ Page({
                 }
               },this)
         }, 2000);
-    },
+    }
 })

@@ -40,7 +40,19 @@ Page({
         "out_min":"",
         "in_data":[],
         "out_data":[],
-        
+        "windowWidth":"",
+        "canvsYueEle":"",
+        "canvsColumn":"",
+        "transCanvs":false
+    },
+    onOpen(){
+        console.log("true")
+        this.setData({transCanvs:true})
+    },
+    onCloseDropdown(){
+        console.log("false")
+        this.setData({transCanvs:false})
+        this.onGetInfo()
     },
     onInput(event) {
         this.setData({
@@ -52,10 +64,10 @@ Page({
         this.onLoad();
     },
     showStartPop() {
-        this.setData({ showStart: true });
+        this.setData({ showStart: true, transCanvs:true });
       },
       showEndPop() {
-        this.setData({ showEnd: true });
+        this.setData({ showEnd: true ,transCanvs:true});
       },
       // 开始时间
       confirm(event) {
@@ -85,7 +97,7 @@ Page({
         this.onLoad();
       },
       onCancel() {
-        this.setData({ showEnd: false });
+        this.setData({ showEnd: false,transCanvs:false  });
       },
       //时间戳转换方法    date:时间戳数字
      formatDate(date) {
@@ -125,13 +137,6 @@ Page({
         //     }
         // }
         // new CHARTS(column);
-        var windowWidth = 320;
-        try {
-            var res = wx.getSystemInfoSync();
-            windowWidth = res.windowWidth;
-        } catch (e) {
-            console.error('getSystemInfoSync failed!');
-        }
         columnCanvas = new wxCharts({
             canvasId: 'columnCanvas',
             type: 'column',
@@ -192,20 +197,12 @@ Page({
                 }
             },
             // dataPointShape: true, //是否在图标上显示数据点标志
-            width: windowWidth, //图表展示内容宽度
+            width: this.data.windowWidth, //图表展示内容宽度
             height: 220, //图表展示内容高度
         })
     },
     // 折线图
     getMothElectro: function (e) {
-        var windowWidth = 320;
-        try {
-            var res = wx.getSystemInfoSync();
-            console.log()
-            windowWidth = res.windowWidth;
-        } catch (e) {
-            console.error('getSystemInfoSync failed!');
-        }
         yuelineChart = new wxCharts({ //当月用电折线图配置
             canvasId: 'yueEle',
             type: 'line',
@@ -253,7 +250,7 @@ Page({
                 max: 20,
                 min: 0
             },
-            width: windowWidth,
+            width: this.data.windowWidth,
             height: 200,
             dataLabel: false,
             dataPointShape: true,
@@ -263,6 +260,21 @@ Page({
         });
     },
     onLoad: function (e) {
+        this.getSystemInfo()
+        this. onGetInfo()
+        this.setCanvsYueEle()
+        this.setCanvsColumn()
+    },
+    getSystemInfo(){
+        wx.getSystemInfo({
+            success: (result) => {
+              this.setData({
+                  windowWidth:result.windowWidth-10
+              })
+            },
+          })
+    },
+    onGetInfo(){
         //加载接口
         var params = {
             "start_time":this.data.start_time,
@@ -314,6 +326,29 @@ Page({
             that.columnShow();
             that.getMothElectro();
         })
-
+    },
+    setCanvsYueEle(){
+        var that = this
+        setTimeout(() => {
+            wx.canvasToTempFilePath({
+                canvasId: 'yueEle',
+                success: function(res) {
+                  that.setData({ canvsYueEle: res.tempFilePath},()=>{console.log(that.data.canvsYueEle)});
+                },
+                fail:function(res){ console.log(res) }
+              },this)
+        }, 2000);
+    },
+    setCanvsColumn(){
+        var that = this
+        setTimeout(() => {
+            wx.canvasToTempFilePath({
+                canvasId: 'columnCanvas',
+                success: function(res) {
+                  that.setData({ canvsColumn: res.tempFilePath});
+                },
+                fail:function(res){ console.log(res) }
+              },this)
+        }, 2000);
     }
 })
