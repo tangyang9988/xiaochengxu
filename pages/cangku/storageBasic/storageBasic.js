@@ -22,6 +22,9 @@ Page({
       storage_amount: options.storage_amount
     })
   },
+  onFieldChange({detail}){
+    this.setData({ minimum: detail });
+  },
   onChange({ detail }) {
     // 需要手动对 checked 状态进行更新
     this.setData({ is_process: detail });
@@ -76,10 +79,21 @@ Page({
       "storage_id":that.data.storage_id,
       "medicine_name":that.data.medicine_name,
       "is_process":that.data.is_process,
-      "supplier":that.data.supplier
+      "supplier":that.data.supplier,
+      "minimum":parseFloat(that.data.minimum)
     }
     http.Post('/app/storage/medicine/modify', params, function (res) {
+      console.log(res)
+      const { data } = res
+      if ( data.code === 200) {
+        wx.showToast({ title: '修改成功', duration:2000 })
+        setTimeout(() => {
+          wx.navigateBack({})
+        }, 2000);
+      }
     })
-
+  },
+  cancle(){
+    wx.navigateBack({})
   }
 });

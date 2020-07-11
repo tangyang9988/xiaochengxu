@@ -10,7 +10,7 @@
    <van-field
     value="{{minimum}}"
     border="{{ true }}"
-    bind:change="onChange"/>
+    bind:change="onFieldChange"/>
   </van-col>
 </van-row>
 
