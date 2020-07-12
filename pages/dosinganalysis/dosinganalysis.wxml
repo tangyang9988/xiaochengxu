@@ -34,14 +34,14 @@
     <span class="title">{{medicine_name}}</span>
     </van-col>
     <van-col span="4">
-    <van-tag plain round large>225.6(kg)</van-tag>
+    <van-tag plain round large>{{medicine_count}}(kg)</van-tag>
     </van-col>
 </van-row>
 <view class="">
   <van-row>
     <van-col span="14">
         <canvas wx:if="{{!transCanvs}}"  canvas-id="ringCanvas"  class="ring" bindtouchstart="touchHandler"></canvas>
-        <image wx:else src="{{canvsPie}}" style="width: {{windowWidth}}px; height: 180px;" />
+        <image wx:else src="{{canvsPie}}" style="width: 200px; height: 150px;" />
     </van-col>
 					<van-col span="10">
 						<block wx:for="{{echartMedicineList}}">
@@ -80,7 +80,7 @@
     <van-col span="2">
     <view class="circleIn"></view>
     </van-col>
-    <van-col span="5">
+    <van-col span="6">
     <span class="title">{{relative_ration_min_str}}</span>
     </van-col>
     <van-col span="4">

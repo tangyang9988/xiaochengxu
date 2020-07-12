@@ -19,8 +19,9 @@ Page({
         medicine_name: "片碱",
         medicine_id:159332570586,
         medicine_count:"",
-        value:159332570586,
+        value:0,
         color:"#64C676",
+        consume_percentage:"",
         start_time:"",
         end_time:"",
         showStart:false,
@@ -44,7 +45,6 @@ Page({
         this.setData({transCanvs:true})
     },
     onCloseDropdown(){
-        console.log("false")
         this.setData({transCanvs:false})
         this.onGetInfo()
     },
@@ -102,7 +102,9 @@ Page({
         for (var i = 0; i < option.length; i++) {
             if(medicine_id==option[i].value){
                 this.setData({"medicine_name":option[i].text}) 
+                this.setData({"medicine_count":option[i].medicine_count}) 
                 this.setData({"color":option[i].color}) 
+                this.setData({"consume_percentage":parseFloat(option[i].consume_percentage).toFixed(2)}) 
             }
       }
     },
@@ -134,7 +136,7 @@ Page({
     // }, 
     onReady: function (e) {
         try {
-            var res = wx.getSystemInfoSync();
+            var res = wx.getSystemInfo();
             windowWidth = res.windowWidth;
         } catch (e) {
             console.error('getSystemInfoSync failed!');
@@ -150,52 +152,16 @@ Page({
                 }
             },
             title: {
-                name: this.data.medicine_count,
-                color: '#4A4A4A',
-                fontSize: 15
+                name: this.data.medicine_name,
+                color: '#9B9B9B',
+                fontSize: 8
             },
             subtitle: {
-                name: this.data.medicine_name,
+                name: this.data.consume_percentage,
                 color: '#4A4A4A',
                 fontSize: 10
             },
-            series: [{
-                name: '片碱',
-                data: 100,
-                stroke: true,
-                color:'#64C676'
-            }, {
-                name: 'PAC',
-                data: 35,
-                stroke: false,
-                color:'#669AFF'
-            }, {
-                name: 'PAM(阳离子)',
-                data: 78,
-                stroke: false,
-                color:'#5553CE'
-            }, {
-                name: 'PAM(阴离子)',
-                data: 63,
-                 stroke: false,
-                 color:'#F65050'
-            }, {
-                name: '葡萄糖',
-                data: 63,
-                 stroke: false,
-                 color:'#FF9100'
-            }, {
-                name: '活性炭',
-                data: 63,
-                 stroke: false,
-                 color:'#F8C322'
-            },
-            {
-                name: 'NaCO3',
-                data: 63,
-                stroke: true,
-                color:'#FFFF03'
-            }],
+            series: this.data.echartMedicineList,
             disablePieStroke: true,
             width: 200,
             height: 150,
@@ -374,9 +340,8 @@ Page({
                     case "葡萄糖": color = '#FF9100'; break;
                     case "NaCO3": color = '#FFFF03'; break;
                   }
-                medicineList.push({text: dosage_period[i].medicine_name,value: dosage_period[i].id,color:color});
+                medicineList.push({text: dosage_period[i].medicine_name,value: dosage_period[i].id,color:color,consume_percentage:dosage_period[i].consume_percentage,medicine_count:dosage_period[i].consume});
             }
-
             that.setData({"option":medicineList})
             // for (var i = 0; i < res.data.data.one_dosage_period.length; i++) {
             //     data.push(res.data.data.one_dosage_period[i]);
@@ -391,7 +356,7 @@ Page({
             for (j = 0, len = dosage_period.length; j < len; j++) {
               storageMedicine.push({
                 name: dosage_period[j].medicine_name,
-                data: dosage_period[j].daily_consume,
+                data: dosage_period[j].consume,
                 stroke: false,
                 color: '#64C676'
               });
@@ -426,6 +391,7 @@ Page({
             that.setData({
                 "relative_ration_min_str": res.data.data.relative_ration_min_str
             })
+            that.onReady();
             that.columnShow();
             that.getMothElectro();
         })
@@ -492,7 +458,7 @@ Page({
                 success: function(res) {
                     console.log("图片")
                     console.log(res)
-                  that.setData({ canvsPie: res.tempFilePath});
+                  that.setData({ canvsPie: res.tempFilePath},()=>{console.log(that.data.canvsLine)});
                 },
                 fail:function(res){
                     console.log(res)
@@ -522,7 +488,7 @@ Page({
             wx.canvasToTempFilePath({
                 canvasId: 'columnCanvas',
                 success: function(res) {
-                  that.setData({ canvsHistogram: res.tempFilePath});
+                  that.setData({ canvsHistogram: res.tempFilePath},()=>{console.log(that.data.canvsLine)});
                 },
                 fail:function(res){
                     console.log(res)

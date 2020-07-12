@@ -148,11 +148,11 @@ Page({
             if (data.code === 200) {
               wx.showToast({ title: '提交化验单成功', icon :'success',duration: 2000 })
               that.clearData()
-            } else  wx.showToast({ title: '提交化验单失败', })
+            } else  wx.showToast({title: data.msg, icon :"none" })
           })
         } 
       },
-      fail(res){ wx.showToast({ title: '提交化验单失败', }) }
+      fail(res){ wx.showToast({title: '提交化验单失败', icon :"none"}) }
     })
 
   },

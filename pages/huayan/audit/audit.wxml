@@ -1,30 +1,9 @@
 
   <loading hidden="{{!loading}}">加载中</loading>
-  <van-search value="{{ value }}" shape="round" placeholder="请输入搜索关键词" />
-  <!-- <block class="" wx:for="{{List}}">
-    <navigator url='../edit/edit?id={{item.id}}&status={{item.status}}&usr_id={{usr_id}}&content={{item.content}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}'>
-      <view hover-class='hover-class' id="{{item.id}}">
-        <view style='display:flex; flex-direction:column;'>
-         <label wx:if="{{item.status==1}}" >编号：{{item.id}}
-         <p style="color:green">首次提交</p>
-         </label>
-         <label wx:elif="{{item.status==2}}" >编号：{{item.id}}
-         <p style="color:red">驳回</p>
-         </label>
-         <label wx:elif="{{item.status==3}}" >编号：{{item.id}}
-         <p style="color:orange">重新提交</p>
-         </label>
-         <label>类型：{{'化验单'}}</label>
-         <label wx:if="{{item.is_in==1}}">进出水：{{'进水'}}</label>
-         <label wx:elif="{{item.is_in==0}}">进出水：{{'出水'}}</label>
-         <label>提交时间：{{item.created_at}}</label>
-        </view>
-      </view>
-    </navigator>
-  </block> -->
+  <!-- <van-search value="{{ value }}" shape="round" placeholder="请输入搜索关键词" /> -->
   <view class="cards" wx:for="{{List}}" wx:for-item="item" wx:key="item">
- <navigator class="nav" url='../edit/edit?id={{item.id}}&status={{item.status}}&usr_id={{usr_id}}&content={{item.content}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}&advice={{item.reviews}}'>
 
+ <navigator class="nav" url='../edit/edit?id={{item.id}}&status={{item.status}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}&advice={{item.reviews}}'>
 		<view class="column">
 			<view class="card-desc">
         <view class="circle"></view>编号：{{item.id}}

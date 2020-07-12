@@ -16,10 +16,11 @@ Page({
     this.setData({usr_id:Number(usr_id)})
     this.setData({status:Number(options.status)})
     var params={
-      "user_id":10
+      "user_id":usr_id
     }
     var that = this //很重要，一定要写
     http.Post('/app/water_quality/query', params, function (res) {
+      debugger
           that.setData({//循环完后，再对list进行赋值
           List: res.data.data,
           loading: false

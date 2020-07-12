@@ -113,7 +113,14 @@ Page({
     this.setData({ show: false });
   },
   onLoad: function (options) {
-    var usr_id = wx.getStorageSync('usr_id');
+    // debugger
+    // var usr_id = wx.getStorageSync('usr_id');
+    // var advice="";
+    // if(options.advice.length>0){
+    //   for(var i=0;i<options.advice.length;i++){
+    //     advice = options.advice[0].content;
+    //   }
+    // }
     this.setData({
       id: Number(options.id),
       usr_id: Number(usr_id),
@@ -127,7 +134,7 @@ Page({
       ss: Number(options.ss),
       chromaticity: Number(options.chromaticity),
       ph: Number(options.ph),
-      advice: options.advice
+      advice: ""
     })
   },
   agree:function(e){

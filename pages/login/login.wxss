@@ -16,7 +16,7 @@ page{
   flex: none; 
  } 
  .login-img{ 
-  width: 750rpx; 
+  width: 700rpx; 
   height: 550rpx;
  } 
   

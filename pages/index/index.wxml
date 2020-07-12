@@ -217,17 +217,6 @@
           </view>
         </view>
     </navigator>
-    <navigator url='../cangku/stockInOut/stockInOut'>
-    <view class="data_one bg_2">
-      <view class="data_title">出入库日志</view>
-      <view class="data_data">
-        <view class="data_ico">
-          <image class="yao" src='/pages/images/rizhi.png'></image>
-        </view>
-        <view class="data_num">{{isHandled}}</view>
-      </view>
-    </view>
-    </navigator>
     <navigator url='../cangku/storage/storage'>
       <view class="data_one bg_3">
         <view class="data_title">库存情况</view>
