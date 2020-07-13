@@ -6,7 +6,7 @@
  <navigator class="nav" url='../edit/edit?id={{item.id}}&status={{item.status}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}&advice={{item.reviews}}'>
 		<view class="column">
 			<view class="card-desc">
-        <view class="circle"></view>编号：{{item.id}}
+        <view class="circle"></view><view class="circleLeft">编号：{{item.id}}</view>
         <view class="status"  wx:if="{{item.status==1}}" style="color:#64C676">首次提交</view>
         <view class="status"  wx:if="{{item.status==2}}" style="color:red">驳回</view>
         <view class="status"  wx:if="{{item.status==3}}" style="color:orange">重新提交</view>

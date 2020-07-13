@@ -113,8 +113,7 @@ Page({
     this.setData({ show: false });
   },
   onLoad: function (options) {
-    // debugger
-    // var usr_id = wx.getStorageSync('usr_id');
+    var usr_id = wx.getStorageSync('usr_id');
     // var advice="";
     // if(options.advice.length>0){
     //   for(var i=0;i<options.advice.length;i++){

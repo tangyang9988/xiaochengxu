@@ -43,7 +43,6 @@
   <van-button round type="danger" style="display:flex;width:100%;" bindtap="reject">驳回</van-button>
 </view>
 <view wx:elif="{{user_id==3}}">
-<van-cell-group>
   <van-row>
   <van-col span="7">
     <van-cell title="加药时间"/>
@@ -71,7 +70,7 @@
     </van-col>
   </van-row>
   <!-- <van-row>
-    <van-col span="7">
+   <van-col span="7">
       <van-cell title="药剂名称"/>
     </van-col>
     <van-col span="17">
@@ -81,30 +80,48 @@
       </van-popup>
     </van-col>
   </van-row> -->
+  <van-row>
+      <van-col span="7">
+      <van-cell title="药剂名称"/>
+    </van-col>
+    <van-col span="17">
+    <van-cell title="{{medicine_name}}"  bind:click="showNamePop" />
+      <van-popup show="{{ showName }}" value-key="text" position="bottom" custom-style="height: 50%;">
+        <van-picker columns="{{ option }}" default-index="{{ 0 }}"  title="选择药品" show-toolbar bind:confirm="nameConfirm" bind:cancel="nameCancel" />
+      </van-popup>
+    </van-col>
+  </van-row>
+
+<van-row>
+  <van-col span="7">
+    <van-cell title="加药量"/>
+  </van-col>
+  <van-col span="17">
     <van-field
-    value="{{medicine_name}}"
-    disabled
-    label="药剂名称"
-    border="{{ true }}"/>
-  <van-field
     value="{{medicine_count}}"
-    label="加药量"
-    border="{{ true }}"
+    clickable
+    type="digit"
     bind:change="onChange4"/>
-  <van-field
+  </van-col>
+</van-row>
+<van-row>
+  <van-col span="7">
+    <van-cell title="加药员"/>
+  </van-col>
+  <van-col span="17">
+    <van-field
     disabled
-    value="张晓明"
-    label="加药员"
-    placeholder="请输入加药员"
-    border="{{ true }}"/>
-  <van-field
+    value="{{'张晓明'}}"/>
+  </van-col>
+</van-row>
+
+  <!-- <van-field
     value="{{content}}"
     label="审核意见"
     type="textarea"
     placeholder="请输入审核意见"
     rows="1"
     autosize
-    bind:change="onChange5"/>
-  </van-cell-group>
+    bind:change="onChange5"/> -->
   <van-button round type="info" style="display:flex;width:100%;margin-top:5%;1" bindtap="agree">同意归档</van-button>
 </view>

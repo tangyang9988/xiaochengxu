@@ -91,28 +91,22 @@ Page({
       "in_amount":parseFloat(this.data.medicine_count),
       "user_id":usr_id
     }
-    http.Post('/app/storage/put_in_amount', params, function (res) {
-
-    },
-  //   wx.request({  
-  //   url: 'http://172.20.0.70:8088/app/storage/put_in_amount', 
-  //   data:{
-  //     medicine_name:that.data.medicine_name,
-  //     user_id:usr_id,
-  //     supplier:that.data.supplier,
-  //   },
-  //   method:'POST',
-  //   header: {  
-  //     'content-type': 'application/json'
-  //   },  
-  //   success: function (res) {
-  //     wx.showToast({
-  //       title: '成功',
-  //       icon: 'success',
-  //       duration: 2000//持续的时间
-  //     })
-  //   },
-  // })
-    )}
+    wx.showModal({
+      title: '提示',
+      content: '是否仓库入库',
+      success(res){
+        if (res.confirm) {
+          http.Post('/app/storage/put_in_amount', params, function (res) {
+            const { data } = res
+            if (data.code === 200) {
+              wx.showToast({ title: '入库成功', icon :'success',duration: 2000 })
+              that.clearData()
+            } else  wx.showToast({title: "入库失败", icon :"none" })
+          })
+        } 
+      },
+      fail(res){ wx.showToast({title: '入库失败', icon :"none"}) }
+    })
+  }
 
 });

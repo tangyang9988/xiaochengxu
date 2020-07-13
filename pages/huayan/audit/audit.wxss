@@ -1,59 +1,16 @@
 
-/* 数据统计 */
-/* .datalist { display: flex; margin:0 20rpx;background: #fff;}
-.data_one { flex: 1; margin:10rpx 15rpx; padding: 10rpx 30rpx; height: 130rpx; border-radius: 10rpx;}
-  .data_title { width: 100%; font-size: 24rpx; height: 40rpx; line-height: 40rpx; color: #fff;}
-  .data_data { display: flex; height: 90rpx; align-items: flex-end;}
-    .data_ico { flex: 0.2; } 
-      .data_ico image { width: 50rpx; height: 50rpx;}
-    .data_num { flex: 0.8; text-align: right; font-size:56rpx; color: #fff; margin-right: 20rpx; font-family: 'Bebas'}
-.item_content{
-  width: 90%;
-  height: 100rpx;
-  font-size: 11pt;
-  color: #888;
-  word-break: break-all;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-.item_from{
-  width: 550rpx;
-  font-size: 10pt;
-  color: #999;
-}
-.item_time{
-  width: 100%;
-  font-size: 10pt;
-  color: #999;
-  word-break: break-all;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  margin-left: 40rpx;
-}
-.hover-class{
-  display: flex; 
-  margin:0 20rpx;
-  background-color: #fff;
-}
-.column{
-  display:flex; 
-  flex-direction:column;
-  width: 80%;
-  height:auto;
-  background-color: #fff;
-} */
 .nav {
   position: relative;
   width: 100%;
-  height: 170px;
+  height: auto;
   display: flex;
   background-color: #fff;
 }
 .cards {
   position: relative;
   width: 90%;
-  height: 170px;
-  margin:18px 5%;
+  height: auto;
+  margin:8px 5%;
 }
 .card {
   height: 125px;
@@ -109,7 +66,11 @@
   background-color:#64C676;
   border-radius: 50%; 
   display: inline-block;
+  margin-top:5px;
 }
+.circleLeft{
+  margin-left:8px;
+  }
 .column{
   margin-left: 40rpx;
   width: 90%;

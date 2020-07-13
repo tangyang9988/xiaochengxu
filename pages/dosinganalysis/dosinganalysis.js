@@ -134,13 +134,15 @@ Page({
     //         }
     //     });
     // }, 
-    onReady: function (e) {
+    onPie: function () {
+        var windowWidth = 320;
         try {
-            var res = wx.getSystemInfo();
-            windowWidth = res.windowWidth;
+          var res = wx.getSystemInfoSync();
+          windowWidth = res.windowWidth;
         } catch (e) {
-            console.error('getSystemInfoSync failed!');
+          console.error('getSystemInfoSync failed!');
         }
+        var windowWdithHalf = windowWidth / 5*2;
         ringChart = new wxCharts({
             animation: true,
             canvasId: 'ringCanvas',
@@ -163,7 +165,7 @@ Page({
             },
             series: this.data.echartMedicineList,
             disablePieStroke: true,
-            width: 200,
+            width: windowWdithHalf,
             height: 150,
             dataLabel: false,
             legend: false,
@@ -171,7 +173,6 @@ Page({
             padding: 0
         });
         ringChart.addEventListener('renderComplete', () => {
-            console.log('renderComplete');
         });
         setTimeout(() => {
             ringChart.stopAnimation();
@@ -343,12 +344,6 @@ Page({
                 medicineList.push({text: dosage_period[i].medicine_name,value: dosage_period[i].id,color:color,consume_percentage:dosage_period[i].consume_percentage,medicine_count:dosage_period[i].consume});
             }
             that.setData({"option":medicineList})
-            // for (var i = 0; i < res.data.data.one_dosage_period.length; i++) {
-            //     data.push(res.data.data.one_dosage_period[i]);
-            // }
-            // that.setData({"categories":res.data.data.x_date})
-            // that.setData({"periodData":res.data.data.one_dosage_period})
-            // that.lineChart.data
             var storageMedicine = [];
             var j = 0;
             var len = 0;
@@ -391,7 +386,7 @@ Page({
             that.setData({
                 "relative_ration_min_str": res.data.data.relative_ration_min_str
             })
-            that.onReady();
+            that.onPie();
             that.columnShow();
             that.getMothElectro();
         })
@@ -458,10 +453,9 @@ Page({
                 success: function(res) {
                     console.log("图片")
                     console.log(res)
-                  that.setData({ canvsPie: res.tempFilePath},()=>{console.log(that.data.canvsLine)});
+                  that.setData({ canvsPie: res.tempFilePath});
                 },
                 fail:function(res){
-                    console.log(res)
                 }
               },this)
         }, 2000);
@@ -474,10 +468,10 @@ Page({
                 success: function(res) {
                     console.log("图片")
                     console.log(res)
-                  that.setData({ canvsLine: res.tempFilePath},()=>{console.log(that.data.canvsLine)});
+                //   that.setData({ canvsLine: res.tempFilePath},()=>{console.log(that.data.canvsLine)});
+                  that.setData({ canvsLine: res.tempFilePath});
                 },
                 fail:function(res){
-                    console.log(res)
                 }
               },this)
         }, 2000);
@@ -488,7 +482,8 @@ Page({
             wx.canvasToTempFilePath({
                 canvasId: 'columnCanvas',
                 success: function(res) {
-                  that.setData({ canvsHistogram: res.tempFilePath},()=>{console.log(that.data.canvsLine)});
+                //   that.setData({ canvsHistogram: res.tempFilePath},()=>{console.log(that.data.canvsLine)});
+                  that.setData({ canvsHistogram: res.tempFilePath});
                 },
                 fail:function(res){
                     console.log(res)

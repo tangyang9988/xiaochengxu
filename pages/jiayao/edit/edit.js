@@ -124,13 +124,28 @@ agree:function(){
     "medicine_id":Number(this.data.medicine_id),
     "medicine_count":parseFloat(this.data.medicine_count),
   }
-  http.Post('/app/dosage/modify', params,function (res) {
-    var datas=res.data;//res.data就是从后台接收到的值
-     this.setData({//循环完后，再对list进行赋值
-       List: datas.data,
-       loading: false
-     })
-   })
-
+   wx.showModal({
+    title: '提示',
+    content: '是否重新提交加药单',
+    success(res){
+      if (res.confirm) {
+        http.Post('/app/dosage/modify', params, function (res) {
+          const { data } = res
+          if (data.code === 200) {
+            wx.showToast({ title: '重新提交成功', icon :'success',duration: 2000 })
+            that.clearData()
+          } else  wx.showToast({ title: '重新提交成功失败', })
+        })
+        wx.navigateBack({
+          complete: (res) => {},
+        })
+      } 
+    }
+  })
+},
+reject:function(){
+  wx.navigateBack({
+    complete: (res) => {},
+  })
 }
 })

@@ -37,6 +37,7 @@ Page({
    */
   onItemClick(e) {
     const { usr_id } = this.data 
+    var line = e.currentTarget.dataset.gid
     if(usr_id === 2){
       const { gid } = e.currentTarget.dataset
       const url = `../storageBasic/storageBasic?storage_id=${gid.id}&medicine_id=${gid.medicine_id}&medicine_name=${gid.medicine_name}&supplier=${gid.supplier}&minimum=${gid.minimum}&is_process=${gid.is_process}&storage_amount=${gid.storage_amount}`

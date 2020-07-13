@@ -106,7 +106,7 @@
     <van-cell title="药剂名称"/>
   </van-col>
   <van-col span="17">
-   <van-cell title="{{medicine_id}}"  bind:click="showNamePop" />
+   <van-cell title="{{medicine_name}}"  bind:click="showNamePop" />
     <van-popup show="{{ showName }}" value-key="text" position="bottom" custom-style="height: 50%;">
       <van-picker columns="{{ option }}" default-index="{{ 0 }}"  title="选择药品" show-toolbar bind:confirm="nameConfirm" bind:cancel="nameCancel" />
     </van-popup>

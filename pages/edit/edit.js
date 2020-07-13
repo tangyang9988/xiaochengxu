@@ -123,7 +123,7 @@ Page({
       position: options.position,
       medicine_id: Number(options.medicine_id),
       medicine_name:options.medicine_name,
-      medicine_count: Number(options.medicine_count)
+      medicine_count: parseFloat(options.medicine_count)
     })
   },
 agree:function(){
@@ -134,15 +134,21 @@ agree:function(){
       "user_id":this.data.user_id,
       "review_status":4,
       "is_dosage":1
-    };
-    http.Post('/app/dosage_review/add', params, function (res) {
-      const { data } = res
-      if( data.code === 200 ){
-        wx.showToast({ title: '已审批', icon:'success',duration:2000 })
-        setTimeout(() => {
-        wx.navigateBack({})
-        }, 2000);
-      }else wx.showToast({ title: '审批失败',duration:2000 })
+    }
+    wx.showModal({
+      title: '提示',
+      content: '是否同意',
+      success(res){
+        if (res.confirm) {
+          http.Post('/app/dosage_review/add', params, function (res) {
+            const { data } = res
+            if (data.code === 200) {
+              wx.showToast({ title: '已同意', icon :'success',duration: 2000 })
+              that.clearData()
+            } else  wx.showToast({ title: '同意失败', })
+          })
+        } 
+      }
     })
   }else if(this.data.user_id==3){
     var params ={
@@ -154,15 +160,24 @@ agree:function(){
       "dosing_time":this.data.dosing_time,
       "position":this.data.position,
       "content":this.data.content
-    };
-    http.Post('/app/maotai/modify_dosage', params, function (res) {
-      const { data } = res
-      if( data.code === 200 ){
-        wx.showToast({ title: '已审批', icon:'success',duration:2000 })
-        setTimeout(() => {
-        wx.navigateBack({})
-        }, 2000);
-      }else wx.showToast({ title: '审批失败',duration:2000 })
+    }
+    wx.showModal({
+      title: '提示',
+      content: '是否同意归档',
+      success(res){
+        if (res.confirm) {
+          http.Post('/app/maotai/modify_dosage', params, function (res) {
+            const { data } = res
+            if( data.code === 200 ){
+              wx.showToast({ title: '已审批', icon:'success',duration:2000 })
+              setTimeout(() => {
+              wx.navigateBack({})
+              }, 2000);
+            }else wx.showToast({ title: '审批失败',duration:2000 })
+          })
+        } 
+      },
+      fail(res){ wx.showToast({ title: '审批失败', }) }
     })
   }
 },

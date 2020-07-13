@@ -151,6 +151,9 @@ Page({
             } else  wx.showToast({title: data.msg, icon :"none" })
           })
         } 
+        wx.navigateBack({
+          complete: (res) => {},
+        })
       },
       fail(res){ wx.showToast({title: '提交化验单失败', icon :"none"}) }
     })
