@@ -11,6 +11,22 @@ Page({
      usr_id:"",
      status:""
   },
+    /**
+   * 列表子项点击事件
+   * @param { item子项 } e 
+   */
+  onItemClick(e) {
+    debugger
+    const { usr_id } = this.data 
+    const { gid } = e.currentTarget.dataset
+    if(gid.reviews.length>0){
+      const{advice} = JSON.parse(gid.reviews[0].content) 
+    }else{
+      const{advice} = ""
+    }
+    const url = `../edit/edit?id=${gid.id}&status=${gid.status}&usr_id={{usr_id}}&cod=${gid.cod}&bod5=${gid.cod}&ammonia_nitrogen=${gid.ammonia_nitrogen}&phosphorus=${gid.phosphorus}&nitrogen=${gid.nitrogen}&ss=${gid.ss}&chromaticity=${gid.chromaticity}&ph=${gid.ph}&advice=${advice}`
+      this.onNavigateTo(url)
+  },
   onLoad: function (options) {
     var usr_id = wx.getStorageSync('usr_id');
     this.setData({usr_id:Number(usr_id)})
@@ -20,35 +36,10 @@ Page({
     }
     var that = this //很重要，一定要写
     http.Post('/app/water_quality/query', params, function (res) {
-      debugger
           that.setData({//循环完后，再对list进行赋值
           List: res.data.data,
           loading: false
         })
     })
-
-    // wx.request({
-    //   url: 'http://172.20.0.70:8088/app/water_quality/query',//和后台交互的地址，默认是json数据交互，由于我的就是json，这里就没有对header进行编写
-    //   data: {
-    //     "user_id":10
-    //   },
-    //   method: 'POST',
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },  
-    //   success: function (res) {
-    //     var datas=res.data;//res.data就是从后台接收到的值
-    //     // for(var i=0;i<datas.length;i++){//用for循环把所有的时间戳都转换程时间格式，这里调用的是小程序官方demo中带的方法，
-    //     //   datas[i]["consumption_date"] = time.formatTime(new Date(datas[i]["consumption_date"]))
-    //     // }
-    //     that.setData({//循环完后，再对list进行赋值
-    //       List: datas.data,
-    //       loading: false
-    //     })
-    //   },
-    //   fail: function (res) {
-    //     console.log('submit fail');
-    //   },
-    // })
   }
 })

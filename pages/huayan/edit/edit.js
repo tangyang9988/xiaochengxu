@@ -114,27 +114,23 @@ Page({
   },
   onLoad: function (options) {
     var usr_id = wx.getStorageSync('usr_id');
-    // var advice="";
-    // if(options.advice.length>0){
-    //   for(var i=0;i<options.advice.length;i++){
-    //     advice = options.advice[0].content;
-    //   }
-    // }
-    this.setData({
-      id: Number(options.id),
-      usr_id: Number(usr_id),
-      status: Number(options.status),
-      is_dosage:Number(options.is_dosage),
-      cod: Number(options.cod),
-      bod5: Number(options.bod5),
-      ammonia_nitrogen: Number(options.ammonia_nitrogen),
-      phosphorus: Number(options.phosphorus),
-      nitrogen: Number(options.nitrogen),
-      ss: Number(options.ss),
-      chromaticity: Number(options.chromaticity),
-      ph: Number(options.ph),
-      advice: ""
-    })
+      this.setData({
+        id: Number(options.id),
+        usr_id: Number(usr_id),
+        status: Number(options.status),
+        is_dosage:Number(options.is_dosage),
+        cod: Number(options.cod),
+        bod5: Number(options.bod5),
+        ammonia_nitrogen: Number(options.ammonia_nitrogen),
+        phosphorus: Number(options.phosphorus),
+        nitrogen: Number(options.nitrogen),
+        ss: Number(options.ss),
+        chromaticity: Number(options.chromaticity),
+        ph: Number(options.ph),
+        advice: ""
+      })
+
+
   },
   agree:function(e){
     if(this.data.usr_id ==10){
@@ -150,15 +146,24 @@ Page({
         "ss":Number(this.data.ss),
         "chromaticity":Number(this.data.chromaticity),
         "ph":Number(this.data.ph)
-    };
-    http.Post('/app/water_quality/modify', params, function (res) {
-      const { data } = res
-      if( data.code === 200 ){
-        wx.showToast({ title: '已审批', icon:'success',duration:2000 })
-        setTimeout(() => {
-        wx.navigateBack({})
-        }, 2000);
-      }else wx.showToast({ title: '审批失败',duration:2000 })
+    }
+    wx.showModal({
+      title: '提示',
+      content: '是否重新提交化验单',
+      success(res){
+        if (res.confirm) {
+          http.Post('/app/water_quality/modify', params, function (res) {
+            const { data } = res
+            if( data.code === 200 ){
+              wx.showToast({ title: '重新提交成功！', icon:'success',duration:2000 })
+              setTimeout(() => {
+              wx.navigateBack({})
+              }, 2000);
+            }else wx.showToast({ title: '重新提交失败！',duration:2000 })
+          })
+        } 
+      },
+      fail(res){ wx.showToast({title: '提交化验单失败', icon :"none"}) }
     })
     }
     if(this.data.usr_id ==2){

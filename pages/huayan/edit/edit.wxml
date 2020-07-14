@@ -154,7 +154,7 @@
   </van-cell-group>
 
 
-  <van-button round type="info" style="display:flex;width:100%;margin-top:10%;margin-bottom:5%" bind:click="agree">重新提交</van-button>
+  <van-button round type="info" style="display:flex;width:100%;margin-top:10%;margin-bottom:5%" bind:click="agree">重新重新提交</van-button>
   <van-button round plain type="info" style="display:flex;width:100%;" bindtap="cancle">取消</van-button>
 </view>
 </view>
