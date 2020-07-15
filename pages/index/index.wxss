@@ -57,7 +57,7 @@
 .bg_6 { background-color: rgb(150, 204, 245);}
 /* 加药分析 */
 .bg_7 { background-color: rgb(169, 245, 242);}
-/* 信息仓 */
+/* 信息舱 */
 .bg_8 { background-color: #DCC4F3;}
 .yao{width: 35px; height: 35px;display: flex;
   margin:20px 30px 11px 18px }

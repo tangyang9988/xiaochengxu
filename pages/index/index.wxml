@@ -258,7 +258,7 @@
   <view class="datalist" wx:if="{{usr_id==3}}">
     <navigator url='../information/information'>
       <view class="data_one bg_8">
-        <view class="data_title">信息仓</view>
+        <view class="data_title">信息舱</view>
         <view class="data_data">
           <view class="data_ico">
            <image class="yao" src='/pages/images/-shuju.png'></image>
