@@ -61,12 +61,11 @@ page{
 
 .van-tab {
   font-size: 12px;
+  color: #628DFC !important;
 }
 
 /* 覆盖标签激活样式 */
 .van-tab--active {
-  /* width: 56px;
-  height: 24px; */
   background: rgba(44, 101, 247, 1);
   border-radius: 12px;
   /* 激活时文字样式 */
@@ -77,10 +76,7 @@ page{
 
 /* tap选项卡文字样式 */
 .tapTitleFont {
-  /* font-family: PingFangSC-Medium, PingFang SC;
-  font-weight: 500; */
   color: rgba(255, 255, 255, 1);
-  /* line-height: 20px; */
 }
 
 
@@ -89,6 +85,12 @@ page{
 /* .van-tabs__line {
   background-color:#FFFFFF;
 } */
+
+/* 覆盖tap激活样式 */
+.van-tab--active {
+  color: white !important;  
+  }
+  
 
 
 /* 主内容样式 */
@@ -119,11 +121,9 @@ page{
   font-weight: 500 !important;
   line-height: 20px !important;
 }
+/* #628DFC FFFFFF */
 .van-dropdown-menu__title {
-  color: #FFFFFF !important;
-  /* font-size: 25px  !important;
-  font-weight: 500 !important;
-  line-height: 20px !important; */
+  color: #628DFC !important;
 }
 
 
