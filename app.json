@@ -22,11 +22,14 @@
     "van-progress": "@vant/weapp/dist/progress/index"
   },
   "pages":[ 
-    "pages/login/login",
-    "pages/audit/audit",
-    "pages/edit/edit",
 
+    "pages/login/login",
+    "pages/login/register",
+    "pages/audit/audit",
+
+    "pages/edit/edit",
     "pages/index/index",
+
 
     "pages/hedit/hedit",
 
@@ -37,6 +40,7 @@
     "pages/jiayao/form/form",
     "pages/jiayao/audit/audit",
     "pages/jiayao/edit/edit",
+    "pages/jiayao/waterReport/waterReport",
 
     "pages/userInfo/userInfo",
     "pages/cangku/storageIn/storageIn",
@@ -46,10 +50,6 @@
 
     "pages/wateranalysis/wateranalysis",
     "pages/dosinganalysis/dosinganalysis"
-
-
-    
-    
   ],
   "window":{
     "backgroundTextStyle":"light",

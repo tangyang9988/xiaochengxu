@@ -4,10 +4,13 @@ Page({
   data: {
     listData:[],
     screenHeight:'',
-    usr_id: ''
+    usr_id: '',
+    role_id: ''
   },
   onLoad: function () {
     var usr_id = wx.getStorageSync('usr_id');
+    var role_id = wx.getStorageSync('role_id');
+    this.setData({role_id:role_id})
     this.setData({usr_id},()=>{console.log(this.data.usr_id)})
     this.getSystemInfo()
     var that = this       //很重要，一定要写
@@ -22,25 +25,26 @@ Page({
         })
     })
   },
+
   getSystemInfo() {
-    const { usr_id } = this.data 
+    const { role_id } = this.data 
     wx.getSystemInfo({
       success: (result) => {
         console.log(result)
-        this.setData({ screenHeight: usr_id ===2 ? result.windowHeight - 80 : result.windowHeight - 20 })
+        this.setData({ screenHeight: role_id ===2 ? result.windowHeight - 80 : result.windowHeight - 20 })
       },
     })
   },
   /**
    * 列表子项点击事件
-   * @param { item子项 } e 
+   * @param { item子项 }
    */
   onItemClick(e) {
-    const { usr_id } = this.data 
+    const { role_id } = this.data 
     var line = e.currentTarget.dataset.gid
-    if(usr_id === 2){
+    if(role_id === 2){
       const { gid } = e.currentTarget.dataset
-      const url = `../storageBasic/storageBasic?storage_id=${gid.id}&medicine_id=${gid.medicine_id}&medicine_name=${gid.medicine_name}&supplier=${gid.supplier}&minimum=${gid.minimum}&is_process=${gid.is_process}&storage_amount=${gid.storage_amount}`
+      const url = `../storageBasic/storageBasic?storage_id=${gid.id}&medicine_id=${gid.medicine_id}&medicine_name=${gid.medicine_name}&supplier=${gid.supplier}&minimum=${gid.minimum}&is_active=${gid.is_active}&storage_amount=${gid.storage_amount}`
       this.onNavigateTo(url)
     }
   },

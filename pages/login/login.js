@@ -1,114 +1,276 @@
-var http = require("../../utils/httpUtil.js")
+
 Page({
+  /**
+   * 页面的初始数据
+   */
   data: {
-    phone: '',
-    password: ''
+    "open_id": "",
+    // "userInfo":{},
+    "raw_data": "",
+    "signature": "",
+    "encrypted_data": "",
+    "iv": "",
+    "phone_encrypted_data": "",
+    "phone_iv": "",
+    loginstate: "0",
+    userEntity: null,
+    terminal: "",
+    osVersion: "",
+    phoneNumber: "",
+    showModal: false, //定义登录弹窗
   },
-  // 获取输入账号 
-  phoneInput: function (e) {
-    this.setData({
-      phone: e.detail.value
-    })
-  },
+  //在页面加载的时候，判断缓存中是否有内容，如果有，存入到对应的字段里
+  onLoad: function () {
+    // var open_id =wx.getStorageSync('open_id')
+    // if(open_id){
+    //   wx.request({
+    //     url: 'https://wx.jslcznkj.cn/maotai/app/region/refresh', //自己的解密地址
 
-  // 获取输入密码 
-  passwordInput: function (e) {
-    this.setData({
-      password: e.detail.value
-    })
-  },
+    //     data:{
+    //       openid:open_id
+    //     },
+    //     method: "post",
+    //     header: {
+    //       'content-type': 'application/json'
+    //     },
+    //     success: function (res) {
+    //       wx.setStorage({
+    //         key: 'usr_id',
+    //         data: 1
+    //       }); 
+    //       that.onshow(that.data.openid, that.data.userInfo, res.data.d.phoneNumber); //调用onshow方法，并传递三个参数
+    //     }
+    //   })
+    // }else{
 
-  // 登录 
-  login: function () {
-    let usr_id = Number(this.data.phone);
-    wx.setStorage({
-      key: 'usr_id',
-      data: usr_id
-    });
-    if (this.data.phone.length == 0 || this.data.password.length == 0) {
-      wx.showToast({
-        title: '用户名和密码不能为空',
-        icon: 'loading',
-        duration: 2000
-      })
-    } else {
-      // 这里修改成跳转的页面 
-      // wx.showToast({ 
-      // title: '登录成功', 
-      // icon: 'success', 
-      // duration: 2000 
-      // })
-      wx.navigateTo({
-        url: '../index/index?id=' + usr_id
-      })
+    // }
+  },
+  onGotUserInfo: function (e) {
+    debugger
+    var role_id = wx.getStorageSync('role_id')
+    if(role_id){
+      this.hideModal();
+      setTimeout(function () {
+        wx.reLaunch({
+        url: '../index/index'
+        })
+        }, 500)
+    }else{
+      wx.setStorage({
+        key: 'raw_data',
+        data: e.detail.rawData
+      });
+      wx.setStorage({
+        key: 'user_info',
+        data: e.detail.user_info
+      });
+      wx.setStorage({
+        key: 'signature',
+        data: e.detail.signature
+      });
+      wx.setStorage({
+        key: 'encrypted_data',
+        data:e.detail.encryptedData
+      });
+      wx.setStorage({
+        key: 'iv',
+        data: e.detail.iv
+      });
+      var that = this;
+      if (e.detail.errMsg == "getUserInfo:ok") {
+        wx.login({
+          success: res => {
+            wx.request({
+              url: 'https://wx.jslcznkj.cn/maotai/app/region/openid', //仅为示例，并非真实的接口地址
+              data: {
+                "code": res.code
+              },
+              method: "POST",
+              header: {
+                'content-type': 'application/json' // 默认值
+              },
+              success(res) {
+                wx.setStorage({
+                  key: "open_id",
+                  data: res.data.data.open_id
+                })
+              }
+            })
+          }
+        })
+        // this.setData({ phone_iv: e.phone_iv });
+        that.showDialogBtn(); //调用一键获取手机号弹窗（自己写的）//
+      }
+
     }
   },
-  // 微信一键登录
-  loginWeiXin:function(){
-    wx.getSetting({
-      success (res) {
-        console.log(res.authSetting)
-        // res.authSetting = {
-        //   "scope.userInfo": true, // true已授权 false未授权
-        //   "scope.userLocation": true
-        //    ...
-        // }
-      }
-    })
-    wx.checkSession({
-      success () {
-        //session_key 未过期，并且在本生命周期一直有效
-      },
-      fail () {
-        // session_key 已经失效，需要重新执行登录流程
-        wx.login() //重新登录
-      }
-    })
-    wx.login({
-      success: function(res) {
-        debugger
-          // 得到了code
-          if (res.code) {
-              wx.request({
-                  url: 'https://wx.jslcznkj.cn/maotai/app/region/openid', // 后端提供的验证登录接口
-                  data:{
-                    open_id:res.code
-                  },
-                  success: function(response) {
-                   // 验证成功，保存cookies, 封装在全局统一的请求方法中，如get, post
-                      wx.setStorage({
-                       key: 'open_id',
-                       data: response.data.open_id
-                      })
-                      wx.getUserInfo({
-                       withCredentials: true,
-                          success: function(res) {
-                              // 取得用户微信信息，调用后端接口更新用户信息
-                              const userInfo = res.userInfo
-                              const encryptedData = res.encryptedData
-                           const iv = res.iv
-                              
-                              const params = {
-                                nick_name: userInfo.nickName,
-                                gender: userInfo.gender,
-                                province: userInfo.province,
-                                city: userInfo.city,
-                                country: userInfo.country,
-                                avatar_url: userInfo.avatarUrl,
-                                encrypted_data: encryptedData,
-                                encrypt_iv: iv
-                              }
-  
-                              server.get(api.user.updateBaseInfo(), params, () => {
-                               // 成功保存用户信息
-                              })
-                          }
-                      })
-               }
-              })
-          }
-      }
-  })
 
-  }
+  // 显示一键获取手机号弹窗
+  showDialogBtn: function () {
+    this.setData({
+      showModal: true //修改弹窗状态为true，即显示
+    })
+  },
+  // 隐藏一键获取手机号弹窗
+  hideModal: function () {
+    this.setData({
+      showModal: false //修改弹窗状态为false,即隐藏
+    });
+  },
+  // onshow: function (openid, userInfo, phoneNumber) {
+  //   var that = this;
+  //   wx.getSystemInfo({
+  //     success: function (res) {
+  //       that.setData({
+  //         terminal: res.model
+  //       });
+  //       that.setData({
+  //         osVersion: res.system
+  //       });
+  //     }
+  //   })
+  //   wx.request({
+  //     url: '登录接口',
+  //     method: 'POST',
+  //     header: {
+  //       'content-type': 'application/json' // 默认值
+  //     },
+  //     data: {
+  //       username: phoneNumber,
+  //       parentuser: 'xudeihai',
+  //       wximg: userInfo.avatarUrl,
+  //       nickname: userInfo.nickName,
+  //       identity: "",
+  //       terminal: that.data.terminal,
+  //       osVersion: that.data.system,
+  //       logintype: "10", //微信登录
+  //       openid: that.data.openid,
+  //     },
+  //     success(res) {
+  //       if (res.data.r == "T") {
+  //         that.setData({
+  //           userEntity: res.data.d
+  //         });
+  //         wx.setStorage({
+  //           key: "userEntity",
+  //           data: res.data.d
+  //         })
+  //         that.setData({
+  //           loginstate: "1"
+  //         });
+  //         wx.setStorage({
+  //           key: "loginstate",
+  //           data: "1"
+  //         })
+  //         wx.setStorage({
+  //           key: 'userinfo',
+  //           data: "1"
+  //         })
+  //       } else {
+  //         return;
+  //       }
+  //     },
+  //     fail(res) {
+  //       console.log(res);
+  //     }
+  //   })
+  // },
+  //绑定手机
+  getPhoneNumber: function (e) {
+    var that = this;
+    if (e.detail.errMsg == "getPhoneNumber:ok") {
+      wx.request({
+        url: 'https://wx.jslcznkj.cn/maotai/app/region/bind_phone', //自己的解密地址
+        data: {
+          "open_id": wx.getStorageSync('open_id'),
+          // "user_info":this.data.userInfo,
+          "raw_data": wx.getStorageSync('raw_data'),
+          "signature": wx.getStorageSync('signature'),
+          "encrypted_data": wx.getStorageSync('encrypted_data'),
+          "iv": wx.getStorageSync('iv'),
+          "phone_encrypted_data": e.detail.encryptedData,
+          "phone_iv": e.detail.iv
+        },
+        method: "post",
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          wx.navigateTo({
+            url: '../index/index',
+          })
+          wx.setStorage({
+            key: 'usr_id',
+            data: res.data.data.id
+          });
+          wx.setStorage({
+            key: 'role_id',
+            data: res.data.data.role_id
+          });  
+          // that.onshow(that.data.openid, that.data.userInfo, res.data.d.phoneNumber); //调用onshow方法，并传递三个参数
+        }
+      })
+      this.hideModal()
+    }
+  },
+  // getPhoneNumber: function (e) {
+  //   var that = this;
+  //   that.hideModal();
+  //   wx.checkSession({
+  //     success: function (e) {
+  //       wx.login({
+  //         success: res => {
+  //           this.setData({ phone_encrypted_data: e.detail.encrypted_data });
+  //           this.setData({ phone_iv: e.detail.iv });
+  //         }
+  //       })
+
+
+  //     },
+  //     fail: function () {
+  //       wx.login({
+  //         success: res => {
+  //           wx.request({
+  //             url: '自己的登录接口', //仅为示例，并非真实的接口地址
+  //             data: {
+  //               account: '1514382701',
+  //               jscode: res.code
+  //             },
+  //             method: "POST",
+  //             header: {
+  //               'content-type': 'application/json' // 默认值
+  //             },
+  //             success(res) {
+  //               if (res.data.r == "T") {
+  //                 wx.setStorage({
+  //                   key: "openid",
+  //                   data: res.data.openid
+  //                 })
+  //                 wx.setStorage({
+  //                   key: "sessionkey",
+  //                   data: res.data.sessionkey
+  //                 })
+  //                 wx.request({
+  //                   url: '自己的解密接口',//自己的解密地址
+  //                   data: {
+  //                     encryptedData: e.detail.encryptedData,
+  //                     iv: e.detail.iv,
+  //                     code: res.data.sessionkey
+  //                   },
+  //                   method: "post",
+  //                   header: {
+  //                     'content-type': 'application/json'
+  //                   },
+  //                   success: function (res) {
+  //                     that.onshow(that.data.openid, that.data.userInfo, res.data.d.phoneNumber);//调用onshow方法，并传递三个参数
+  //                   }
+  //                 })
+  //               }
+  //             }
+  //           })
+  //         }
+  //       })
+  //     }
+  //   }
+  // },
 })

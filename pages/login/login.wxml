@@ -3,33 +3,51 @@
  <!-- <image class="login-img" src="../images/loginLog.jpg"></image>  -->
  <image class="login-img" src="../images/tupian.png"></image> 
  </view> 
- <view class="login-from"> 
  
  <!--账号--> 
- <view class="inputView"> 
+ <!-- <view class="inputView"> 
  <image class="nameImage" src="../images/name.png"></image> 
  <label class="loginLab">账号</label> 
  <input class="inputText" placeholder="请输入账号" bindinput="phoneInput" /> 
  </view> 
- <view class="line"></view> 
+ <view class="line"></view>  -->
  
  <!--密码--> 
- <view class="inputView"> 
+ <!-- <view class="inputView"> 
  <image class="keyImage" src="../images/key.png"></image> 
  <label class="loginLab">密码</label> 
  <input class="inputText" password="true" placeholder="请输入密码" bindinput="passwordInput" /> 
- </view> 
+ </view>  -->
  
  <!--按钮--> 
- <view class="loginBtnView"> 
+ <!-- <view class="loginBtnView"> 
  <van-button class="loginBtn" round type="info" size="" loading="{{loading}}" disabled="{{disabled}}" bindtap="login">登录</van-button>
- </view> 
+ </view>  -->
 
 
  
   <!--一键登录按钮--> 
- <view class="loginBtnView"> 
- <van-button class="loginWeiXin" round type="info" size="mini" loading="{{loading}}" disabled="{{disabled}}" bindtap="loginWeiXin">微信一键登录</van-button>
- </view> 
- </view> 
+ <!-- <view class="loginBtnView"> 
+ <van-button class="loginWeiXin" round type="info" size="mini" open-type="getUserInfo" bindgetphonenumber="onGetUserInfo">微信用户一键登录</van-button>
+ </view>  -->
+ <!-- <button open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber">
+    绑定微信手机号
+</button> -->
+<!-- <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">微信登录</button> -->
+<!-- <button class='dialog-btn' open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">一键登录</button> -->
+
+<van-button class="loginBtn" custom-style="width:80%" type="info" open-type="getUserInfo"  lang="zh_CN" bindgetuserinfo="onGotUserInfo"><span style="font-size:13px">微信用户一键登录</span></van-button>
+<!--登录弹窗-->
+<view class="modal-mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-content">
+    <view><image src='../images/show.png' class='show'></image></view>
+    <view>绑定手机号</view>
+    <view>请先绑定手机号在进行此操作</view>
+    <button open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">
+      <image src='../images/showWx.png' class='iconWx'></image>微信用户一键绑定
+    </button>
+  </view>
+</view>
+
 </view> 

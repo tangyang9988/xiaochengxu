@@ -1,19 +1,19 @@
 
-<van-cell-group wx:if="{{usr_id==1}}">
+<van-cell-group wx:if="{{role_id==1}}">
   <van-cell title="头像"  images="/pages/images/touxiang.png" border="{{ true }}" />
   <van-cell title="姓名" value="张晓明" border="{{  true }}" />
   <van-cell title="手机号" value="18809377288"  border="{{  true }}" />
    <van-cell title="公司" value="运维公司"  border="{{  true }}" />
     <van-cell title="职位" value="加药员"  border="{{  true }}" />
 </van-cell-group>
-<van-cell-group wx:elif="{{usr_id==2}}">
+<van-cell-group wx:elif="{{role_id==2}}">
   <van-cell title="头像"  images="/pages/images/touxiang.png" border="{{ true }}" />
   <van-cell title="姓名" value="刘万能" border="{{  true }}" />
   <van-cell title="手机号" value="18809377288"  border="{{  true }}" />
    <van-cell title="公司" value="运维公司"  border="{{  true }}" />
     <van-cell title="职位" value="运维审核员"  border="{{  true }}" />
 </van-cell-group>
-<van-cell-group wx:elif="{{usr_id==3}}">
+<van-cell-group wx:elif="{{role_id==3}}">
   <van-cell title="头像"  images="/pages/images/touxiang.png" border="{{ true }}" />
   <van-cell title="姓名" value="王武" border="{{  true }}" />
   <van-cell title="手机号" value="18809377288"  border="{{  true }}" />
@@ -27,7 +27,7 @@
    <van-cell title="公司" value="运维公司"  border="{{  true }}" />
     <van-cell title="职位" value="库管员"  border="{{  true }}" />
 </van-cell-group>
-<van-cell-group wx:elif="{{usr_id==10}}">
+<van-cell-group wx:elif="{{role_id==5}}">
   <van-cell title="头像"  images="/pages/images/touxiang.png" border="{{ true }}" />
   <van-cell title="姓名" value="宋保国" border="{{  true }}" />
   <van-cell title="手机号" value="18809377288"  border="{{  true }}" />

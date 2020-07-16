@@ -5,6 +5,7 @@ var http = require("../../utils/httpUtil.js")
 Page({
   data: {
     "user_id ":"",
+    "role_id ":"",
     "dosage_id":"",
     "dosing_time":"",
     "position":"",
@@ -101,23 +102,25 @@ Page({
  },
   onLoad: function (options) {  //options专门用于接受数据的
     var usr_id = wx.getStorageSync('usr_id');
+    var role_id = wx.getStorageSync('role_id');
     var params={
       "user_id":usr_id
     }
-    if(usr_id==3){
-      let  that =this;
-      //http 请求是异步的，必须重新赋值this
-      http.Post('/app/storage/query', params, function (res) {
-        var storage =res.data.data;
-        var medicineList=[];
-        for(var i=0;i<storage.length;i++){
-          medicineList.push({key: storage[i].id,text: storage[i].medicine_name});
-        }
-        that.setData({"option":medicineList})
-      })
-    }
+    // if(role_id==3){
+    //   let  that =this;
+    //   //http 请求是异步的，必须重新赋值this
+    //   http.Post('/app/storage/query', params, function (res) {
+    //     var storage =res.data.data;
+    //     var medicineList=[];
+    //     for(var i=0;i<storage.length;i++){
+    //       medicineList.push({key: storage[i].id,text: storage[i].medicine_name});
+    //     }
+    //     that.setData({"option":medicineList})
+    //   })
+    // }
     this.setData({
       user_id:usr_id,
+      role_id:role_id,
       dosage_id: Number(options.id),
       dosing_time: options.dosing_time,
       position: options.position,
@@ -127,7 +130,7 @@ Page({
     })
   },
 agree:function(){
-  if(this.data.user_id==2){
+  if(this.data.role_id==2){
     var params ={
       "dosage_id":this.data.dosage_id,
       "content":this.data.content,
@@ -150,7 +153,7 @@ agree:function(){
         } 
       }
     })
-  }else if(this.data.user_id==3){
+  }else if(this.data.role_id==3){
     var params ={
       "dosage_id":this.data.dosage_id,
       "review_status":5,

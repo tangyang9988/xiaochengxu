@@ -5,6 +5,7 @@ var app = getApp();
 Page({
   data: {
      usr_id:"",
+     role_id:"",
      totalList: [],
      pendingList: [],
      disapproveList: [],
@@ -24,16 +25,18 @@ Page({
     //   var usr_id=Number(options.usr_id)
     // }
     var usr_id = wx.getStorageSync('usr_id');
+    var role_id = wx.getStorageSync('role_id');
     var that = this //很重要，一定要写
     that.setData({usr_id:usr_id})
+    that.setData({role_id:role_id})
     var params={
       "user_id":usr_id
     }
     // 判断是运维还是茅台url
     var url;
-    if(usr_id==2){
+    if(role_id==2){
       url = "/app/dosage_review/dosage/query";
-    }else if(usr_id==3){
+    }else if(role_id==3){
       url = "/app/maotai/dosage/query";
     }
     http.Post(url, params, function (res) {

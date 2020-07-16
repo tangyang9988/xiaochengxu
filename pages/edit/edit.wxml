@@ -1,4 +1,4 @@
-<view wx:if="{{user_id==2}}">
+<view wx:if="{{role_id==2}}">
 <van-cell-group>
   <van-field
     disabled
@@ -42,7 +42,7 @@
   <van-button round type="info" style="display:flex;width:100%;margin-top:25%;margin-bottom:5%" bindtap="agree">同意</van-button>
   <van-button round type="danger" style="display:flex;width:100%;" bindtap="reject">驳回</van-button>
 </view>
-<view wx:elif="{{user_id==3}}">
+<view wx:elif="{{role_id==3}}">
   <van-row>
   <van-col span="7">
     <van-cell title="加药时间"/>

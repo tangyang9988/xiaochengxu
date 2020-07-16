@@ -16,11 +16,11 @@
 
   <van-row>
     <van-col span="12">
-      <van-cell title="是否用于工艺流程"/>
+      <van-cell title="是否在用"/>
     </van-col>
     <van-col span="12">
     <van-cell>
-    <van-switch checked="{{ is_process }}" bind:change="onChange" size="24px" />
+    <van-switch checked="{{ is_active }}" bind:change="onChange" size="24px" />
     </van-cell>
     </van-col>
   </van-row>

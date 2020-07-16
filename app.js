@@ -44,7 +44,48 @@ App({
       }
     })
   },
-  globalData: {
-    userInfo: null
+  onShow:function(){
+    wx.login({
+      success: res => {
+        wx.request({
+          url: 'https://wx.jslcznkj.cn/maotai/app/region/openid', //仅为示例，并非真实的接口地址
+          data: {
+            "code": res.code
+          },
+          method: "POST",
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success(res) {
+            wx.showToast({ title: '用户已登录', icon :'success',duration: 1000 })
+            if(res.data.data.user){
+              wx.setStorage({
+                key: 'usr_id',
+                data: res.data.data.user.id
+              }); 
+              wx.setStorage({
+                key: 'role_id',
+                data: res.data.data.user.role_id
+              });
+              setTimeout(function () {
+                wx.reLaunch({
+                url: '../index/index'
+                })
+                }, 500)
+              // wx.redirectTo ({
+              //   url: '../index/index',
+              // })
+            }else{
+              wx.showToast({ title: '用户未登录', icon :'fail',duration: 2000 })
+            }
+            wx.setStorage({
+              key: "open_id",
+              data: res.data.data.open_id
+            })
+          }
+        })
+      }
+    })
+
   }
 })

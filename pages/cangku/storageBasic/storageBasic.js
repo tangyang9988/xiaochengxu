@@ -1,99 +1,143 @@
-
 // import Toast from '/@vant/weapp/dist/toast/toast';
 var http = require("../../../utils/httpUtil.js")
 let app = getApp();
 Page({
   data: {
-      storage_id:"",
-      medicine_name:"",
-      is_process:false,
-      minimum:"",
-      supplier:"",
-      storage_amount:"",
+    storage_id: "",
+    medicine_name: "",
+    is_active: false,
+    minimum: "",
+    supplier: "",
+    storage_amount: "",
   },
-  onLoad: function (options) {      //options专门用于接受数据的
+  onLoad: function (options) {
+    //options专门用于接受数据的
     console.log(options)
     this.setData({
       storage_id: Number(options.storage_id),
       medicine_name: options.medicine_name,
-      is_process: options.is_process === "0" ? false : true,
+      is_active: options.is_active === "0" ? false : true,
       minimum: options.minimum,
       supplier: options.supplier,
       storage_amount: options.storage_amount
     })
   },
-  onFieldChange({detail}){
-    this.setData({ minimum: detail });
+  onFieldChange({
+    detail
+  }) {
+    this.setData({
+      minimum: detail
+    });
   },
-  onChange({ detail }) {
+  onChange({
+    detail
+  }) {
     // 需要手动对 checked 状态进行更新
-    this.setData({ is_process: detail });
+    this.setData({
+      is_active: detail
+    });
   },
   onChange1(event) {
     // event.detail 为当前输入的值
     var form1 = this.data.form;
-    form1.dosing_time=String(event.detail);
-    this.setData("form",form1)
+    form1.dosing_time = String(event.detail);
+    this.setData("form", form1)
   },
   onChange2(event) {
     // event.detail 为当前输入的值
     var form2 = this.data.form;
-    form2.position=event.detail;
-    this.setData("form",form2)
+    form2.position = event.detail;
+    this.setData("form", form2)
   },
   onChange3(event) {
     // event.detail 为当前输入的值
     var form3 = this.data.form;
-    form3.medicine_id=Number(event.detail);
-    this.setData("form",form3)
+    form3.medicine_id = Number(event.detail);
+    this.setData("form", form3)
   },
   onChange4(event) {
     // event.detail 为当前输入的值
     var form4 = this.data.form;
-    form4.medicine_count=Number(event.detail);
-    this.setData("form",form4)
+    form4.medicine_count = Number(event.detail);
+    this.setData("form", form4)
   },
   onPicker(event) {
-    const { picker, value, index } = event.detail;
+    const {
+      picker,
+      value,
+      index
+    } = event.detail;
     // Toast(`当前值：${value}, 当前索引：${index}`);
   },
   showPopup() {
-    this.setData({ show: true });
+    this.setData({
+      show: true
+    });
   },
   onClose() {
-    this.setData({ show: false });
+    this.setData({
+      show: false
+    });
   },
-  onClickButtonSubmit: function (e,dosing_time) {
+  onClickButtonSubmit: function (e, dosing_time) {
     console.log(dosing_time)
   },
-  modify:function(){
-
+  modify: function () {
     //http 请求是异步的，必须重新赋值this
-    var that =this;
-    if(that.data.is_process){
-      that.setData({is_process:1})
-    }else{
-      that.setData({is_process:0})
+    var that = this;
+    if (that.data.is_active) {
+      that.setData({
+        is_active: 1
+      })
+    } else {
+      that.setData({
+        is_active: 0
+      })
     }
-    var params={
-      "storage_id":that.data.storage_id,
-      "medicine_name":that.data.medicine_name,
-      "is_process":that.data.is_process,
-      "supplier":that.data.supplier,
-      "minimum":parseFloat(that.data.minimum)
+    var params = {
+      "storage_id": that.data.storage_id,
+      "medicine_name": that.data.medicine_name,
+      "is_active": that.data.is_active,
+      "supplier": that.data.supplier,
+      "minimum": parseFloat(that.data.minimum)
     }
-    http.Post('/app/storage/medicine/modify', params, function (res) {
-      console.log(res)
-      const { data } = res
-      if ( data.code === 200) {
-        wx.showToast({ title: '修改成功', duration:2000 })
-        setTimeout(() => {
-          wx.navigateBack({})
-        }, 2000);
+    wx.showModal({
+      title: '提示',
+      content: '是否确认修改库存信息',
+      success(res) {
+        if (res.confirm) {
+          http.Post('/app/storage/medicine/modify', params, function (res) {
+            const {
+              data
+            } = res
+            if (data.code === 200) {
+              wx.showToast({
+                title: '修改库存成功',
+                icon: 'success',
+                duration: 1000
+              })
+              that.clearData()
+            } else wx.showToast({
+              title: '修改库存失败',
+            })
+          })
+        }
+        that.changeParentData()
       }
     })
   },
-  cancle(){
+  changeParentData: function () {
+    var pages = getCurrentPages();//当前页面栈
+    if (pages.length > 1) {
+      var beforePage = pages[pages.length - 2];//获取上一个页面实例对象
+      beforePage.onLoad();//触发父页面中的方法
+    }
+    wx.navigateBack({
+      delta: 1
+    });
+
+  },
+  cancle() {
     wx.navigateBack({})
   }
 });

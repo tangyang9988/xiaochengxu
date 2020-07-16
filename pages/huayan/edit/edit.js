@@ -6,6 +6,7 @@ Page({
   data:{
     id:"",
     usr_id:"",
+    role_id:"",
     status:"",
     is_dosage:"",
     cod:"",
@@ -114,9 +115,11 @@ Page({
   },
   onLoad: function (options) {
     var usr_id = wx.getStorageSync('usr_id');
+    var role_id = wx.getStorageSync('role_id');
       this.setData({
         id: Number(options.id),
         usr_id: Number(usr_id),
+        role_id: role_id,
         status: Number(options.status),
         is_dosage:Number(options.is_dosage),
         cod: Number(options.cod),
@@ -133,7 +136,7 @@ Page({
 
   },
   agree:function(e){
-    if(this.data.usr_id ==10){
+    if(this.data.role_id ==5){
       var params ={
         "id":this.data.id,
         "user_id":this.data.usr_id,
@@ -166,7 +169,7 @@ Page({
       fail(res){ wx.showToast({title: '提交化验单失败', icon :"none"}) }
     })
     }
-    if(this.data.usr_id ==2){
+    if(this.data.role_id ==2){
       var params={
         "dosage_id":this.data.id,
         "content":this.data.advice,
@@ -184,7 +187,7 @@ Page({
       }else wx.showToast({ title: '审批失败',duration:2000 })
       })
     }
-    if(this.data.usr_id ==3){
+    if(this.data.role_id ==3){
       var params={
         "water_quality_id":this.data.id,
         "cod":this.data.cod,

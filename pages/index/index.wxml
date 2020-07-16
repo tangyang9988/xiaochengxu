@@ -17,7 +17,7 @@
  </van-col>
  </van-row>
 </view> -->
-<view class="datalist" wx:if="{{usr_id==1}}">
+<view class="datalist" wx:if="{{role_id==1}}">
   <navigator url='../jiayao/form/form'>
     <view class="data_one bg_1">
       <view class="data_title">填报加药</view>
@@ -51,9 +51,9 @@
       </view>
     </view>
     </navigator>
-   <navigator url='../wateranalysis/wateranalysis'>
+   <navigator url='../jiayao/waterReport/waterReport'>
       <view class="data_one bg_6">
-        <view class="data_title">水质分析</view>
+        <view class="data_title">每日进水</view>
         <view class="data_data">
           <view class="data_ico">
            <image class="yao" src='/pages/images/lirunfenxi.png'></image>
@@ -75,7 +75,7 @@
   </navigator>
 </view>
 <!-- 化验员 -->
-  <view class="datalist" wx:if="{{usr_id==10}}">
+  <view class="datalist" wx:if="{{role_id==5}}">
     <navigator url='../huayan/form/form'>
       <view class="data_one bg_1">
         <view class="data_title">化验填报</view>
@@ -172,7 +172,7 @@
     </navigator>
   </view> -->
   <!-- 运维 -->
-  <view class="datalist" wx:if="{{usr_id==2}}">
+  <view class="datalist" wx:if="{{role_id==2}}">
     <navigator url='../audit/audit?usr_id={{usr_id}}'>
       <view class="data_one bg_2">
         <view class="data_title">数据审核</view>
@@ -230,7 +230,7 @@
      </navigator>
     <navigator url='../cangku/stockInOut/stockInOut'>
       <view class="data_one bg_1">
-        <view class="data_title">药品信息</view>
+        <view class="data_title">仓库日志</view>
         <view class="data_data">
           <view class="data_ico">
            <image class="yao" src='/pages/images/yao.png'></image>
@@ -255,7 +255,7 @@
     </view>
 
      <!-- 茅台 -->
-  <view class="datalist" wx:if="{{usr_id==3}}">
+  <view class="datalist" wx:if="{{role_id==3}}">
     <navigator url='../information/information'>
       <view class="data_one bg_8">
         <view class="data_title">信息舱</view>
@@ -313,7 +313,7 @@
      </navigator>
     <navigator url='../cangku/stockInOut/stockInOut'>
       <view class="data_one bg_1">
-        <view class="data_title">药品信息</view>
+        <view class="data_title">仓库日志</view>
         <view class="data_data">
           <view class="data_ico">
            <image class="yao" src='/pages/images/yao.png'></image>
@@ -336,8 +336,6 @@
      </navigator>
      </view>
     </view>
-  
-
 
 <van-button round type="info" style="display:flex;width:100%;margin-top:8%;" bind:click="return">一键退出</van-button>
     
