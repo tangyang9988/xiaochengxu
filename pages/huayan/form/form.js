@@ -21,11 +21,15 @@ Page({
   showPopup() {
     this.setData({ show: true });
   },
-  onChange(event) {
+  confirm(event) {
     this.setData({
       columns_name :event.detail.value,
       is_in :event.detail.value.index
     })
+    this.setData({ show: false });
+  },
+  onClose() {
+    this.setData({ show: false });
   },
   onChange1(event) {
     if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
@@ -111,11 +115,7 @@ Page({
       this.setData({ph:event.detail})
     }
   },
-  onClose() {
-    this.setData({ show: false });
-  },
   submit:function(e){
-    debugger
     var usr_id = wx.getStorageSync('usr_id');
     var params ={
         "user_id":usr_id,

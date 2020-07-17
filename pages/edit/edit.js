@@ -160,7 +160,7 @@ agree:function(){
             if (data.code === 200) {
               wx.showToast({ title: '已同意', icon :'success',duration: 2000 })
               that.clearData()
-            } else  wx.showToast({ title: '同意失败', })
+            } else  wx.showToast({ title: '同意失败',icon: 'none' })
           })
           that.changeParentData()
         } 
@@ -189,12 +189,12 @@ agree:function(){
               setTimeout(() => {
               wx.navigateBack({})
               }, 2000);
-            }else wx.showToast({ title: '审批失败',duration:2000 })
+            }else wx.showToast({ title: '审批失败',icon: 'none' })
           })
           that.changeParentData()
         } 
       },
-      fail(res){ wx.showToast({ title: '审批失败', }) }
+      fail(res){ wx.showToast({ title: '审批失败',icon: 'none' }) }
     })
   }
 },
@@ -218,11 +218,11 @@ reject:function(){
               setTimeout(() => {
                 wx.navigateBack({})
               }, 2000);
-            } else  wx.showToast({ title: '驳回失败', })
+            } else  wx.showToast({ title: '驳回失败',icon: 'none' })
           })
         } 
       },
-      fail(res){ wx.showToast({ title: '驳回失败', }) }
+      fail(res){ wx.showToast({ title: '驳回失败',icon: 'none' }) }
     })
 }
 })

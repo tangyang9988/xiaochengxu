@@ -134,7 +134,7 @@ agree:function(){
           if (data.code === 200) {
             wx.showToast({ title: '重新提交成功', icon :'success',duration: 2000 })
             that.clearData()
-          } else  wx.showToast({ title: '重新提交成功失败', })
+          } else  wx.showToast({ title: '重新提交成功失败',icon: 'none' })
         })
         wx.navigateBack({
           complete: (res) => {},

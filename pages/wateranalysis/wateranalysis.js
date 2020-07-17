@@ -377,7 +377,7 @@ Page({
           //转换成天数
          var day = parseInt(ms / (1000 * 60 * 60 * 24))
         if (start_date > end_date) str =  '开始时间不得大于结束时间'
-        else if (day < 0 || day > 7) str = '时间跨度不得大于一周'
+        else if (day < 0 || day > 30) str = '时间跨度不得大于一月'
         else str = ''
         return str
     },

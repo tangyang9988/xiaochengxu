@@ -10,7 +10,7 @@ Page({
     avatar_url:"",
     name:"",
     cellphone:"",
-    company_id:"",
+    company_name:"",
     desc:"",
     motto: '污⽔⼚加药监控小程序',
     userInfo: {},
@@ -40,7 +40,7 @@ Page({
     var avatar_url = wx.getStorageSync('avatar_url');
     var name = wx.getStorageSync('name');
     var cellphone = wx.getStorageSync('cellphone');
-    var company_id = wx.getStorageSync('company_id');
+    var company_name = wx.getStorageSync('company_name');
     if(role_id==1){
       this.setData({desc:"加药员"})
     }else if(role_id==2){
@@ -63,7 +63,7 @@ Page({
     this.setData({avatar_url:avatar_url})
     this.setData({name:name})
     this.setData({cellphone:cellphone})
-    this.setData({company_id:company_id})
+    this.setData({company_name:company_name})
   
   },
   onShow:function(){

@@ -32,6 +32,7 @@ Page({
         echartMedicineList: [],
         "one_dosage_period_max":"",
         "one_dosage_period_min":"",
+        "relative_ration_str":"",
         "relative_ration_max_str":"",
         "relative_ration_min_str":"",
         "canvsPie":"",
@@ -219,7 +220,7 @@ Page({
                 color: "#628DFC", //柱子的颜色
                 data: this.data.periodData,
                 format: function (val, name) {
-                    return val + 'kg';
+                    return val;
                     // return val.toFixed(1) + ‘L’;
                 }
             }],
@@ -266,32 +267,12 @@ Page({
             series: [{
                     name: '环比分析图',
                     //data: yuesimulationData.data,
-                    data: this.data.periodData,
+                    // data: this.data.periodData,
+                    data: this.data.relative_ration_str,
                     format: function (val, name) {
-                        return val.toFixed(2) + 'kWh';
+                        return val.toFixed(2) + '%';
                     }
                 },
-                // {
-                //     name: '电池供电量',
-                //     data: [0, 6, 2, 2, 7, 6, 2, 5, 8, 1, 8, 4, 0, 9, 7, 2, 5, 2, 8, 2, 5, 2, 9, 4, 4, 9, 8, 5, 5, 5, 6],
-                //     format: function (val, name) {
-                //         return val.toFixed(2) + 'kWh';
-                //     }
-                // },
-                // {
-                //     name: '光伏供电量',
-                //     data: [6, 4, 9, 7, 1, 4, 5, 1, 1, 8, 8, 6, 6, 2, 2, 2, 0, 5, 5, 8, 8, 8, 8, 9, 0, 4, 6, 9, 2, 1, 6],
-                //     format: function (val, name) {
-                //         return val.toFixed(2) + 'kWh';
-                //     }
-                // },
-                // {
-                //     name: '市电供电量',
-                //     data: [0, 4, 3, 3, 1, 7, 7, 7, 9, 9, 3, 3, 0, 0, 5, 6, 0, 4, 1, 2, 0, 1, 3, 9, 2, 5, 1, 8, 3, 4, 2],
-                //     format: function (val, name) {
-                //         return val.toFixed(2) + 'kWh';
-                //     }
-                // }
             ],
             xAxis: {
                 disableGrid: true
@@ -380,6 +361,9 @@ Page({
                 "one_dosage_period_min": res.data.data.one_dosage_period_min
             })
             that.setData({
+                "relative_ration_str": res.data.data.relative_ration_str
+            })
+            that.setData({
                 "relative_ration_max_str": res.data.data.relative_ration_max_str
             })
             that.setData({
@@ -428,7 +412,7 @@ Page({
           //转换成天数
          var day = parseInt(ms / (1000 * 60 * 60 * 24))
         if (start_date > end_date) str =  '开始时间不得大于结束时间'
-        else if (day < 0 || day > 7) str = '时间跨度不得大于一周'
+        else if (day < 0 || day > 30) str = '时间跨度不得大于一周'
         else str = ''
         return str
     },

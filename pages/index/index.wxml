@@ -1,7 +1,7 @@
 
 <van-card
   title="{{name}}"
-  desc="{{company_id}}    {{desc}}"
+  desc="{{company_name}}    {{desc}}"
   thumb="{{avatar_url}}">
   <view slot="tags" class="phone">
   <van-tag plain type="primary" size="large">{{cellphone}}</van-tag>
@@ -246,6 +246,17 @@
         <view class="data_data">
           <view class="data_ico">
            <image class="yao" src='/pages/images/编组.png'></image>
+          </view>
+          <view class="data_num">{{isHandled}}</view>
+        </view>
+      </view>
+     </navigator>
+       <navigator url='../user/userList/userList'>
+      <view class="data_one bg_9">
+        <view class="data_title">用户管理</view>
+        <view class="data_data">
+          <view class="data_ico">
+           <image class="yao" src='/pages/images/yonghuguanli.png'></image>
           </view>
           <view class="data_num">{{isHandled}}</view>
         </view>

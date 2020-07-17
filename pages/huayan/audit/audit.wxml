@@ -1,6 +1,9 @@
 
   <loading hidden="{{!loading}}">加载中</loading>
   <!-- <van-search value="{{ value }}" shape="round" placeholder="请输入搜索关键词" /> -->
+  <view class="data_none {{List.length === 0 ? 'show' : 'hidden'}}" >
+    <span class="class_none">暂无数据</span>
+  </view>
   <view class="cards" wx:for="{{List}}" wx:for-item="item" wx:key="item">
 		<view class="column" data-gId='{{item}}' bindtap="onItemClick" hover-class="hover"> 
 			<view class="card-desc">

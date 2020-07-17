@@ -13,7 +13,7 @@ function Post(api, params, success) {
     fail: function() {
       wx.showToast({
         title: '失败!',
-        icon: 'fail',
+        icon: 'none',
         duration: 1000//持续的时间
       })
     },

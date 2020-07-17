@@ -89,7 +89,7 @@
 </van-row>
   <canvas
   wx:if="{{!transCanvs}}"
-  style="width: 320px; height: 200px;"
+  class="canvas"
   canvas-id="yueEle"
   binderror="canvasIdErrorCallback"
   ></canvas>

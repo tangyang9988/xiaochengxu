@@ -49,7 +49,8 @@
     "pages/cangku/stockInOut/stockInOut",
 
     "pages/wateranalysis/wateranalysis",
-    "pages/dosinganalysis/dosinganalysis"
+    "pages/dosinganalysis/dosinganalysis",
+    "pages/user/userList/userList"
   ],
   "window":{
     "backgroundTextStyle":"light",

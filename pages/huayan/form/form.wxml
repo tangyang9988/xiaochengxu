@@ -5,8 +5,8 @@
   </van-col>
   <van-col span="16">
       <van-cell title="{{columns_name}}"  bind:click="showPopup" />
-    <van-popup show="{{ show }}" closeable position="bottom" custom-style="height: 25%;" bind:close="onClose">
-      <van-picker title="选择" columns="{{ columns }}" default-index="{{ 1 }}" bind:change="onChange" />
+    <van-popup show="{{ show }}" position="bottom" custom-style="height: 25%;" bind:close="onClose">
+      <van-picker title="选择" columns="{{ columns }}" default-index="{{ 1 }}" show-toolbar bind:confirm="confirm" bind:cancel="onClose" />
     </van-popup>
     </van-col>
 </van-row>

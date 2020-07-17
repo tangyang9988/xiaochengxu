@@ -16,14 +16,16 @@ Page({
    * @param { item子项 } e 
    */
   onItemClick(e) {
+    debugger
     const { usr_id } = this.data 
     const { gid } = e.currentTarget.dataset
-    // if(gid.reviews.length>0){
-    //   const{advice} = JSON.parse(gid.reviews[0].content) 
-    // }else{
-    //   const{advice} = ""
-    // }
-    const url = `../edit/edit?id=${gid.id}&status=${gid.status}&usr_id={{usr_id}}&cod=${gid.cod}&bod5=${gid.cod}&ammonia_nitrogen=${gid.ammonia_nitrogen}&phosphorus=${gid.phosphorus}&nitrogen=${gid.nitrogen}&ss=${gid.ss}&chromaticity=${gid.chromaticity}&ph=${gid.ph}`
+    var advice="";
+    if(gid.reviews.length>0){
+    advice = gid.reviews[0].content
+    }else{
+      advice =""
+    }
+    const url = `../edit/edit?id=${gid.id}&status=${gid.status}&usr_id={{usr_id}}&cod=${gid.cod}&bod5=${gid.cod}&ammonia_nitrogen=${gid.ammonia_nitrogen}&phosphorus=${gid.phosphorus}&nitrogen=${gid.nitrogen}&ss=${gid.ss}&chromaticity=${gid.chromaticity}&ph=${gid.ph}&advice=${advice}`
     this.onNavigateTo(url)
   },
   onLoad: function (options) {

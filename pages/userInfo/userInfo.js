@@ -6,7 +6,7 @@ Page({
     avatar_url:"",
     name:"",
     cellphone:"",
-    company_id:"",
+    company_name:"",
   },
   onLoad: function (options) {
     // var usr_id = Number(options.usr_id)
@@ -15,13 +15,13 @@ Page({
     var avatar_url = wx.getStorageSync('avatar_url');
     var name = wx.getStorageSync('name');
     var cellphone = wx.getStorageSync('cellphone');
-    var company_id = wx.getStorageSync('company_id');
+    var company_name = wx.getStorageSync('company_name');
     this.setData({usr_id:usr_id})
     this.setData({role_id:role_id})
     this.setData({avatar_url:avatar_url})
     this.setData({name:name})
     this.setData({cellphone:cellphone})
-    this.setData({company_id:company_id})
+    this.setData({company_name:company_name})
 
   }
 })

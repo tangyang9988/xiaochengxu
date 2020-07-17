@@ -59,12 +59,14 @@
 .bg_7 { background-color: rgb(169, 245, 242);}
 /* 信息舱 */
 .bg_8 { background-color: #DCC4F3;}
+/* 用户 */
+.bg_9 { background-color: rgb(107, 166, 244);}
 .yao{width: 35px; height: 35px;display: flex;
-  margin:20px 30px 11px 18px }
+  margin:20px 20px 15px 25px }
 
 .datalist { display: flex; margin:0;flex-wrap:wrap }
 .data_one { flex: 1; margin:30rpx 15rpx 0rpx 25rpx; padding: 10rpx 30rpx; height: 140rpx;width: 150rpx; border-radius: 10rpx;}
-  .data_title { width: 100%; font-size: 28rpx; height: 40rpx; line-height: 40rpx; color: #fff;margin-left: 10rpx;}
+  .data_title { width: 100%; font-size: 28rpx; height: 40rpx; line-height: 40rpx; color: #fff;margin-left: 10px;margin-top: 11px}
   .data_data { display: flex; height: 90rpx; align-items: flex-end;}
     .data_ico { flex: 0.2; } 
       .data_ico image { width: 50rpx; height: 50rpx;}

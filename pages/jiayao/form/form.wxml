@@ -1,20 +1,4 @@
-<!-- <van-cell-group>
-  <van-field
-    value="{{dosing_time}}"
-    label="加药时间"
-    placeholder="2020-07-03 10:00:00"
-    border="{{ true }}"
-    bind:change="onChange1"/>
-</van-cell-group> -->
-<!-- <van-cell-group>
-  <van-field
-    value="{{dosing_time}}"
-    label="加药时间"
-    label-class="label-justify"
-    border="{{ true }}"
-    bind:click="showPopup"/>
-<van-cell title="药品名称" value="{{dosing_time}}"  bind:click="showPopup" />
-</van-cell-group> -->
+
 <van-row>
   <van-col span="7">
     <van-cell title="加药时间"/>
@@ -73,12 +57,17 @@
   <van-col span="7">
     <van-cell title="加药量"/>
   </van-col>
-  <van-col span="17">
+  <van-col span="13">
     <van-field
     value="{{medicine_count}}"
     clickable
     type="digit"
     bind:change="onChange4"/>
+  </van-col>
+    <van-col span="3">
+    <van-field
+    disabled
+    value="kg"/>
   </van-col>
 </van-row>
 <van-row>

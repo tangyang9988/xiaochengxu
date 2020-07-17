@@ -130,7 +130,7 @@ Page({
         ss: Number(options.ss),
         chromaticity: Number(options.chromaticity),
         ph: Number(options.ph),
-        advice: ""
+        advice: options.advice
       })
 
 
@@ -162,11 +162,10 @@ Page({
               setTimeout(() => {
               wx.navigateBack({})
               }, 2000);
-            }else wx.showToast({ title: '重新提交失败！',duration:2000 })
+            }else wx.showToast({ title: '重新提交失败！',icon: 'none',duration:2000 })
           })
         } 
-      },
-      fail(res){ wx.showToast({title: '提交化验单失败', icon :"none"}) }
+      }
     })
     }
     if(this.data.role_id ==2){
@@ -184,7 +183,7 @@ Page({
         setTimeout(() => {
         wx.navigateBack({})
         }, 2000);
-      }else wx.showToast({ title: '审批失败',duration:2000 })
+      }else wx.showToast({ title: '审批失败',icon: 'none',duration:2000 })
       })
     }
     if(this.data.role_id ==3){
@@ -208,7 +207,7 @@ Page({
         setTimeout(() => {
         wx.navigateBack({})
         }, 2000);
-      }else wx.showToast({ title: '审批失败',duration:2000 })
+      }else wx.showToast({ title: '审批失败',icon: 'none',duration:2000 })
       })
     }
 
@@ -234,11 +233,11 @@ Page({
               setTimeout(() => {
                 wx.navigateBack({})
               }, 2000);
-            } else  wx.showToast({ title: '驳回失败', })
+            } else  wx.showToast({ title: '驳回失败', icon: 'none'})
           })
         } 
       },
-      fail(res){ wx.showToast({ title: '驳回失败', }) }
+      fail(res){ wx.showToast({ title: '驳回失败', icon: 'none'}) }
     })
   }
 });

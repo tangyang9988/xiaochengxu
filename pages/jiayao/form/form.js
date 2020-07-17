@@ -4,6 +4,7 @@ var http = require("../../../utils/httpUtil.js")
 let app = getApp();
 Page({
   data: {
+    "usr_id":"",
     "selectId":"",
     "position":"蓝创大厦1",
     "dosing_time":"2020-07-03 10:00:00",
@@ -138,8 +139,9 @@ Page({
     return YY + MM + DD +" "+hh + mm + ss;
  },
   onLoad: function (options) {
-    debugger          //options专门用于接受数据的
+    //options专门用于接受数据的
     var usr_id = wx.getStorageSync('usr_id');
+    this.setData({usr_id:usr_id})
     var params={
       "user_id":usr_id
     }
@@ -151,17 +153,6 @@ Page({
       var medicineList=[];
       for(var i=0;i<storage.length;i++){
         medicineList.push({key: storage[i].id,text: storage[i].medicine_name});
-        // this.setData({
-        //   "option[i].text":storage[i].medicine_name,
-        //   "option[i].key":storage[i].id
-        // })
-
-      // }
-      // this.data.option=medicineList
-
-      // this.setData({option:medicineList})
-      // this.setData({medicineList})
-      // console.log(this.data.option)
       }
       that.setData({"option":medicineList})
   })
@@ -174,7 +165,7 @@ Page({
       "medicine_id":this.data.medicine_id,
       "medicine_count":Number(this.data.medicine_count),
       "status":1,
-      "user_id":1
+      "user_id":this.data.usr_id
     };
     wx.showModal({
       title: '提示',
@@ -186,11 +177,11 @@ Page({
             if (data.code === 200) {
               wx.showToast({ title: '提交加药单成功', icon :'success',duration: 2000 })
               that.clearData()
-            } else  wx.showToast({ title: '提交加药单失败', })
+            } else  wx.showToast({ title: '提交加药单失败',icon :'none',duration: 2000 })
           })
         } 
       },
-      fail(res){ wx.showToast({ title: '提交加药单失败', }) }
+      fail(res){ wx.showToast({ title: '提交加药单失败',icon: 'none' }) }
     })
   },
   cancle: function(){
