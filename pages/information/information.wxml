@@ -170,7 +170,7 @@
 					<van-col span="1" offset="1" style="font-size:12px;color:#999999;">
 						<view style="width: 5px;height: 15px; background: #E4EAFB;"></view>
 					</van-col>
-					<van-col span="10" style="font-size:9px;color:#999999;">当日进出水水质 (mg/L)</van-col>
+					<van-col span="10" style="font-size:10px;color:#999999;">当日进出水水质 (mg/L)</van-col>
 				</van-row>
 
 				<view style="width: 5px;height: 7px; "></view>
@@ -178,7 +178,7 @@
 				<view style="margin-left:10px;" class="marbot20">
 				<van-tabs active="a" line-width="0px" border="" >
 					<van-tab title="{{information.WaterQuality.cod_name}}" name="a">
-						<view >
+						<view  class="tapView">
 							<!-- style="margin-left:10px;margin-top:5px;" -->
 							<van-row>
 								<van-col span="8" offset="1">
@@ -200,7 +200,8 @@
 						</view>
 					</van-tab>
 					<van-tab title="{{information.WaterQuality.bod5_name}}" name="information.WaterQuality.bod5_name">
-						<van-row>
+					<view class="tapView">
+						<van-row >
 							<van-col span="8" offset="1">
 								<view class="waterData">{{information.WaterQuality.bod5}} mg/L</view>
 							</van-col>
@@ -216,9 +217,11 @@
 								<view class="waterNote">出水口(化验数据)</view>
 							</van-col>
 						</van-row>
+					</view>
+						
 					</van-tab>
 					<van-tab title="{{information.WaterQuality.ammonia_nitrogen_name}}" name="information.WaterQuality.ammonia_nitrogen_name">
-						<!-- {{information.WaterQuality.ammonia_nitrogen}} {{information.WaterQuality.ammonia_nitrogen_out}} -->
+					<view class="tapView">
 						<van-row>
 							<van-col span="8" offset="1">
 								<view class="waterData">{{information.WaterQuality.ammonia_nitrogen}} mg/L</view>
@@ -235,9 +238,11 @@
 								<view class="waterNote">出水口(化验数据)</view>
 							</van-col>
 						</van-row>
+					</view>
+					
 					</van-tab>
 					<van-tab title="{{information.WaterQuality.phosphorus_name}} " name="information.WaterQuality.phosphorus_name">
-						<!-- {{information.WaterQuality.phosphorus}} {{information.WaterQuality.phosphorus_out}} -->
+						<view class="tapView">
 						<van-row>
 							<van-col span="8" offset="1">
 								<view class="waterData">{{information.WaterQuality.phosphorus}} mg/L</view>
@@ -254,10 +259,12 @@
 								<view class="waterNote">出水口(化验数据)</view>
 							</van-col>
 						</van-row>
+						</view>
+						
 					</van-tab>
 					<van-tab title="{{information.WaterQuality.ss_name}}" name="information.WaterQuality.ss_name">
-						<!-- {{information.WaterQuality.ss}} {{information.WaterQuality.ss_out}} -->
-						<van-row>
+					<view class="tapView">
+					<van-row>
 							<van-col span="8" offset="1">
 								<view class="waterData">{{information.WaterQuality.ss}} mg/L</view>
 							</van-col>
@@ -273,10 +280,13 @@
 								<view class="waterNote">出水口(化验数据)</view>
 							</van-col>
 						</van-row>
+					</view>
+						<!-- {{information.WaterQuality.ss}} {{information.WaterQuality.ss_out}} -->
+						
 					</van-tab>
 					<van-tab title="{{information.WaterQuality.nitrogen_name}}" name="information.nitrogen_name">
-						<!-- {{information.WaterQuality.nitrogen}} {{information.WaterQuality.nitrogen_out}} -->
-						<van-row>
+					<view class="tapView">
+					<van-row>
 							<van-col span="8" offset="1">
 								<view class="waterData">{{information.WaterQuality.nitrogen}} mg/L</view>
 							</van-col>
@@ -292,11 +302,14 @@
 								<view class="waterNote">出水口(化验数据)</view>
 							</van-col>
 						</van-row>
+					</view>
+						<!-- {{information.WaterQuality.nitrogen}} {{information.WaterQuality.nitrogen_out}} -->
+						
 
 					</van-tab>
 					<van-tab title="{{information.WaterQuality.chromaticity_name}}" name="information.chromaticity_name">
 						<!-- {{information.WaterQuality.chromaticity}} {{information.WaterQuality.chromaticity_out}} -->
-
+						<view class="tapView">
 						<van-row>
 							<van-col span="8" offset="1">
 								<view class="waterData">{{information.WaterQuality.chromaticity}} mg/L</view>
@@ -313,9 +326,12 @@
 								<view class="waterNote">出水口(化验数据)</view>
 							</van-col>
 						</van-row>
+						</view>
+						
 					</van-tab>
 					<van-tab title="{{information.WaterQuality.ph_name}}" name="information.ph_name">
 						<!-- {{information.WaterQuality.ph}} {{information.WaterQuality.ph_out}} -->
+						<view  class="tapView">
 						<van-row>
 							<van-col span="8" offset="1">
 								<view class="waterData">{{information.WaterQuality.ph}} mg/L</view>
@@ -332,6 +348,8 @@
 								<view class="waterNote">出水口(化验数据)</view>
 							</van-col>
 						</van-row>
+						</view>
+						
 					</van-tab>
 				</van-tabs>
 				
