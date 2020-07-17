@@ -19,8 +19,7 @@ Page({
         medicine_name: "片碱",
         medicine_id:159332570586,
         medicine_count:"",
-        value:0,
-        color:"#64C676",
+        color:"",
         consume_percentage:"",
         start_time:"",
         end_time:"",
@@ -104,7 +103,7 @@ Page({
                 this.setData({"medicine_name":option[i].text}) 
                 this.setData({"medicine_count":option[i].medicine_count}) 
                 this.setData({"color":option[i].color}) 
-                this.setData({"consume_percentage":parseFloat(option[i].consume_percentage).toFixed(2)}) 
+                this.setData({"consume_percentage":option[i].consume_percentage}) 
             }
       }
     },
@@ -298,7 +297,7 @@ Page({
                 disableGrid: true
             },
             yAxis: {
-                title: '环比值(kWh)',
+                title: '环比值',
                 format: function (val) {
                     return val.toFixed(2);
                 },
@@ -386,6 +385,7 @@ Page({
             that.setData({
                 "relative_ration_min_str": res.data.data.relative_ration_min_str
             })
+            that.getNameAndColor(that.data.medicine_id)
             that.onPie();
             that.columnShow();
             that.getMothElectro();

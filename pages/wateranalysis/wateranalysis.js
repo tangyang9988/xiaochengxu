@@ -253,7 +253,7 @@ Page({
                 disableGrid: true
             },
             yAxis: {
-                title: '环比值(kWh)',
+                title: '环比值',
                 format: function (val) {
                     return val.toFixed(2);
                 },

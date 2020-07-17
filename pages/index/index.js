@@ -7,9 +7,11 @@ Page({
   data: {
     usr_id:"",
     role_id:"",
-    title:"",
+    avatar_url:"",
+    name:"",
+    cellphone:"",
+    company_id:"",
     desc:"",
-    userName:"",
     motto: '污⽔⼚加药监控小程序',
     userInfo: {},
     hasUserInfo: false,
@@ -32,42 +34,36 @@ Page({
     })
   },
   onLoad: function (options) {
-    var userName;
-    var title;
-    var desc;
     // var usr_id = Number(options.id)
     var usr_id = wx.getStorageSync('usr_id');
     var role_id = wx.getStorageSync('role_id');
-    this.setData({role_id:role_id})
+    var avatar_url = wx.getStorageSync('avatar_url');
+    var name = wx.getStorageSync('name');
+    var cellphone = wx.getStorageSync('cellphone');
+    var company_id = wx.getStorageSync('company_id');
     if(role_id==1){
-      userName="张晓明";
-      title = "加药员";
-      desc = "无锡市运维公司";
+      this.setData({desc:"加药员"})
     }else if(role_id==2){
-      userName="刘万能";
-      title = "运维审核员";
-      desc = "江阴市运维公司";
+      this.setData({desc:"运维审核员"})
     }else if(role_id==3){
-      userName="王武";
-      title = "茅台审核员";
-      desc = "茅台总部";
+      this.setData({desc:"茅台审核员"})
     }
     // else if(usr_id==7){
     //   userName="张智中";
     //   title = "库管员";
     //   desc = "南京市运维公司";
     else if(role_id==5){
-      userName="宋保国";
-      title = "化验员";
-      desc = "徐州市运维公司";
+      this.setData({desc:"化验员"})
     }
     wx.setNavigationBarTitle({
-      title: title 
+      title: this.data.desc 
     })
     this.setData({usr_id:usr_id})
-    this.setData({title:title})
-    this.setData({desc:desc})
-    this.setData({userName:userName})
+    this.setData({role_id:role_id})
+    this.setData({avatar_url:avatar_url})
+    this.setData({name:name})
+    this.setData({cellphone:cellphone})
+    this.setData({company_id:company_id})
   
   },
   onShow:function(){

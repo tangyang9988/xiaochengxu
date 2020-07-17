@@ -1,10 +1,10 @@
 
 <van-card
-  title="{{userName}}"
-  desc="{{desc}}    {{title}}"
-  thumb="/pages/images/touxiang.png">
+  title="{{name}}"
+  desc="{{company_id}}    {{desc}}"
+  thumb="{{avatar_url}}">
   <view slot="tags" class="phone">
-  <van-tag plain type="primary" size="large">18899345789</van-tag>
+  <van-tag plain type="primary" size="large">{{cellphone}}</van-tag>
   </view>
 </van-card>
 <!-- <view class="header">
