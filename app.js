@@ -67,6 +67,22 @@ App({
                 key: 'role_id',
                 data: res.data.data.user.role_id
               });
+              wx.setStorage({
+                key: 'avatar_url',
+                data: res.data.data.user.avatar_url
+              }); 
+              wx.setStorage({
+                key: 'name',
+                data: res.data.data.user.name
+              }); 
+              wx.setStorage({
+                key: 'cellphone',
+                data: res.data.data.user.cellphone
+              });
+              wx.setStorage({
+                key: 'company_id',
+                data: res.data.data.user.company_id
+              });  
               setTimeout(function () {
                 wx.reLaunch({
                 url: '../index/index'

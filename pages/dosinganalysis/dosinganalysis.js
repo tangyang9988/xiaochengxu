@@ -220,7 +220,7 @@ Page({
                 color: "#628DFC", //柱子的颜色
                 data: this.data.periodData,
                 format: function (val, name) {
-                    return val + 'L';
+                    return val + 'kg';
                     // return val.toFixed(1) + ‘L’;
                 }
             }],

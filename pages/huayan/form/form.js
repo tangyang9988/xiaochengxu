@@ -115,6 +115,7 @@ Page({
     this.setData({ show: false });
   },
   submit:function(e){
+    debugger
     var usr_id = wx.getStorageSync('usr_id');
     var params ={
         "user_id":usr_id,

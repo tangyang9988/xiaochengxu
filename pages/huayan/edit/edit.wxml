@@ -1,5 +1,5 @@
 <!-- 化验员 -->
-<view wx:if="{{usr_id==10}}">
+<view wx:if="{{role_id==5}}">
 <!-- 首次提交 -->
 <view wx:if="{{status==1 || status==3}}">
 <van-cell-group>
@@ -160,7 +160,7 @@
 </view>
 
 <!-- 运维审核员 -->
-<view wx:if="{{usr_id==2}}">
+<view wx:if="{{role_id==2}}">
   <van-cell-group>
     <van-field
       disabled
@@ -248,7 +248,7 @@
 </view>
 
 <!-- 茅台审核员 -->
-<view wx:if="{{usr_id==3}}">
+<view wx:if="{{role_id==3}}">
   <van-cell-group>
     <van-field
       value="{{cod}}"

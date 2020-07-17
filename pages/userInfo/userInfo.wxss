@@ -38,3 +38,10 @@
   height: 3rem;
   align-items: center;
 }
+.image {
+  width: 31px;
+  height: 31px;
+  display: inline-block;
+  overflow: hidden;
+}
+  

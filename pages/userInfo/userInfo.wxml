@@ -1,37 +1,37 @@
 
 <van-cell-group wx:if="{{role_id==1}}">
-  <van-cell title="头像"  images="/pages/images/touxiang.png" border="{{ true }}" />
-  <van-cell title="姓名" value="张晓明" border="{{  true }}" />
-  <van-cell title="手机号" value="18809377288"  border="{{  true }}" />
-   <van-cell title="公司" value="运维公司"  border="{{  true }}" />
+ <van-cell title="头像" border="{{ true }}"><image class="image" src="https://wx.qlogo.cn/mmopen/vi_32/sjD9QMgajqo5sWlez3Ers78VWa0GNkBAAk6MhLmOkjryvnRLXJ1jqdea4iaFIbic6ZKdpr0ULmcCDcibP6diaDWYWA/132"></image></van-cell>
+  <van-cell title="姓名" value="{{name}}" border="{{  true }}" />
+  <van-cell title="手机号" value="{{cellphone}}"  border="{{  true }}" />
+   <van-cell title="公司" value="{{company_id}}"  border="{{  true }}" />
     <van-cell title="职位" value="加药员"  border="{{  true }}" />
 </van-cell-group>
 <van-cell-group wx:elif="{{role_id==2}}">
-  <van-cell title="头像"  images="/pages/images/touxiang.png" border="{{ true }}" />
-  <van-cell title="姓名" value="刘万能" border="{{  true }}" />
-  <van-cell title="手机号" value="18809377288"  border="{{  true }}" />
-   <van-cell title="公司" value="运维公司"  border="{{  true }}" />
+ <van-cell title="头像" border="{{ true }}"><image class="image" src="https://wx.qlogo.cn/mmopen/vi_32/sjD9QMgajqo5sWlez3Ers78VWa0GNkBAAk6MhLmOkjryvnRLXJ1jqdea4iaFIbic6ZKdpr0ULmcCDcibP6diaDWYWA/132"></image></van-cell>
+  <van-cell title="姓名" value="{{name}}" border="{{  true }}" />
+  <van-cell title="手机号" value="{{cellphone}}"  border="{{  true }}" />
+   <van-cell title="公司" value="{{company_id}}"  border="{{  true }}" />
     <van-cell title="职位" value="运维审核员"  border="{{  true }}" />
 </van-cell-group>
 <van-cell-group wx:elif="{{role_id==3}}">
-  <van-cell title="头像"  images="/pages/images/touxiang.png" border="{{ true }}" />
-  <van-cell title="姓名" value="王武" border="{{  true }}" />
-  <van-cell title="手机号" value="18809377288"  border="{{  true }}" />
-   <van-cell title="公司" value="茅台"  border="{{  true }}" />
+  <van-cell title="头像" border="{{ true }}"><image class="image" src="https://wx.qlogo.cn/mmopen/vi_32/sjD9QMgajqo5sWlez3Ers78VWa0GNkBAAk6MhLmOkjryvnRLXJ1jqdea4iaFIbic6ZKdpr0ULmcCDcibP6diaDWYWA/132"></image></van-cell>
+  <van-cell title="姓名" value="{{name}}" border="{{  true }}" />
+  <van-cell title="手机号" value="{{cellphone}}"  border="{{  true }}" />
+   <van-cell title="公司" value="{{company_id}}"  border="{{  true }}" />
     <van-cell title="职位" value="茅台审核员"  border="{{  true }}" />
 </van-cell-group>
 <van-cell-group wx:elif="{{usr_id==7}}">
-  <van-cell title="头像"  images="/pages/images/touxiang.png" border="{{ true }}" />
+ <van-cell title="头像" border="{{ true }}"><image class="image" src="https://wx.qlogo.cn/mmopen/vi_32/sjD9QMgajqo5sWlez3Ers78VWa0GNkBAAk6MhLmOkjryvnRLXJ1jqdea4iaFIbic6ZKdpr0ULmcCDcibP6diaDWYWA/132"></image></van-cell>
   <van-cell title="姓名" value="张智中" border="{{  true }}" />
   <van-cell title="手机号" value="18809377288"  border="{{  true }}" />
    <van-cell title="公司" value="运维公司"  border="{{  true }}" />
     <van-cell title="职位" value="库管员"  border="{{  true }}" />
 </van-cell-group>
 <van-cell-group wx:elif="{{role_id==5}}">
-  <van-cell title="头像"  images="/pages/images/touxiang.png" border="{{ true }}" />
-  <van-cell title="姓名" value="宋保国" border="{{  true }}" />
-  <van-cell title="手机号" value="18809377288"  border="{{  true }}" />
-   <van-cell title="公司" value="运维公司"  border="{{  true }}" />
+ <van-cell title="头像" border="{{ true }}"><image class="image" src="https://wx.qlogo.cn/mmopen/vi_32/sjD9QMgajqo5sWlez3Ers78VWa0GNkBAAk6MhLmOkjryvnRLXJ1jqdea4iaFIbic6ZKdpr0ULmcCDcibP6diaDWYWA/132"></image></van-cell>
+  <van-cell title="姓名" value="{{name}}" border="{{  true }}" />
+  <van-cell title="手机号" value="{{cellphone}}"  border="{{  true }}" />
+   <van-cell title="公司" value="{{company_id}}"  border="{{  true }}" />
     <van-cell title="职位" value="化验员"  border="{{  true }}" />
 </van-cell-group>
 
