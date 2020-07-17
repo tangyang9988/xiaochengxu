@@ -46,7 +46,7 @@ Page({
     // }
   },
   onGotUserInfo: function (e) {
-    debugger
+    
     var role_id = wx.getStorageSync('role_id')
     if(role_id){
       this.hideModal();

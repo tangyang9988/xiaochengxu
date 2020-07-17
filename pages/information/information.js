@@ -7,6 +7,7 @@ var ringChart = null;
 
 Page({
   data: {
+    avatar_url:"",
     information: {},
     daily_not_finish_count: 0,
     medicineSimpleList: [],
@@ -38,8 +39,9 @@ Page({
     // var usr_id = Number(options.usr_id)
     var that = this//很重要，一定要写
     var informationStore = {}
+    var avatar_url = wx.getStorageSync('avatar_url');
     // this.setData({ usr_id: usr_id })
-
+    this.setData({avatar_url:avatar_url})
 
     //获取公司数据
     http.Post('/app/maotai/company/query', {}, function (res) {
