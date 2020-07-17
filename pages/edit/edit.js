@@ -129,12 +129,24 @@ Page({
       medicine_count: parseFloat(options.medicine_count)
     })
   },
+  // 返回自动刷新
+  changeParentData: function () {
+    var pages = getCurrentPages();//当前页面栈
+    if (pages.length > 1) {
+      var beforePage = pages[pages.length - 2];//获取上一个页面实例对象
+      beforePage.onLoad();//触发父页面中的方法
+    }
+    wx.navigateBack({
+      delta: 1
+    });
+  },
 agree:function(){
-  if(this.data.role_id==2){
+  var that =this
+  if(that.data.role_id==2){
     var params ={
-      "dosage_id":this.data.dosage_id,
-      "content":this.data.content,
-      "user_id":this.data.user_id,
+      "dosage_id":that.data.dosage_id,
+      "content":that.data.content,
+      "user_id":that.data.user_id,
       "review_status":4,
       "is_dosage":1
     }
@@ -150,19 +162,20 @@ agree:function(){
               that.clearData()
             } else  wx.showToast({ title: '同意失败', })
           })
+          that.changeParentData()
         } 
       }
     })
-  }else if(this.data.role_id==3){
+  }else if(that.data.role_id==3){
     var params ={
-      "dosage_id":this.data.dosage_id,
+      "dosage_id":that.data.dosage_id,
       "review_status":5,
-      "user_id":this.data.user_id,
-      "medicine_id":Number(this.data.medicine_id),
-      "medicine_count":Number(this.data.medicine_count),
-      "dosing_time":this.data.dosing_time,
-      "position":this.data.position,
-      "content":this.data.content
+      "user_id":that.data.user_id,
+      "medicine_id":Number(that.data.medicine_id),
+      "medicine_count":Number(that.data.medicine_count),
+      "dosing_time":that.data.dosing_time,
+      "position":that.data.position,
+      "content":that.data.content
     }
     wx.showModal({
       title: '提示',
@@ -178,6 +191,7 @@ agree:function(){
               }, 2000);
             }else wx.showToast({ title: '审批失败',duration:2000 })
           })
+          that.changeParentData()
         } 
       },
       fail(res){ wx.showToast({ title: '审批失败', }) }
