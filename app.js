@@ -82,7 +82,11 @@ App({
               wx.setStorage({
                 key: 'company_id',
                 data: res.data.data.user.company_id
-              });  
+              }); 
+              wx.setStorage({
+                key: 'company_name',
+                data: res.data.data.user.company_name
+              });
               setTimeout(function () {
                 wx.reLaunch({
                 url: '../index/index'
