@@ -32,7 +32,7 @@ Page({
   onCloseDropdown(){
     console.log("false")
     this.setData({transCanvs:false})
-    this.onLoad()
+    //this.onLoad()
   },
 
   onLoad: function (options) {
@@ -89,6 +89,7 @@ Page({
       // TODO 没有公司数据直接给默认值
       //获取信息仓数据
       http.Post('/app/dosage_review/today', params, function (res) {
+        console.log("today:",res.data)
         var storage = res.data.data;
         var storageList = res.data.data.DailyEveryMedicineConsume
 
@@ -216,6 +217,7 @@ Page({
     //获取信息仓数据
     http.Post('/app/dosage_review/today', params, function (res) {
       
+      console.log("query:",res.data)
       var storage = res.data.data;
       var storageList = res.data.data.DailyEveryMedicineConsume
       var storageMedicine = [];
@@ -240,6 +242,18 @@ Page({
         }
         that.data.medicineSimpleList.push(storageList[j].medicine_name)
       }
+
+      if (storageMedicine.length == 0) {
+        //没有数据赋值默认值，防止程序崩溃
+        storageMedicine.push({
+          name: "",
+          data: 0,
+          stroke: false,
+          color: '#64C676'
+        });
+      }
+      
+
       that.setData({//循环完后，再对list进行赋值
         information: res.data.data,
         medicineList: storageList,
@@ -258,15 +272,7 @@ Page({
         console.error('getSystemInfoSync failed!');
       }
       var windowWdithHalf = windowWidth / 5*2;
-      if (storageMedicine.length == 0) {
-        //没有数据赋值默认值，防止程序崩溃
-        storageMedicine.push({
-          name: "",
-          data: 0,
-          stroke: false,
-          color: '#64C676'
-        });
-      }
+      
       ringChart = new wxCharts({
         animation: true,
         canvasId: 'ringCanvas',
