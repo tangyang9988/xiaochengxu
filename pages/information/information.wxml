@@ -1,7 +1,7 @@
 <!-- 整体内容开始 -->
-<view class="infoHeader">
-	<!-- 选择公司 -->
-	<van-row>
+<!-- <view class="infoHeader">
+	选择公司 -->
+	<!-- <van-row>
 	
 	<van-col span="10" offset="2" >
 			<view >
@@ -16,7 +16,7 @@
 		
 
 	</van-row>
-</view>
+</view> -->
 
 
 <view class="content">
