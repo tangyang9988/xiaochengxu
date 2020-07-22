@@ -9,7 +9,7 @@ Page({
      totalList: [],
      pendingList: [],
      disapproveList: [],
-     approveList: [],
+     approveList: [], 
      radio:'1',
     //加载样式是否显示
      loading: true,
@@ -39,7 +39,7 @@ Page({
         "user_id":usr_id,
         "company_id":Number(options.selectId)
       }
-      url = "app/maotai/dosage/company/query";
+      url = "/app/maotai/dosage/company/query";
     }
     http.Post(url, params, function (res) {
         var dosageList=res.data.data.dosage;//res.data就是从后台接收到的值

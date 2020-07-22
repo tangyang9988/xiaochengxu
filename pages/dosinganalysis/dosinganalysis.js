@@ -8,16 +8,10 @@ var columnCanvas = null;
 Page({
     data: {
         option: [{
-                // text: 'PAM(阳离子)',
-                // value: 159280152053
             },
-            // {
-            //     text: 'PAM(阴离子)',
-            //     value: 159280864452
-            // }
         ],
         medicine_name: "片碱",
-        medicine_id:159332570586,
+        medicine_id:1594290924826,
         medicine_count:"",
         color:"",
         consume_percentage:"",
@@ -33,7 +27,7 @@ Page({
         echartMedicineList: [],
         "one_dosage_period_max":"",
         "one_dosage_period_min":"",
-        "relative_ration_str":"",
+        "relative_ration":"",
         "relative_ration_max_str":"",
         "relative_ration_min_str":"",
         "canvsPie":"",
@@ -269,13 +263,13 @@ Page({
             // background: '#f5f5f5',
             series: [{
                     name: '环比分析图',
-                    //data: yuesimulationData.data,
-                    // data: this.data.periodData,
-                    data: this.data.relative_ration_str,
-                    format: function (val, name) {
-                        return val.toFixed(2) + '%';
-                    }
-                },
+                    data: this.data.relative_ration,
+                    // data: this.data.relative_ration_str,
+                    // format: function (val, name) {
+                    //     return val.toFixed(2) + '%';
+                    // }
+                }
+
             ],
             xAxis: {
                 disableGrid: true
@@ -285,7 +279,7 @@ Page({
                 format: function (val) {
                     return val.toFixed(2);
                 },
-                max: 20,
+                max: 5,
                 min: 0
             },
             width: this.data.windowWidth,
@@ -355,6 +349,15 @@ Page({
                 case "NaCO3": storageMedicine[j].color = '#FFFF03'; break;
               }
             }
+            if (storageMedicine.length == 0) {
+                //没有数据赋值默认值，防止程序崩溃
+                storageMedicine.push({
+                  name: "",
+                  data: 0,
+                  stroke: false,
+                  color: '#64C676'
+                });
+              }
             that.setData({
               echartMedicineList: storageMedicine
             })
@@ -371,7 +374,7 @@ Page({
                 "one_dosage_period_min": res.data.data.one_dosage_period_min
             })
             that.setData({
-                "relative_ration_str": res.data.data.relative_ration_str
+                "relative_ration": res.data.data.relative_ration
             })
             that.setData({
                 "relative_ration_max_str": res.data.data.relative_ration_max_str
@@ -386,8 +389,8 @@ Page({
         })
     },
     onLoad: function (options) {
-        var selectId =Number(options.options)
-        var selectName =options.selectNamedsss
+        var selectId =Number(options.selectId)
+        var selectName =options.selectName
         this.setData({selectId:selectId,selectName:selectName})
        this.setData({
         start_time:this.getStartDate(),
@@ -425,7 +428,7 @@ Page({
           //转换成天数
          var day = parseInt(ms / (1000 * 60 * 60 * 24))
         if (start_date > end_date) str =  '开始时间不得大于结束时间'
-        else if (day < 0 || day > 30) str = '时间跨度不得大于一周'
+        else if (day < 0 || day > 30) str = '时间跨度不得大于一月'
         else str = ''
         return str
     },

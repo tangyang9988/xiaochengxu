@@ -147,7 +147,7 @@ Page({
     }
     //http 请求是异步的，必须重新赋值this
     let  that =this;
-    http.Post('/app/storage/query', params, function (res) {
+    http.Post('/app/storage/active/query', params, function (res) {
       // var medicineList = [ {kkey:'1111',text:'选项1'}];
       var storage =res.data.data;
       var medicineList=[];

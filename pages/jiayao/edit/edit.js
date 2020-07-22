@@ -93,7 +93,7 @@ Page({
     let  that =this;
     if(Number(options.status)==2){
       //http 请求是异步的，必须重新赋值this
-      http.Post('/app/storage/query', params, function (res) {
+      http.Post('/app/storage/active/query', params, function (res) {
         var storage =res.data.data;
         var medicineList=[];
         for(var i=0;i<storage.length;i++){

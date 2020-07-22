@@ -44,17 +44,14 @@ Page({
     var avatar_url = wx.getStorageSync('avatar_url');
     // this.setData({ usr_id: usr_id })
     that.setData({avatar_url:avatar_url})
-    var selectId =options.options
+    var selectId =options.selectId
     var selectName =options.selectName
     that.setData({selectId:selectId,selectName:selectName})
-   
       var params = {
-        "company_id": that.data.selectId
+        "company_id": Number(that.data.selectId)
       }
-      
       //获取信息仓数据
       http.Post('/app/dosage_review/today', params, function (res) {
-        
         var storage = res.data.data;
         var storageList = res.data.data.DailyEveryMedicineConsume
 

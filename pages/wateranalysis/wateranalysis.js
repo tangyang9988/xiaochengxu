@@ -272,7 +272,7 @@ Page({
         });
     },
     onLoad: function (options) {
-        var selectId =Number(options.options)
+        var selectId =Number(options.selectId)
         var selectName =options.selectNamedsss
         this.setData({selectId:selectId,selectName:selectName})
         this.setData({

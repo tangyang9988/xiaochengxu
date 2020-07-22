@@ -10,7 +10,7 @@ Page({
     selectName:"",
   },
   onLoad: function (options) {
-    var selectId =Number(options.options)
+    var selectId =Number(options.selectId)
     var selectName =options.selectName
     this.setData({selectId:selectId,selectName:selectName})
     var usr_id = wx.getStorageSync('usr_id');
@@ -29,9 +29,6 @@ Page({
         "company_id":that.data.selectId
       }
     }
-    var params={
-      "company_id":company_id
-    };
     http.Post('/app/storage/company/query', params, function (res) {
         var datas=res.data;          //res.data就是从后台接收到的值
         console.log(datas)

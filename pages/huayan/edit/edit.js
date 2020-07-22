@@ -179,11 +179,11 @@ Page({
       http.Post('/app/dosage_review/add', params, function (res) {
         const { data } = res
       if( data.code === 200 ){
-        wx.showToast({ title: '已审批', icon:'success',duration:2000 })
+        wx.showToast({ title: '已同意', icon:'success',duration:2000 })
         setTimeout(() => {
         wx.navigateBack({})
         }, 2000);
-      }else wx.showToast({ title: '审批失败',icon: 'none',duration:2000 })
+      }else wx.showToast({ title: '同意失败',icon: 'none',duration:2000 })
       })
     }
     if(this.data.role_id ==3){
