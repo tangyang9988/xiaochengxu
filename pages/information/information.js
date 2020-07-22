@@ -118,6 +118,15 @@ Page({
           }
           that.data.medicineSimpleList.push(storageList[j].medicine_name)
         }
+        if (storageMedicine.length == 0) {
+          //没有数据赋值默认值，防止程序崩溃
+          storageMedicine.push({
+            name: "",
+            data: 0,
+            stroke: false,
+            color: '#64C676'
+          });
+        }
         that.setData({//循环完后，再对list进行赋值
           information: res.data.data,
           medicineList: storageList,

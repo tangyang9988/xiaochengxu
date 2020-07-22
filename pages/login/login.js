@@ -21,31 +21,25 @@ Page({
   },
   //在页面加载的时候，判断缓存中是否有内容，如果有，存入到对应的字段里
   onLoad: function () {
-    var open_id =wx.getStorageSync('open_id')
-    if(open_id){
-      wx.request({
-        url: 'https://wx.jslcznkj.cn/maotai/app/region/refresh', //自己的解密地址
-
-        data:{
-          openid:open_id
-        },
-        method: "post",
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          wx.setStorage({
-            key: 'usr_id',
-            data: 1
-          }); 
-          that.onshow(that.data.openid, that.data.userInfo, res.data.d.phoneNumber); //调用onshow方法，并传递三个参数
-        }
-      })
-    }else{
-
-    }
+    // var open_id =wx.getStorageSync('open_id')
+    // if(open_id){
+    //   wx.request({
+    //     url: 'https://wx.jslcznkj.cn/maotai/app/region/refresh', //自己的解密地址
+    //     data:{
+    //       openid:open_id
+    //     },
+    //     method: "post",
+    //     header: {
+    //       'content-type': 'application/json'
+    //     },
+    //     success: function (res) {
+    //     }
+    //   })
+    // }else{
+    // }
   },
   onGotUserInfo: function (e) {
+    debugger
     var role_id = wx.getStorageSync('role_id')
     if(role_id){
       this.hideModal();
@@ -58,6 +52,10 @@ Page({
       wx.setStorage({
         key: 'avatar_url',
         data: e.detail.userInfo.avatarUrl
+      });
+      wx.setStorage({
+        key: 'raw_data',
+        data: e.detail.rawData
       });
       wx.setStorage({
         key: 'signature',
@@ -112,68 +110,11 @@ Page({
       showModal: false //修改弹窗状态为false,即隐藏
     });
   },
-  // onshow: function (openid, userInfo, phoneNumber) {
-  //   var that = this;
-  //   wx.getSystemInfo({
-  //     success: function (res) {
-  //       that.setData({
-  //         terminal: res.model
-  //       });
-  //       that.setData({
-  //         osVersion: res.system
-  //       });
-  //     }
-  //   })
-  //   wx.request({
-  //     url: '登录接口',
-  //     method: 'POST',
-  //     header: {
-  //       'content-type': 'application/json' // 默认值
-  //     },
-  //     data: {
-  //       username: phoneNumber,
-  //       parentuser: 'xudeihai',
-  //       wximg: userInfo.avatarUrl,
-  //       nickname: userInfo.nickName,
-  //       identity: "",
-  //       terminal: that.data.terminal,
-  //       osVersion: that.data.system,
-  //       logintype: "10", //微信登录
-  //       openid: that.data.openid,
-  //     },
-  //     success(res) {
-  //       if (res.data.r == "T") {
-  //         that.setData({
-  //           userEntity: res.data.d
-  //         });
-  //         wx.setStorage({
-  //           key: "userEntity",
-  //           data: res.data.d
-  //         })
-  //         that.setData({
-  //           loginstate: "1"
-  //         });
-  //         wx.setStorage({
-  //           key: "loginstate",
-  //           data: "1"
-  //         })
-  //         wx.setStorage({
-  //           key: 'userinfo',
-  //           data: "1"
-  //         })
-  //       } else {
-  //         return;
-  //       }
-  //     },
-  //     fail(res) {
-  //       console.log(res);
-  //     }
-  //   })
-  // },
   //绑定手机
   getPhoneNumber: function (e) {
     var that = this;
     if (e.detail.errMsg == "getPhoneNumber:ok") {
+      debugger
       wx.request({
         url: 'https://wx.jslcznkj.cn/maotai/app/region/bind_phone', //自己的解密地址
         data: {
@@ -191,7 +132,18 @@ Page({
           'content-type': 'application/json'
         },
         success: function (res) {
-          if(res.data.data){
+          wx.setStorage({
+            key: 'name',
+            data: res.data.data.user.name
+          });
+          wx.setStorage({
+            key: 'company_name',
+            data: res.data.data.user.company_name
+          });
+          wx.setStorage({
+            key: 'cellphone',
+            data: res.data.data.user.cellphone
+          });
             wx.setStorage({
               key: 'usr_id',
               data: res.data.data.user.id
@@ -203,9 +155,6 @@ Page({
             wx.navigateTo({
               url: '../index/index',
             })
-          }else{
-            wx.showToast({ title: '请分配用户', icon :'none',duration: 1000 })
-          }
         }
       })
       that.hideModal()
