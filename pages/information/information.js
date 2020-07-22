@@ -47,50 +47,14 @@ Page({
     var selectId =options.options
     var selectName =options.selectName
     that.setData({selectId:selectId,selectName:selectName})
-    //获取公司数据
-    http.Post('/app/maotai/company/query', {}, function (res) {
-      var company = res.data.data;
-      var companyMenu = [];
-      var j = 0;
-      var len = 0;
-      for (j = 0, len = company.length; j < len; j++) {
-        companyMenu.push({
-          value: company[j].id,
-          text: company[j].name
-        });
-
-      }
-
-      //如果已经选择了公司，那么使用选择的公司id，否则使用默认第一个公司id
-      if (that.data.companySelectValue == 0) {
-        that.setData({
-          companyDropMenu: companyMenu,
-          companySelectValue: company[0].id
-        })
-      } else {
-        that.setData({
-          companyDropMenu: companyMenu
-        })
-      }
-      that.setData({
-        disabled: true
-      })
-      console.log("drop menu ", that.companyDropMenu)
-
-      // if (company.length==0){
-      //   console.log("没有公司 ")
-      //   // var params = {
-      //   //   "company_id": that.data.companySelectValue
-      //   // }
-      //   // TODO 没有公司直接返回
-      // }else{
+   
       var params = {
         "company_id": that.data.selectId
       }
-      // TODO 没有公司数据直接给默认值
+      
       //获取信息仓数据
       http.Post('/app/dosage_review/today', params, function (res) {
-        console.log("today:",res.data)
+        
         var storage = res.data.data;
         var storageList = res.data.data.DailyEveryMedicineConsume
 
@@ -118,6 +82,17 @@ Page({
           }
           that.data.medicineSimpleList.push(storageList[j].medicine_name)
         }
+
+        if (storageMedicine.length == 0) {
+          //没有数据赋值默认值，防止程序崩溃
+          storageMedicine.push({
+            name: "",
+            data: 0,
+            stroke: false,
+            color: '#64C676'
+          });
+        }
+
         that.setData({//循环完后，再对list进行赋值
           information: res.data.data,
           medicineList: storageList,
@@ -173,7 +148,7 @@ Page({
       // }
 
 
-    })
+    
     this.getCanvsRing()
   },
 
