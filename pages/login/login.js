@@ -21,32 +21,31 @@ Page({
   },
   //在页面加载的时候，判断缓存中是否有内容，如果有，存入到对应的字段里
   onLoad: function () {
-    // var open_id =wx.getStorageSync('open_id')
-    // if(open_id){
-    //   wx.request({
-    //     url: 'https://wx.jslcznkj.cn/maotai/app/region/refresh', //自己的解密地址
+    var open_id =wx.getStorageSync('open_id')
+    if(open_id){
+      wx.request({
+        url: 'https://wx.jslcznkj.cn/maotai/app/region/refresh', //自己的解密地址
 
-    //     data:{
-    //       openid:open_id
-    //     },
-    //     method: "post",
-    //     header: {
-    //       'content-type': 'application/json'
-    //     },
-    //     success: function (res) {
-    //       wx.setStorage({
-    //         key: 'usr_id',
-    //         data: 1
-    //       }); 
-    //       that.onshow(that.data.openid, that.data.userInfo, res.data.d.phoneNumber); //调用onshow方法，并传递三个参数
-    //     }
-    //   })
-    // }else{
+        data:{
+          openid:open_id
+        },
+        method: "post",
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          wx.setStorage({
+            key: 'usr_id',
+            data: 1
+          }); 
+          that.onshow(that.data.openid, that.data.userInfo, res.data.d.phoneNumber); //调用onshow方法，并传递三个参数
+        }
+      })
+    }else{
 
-    // }
+    }
   },
   onGotUserInfo: function (e) {
-    
     var role_id = wx.getStorageSync('role_id')
     if(role_id){
       this.hideModal();
@@ -57,12 +56,8 @@ Page({
         }, 500)
     }else{
       wx.setStorage({
-        key: 'raw_data',
-        data: e.detail.rawData
-      });
-      wx.setStorage({
-        key: 'user_info',
-        data: e.detail.user_info
+        key: 'avatar_url',
+        data: e.detail.userInfo.avatarUrl
       });
       wx.setStorage({
         key: 'signature',
@@ -196,21 +191,24 @@ Page({
           'content-type': 'application/json'
         },
         success: function (res) {
-          wx.navigateTo({
-            url: '../index/index',
-          })
-          wx.setStorage({
-            key: 'usr_id',
-            data: res.data.data.id
-          });
-          wx.setStorage({
-            key: 'role_id',
-            data: res.data.data.role_id
-          });  
-          // that.onshow(that.data.openid, that.data.userInfo, res.data.d.phoneNumber); //调用onshow方法，并传递三个参数
+          if(res.data.data){
+            wx.setStorage({
+              key: 'usr_id',
+              data: res.data.data.user.id
+            });
+            wx.setStorage({
+              key: 'role_id',
+              data: res.data.data.user.role_id
+            });  
+            wx.navigateTo({
+              url: '../index/index',
+            })
+          }else{
+            wx.showToast({ title: '请分配用户', icon :'none',duration: 1000 })
+          }
         }
       })
-      this.hideModal()
+      that.hideModal()
     }
   },
   // getPhoneNumber: function (e) {

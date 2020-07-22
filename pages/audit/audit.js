@@ -12,32 +12,34 @@ Page({
      approveList: [],
      radio:'1',
     //加载样式是否显示
-     loading: true
+     loading: true,
+      selectId:"",
+      selectName:"",
   },
   onChange(event) {
     this.setData({radio: event.detail});
     this.onLoad();
   },
   onLoad: function (options) {
-    // if(options==undefined){
-    //   var usr_id=this.data.usr_id
-    // }else{
-    //   var usr_id=Number(options.usr_id)
-    // }
     var usr_id = wx.getStorageSync('usr_id');
     var role_id = wx.getStorageSync('role_id');
     var that = this //很重要，一定要写
     that.setData({usr_id:usr_id})
     that.setData({role_id:role_id})
-    var params={
-      "user_id":usr_id
-    }
     // 判断是运维还是茅台url
     var url;
+    var params;
     if(role_id==2){
+      params={
+        "user_id":usr_id
+      }
       url = "/app/dosage_review/dosage/query";
     }else if(role_id==3){
-      url = "/app/maotai/dosage/query";
+      params={
+        "user_id":usr_id,
+        "company_id":Number(options.selectId)
+      }
+      url = "app/maotai/dosage/company/query";
     }
     http.Post(url, params, function (res) {
         var dosageList=res.data.data.dosage;//res.data就是从后台接收到的值
