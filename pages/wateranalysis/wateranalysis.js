@@ -43,7 +43,9 @@ Page({
         "windowWidth":"",
         "canvsYueEle":"",
         "canvsColumn":"",
-        "transCanvs":false
+        "transCanvs":false,
+        selectId:"",
+        selectName:"",
     },
     onOpen(){
         console.log("true")
@@ -269,7 +271,10 @@ Page({
             }
         });
     },
-    onLoad: function (e) {
+    onLoad: function (options) {
+        var selectId =Number(options.options)
+        var selectName =options.selectNamedsss
+        this.setData({selectId:selectId,selectName:selectName})
         this.setData({
             start_time:this.getStartDate(),
             end_time:this.dateFormat(new Date())
@@ -289,11 +294,18 @@ Page({
           })
     },
     onGetInfo(){
+        var role_id = wx.getStorageSync('role_id')
+        var company_id
+        if(role_id == 2){
+            company_id = wx.getStorageSync('company_id')
+        }else if(role_id == 3){
+            company_id = this.data.selectId
+        }
         //加载接口
         var params = {
             "start_time":this.data.start_time,
             "end_time": this.data.end_time,
-            "company_id": 1,
+            "company_id": company_id,
             "detection_name": this.data.detection_name
         };
         var that = this;

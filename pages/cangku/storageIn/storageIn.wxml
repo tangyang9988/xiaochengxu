@@ -17,7 +17,7 @@
     value="{{medicine_count}}"
     label="入库数量"
     placeholder="请输入入库数量"
-    border="{{ true }}"
+    border="{{ true }}" 
     bind:change="onChange3"/>
 </van-cell-group>
 <van-button round type="info" style="display:flex;width:100%;margin-top:15%;margin-bottom:5%" bindtap="submit">提交</van-button>

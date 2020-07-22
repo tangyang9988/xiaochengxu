@@ -7,6 +7,8 @@ var ringChart = null;
 
 Page({
   data: {
+    selectId:"",
+    selectName:"",
     avatar_url:"",
     information: {},
     daily_not_finish_count: 0,
@@ -25,15 +27,15 @@ Page({
     canvsRing:'',
     "transCanvs":false
   },
-  // onOpen(){
-  //   console.log("true")
-  //   this.setData({transCanvs:true})
-  // },
-  // onCloseDropdown(){
-  //   console.log("false")
-  //   this.setData({transCanvs:false})
-  //   //this.onLoad()
-  // },
+  onOpen(){
+    console.log("true")
+    this.setData({transCanvs:true})
+  },
+  onCloseDropdown(){
+    console.log("false")
+    this.setData({transCanvs:false})
+    //this.onLoad()
+  },
 
   onLoad: function (options) {
     // var usr_id = Number(options.usr_id)
@@ -41,13 +43,14 @@ Page({
     var informationStore = {}
     var avatar_url = wx.getStorageSync('avatar_url');
     // this.setData({ usr_id: usr_id })
-    this.setData({avatar_url:avatar_url})
-
+    that.setData({avatar_url:avatar_url})
+    var selectId =options.options
+    var selectName =options.selectName
+    that.setData({selectId:selectId,selectName:selectName})
     //获取公司数据
     http.Post('/app/maotai/company/query', {}, function (res) {
       var company = res.data.data;
       var companyMenu = [];
-     
       var j = 0;
       var len = 0;
       for (j = 0, len = company.length; j < len; j++) {
@@ -81,10 +84,8 @@ Page({
       //   // }
       //   // TODO 没有公司直接返回
       // }else{
-
-
       var params = {
-        "company_id": that.data.companySelectValue
+        "company_id": that.data.selectId
       }
       // TODO 没有公司数据直接给默认值
       //获取信息仓数据
@@ -117,16 +118,6 @@ Page({
           }
           that.data.medicineSimpleList.push(storageList[j].medicine_name)
         }
-        if (storageMedicine.length == 0) {
-          //没有数据赋值默认值，防止程序崩溃
-          storageMedicine.push({
-            name: "",
-            data: 0,
-            stroke: false,
-            color: '#64C676'
-          });
-        }
-
         that.setData({//循环完后，再对list进行赋值
           information: res.data.data,
           medicineList: storageList,
@@ -221,7 +212,7 @@ Page({
   initDraw: function () {
     var that = this//很重要，一定要写
     var params = {
-      "company_id": that.data.companySelectValue
+      "company_id": that.data.selectId
     }
 
     //获取信息仓数据
