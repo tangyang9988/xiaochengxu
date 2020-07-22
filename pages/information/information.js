@@ -117,6 +117,16 @@ Page({
           }
           that.data.medicineSimpleList.push(storageList[j].medicine_name)
         }
+        if (storageMedicine.length == 0) {
+          //没有数据赋值默认值，防止程序崩溃
+          storageMedicine.push({
+            name: "",
+            data: 0,
+            stroke: false,
+            color: '#64C676'
+          });
+        }
+
         that.setData({//循环完后，再对list进行赋值
           information: res.data.data,
           medicineList: storageList,
@@ -176,13 +186,13 @@ Page({
     this.getCanvsRing()
   },
 
-  // onChange(event) {
+  onChange(event) {
    
-  //   this.setData({ companySelectValue: event.detail })
+    this.setData({ companySelectValue: event.detail })
   
-  //   this.initDraw();
-  //   //this.onLoad();
-  // },
+    this.initDraw();
+    //this.onLoad();
+  },
 
   touchHandler: function (e) {
     var that = this;
@@ -208,106 +218,106 @@ Page({
   onReady: function (e) {
 
   },
-  // initDraw: function () {
-  //   var that = this//很重要，一定要写
-  //   var params = {
-  //     "company_id": that.data.companySelectValue
-  //   }
+  initDraw: function () {
+    var that = this//很重要，一定要写
+    var params = {
+      "company_id": that.data.companySelectValue
+    }
 
-  //   //获取信息仓数据
-  //   http.Post('/app/dosage_review/today', params, function (res) {
+    //获取信息仓数据
+    http.Post('/app/dosage_review/today', params, function (res) {
       
-  //     console.log("query:",res.data)
-  //     var storage = res.data.data;
-  //     var storageList = res.data.data.DailyEveryMedicineConsume
-  //     var storageMedicine = [];
-  //     var j = 0;
-  //     var len = 0;
+      console.log("query:",res.data)
+      var storage = res.data.data;
+      var storageList = res.data.data.DailyEveryMedicineConsume
+      var storageMedicine = [];
+      var j = 0;
+      var len = 0;
       
-  //     for (j = 0, len = storageList.length; j < len; j++) {
-  //       storageMedicine.push({
-  //         name: storageList[j].medicine_name,
-  //         data: storageList[j].daily_consume,
-  //         stroke: false,
-  //         color: '#64C676'
-  //       });
-  //       switch (storageList[j].medicine_name) {
-  //         case "活性炭": storageMedicine[j].color = '#F8C322'; break;
-  //         case "PAM(阳离子)": storageMedicine[j].color = '#5553CE'; break;
-  //         case "PAM(阴离子)": storageMedicine[j].color = '#F65050'; break;
-  //         case "片碱": storageMedicine[j].color = '#64C676'; break;
-  //         case "PAC": storageMedicine[j].color = '#669AFF'; break;
-  //         case "葡萄糖": storageMedicine[j].color = '#FF9100'; break;
-  //         case "NaCo3": storageMedicine[j].color = '#FFFF03'; break;
-  //       }
-  //       that.data.medicineSimpleList.push(storageList[j].medicine_name)
-  //     }
+      for (j = 0, len = storageList.length; j < len; j++) {
+        storageMedicine.push({
+          name: storageList[j].medicine_name,
+          data: storageList[j].daily_consume,
+          stroke: false,
+          color: '#64C676'
+        });
+        switch (storageList[j].medicine_name) {
+          case "活性炭": storageMedicine[j].color = '#F8C322'; break;
+          case "PAM(阳离子)": storageMedicine[j].color = '#5553CE'; break;
+          case "PAM(阴离子)": storageMedicine[j].color = '#F65050'; break;
+          case "片碱": storageMedicine[j].color = '#64C676'; break;
+          case "PAC": storageMedicine[j].color = '#669AFF'; break;
+          case "葡萄糖": storageMedicine[j].color = '#FF9100'; break;
+          case "NaCo3": storageMedicine[j].color = '#FFFF03'; break;
+        }
+        that.data.medicineSimpleList.push(storageList[j].medicine_name)
+      }
 
-  //     if (storageMedicine.length == 0) {
-  //       //没有数据赋值默认值，防止程序崩溃
-  //       storageMedicine.push({
-  //         name: "",
-  //         data: 0,
-  //         stroke: false,
-  //         color: '#64C676'
-  //       });
-  //     }
+      if (storageMedicine.length == 0) {
+        //没有数据赋值默认值，防止程序崩溃
+        storageMedicine.push({
+          name: "",
+          data: 0,
+          stroke: false,
+          color: '#64C676'
+        });
+      }
       
 
-  //     that.setData({//循环完后，再对list进行赋值
-  //       information: res.data.data,
-  //       medicineList: storageList,
-  //       echartMedicineList: storageMedicine,
-  //       daily_not_finish_count: res.data.data.daily_not_finish_count,
-  //       loading: false
-  //     })
+      that.setData({//循环完后，再对list进行赋值
+        information: res.data.data,
+        medicineList: storageList,
+        echartMedicineList: storageMedicine,
+        daily_not_finish_count: res.data.data.daily_not_finish_count,
+        loading: false
+      })
       
-  //     //渲染饼状图数据
-  //     var windowWidth = 320;
-  //     try {
-  //       var res = wx.getSystemInfoSync();
-  //       windowWidth = res.windowWidth;
-  //       console.log("屏幕宽度：",windowWidth)
-  //     } catch (e) {
-  //       console.error('getSystemInfoSync failed!');
-  //     }
-  //     var windowWdithHalf = windowWidth / 5*2;
+      //渲染饼状图数据
+      var windowWidth = 320;
+      try {
+        var res = wx.getSystemInfoSync();
+        windowWidth = res.windowWidth;
+        console.log("屏幕宽度：",windowWidth)
+      } catch (e) {
+        console.error('getSystemInfoSync failed!');
+      }
+      var windowWdithHalf = windowWidth / 5*2;
       
-  //     ringChart = new wxCharts({
-  //       animation: true,
-  //       canvasId: 'ringCanvas',
-  //       type: 'ring',
-  //       extra: {
-  //         ringWidth: 25,
-  //         pie: {
-  //           offsetAngle: -45
-  //         }
-  //       },
-  //       title: {
-  //         name: storage.daily_max_medicine_percentage,
-  //         color: '#7cb5ec',
-  //         fontSize: 12
-  //       },
-  //       subtitle: {
-  //         name: storage.daily_max_medicine_name,
-  //         color: '#666666',
-  //         fontSize: 8
-  //       },
-  //       series: storageMedicine,
-  //       disablePieStroke: true,
-  //       width: windowWdithHalf,
-  //       height: 250,
-  //       dataLabel: false,
-  //       legend: false,
-  //       background: '#f5f5f5',
-  //       padding: 0
-  //     });
+      ringChart = new wxCharts({
+        animation: true,
+        canvasId: 'ringCanvas',
+        type: 'ring',
+        extra: {
+          ringWidth: 25,
+          pie: {
+            offsetAngle: -45
+          }
+        },
+        title: {
+          name: storage.daily_max_medicine_percentage,
+          color: '#7cb5ec',
+          fontSize: 12
+        },
+        subtitle: {
+          name: storage.daily_max_medicine_name,
+          color: '#666666',
+          fontSize: 8
+        },
+        series: storageMedicine,
+        disablePieStroke: true,
+        width: windowWdithHalf,
+        height: 250,
+        dataLabel: false,
+        legend: false,
+        background: '#f5f5f5',
+        padding: 0
+      });
 
-  //     setTimeout(() => {
-  //       ringChart.stopAnimation();
-  //     }, 500);
-  //   })
-  // },
+      setTimeout(() => {
+        ringChart.stopAnimation();
+      }, 500);
+    })
+  },
   getCanvsRing(){
     var that = this
     setTimeout(() => {
