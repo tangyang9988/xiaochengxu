@@ -13,14 +13,13 @@ Page({
      radio:'1',
     //加载样式是否显示
      loading: true,
-      selectId:"",
-      selectName:"",
+      selectId:""
   },
   onChange(event) {
     this.setData({radio: event.detail});
-    this.onLoad();
+    this.onWater(this.data.selectId);
   },
-  onLoad: function (options) {
+  onWater(selectId){
     var usr_id = wx.getStorageSync('usr_id');
     var role_id = wx.getStorageSync('role_id');
     var that = this //很重要，一定要写
@@ -35,10 +34,12 @@ Page({
       }
       url = "/app/dosage_review/dosage/query";
     }else if(role_id==3){
-      params={
-        "user_id":usr_id,
-        "company_id":Number(options.selectId)
-      }
+        params={
+          "user_id":usr_id,
+          "company_id":Number(selectId)
+        }
+      
+
       url = "/app/maotai/dosage/company/query";
     }
     http.Post(url, params, function (res) {
@@ -80,5 +81,13 @@ Page({
         })
 
     })
+  },
+  onLoad: function (options) {
+    debugger
+    var selectId = options.selectId
+      this.setData({selectId:selectId})
+      this.onWater(selectId)
+    
+    
   }
 })
