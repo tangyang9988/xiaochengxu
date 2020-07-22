@@ -4,8 +4,14 @@ Page({
     listData:[],
     screenHeight:''
   },
-  onLoad: function () {
-    var company_id = wx.getStorageSync('company_id');
+  onLoad: function (options) {
+    var role_id = wx.getStorageSync('role_id');
+    var company_id;
+    if(role_id ==2){
+      company_id= wx.getStorageSync('company_id');
+    }else if(role_id ==3){
+      company_id= Number(options.selectId)
+    }
     var that = this //很重要，一定要写
     var params={ "company_id":company_id}
     http.Post('/app/storage/log/company/query', params, function (res) {

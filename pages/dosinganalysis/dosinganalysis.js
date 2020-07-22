@@ -386,7 +386,7 @@ Page({
         })
     },
     onLoad: function (options) {
-        var selectId =options.options
+        var selectId =Number(options.options)
         var selectName =options.selectNamedsss
         this.setData({selectId:selectId,selectName:selectName})
        this.setData({

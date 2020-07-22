@@ -322,7 +322,7 @@
         <view class="data_title">水质分析</view>
       </view>
      </navigator>
-    <navigator url='../cangku/storage/storage'>
+    <navigator url='../cangku/storage/storage?selectName={{selectName}}&selectId={{selectId}}'>
       <view class="data_one bg_3">
         <view class="data_data">
           <view class="data_ico">
@@ -333,7 +333,7 @@
         <view class="data_title">库存情况</view>
       </view>
      </navigator>
-    <navigator url='../cangku/stockInOut/stockInOut'>
+    <navigator url='../cangku/stockInOut/stockInOut?selectName={{selectName}}&selectId={{selectId}}'>
       <view class="data_one bg_1">
         <view class="data_data">
           <view class="data_ico">

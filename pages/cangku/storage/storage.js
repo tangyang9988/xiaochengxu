@@ -5,19 +5,34 @@ Page({
     listData:[],
     screenHeight:'',
     usr_id: '',
-    role_id: ''
+    role_id: '',
+    selectId:"",
+    selectName:"",
   },
-  onLoad: function () {
+  onLoad: function (options) {
+    var selectId =Number(options.options)
+    var selectName =options.selectName
+    this.setData({selectId:selectId,selectName:selectName})
     var usr_id = wx.getStorageSync('usr_id');
     var role_id = wx.getStorageSync('role_id');
     this.setData({role_id:role_id})
     this.setData({usr_id},()=>{console.log(this.data.usr_id)})
     this.getSystemInfo()
     var that = this       //很重要，一定要写
+    var params;
+    if(role_id ==2){
+      params={
+        "company_id":wx.getStorageSync('company_id')
+      }
+    }else if(role_id ==3){
+      params={
+        "company_id":that.data.selectId
+      }
+    }
     var params={
-      "user_id":usr_id
+      "company_id":company_id
     };
-    http.Post('/app/storage/query', params, function (res) {
+    http.Post('/app/storage/company/query', params, function (res) {
         var datas=res.data;          //res.data就是从后台接收到的值
         console.log(datas)
         that.setData({               //循环完后，再对list进行赋值
@@ -25,7 +40,6 @@ Page({
         })
     })
   },
-
   getSystemInfo() {
     const { role_id } = this.data 
     wx.getSystemInfo({

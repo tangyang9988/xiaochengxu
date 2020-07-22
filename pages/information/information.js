@@ -43,15 +43,14 @@ Page({
     var informationStore = {}
     var avatar_url = wx.getStorageSync('avatar_url');
     // this.setData({ usr_id: usr_id })
-    this.setData({avatar_url:avatar_url})
+    that.setData({avatar_url:avatar_url})
     var selectId =options.options
     var selectName =options.selectName
-    this.setData({selectId:selectId,selectName:selectName})
+    that.setData({selectId:selectId,selectName:selectName})
     //获取公司数据
     http.Post('/app/maotai/company/query', {}, function (res) {
       var company = res.data.data;
       var companyMenu = [];
-     
       var j = 0;
       var len = 0;
       for (j = 0, len = company.length; j < len; j++) {
