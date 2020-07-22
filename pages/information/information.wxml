@@ -2,22 +2,14 @@
 <view class="infoHeader">
 	<!-- 选择公司 -->
 	<van-row>
-	
-	<van-col span="10" offset="2" >
-			<view >
-				<van-dropdown-menu  overlay close-on-click-overlay>
-					<van-dropdown-item  value="{{companySelectValue}}" options="{{ companyDropMenu }}" bind:change="onChange"  bind:open='onOpen' bind:closed='onCloseDropdown' />
-				</van-dropdown-menu>
-			</view>
+	<van-col span="12" offset="2">
+		<span>{{selectName}}</span>
 		</van-col>
 		<van-col span="4"  offset="4">
 			<image class="tupian circleProgress" style="width:50px;height:50px;"  src="{{avatar_url}}"></image>
 		</van-col>
-		
-
 	</van-row>
 </view>
-
 
 <view class="content">
 

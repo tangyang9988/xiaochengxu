@@ -47,6 +47,7 @@
     "pages/cangku/storage/storage",
     "pages/cangku/storageBasic/storageBasic",
     "pages/cangku/stockInOut/stockInOut",
+    "pages/cangku/newDosage/newDosage",
 
     "pages/wateranalysis/wateranalysis",
     "pages/dosinganalysis/dosinganalysis",

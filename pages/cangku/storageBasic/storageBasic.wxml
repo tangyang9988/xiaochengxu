@@ -1,22 +1,30 @@
 <!-- <form bindsubmit="formSubmit" method="post" action="http地址" name="myform" id="myform"> -->
-<van-cell-group>
-<van-cell title="药品名称" value="{{medicine_name}}" />
 <van-row>
-  <van-col span="18">
+  <van-col span="8">
+    <van-cell title="药品名称"/>
+  </van-col>
+  <van-col span="16">
+    <van-field
+    value="{{medicine_name}}"/>
+  </van-col>
+</van-row>
+<van-row>
+  <van-col span="8">
     <van-cell title="供应商"/>
   </van-col>
-  <van-col span="6">
+  <van-col span="16">
    <van-field
+   disabled
     value="{{supplier}}"
     border="{{ true }}"
     bind:change="supplierChange"/>
   </van-col>
 </van-row>
 <van-row>
-  <van-col span="18">
+  <van-col span="8">
     <van-cell title="低库存阀值设置"/>
   </van-col>
-  <van-col span="6">
+  <van-col span="16">
    <van-field
     value="{{minimum}}"
     border="{{ true }}"
@@ -34,9 +42,16 @@
     </van-cell>
     </van-col>
   </van-row>
-
-  <van-cell title="库存数量" value="{{storage_amount}}(kg)" />
-</van-cell-group>
+  <van-row>
+    <van-col span="8">
+      <van-cell title="库存数量"/>
+    </van-col>
+    <van-col span="16">
+      <van-field
+         disabled
+      value="{{storage_amount}}(kg)"/>
+    </van-col>
+</van-row>
 <van-button round type="info" style="display:flex;width:100%;margin-top:15%;margin-bottom:5%" bindtap="modify">修改</van-button>
 <van-button round plain type="info" style="display:flex;width:100%;" bindtap="cancle">取消</van-button>
 <!-- </form> -->

@@ -52,7 +52,7 @@ Page({
    * 新增药品点击事件
    */
   onAddMedicine() {
-    this.onNavigateTo(`../storageIn/storageIn`)
+    this.onNavigateTo(`../newDosage/newDosage`)
   },
   /**
    * 页面跳转

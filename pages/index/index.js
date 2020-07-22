@@ -5,12 +5,16 @@ var util = require('../../utils/storage.js');
 const app = getApp()
 Page({
   data: {
+    showName:false,
     usr_id:"",
     role_id:"",
     avatar_url:"",
     name:"",
     cellphone:"",
     company_name:"",
+    selectName:"中华7000吨污水处理厂",
+    selectId:"159529682355",
+    columns:[ {text:'中华7000吨污水处理厂',cp_id:159529682355}, {text:'4000吨污水处理厂',cp_id:159529683730}, {text:'二合301厂5000吨污水处理厂',cp_id:159529684975}, {text:'201厂新寨4000吨污水处理厂',cp_id:159529686074}, {text:'201厂大地3000吨污水处理厂',cp_id:159529687331}],
     desc:"",
     motto: '污⽔⼚加药监控小程序',
     userInfo: {},
@@ -65,6 +69,21 @@ Page({
     this.setData({cellphone:cellphone})
     this.setData({company_name:company_name})
   
+  },
+  showNamePopup() {
+    this.setData({ showName: true });
+  },
+  confirmName(event) {
+    this.setData({
+      selectName :event.detail.value.text,
+    })
+    this.setData({
+      selectId :event.detail.value.cp_id,
+    })
+    this.setData({ showName: false });
+  },
+  onCloseName() {
+    this.setData({ showName: false });
   },
   onShow:function(){
   },

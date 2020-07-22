@@ -99,13 +99,19 @@ Page({
           http.Post('/app/storage/put_in_amount', params, function (res) {
             const { data } = res
             if (data.code === 200) {
-              wx.showToast({ title: '入库成功', icon :'success',duration: 2000 })
+              wx.showToast({ title: '入库成功', icon :'success',duration: 1000 })
               that.clearData()
             } else  wx.showToast({title: "入库失败", icon :"none" })
+          })
+          wx.navigateBack({
           })
         } 
       },
       fail(res){ wx.showToast({title: '入库失败', icon :"none"}) }
+    })
+  },
+  cancle:function(){
+    wx.navigateBack({
     })
   }
 
