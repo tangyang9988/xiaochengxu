@@ -1,0 +1,92 @@
+
+<view class="body">
+  <!-- 每日进水 -->
+  <scroll-view scroll-y style="height:{{screenHeight}}px;">
+    <view wx:for="{{listData}}" wx:key="{{item.id}}">
+      <view class="item" data-gId='{{item}}' >
+        <view class="tr {{'bg-g'}}">
+          <view class="td">
+            <view style="font-size:12px; font-weight: 400;line-height: 20px;">{{'COD'}}</view>
+            <!-- <view style="color:#C9CBD3;">{{item.supplier}}</view> -->
+          </view>
+          <view class="td">
+             <view class="td" style="font-size:14px; margin-right:10px; font-weight: 400;line-height: 20px; color:{{''}}">{{item.cod}}</view>
+          </view>
+        </view>
+        <view class="tr {{'bg-g'}}">
+          <view class="td">
+            <view style="font-size:12px; font-weight: 400;line-height: 20px;">{{'BOD5'}}</view>
+            <!-- <view style="color:#C9CBD3;">{{item.supplier}}</view> -->
+          </view>
+          <view class="td">
+             <view class="td" style="font-size:14px; margin-right:10px; font-weight: 400;line-height: 20px; color:{{''}}">{{item.bod5}}</view>
+            <!-- <view style="color:#C9CBD3;">{{item.supplier}}</view> -->
+          </view>
+        </view>
+        <view class="tr {{'bg-g'}}">
+          <view class="td">
+            <view style="font-size:12px; font-weight: 400;line-height: 20px;">{{'氨氮'}}</view>
+            <!-- <view style="color:#C9CBD3;">{{item.supplier}}</view> -->
+          </view>
+          <view class="td">
+             <view class="td" style="font-size:14px; margin-right:10px; font-weight: 400;line-height: 20px; color:{{''}}">{{item.ammonia_nitrogen}}</view>
+            <!-- <view style="color:#C9CBD3;">{{item.supplier}}</view> -->
+          </view>
+        </view>
+                <view class="tr {{'bg-g'}}">
+          <view class="td">
+            <view style="font-size:12px; font-weight: 400;line-height: 20px;">{{'总磷'}}</view>
+            <!-- <view style="color:#C9CBD3;">{{item.supplier}}</view> -->
+          </view>
+          <view class="td">
+             <view class="td" style="font-size:14px; margin-right:10px; font-weight: 400;line-height: 20px; color:{{''}}">{{item.phosphorus}}</view>
+            <!-- <view style="color:#C9CBD3;">{{item.supplier}}</view> -->
+          </view>
+        </view>
+                <view class="tr {{'bg-g'}}">
+          <view class="td">
+            <view style="font-size:12px; font-weight: 400;line-height: 20px;">{{'总氮'}}</view>
+            <!-- <view style="color:#C9CBD3;">{{item.supplier}}</view> -->
+          </view>
+          <view class="td">
+             <view class="td" style="font-size:14px; margin-right:10px; font-weight: 400;line-height: 20px; color:{{''}}">{{item.nitrogen}}</view>
+            <!-- <view style="color:#C9CBD3;">{{item.supplier}}</view> -->
+          </view>
+        </view>
+                <view class="tr {{'bg-g'}}">
+          <view class="td">
+            <view style="font-size:12px; font-weight: 400;line-height: 20px;">{{'SS'}}</view>
+            <!-- <view style="color:#C9CBD3;">{{item.supplier}}</view> -->
+          </view>
+          <view class="td">
+             <view class="td" style="font-size:14px; margin-right:10px; font-weight: 400;line-height: 20px; color:{{''}}">{{item.ss}}</view>
+            <!-- <view style="color:#C9CBD3;">{{item.supplier}}</view> -->
+          </view>
+        </view>
+                <view class="tr {{'bg-g'}}">
+          <view class="td">
+            <view style="font-size:12px; font-weight: 400;line-height: 20px;">{{'色度'}}</view>
+            <!-- <view style="color:#C9CBD3;">{{item.supplier}}</view> -->
+          </view>
+          <view class="td">
+             <view class="td" style="font-size:14px; margin-right:10px; font-weight: 400;line-height: 20px; color:{{''}}">{{item.chromaticity}}</view>
+            <!-- <view style="color:#C9CBD3;">{{item.supplier}}</view> -->
+          </view>
+        </view>
+                <view class="tr {{'bg-g'}}">
+          <view class="td">
+            <view style="font-size:12px; font-weight: 400;line-height: 20px;">{{'PH'}}</view>
+            <!-- <view style="color:#C9CBD3;">{{item.supplier}}</view> -->
+          </view>
+          <view class="td">
+             <view class="td" style="font-size:14px; margin-right:10px; font-weight: 400;line-height: 20px; color:{{''}}">{{item.ph}}</view>
+            <!-- <view style="color:#C9CBD3;">{{item.supplier}}</view> -->
+          </view>
+        </view>
+
+      </view>
+    </view>
+  </scroll-view>
+
+
+</view>

@@ -248,5 +248,8 @@ Page({
       },
       fail(res){ wx.showToast({ title: '驳回失败', icon: 'none'}) }
     })
+  },
+  cancle() {
+    wx.navigateBack({})
   }
 });

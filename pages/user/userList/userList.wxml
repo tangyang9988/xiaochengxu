@@ -1,0 +1,63 @@
+
+<view class="body" wx:if="{{role_id==2}}">
+  <!-- 运维管理 -->
+  <scroll-view scroll-y style="height:{{screenHeight}}px;">
+    <view wx:for="{{listData}}" wx:key="{{item.id}}">
+      <view class="item" data-gId='{{item}}' >
+        <view class="tr {{'bg-g'}}">
+          <view class="td">
+            <view style="font-size:12px; font-weight: 400;line-height: 20px;">{{item.name}}</view>
+          </view>
+          <view class="td">
+             <view style="font-size:12px; font-weight: 400;line-height: 20px;">{{item.cellphone}}</view>
+          </view>
+          <view class="td">
+          <view  style="font-size:12px;font-weight: 400;line-height: 20px;">{{item.role_id==1?'加药员':'化验员'}}</view>
+          </view>
+          <view class="td">
+          <view  style="font-size:12px;font-weight: 400;line-height: 20px;"><van-tag round type="primary" data-gId='{{item}}' bindtap="Edit">编辑</van-tag></view>
+          </view>
+          <view class="td">
+          <view  style="font-size:12px;font-weight: 400;line-height: 20px;"><van-tag round type="danger" data-gId='{{item}}' bindtap="Delete">删除</van-tag></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="addBtn" hover-class="hover" bindtap="onAddUser" >
+    新增用户
+  </view>
+</view>
+<view class="body" wx:if="{{role_id==3}}">
+  <!-- 茅台管理 -->
+  <scroll-view scroll-y style="height:{{screenHeight}}px;">
+    <view wx:for="{{listData}}" wx:key="{{item.id}}">
+      <view class="item" data-gId='{{item}}' >
+        <view class="tr {{'bg-g'}}">
+          <view class="td">
+            <view style="font-size:8px; font-weight: 500;line-height: 20px;">{{selectName}}</view>
+          </view>
+          <view class="td">
+            <view style="font-size:12px; font-weight: 400;line-height: 20px;">{{item.name}}</view>
+          </view>
+          <view class="td">
+             <view style="font-size:12px; font-weight: 400;line-height: 20px;">{{item.cellphone}}</view>
+          </view>
+          <view class="td">
+          <view  style="font-size:12px;font-weight: 400;line-height: 20px;">运维</view>
+          </view>
+          <view class="td">
+          <view  style="font-size:12px;font-weight: 400;line-height: 20px;"><van-tag round type="primary" data-gId='{{item}}' bindtap="Edit">编辑</van-tag></view>
+          </view>
+          <view class="td">
+          <view  style="font-size:12px;font-weight: 400;line-height: 20px;"><van-tag round type="danger" data-gId='{{item}}' bindtap="Delete">删除</van-tag></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="addBtn" hover-class="hover" bindtap="onAddUser" >
+    新增运维人员
+  </view>
+</view>
+

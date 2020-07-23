@@ -1,0 +1,59 @@
+<!-- 运维 form表单 -->
+<view wx:if="{{role_id==2}}">
+  <van-field
+    label="用户名"
+    value="{{name}}"
+    placeholder="请输入用户名"
+    bind:change="onChange"/>
+
+  <van-field
+    value="{{cellphone}}"
+    label="手机号"
+    placeholder="请输入手机号"
+    bind:change="onChange1"/>
+<van-row>
+  <van-col span="6">
+    <van-cell title="角色" />
+  </van-col>
+  <van-col span="16">
+      <van-cell title="{{selectRole_name}}"  bind:click="showPopup" />
+    <van-popup show="{{ show }}" position="bottom" custom-style="height: 35%;" bind:close="onClose">
+      <van-picker title="选择" columns="{{ columns }}" default-index="{{ 0 }}" show-toolbar bind:confirm="confirm" bind:cancel="onClose" />
+    </van-popup>
+    </van-col>
+</van-row>
+  <van-button round type="info" style="display:flex;width:100%;margin-top:10%;margin-bottom:5%" bind:click="submit">提交</van-button>
+  <van-button round plain type="info" style="display:flex;width:100%;" bindtap="cancle">取消</van-button>
+</view>
+<!-- 茅台 form表单 -->
+<view wx:if="{{role_id==3}}">
+<van-cell-group>
+  <van-field
+    disabled
+    label="运维公司"
+    value="{{selectName}}"/>
+</van-cell-group>
+<van-cell-group>
+  <van-field
+    label="用户名"
+    value="{{name}}"
+    placeholder="请输入用户名"
+    bind:change="onChange"/>
+</van-cell-group>
+<van-cell-group>
+  <van-field
+    value="{{cellphone}}"
+    label="手机号"
+    placeholder="请输入手机号"
+    bind:change="onChange1"/>
+</van-cell-group>
+<van-cell-group>
+  <van-field
+    value="运维"
+    label="角色"
+    disabled/>
+</van-cell-group>
+  <van-button round type="info" style="display:flex;width:100%;margin-top:10%;margin-bottom:5%" bind:click="submit">提交</van-button>
+  <van-button round plain type="info" style="display:flex;width:100%;" bindtap="cancle">取消</van-button>
+</view>
+

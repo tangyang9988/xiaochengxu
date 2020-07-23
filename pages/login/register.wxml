@@ -1,0 +1,41 @@
+<view class="container"> 
+ <view class="login-icon"> 
+ <!-- <image class="login-img" src="../images/loginLog.jpg"></image>  -->
+ <image class="login-img" src="../images/tupian.png"></image> 
+ </view> 
+ <view class="login-from"> 
+ 
+ <!--账号--> 
+ <view class="inputView"> 
+ <image class="nameImage" src="../images/name.png"></image> 
+ <label class="loginLab">账号</label> 
+ <input class="inputText" placeholder="请输入账号" bindinput="phoneInput" /> 
+ </view> 
+ <view class="line"></view> 
+ 
+ <!--密码--> 
+ <view class="inputView"> 
+ <image class="keyImage" src="../images/key.png"></image> 
+ <label class="loginLab">密码</label> 
+ <input class="inputText" password="true" placeholder="请输入密码" bindinput="passwordInput" /> 
+ </view> 
+ 
+ <!--按钮--> 
+ <view class="loginBtnView"> 
+ <van-button class="loginBtn" round type="info" size="" loading="{{loading}}" disabled="{{disabled}}" bindtap="login">登录</van-button>
+ </view> 
+
+
+ 
+  <!--一键登录按钮--> 
+ <view class="loginBtnView"> 
+ <van-button class="loginWeiXin" round type="info" size="mini" open-type="getUserInfo" bindgetphonenumber="onGetUserInfo">微信一键登录</van-button>
+ </view> 
+ <!-- <button open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber">
+    绑定微信手机号
+</button> -->
+<!-- <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">微信登录</button> -->
+<!-- <button class='dialog-btn' open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">一键登录</button> -->
+
+ </view> 
+</view> 
