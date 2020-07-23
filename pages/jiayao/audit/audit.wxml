@@ -31,7 +31,7 @@
 
   <!-- html -->
 <view class="cards" wx:for="{{List}}" wx:for-item="item" wx:key="item">
- <navigator class="nav" url='../edit/edit?id={{item.id}}&status={{item.status}}&dosing_time={{item.dosing_time}}&user_name={{item.user_name}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}&content={{item.reviews[0].content}}'>
+ <navigator class="nav" url='../edit/edit?id={{item.id}}&status={{item.status}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}&content={{item.reviews[0].content}}'>
 		<!-- 左侧图片 -->
 		<!-- <view class="card card-url">
 			<image src="{{item.img_src}}" mode="widthFix"></image>
@@ -47,7 +47,7 @@
       <view class="card-title">药剂名称：{{item.medicine_name}}</view>
       <view class="card-title">点位名称：{{item.position}}</view>
       <view class="card-title">提交时间：{{item.dosing_time}}</view>
-      <view class="card-title">提交人员：{{item.user_name}}</view>
+      <view class="card-title">提交人员：{{name}}</view>
 
 		</view>
 	</navigator>

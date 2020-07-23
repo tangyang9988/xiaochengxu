@@ -7,6 +7,7 @@ Page({
     id:"",
     usr_id:"",
     user_name:"",
+    name:"",
     role_id:"",
     status:"",
     is_dosage:"",
@@ -117,10 +118,16 @@ Page({
   onLoad: function (options) {
     var usr_id = wx.getStorageSync('usr_id');
     var role_id = wx.getStorageSync('role_id');
+    var user_name;
+    if(role_id ==2 ||role_id ==3){
+      user_name =options.user_name
+    }
+    var name = wx.getStorageSync('name');
       this.setData({
         id: Number(options.id),
         usr_id: Number(usr_id),
-        user_name:options.user_name,
+        name:name,
+        user_name:user_name,
         role_id: role_id,
         status: Number(options.status),
         is_dosage:Number(options.is_dosage),

@@ -35,7 +35,7 @@
   <van-cell-group>
   <van-field
     disabled
-    value="{{user_name}}"
+    value="{{name}}"
     label="加药员"
     placeholder="请输入加药员"
     border="{{ true }}"/>
@@ -134,7 +134,7 @@
   <van-col span="17">
   <van-field
   disabled
-    value="{{user_name}}"/>
+    value="{{name}}"/>
   </van-col>
 </van-row>
   <!-- <van-cell-group>

@@ -10,9 +10,10 @@ Page({
     supplier: "",
     storage_amount: "",
   },
+  onChange1(event) {
+    this.setData({"medicine_name":event.detail})
+  },
   onLoad: function (options) {
-    //options专门用于接受数据的
-    console.log(options)
     this.setData({
       storage_id: Number(options.storage_id),
       medicine_name: options.medicine_name,
@@ -74,7 +75,6 @@ Page({
                 icon: 'success',
                 duration: 1000
               })
-              that.clearData()
             } else wx.showToast({
               title: '修改库存失败',
               icon: 'none'

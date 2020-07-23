@@ -16,8 +16,7 @@
       <view class="card-title" wx:if="{{item.is_in==1}}">进出水：{{'进水'}}</view>
       <view class="card-title" wx:if="{{item.is_in==0}}">进出水：{{'出水'}}</view>
       <view class="card-title">提交时间：{{item.created_at}}</view>
-      <view class="card-title">提交人员：{{item.user_name}}</view>
-
+      <view class="card-title">提交人员：{{name}}</view>
   </view>
 	<!-- 卡片与卡片的空白间隔 -->
 	<view class="space"></view>

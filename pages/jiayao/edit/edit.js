@@ -6,7 +6,7 @@ const app = getApp()
 Page({
   data: {
     id:"",
-    user_name:"",
+    name:"",
     status:"",
     content:"",
     dosing_time:"",
@@ -88,6 +88,7 @@ Page({
  },
   onLoad: function (options) {     //options专门用于接受数据的
     var usr_id = wx.getStorageSync('usr_id');
+    var name = wx.getStorageSync('name');
     var params={
       "user_id":usr_id
     }
@@ -105,7 +106,7 @@ Page({
     }
     that.setData({
       id: Number(options.id),
-      user_name:options.user_name,
+      name:name,
       status: Number(options.status),
       content: options.content,
       dosing_time: options.dosing_time,
