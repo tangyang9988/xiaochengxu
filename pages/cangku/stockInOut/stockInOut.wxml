@@ -1,10 +1,6 @@
-
-<view class="body">
-
 <!-- 过滤 -->
 <van-search value="{{ searchValue }}" shape="round" placeholder="请输入药剂名称" bind:change="onChange" bind:search="onSearch" bind:cancel="onCancel" />
-
-
+<view class="body">
   <!-- 出入库日志列表 -->
   <scroll-view scroll-y style="height:{{screenHeight}}px;">
     <view wx:for="{{listData}}" wx:key="{{item.id}}">
