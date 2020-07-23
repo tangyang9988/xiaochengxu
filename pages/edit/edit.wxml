@@ -26,9 +26,8 @@
     bind:change="onChange4"/>
   <van-field
     disabled
-    value="张晓明"
+    value="{{user_name}}"
     label="加药员"
-    placeholder="请输入加药员"
     border="{{ true }}"/>
   <van-field
     value="{{content}}"
@@ -111,17 +110,9 @@
   <van-col span="17">
     <van-field
     disabled
-    value="{{'张晓明'}}"/>
+    value="{{user_name}}"/>
   </van-col>
 </van-row>
 
-  <!-- <van-field
-    value="{{content}}"
-    label="审核意见"
-    type="textarea"
-    placeholder="请输入审核意见"
-    rows="1"
-    autosize
-    bind:change="onChange5"/> -->
   <van-button round type="info" style="display:flex;width:100%;margin-top:5%;1" bindtap="agree">同意归档</van-button>
 </view>

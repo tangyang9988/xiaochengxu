@@ -22,7 +22,7 @@
     <span class="class_none">暂无数据</span>
   </view> -->
   <view class="cards {{totalList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{totalList}}" wx:for-item="item" wx:key="item">
-  <navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}'>
+  <navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&user_name={{item.user_name}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}'>
       <view class="column">
         <view class="card-desc">
           <view class="circle"></view><view class="circleLeft">编号：{{item.id}}</view>
@@ -30,7 +30,7 @@
         <view class="card-title">药剂名称：{{item.medicine_name}}</view>
         <view class="card-title">点位名称：{{item.position}}</view>
         <view class="card-title">提交时间：{{item.dosing_time}}</view>
-        <view class="card-title">提交人员：{{'张晓明'}}</view>
+        <view class="card-title">提交人员：{{item.user_name}}</view>
       </view>
     </navigator>
 	<!-- 卡片与卡片的空白间隔 -->
@@ -54,7 +54,7 @@
     <span class="class_none">暂无数据</span>
   </view>
   <view class="cards {{pendingList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{pendingList}}" wx:for-item="item" wx:key="item">
-    <navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}'>
+    <navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&user_name={{item.user_name}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}'>
       <view class="column">
         <view class="card-desc">
           <view class="circle"></view><view class="circleLeft">编号：{{item.id}}</view>
@@ -62,7 +62,7 @@
         <view class="card-title">药剂名称：{{item.medicine_name}}</view>
         <view class="card-title">点位名称：{{item.position}}</view>
         <view class="card-title">提交时间：{{item.dosing_time}}</view>
-        <view class="card-title">提交人员：{{'张晓明'}}</view>
+        <view class="card-title">提交人员：{{item.user_name}}</view>
       </view>
     </navigator>
 	<!-- 卡片与卡片的空白间隔 -->
@@ -86,7 +86,7 @@
     <span class="class_none">暂无数据</span>
   </view>
     <view class="cards {{disapproveList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{disapproveList}}" wx:for-item="item" wx:key="item">
-    <navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}'>
+    <navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&user_name={{item.user_name}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}'>
       <view class="column">
         <view class="card-desc">
           <view class="circle"></view><view class="circleLeft">编号：{{item.id}}</view>
@@ -94,7 +94,7 @@
         <view class="card-title">药剂名称：{{item.medicine_name}}</view>
         <view class="card-title">点位名称：{{item.position}}</view>
         <view class="card-title">提交时间：{{item.dosing_time}}</view>
-        <view class="card-title">提交人员：{{'张晓明'}}</view>
+        <view class="card-title">提交人员：{{item.user_name}}</view>
       </view>
     </navigator>
 	<!-- 卡片与卡片的空白间隔 -->
@@ -118,7 +118,7 @@
     <span class="class_none">暂无数据</span>
   </view>
   <view class="cards {{approveList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{approveList}}" wx:for-item="item" wx:key="item">
-    <navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_count={{item.medicine_count}}'>
+    <navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&user_name={{item.user_name}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_count={{item.medicine_count}}'>
       <view class="column">
         <view class="card-desc">
           <view class="circle"></view><view class="circleLeft">编号：{{item.id}}</view>
@@ -126,7 +126,7 @@
         <view class="card-title">药剂名称：{{item.medicine_name}}</view>
         <view class="card-title">点位名称：{{item.position}}</view>
         <view class="card-title">提交时间：{{item.dosing_time}}</view>
-        <view class="card-title">提交人员：{{'张晓明'}}</view>
+        <view class="card-title">提交人员：{{item.user_name}}</view>
       </view>
     </navigator>
 	<!-- 卡片与卡片的空白间隔 -->
@@ -155,7 +155,7 @@
     <span class="class_none">暂无数据</span>
   </view>
   <view class="cards {{totalList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{totalList}}" wx:for-item="item" wx:key="item">
-    <navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}'>
+    <navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&user_name={{item.user_name}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}'>
       <view class="column">
         <view class="card-desc">
           <view class="circle"></view><view class="circleLeft">编号：{{item.id}}</view>
@@ -164,7 +164,7 @@
         <view class="card-title" wx:if="{{item.is_dosage==1}}">进出水：{{'进水'}}</view>
         <view class="card-title" wx:if="{{item.is_dosage==0}}">进出水：{{'出水'}}</view>
         <view class="card-title">提交时间：{{item.created_at}}</view>
-        <view class="card-title">提交人员：{{'宋保国'}}</view>
+        <view class="card-title">提交人员：{{item.user_name}}</view>
       </view>
     </navigator>
 	<!-- 卡片与卡片的空白间隔 -->
@@ -189,7 +189,7 @@
     <span class="class_none">暂无数据</span>
   </view>
   <view class="cards {{pendingList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{pendingList}}" wx:for-item="item" wx:key="item">
-    <navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}'>
+    <navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&user_name={{item.user_name}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}'>
       <view class="column">
         <view class="card-desc">
           <view class="circle"></view><view class="circleLeft">编号：{{item.id}}</view>
@@ -198,7 +198,7 @@
         <view class="card-title" wx:if="{{item.is_dosage==1}}">进出水：{{'进水'}}</view>
         <view class="card-title" wx:if="{{item.is_dosage==0}}">进出水：{{'出水'}}</view>
         <view class="card-title">提交时间：{{item.created_at}}</view>
-        <view class="card-title">提交人员：{{'宋保国'}}</view>
+        <view class="card-title">提交人员：{{item.user_name}}</view>
       </view>
     </navigator>
 	<!-- 卡片与卡片的空白间隔 -->
@@ -223,7 +223,7 @@
     <span class="class_none">暂无数据</span>
   </view>
   <view class="cards  {{disapproveList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{disapproveList}}" wx:for-item="item" wx:key="item">
-    <navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}'>
+    <navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&user_name={{item.user_name}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}'>
       <view class="column">
         <view class="card-desc">
           <view class="circle"></view><view class="circleLeft">编号：{{item.id}}</view>
@@ -232,7 +232,7 @@
         <view class="card-title" wx:if="{{item.is_dosage==1}}">进出水：{{'进水'}}</view>
         <view class="card-title" wx:if="{{item.is_dosage==0}}">进出水：{{'出水'}}</view>
         <view class="card-title">提交时间：{{item.created_at}}</view>
-        <view class="card-title">提交人员：{{'宋保国'}}</view>
+        <view class="card-title">提交人员：{{item.user_name}}</view>
       </view>
     </navigator>
 	<!-- 卡片与卡片的空白间隔 -->
@@ -257,7 +257,7 @@
     <span class="class_none">暂无数据</span>
   </view>
     <view class="cards  {{approveList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{approveList}}" wx:for-item="item" wx:key="item">
-    <navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}'>
+    <navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&user_name={{item.user_name}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}'>
       <view class="column">
         <view class="card-desc">
           <view class="circle"></view><view class="circleLeft">编号：{{item.id}}</view>
@@ -266,7 +266,7 @@
         <view class="card-title" wx:if="{{item.is_dosage==1}}">进出水：{{'进水'}}</view>
         <view class="card-title" wx:if="{{item.is_dosage==0}}">进出水：{{'出水'}}</view>
         <view class="card-title">提交时间：{{item.created_at}}</view>
-        <view class="card-title">提交人员：{{'宋保国'}}</view>
+        <view class="card-title">提交人员：{{item.user_name}}</view>
       </view>
     </navigator>
 	<!-- 卡片与卡片的空白间隔 -->

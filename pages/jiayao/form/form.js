@@ -5,6 +5,7 @@ let app = getApp();
 Page({
   data: {
     "usr_id":"",
+    "name":"",
     "selectId":"",
     "position":"蓝创大厦1",
     "dosing_time":"2020-07-03 10:00:00",
@@ -141,7 +142,8 @@ Page({
   onLoad: function (options) {
     //options专门用于接受数据的
     var usr_id = wx.getStorageSync('usr_id');
-    this.setData({usr_id:usr_id})
+    var name = wx.getStorageSync('name');
+    this.setData({usr_id:usr_id,name:name})
     var params={
       "user_id":usr_id
     }

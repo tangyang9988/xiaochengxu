@@ -77,7 +77,7 @@
   <van-col span="17">
     <van-field
     disabled
-    value="{{'张晓明'}}"/>
+    value="{{name}}"/>
   </van-col>
 </van-row>
   <!-- <van-field

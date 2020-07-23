@@ -6,6 +6,7 @@ const app = getApp()
 Page({
   data: {
     id:"",
+    user_name:"",
     status:"",
     content:"",
     dosing_time:"",
@@ -104,6 +105,7 @@ Page({
     }
     that.setData({
       id: Number(options.id),
+      user_name:options.user_name,
       status: Number(options.status),
       content: options.content,
       dosing_time: options.dosing_time,

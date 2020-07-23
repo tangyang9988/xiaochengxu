@@ -31,7 +31,7 @@
 
   <!-- html -->
 <view class="cards" wx:for="{{List}}" wx:for-item="item" wx:key="item">
- <navigator class="nav" url='../edit/edit?id={{item.id}}&status={{item.status}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}&content={{item.reviews[0].content}}'>
+ <navigator class="nav" url='../edit/edit?id={{item.id}}&status={{item.status}}&dosing_time={{item.dosing_time}}&user_name={{item.user_name}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}&content={{item.reviews[0].content}}'>
 		<!-- 左侧图片 -->
 		<!-- <view class="card card-url">
 			<image src="{{item.img_src}}" mode="widthFix"></image>
@@ -47,51 +47,10 @@
       <view class="card-title">药剂名称：{{item.medicine_name}}</view>
       <view class="card-title">点位名称：{{item.position}}</view>
       <view class="card-title">提交时间：{{item.dosing_time}}</view>
-      <view class="card-title">提交人员：{{'张晓明'}}</view>
+      <view class="card-title">提交人员：{{item.user_name}}</view>
 
-			<!-- 下方浏览等数据 -->
-			<!-- <view class="card-bottom">
-				<view>
-					<image src="/images/watch.png"></image>
-					<text>1234</text>
-				</view>
-				<view>
-					<image src="/images/pinglun.png"></image>
-					<text>50</text>
-				</view>
-				<view>
-					<image src="/images/like.png"></image>
-					<text>670</text>
-				</view>
-			</view> -->
 		</view>
 	</navigator>
 	<!-- 卡片与卡片的空白间隔 -->
 	<view class="space"></view>
 </view>
-
-
-
-
-<!-- <view class="com_datalist" hidden="{{item.hidden}}">
-
-      <view class="com_dataone" bindtap="jumpPage" data-url="" data-id="" wx:for="{{item.grouplist}}" wx:for-index="subindex" wx:for-item="subitem" wx:key="{{subitem.id}}">
-        <view class="com_one_title">
-          <view class="com_status {{subitem.status == 3 ? 'com_status_off' : (subitem.status == 2 ? 'com_status_yellow' : (subitem.status == 0 ? 'com_status_on' : ''))}}"></view>{{subitem.pointName}}</view>
-        <view class="com_one_flex">
-          <view class="com_1">{{subitem.groupNumber}}</view>
-          <view class="com_2">浓度 <text class="statusdata {{subitem.status == 3 ? 'red': ''}}">{{subitem.concentration}}mg/m<text class="sup"></text></text></view>
-          <view class="com_3">
-            <text>风机</text>
-            <view class="com_status {{subitem.fan == 1 ? 'com_status_on' : ''}}"></view>
-          </view>
-          <view class="com_4">
-            <text>净化器</text>
-            <view class="com_status {{subitem.filter == 1 ? 'com_status_on' : ''}}"></view>
-          </view>
-        </view>
-        <view class="com_one_time">采集时间：{{subitem.time}}</view>
-      </view>
-    </view>
-
-  </view> -->

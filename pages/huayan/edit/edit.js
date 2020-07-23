@@ -6,6 +6,7 @@ Page({
   data:{
     id:"",
     usr_id:"",
+    user_name:"",
     role_id:"",
     status:"",
     is_dosage:"",
@@ -119,6 +120,7 @@ Page({
       this.setData({
         id: Number(options.id),
         usr_id: Number(usr_id),
+        user_name:options.user_name,
         role_id: role_id,
         status: Number(options.status),
         is_dosage:Number(options.is_dosage),

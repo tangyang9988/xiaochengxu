@@ -295,20 +295,32 @@ Page({
         var start_time = this.data.start_time
         var end_time = this.data.end_time
         var role_id = wx.getStorageSync('role_id')
+        var usr_id = wx.getStorageSync('usr_id');
         var company_id
         if(role_id == 2){
             company_id = wx.getStorageSync('company_id')
         }else if(role_id == 3){
             company_id = this.data.selectId
+            that.setData({"medicine_id":""})
         }
+        var param={
+            "user_id":usr_id
+        }
+        var that = this;
+        // http.Post('/app/storage/active/query', param, function (res) {
+        //     var storage =res.data.data;
+        //     if(storage.length==0){
+        //         debugger
+        //         that.setData({"medicine_id":""})
+        //     }
+        //   })
         //加载接口
         var params = {
-            "start_time": this.data.start_time,
-            "end_time": this.data.end_time,
+            "start_time": that.data.start_time,
+            "end_time": that.data.end_time,
             "company_id": company_id,
-            "medicine_id": this.data.medicine_id
+            "medicine_id": that.data.medicine_id
         };
-        var that = this;
         http.Post('/app/dosage_review/dosage/period', params, function (res) {
             var dosage_period = res.data.data.dosage_period
             var medicineList =[]

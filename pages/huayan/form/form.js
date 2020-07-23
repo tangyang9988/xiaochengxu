@@ -5,6 +5,7 @@ let app = getApp();
 Page({
   data:{
     is_in:1,
+    name:"",
     columns_name:"进水",
     show: false,
     columns:[ '进水','出水'],
@@ -114,6 +115,10 @@ Page({
     }else{
       this.setData({ph:event.detail})
     }
+  },
+  onLoad: function (options) {
+    var name = wx.getStorageSync('name');
+    this.setData({name:name})
   },
   submit:function(e){
     var usr_id = wx.getStorageSync('usr_id');

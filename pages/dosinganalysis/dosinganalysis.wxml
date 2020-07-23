@@ -98,7 +98,7 @@
    <image wx:else src="{{canvsLine}}" style="width: {{windowWidth}}px; height: 180px;" />
 </view>
 <view class="">
-  <van-cell title="日销消耗量数值" value="(kg)"></van-cell>
+  <van-cell title="日消耗量数值" value="(kg)"></van-cell>
   <van-row>
       <van-col span="2">
       <view class="circleIn"></view>

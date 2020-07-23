@@ -71,7 +71,7 @@
   <van-field
     disabled
     v-model="username"
-    value="化验员"
+    value="{{name}}"
     label="化验员"
     border="{{ true }}"/>
   </van-cell-group>
@@ -148,7 +148,7 @@
   <van-cell-group>
   <van-field
     v-model="username"
-    value="化验员"
+    value="{{name}}"
     label="化验员"
     border="{{ true }}"/>
   </van-cell-group>
@@ -228,7 +228,7 @@
     <van-cell-group>
     <van-field
       disabled
-      value="张晓明"
+      value="{{user_name}}"
       label="化验员"
       placeholder="请输入加药员"
       border="{{ true }}"/>
@@ -307,7 +307,7 @@
   </van-cell-group>
     <van-cell-group>
     <van-field
-      value="张晓明"
+      value="{{user_name}}"
       label="化验员"
       placeholder="请输入加药员"
       border="{{ true }}"/>

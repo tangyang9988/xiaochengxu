@@ -5,6 +5,7 @@ var http = require("../../utils/httpUtil.js")
 Page({
   data: {
     "user_id ":"",
+    "user_name":"",
     "role_id ":"",
     "dosage_id":"",
     "dosing_time":"",
@@ -106,20 +107,9 @@ Page({
     var params={
       "user_id":usr_id
     }
-    // if(role_id==3){
-    //   let  that =this;
-    //   //http 请求是异步的，必须重新赋值this
-    //   http.Post('/app/storage/query', params, function (res) {
-    //     var storage =res.data.data;
-    //     var medicineList=[];
-    //     for(var i=0;i<storage.length;i++){
-    //       medicineList.push({key: storage[i].id,text: storage[i].medicine_name});
-    //     }
-    //     that.setData({"option":medicineList})
-    //   })
-    // }
     this.setData({
       user_id:usr_id,
+      user_name:options.user_name,
       role_id:role_id,
       dosage_id: Number(options.id),
       dosing_time: options.dosing_time,
