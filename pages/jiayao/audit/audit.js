@@ -7,16 +7,19 @@ Page({
     //全局变量
      List: [],
       searchValue:"",
-      userId:1,
+      userId:"",
+      name:"",
+
     //加载样式是否显示
      loading: true
   },
   onLoad: function (option) {
-    
+    var name = wx.getStorageSync('name');
     var that = this//很重要，一定要写
     var usr_id = wx.getStorageSync('usr_id');
     that.setData({//循环完后，再对list进行赋值
       userId: usr_id,
+      name:name,
       loading: false
     })
     var params={

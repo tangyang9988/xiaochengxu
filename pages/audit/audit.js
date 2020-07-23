@@ -81,6 +81,8 @@ Page({
     })
   },
   onLoad: function (options) {
+    var role_id = wx.getStorageSync('role_id');
+    this.setData({role_id:role_id})
     var selectId = options.selectId
       this.setData({selectId:selectId})
       this.onWater(selectId)

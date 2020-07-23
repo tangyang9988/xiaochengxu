@@ -5,7 +5,8 @@
   </van-col>
   <van-col span="16">
     <van-field
-    value="{{medicine_name}}"/>
+    value="{{medicine_name}}"
+    bind:change="onChange1"/>
   </van-col>
 </van-row>
 <van-row>

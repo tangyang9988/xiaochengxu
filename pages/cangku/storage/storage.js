@@ -10,8 +10,11 @@ Page({
     selectName:"",
   },
   onLoad: function (options) {
+    if(options){
     var selectId =Number(options.selectId)
     var selectName =options.selectName
+    }
+
     this.setData({selectId:selectId,selectName:selectName})
     var usr_id = wx.getStorageSync('usr_id');
     var role_id = wx.getStorageSync('role_id');
@@ -30,7 +33,7 @@ Page({
         "company_id":wx.getStorageSync('company_id')
       }
     }
-    http.Post('/app/storage/company/query', params, function (res) {
+    http.Post('/app/storage/company/all/query', params, function (res) {
         var datas=res.data;          //res.data就是从后台接收到的值
         console.log(datas)
         that.setData({               //循环完后，再对list进行赋值
