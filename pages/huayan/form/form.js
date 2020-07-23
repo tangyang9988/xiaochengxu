@@ -158,7 +158,6 @@ Page({
 
   },
   cancle: function(){
-    debugger
     this.setData({
       cod:"",
       bod5:"",

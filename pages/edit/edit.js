@@ -130,11 +130,11 @@ Page({
     })
   },
   // 返回自动刷新
-  changeParentData: function () {
+  changeParentData() {
     var pages = getCurrentPages();//当前页面栈
     if (pages.length > 1) {
       var beforePage = pages[pages.length - 2];//获取上一个页面实例对象
-      beforePage.onLoad();//触发父页面中的方法
+      beforePage.onWater();//触发父页面中的方法
     }
     wx.navigateBack({
       delta: 1
@@ -159,7 +159,6 @@ agree:function(){
             const { data } = res
             if (data.code === 200) {
               wx.showToast({ title: '已同意', icon :'success',duration: 2000 })
-              that.clearData()
             } else  wx.showToast({ title: '同意失败',icon: 'none' })
           })
           that.changeParentData()

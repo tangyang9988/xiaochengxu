@@ -43,22 +43,22 @@
   <van-row>
     <van-col span="14">
         <canvas wx:if="{{!transCanvs}}"  canvas-id="ringCanvas"  class="ring" bindtouchstart="touchHandler"></canvas>
-        <image wx:else src="{{canvsPie}}" style="width: 200px; height: 150px;" />
+        <image wx:else src="{{canvsPie}}" />
     </van-col>
-					<van-col span="10">
-						<block wx:for="{{echartMedicineList}}">
-							<view style="width: 5px;height: 5px; "></view>
-							<van-row>
-								<van-col span="3">
-									<view class="circle" style=" background-color: {{item.color}}; margin-top:7px;"></view>
-								</van-col>
-								<van-col span="21">
-									<p style="font-size:10px"> {{item.name}}</p>
-								</van-col>
-								<!-- <van-col span="8">span: 8</van-col> -->
-							</van-row>
-						</block>
-					</van-col>
+    <van-col span="10">
+      <block wx:for="{{echartMedicineList}}">
+        <view style="width: 5px;height: 5px; "></view>
+        <van-row>
+          <van-col span="3">
+            <view class="circle" style=" background-color: {{item.color}}; margin-top:7px;"></view>
+          </van-col>
+          <van-col span="21">
+            <p style="font-size:10px"> {{item.name}}</p>
+          </van-col>
+          <!-- <van-col span="8">span: 8</van-col> -->
+        </van-row>
+      </block>
+    </van-col>
   </van-row>
     <!-- <view>调用stopAnimation终止动画，并监听渲染完成事件</view>
     <button type="primary" bindtap="updateData" style="margin-top:30rpx">更新title</button> -->

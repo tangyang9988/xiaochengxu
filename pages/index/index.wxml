@@ -172,6 +172,17 @@
   </view> -->
   <!-- 运维 -->
   <view class="datalist" wx:if="{{role_id==2}}">
+    <navigator url='../information/information'>
+      <view class="data_one bg_8">
+        <view class="data_data">
+          <view class="data_ico">
+           <image class="yao" src='/pages/images/-shuju.png'></image>
+          </view>
+          <view class="data_num">{{isHandled}}</view>
+        </view>
+        <view class="data_title">信息舱</view>
+      </view>
+     </navigator>
     <navigator url='../audit/audit?usr_id={{usr_id}}'>
       <view class="data_one bg_2">
         <view class="data_data">

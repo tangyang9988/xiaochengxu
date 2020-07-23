@@ -20,13 +20,14 @@ Page({
     this.getSystemInfo()
     var that = this       //很重要，一定要写
     var params;
-    if(role_id ==2){
-      params={
-        "company_id":wx.getStorageSync('company_id')
-      }
-    }else if(role_id ==3){
+    if(role_id ==3){
       params={
         "company_id":that.data.selectId
+      }
+
+    }else{
+      params={
+        "company_id":wx.getStorageSync('company_id')
       }
     }
     http.Post('/app/storage/company/query', params, function (res) {

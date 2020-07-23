@@ -18,21 +18,9 @@
 <!-- 加药 -->
 <van-tabs animated active="all" wx:if="{{radio=='1'}}" color="#2C65F7" >
   <van-tab title="全部" name="all" title-style="color:#2C65F7;font-size:500">
-    <!-- <block v-if="" class="" wx:for="{{totalList}}">
-    <navigator url='../edit/edit?usr_id={{usr_id}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}'>
-      <view hover-class='hover-class' id="{{item.id}}" style='height:90px;border-bottom: 1px solid #DBDBDB'>
-        <view style='display:flex; flex-direction:column;'>
-         <label>编号：{{item.id}}</label>
-         <label>药剂名称：{{item.medicine_id}}</label>
-         <label>点位名称：{{item.position}}</label>
-         <label>提交时间：{{item.dosing_time}}</label>
-        </view>
-      </view>
-    </navigator>
-  </block> -->
-   <view class="data_none {{totalList.length === 0 ? 'show' : 'hidden'}}" >
+   <!-- <view class="data_none {{totalList.length === 0 ? 'show' : 'hidden'}}" >
     <span class="class_none">暂无数据</span>
-  </view>
+  </view> -->
   <view class="cards {{totalList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{totalList}}" wx:for-item="item" wx:key="item">
   <navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}'>
       <view class="column">

@@ -16,7 +16,7 @@
   margin-left:10% 10%;
 }
 .ring {
-  margin-left: -8%;
+  margin: 20% 4%;
   width: 200px;
   height: 150px;
 }

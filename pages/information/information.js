@@ -38,18 +38,25 @@ Page({
   },
 
   onLoad: function (options) {
-    // var usr_id = Number(options.usr_id)
+    var role_id = wx.getStorageSync('role_id');
+    var company_id = wx.getStorageSync('company_id');
     var that = this//很重要，一定要写
     var informationStore = {}
     var avatar_url = wx.getStorageSync('avatar_url');
-    // this.setData({ usr_id: usr_id })
     that.setData({avatar_url:avatar_url})
     var selectId =options.selectId
     var selectName =options.selectName
     that.setData({selectId:selectId,selectName:selectName})
-      var params = {
+    var params;
+    if(role_id == 2){
+      params = {
+        "company_id": Number(company_id)
+      }
+    }else if(role_id == 3){
+      params = {
         "company_id": Number(that.data.selectId)
       }
+    }
       //获取信息仓数据
       http.Post('/app/dosage_review/today', params, function (res) {
         var storage = res.data.data;

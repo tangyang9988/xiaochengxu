@@ -37,7 +37,7 @@
     "pages/huayan/audit/audit",
     "pages/huayan/edit/edit",
   
-    "pages/jiayao/form/form",
+    "pages/jiayao/form/form", 
     "pages/jiayao/audit/audit",
     "pages/jiayao/edit/edit",
     "pages/jiayao/waterReport/waterReport",
@@ -51,7 +51,8 @@
 
     "pages/wateranalysis/wateranalysis",
     "pages/dosinganalysis/dosinganalysis",
-    "pages/user/userList/userList"
+    "pages/user/userList/userList",
+    "pages/information/information"
   ],
   "window":{
     "backgroundTextStyle":"light",

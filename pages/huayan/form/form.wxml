@@ -22,7 +22,7 @@
 <van-cell-group>
   <van-field
     type="digit"
-    value="{{bo5}}"
+    value="{{bod5}}"
     label="BOD5"
     placeholder="请输入BOD5(mg/L)"
     border="{{ true }}"

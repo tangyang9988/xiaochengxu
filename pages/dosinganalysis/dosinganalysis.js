@@ -324,6 +324,9 @@ Page({
                     case "PAC": color = '#669AFF'; break;
                     case "葡萄糖": color = '#FF9100'; break;
                     case "NaCO3": color = '#FFFF03'; break;
+                    case "聚合硫酸铁": color = '#DCC4F3'; break;
+                    case "硫酸亚铁": color = '#CFF1F0'; break;
+                    case "次氯酸钠": color = '#FFB8AA'; break;
                   }
                 medicineList.push({text: dosage_period[i].medicine_name,value: dosage_period[i].id,color:color,consume_percentage:dosage_period[i].consume_percentage,medicine_count:dosage_period[i].consume});
             }
@@ -347,6 +350,9 @@ Page({
                 case "PAC": storageMedicine[j].color = '#669AFF'; break;
                 case "葡萄糖": storageMedicine[j].color = '#FF9100'; break;
                 case "NaCO3": storageMedicine[j].color = '#FFFF03'; break;
+                case "聚合硫酸铁": storageMedicine[j].color = '#DCC4F3'; break;
+                case "硫酸亚铁": storageMedicine[j].color = '#CFF1F0'; break;
+                case "次氯酸钠": storageMedicine[j].color = '#FFB8AA'; break;
               }
             }
             if (storageMedicine.length == 0) {

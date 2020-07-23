@@ -23,6 +23,23 @@ Page({
                 text: '总磷',
                 value: 'phosphorus'
             }
+            ,
+            {
+                text: '总氮',
+                value: 'nitrogen'
+            },
+            {
+                text: 'SS',
+                value: 'ss'
+            },
+            {
+                text: '色度',
+                value: 'chromaticity'
+            },
+            {
+                text: 'PH',
+                value: 'ph'
+            }
         ],
         option1: "COD",
         detection_name: 'cod',
@@ -205,7 +222,7 @@ Page({
             },
             extra: {
                 column: {
-                    width: 15
+                    width: 10
                 }
             },
             // dataPointShape: true, //是否在图标上显示数据点标志
@@ -259,7 +276,7 @@ Page({
                 format: function (val) {
                     return val.toFixed(2);
                 },
-                max: 20,
+                max: 3,
                 min: 0
             },
             width: this.data.windowWidth,

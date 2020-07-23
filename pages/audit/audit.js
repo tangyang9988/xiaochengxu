@@ -38,8 +38,6 @@ Page({
           "user_id":usr_id,
           "company_id":Number(selectId)
         }
-      
-
       url = "/app/maotai/dosage/company/query";
     }
     http.Post(url, params, function (res) {
@@ -83,11 +81,8 @@ Page({
     })
   },
   onLoad: function (options) {
-    debugger
     var selectId = options.selectId
       this.setData({selectId:selectId})
       this.onWater(selectId)
-    
-    
   }
 })
