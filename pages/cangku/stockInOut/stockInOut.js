@@ -68,7 +68,7 @@ Page({
   storageLog(){
     var that = this //很重要，一定要写
     //var valueStrArr=that.data.searchValue.split("")
-    var params={ "company_id": that.data.company_id,"medicine_name":valueStrArr}
+    var params={ "company_id": that.data.company_id,"medicine_name":that.data.searchValue}
     http.Post('/app/storage/log/filter/query', params, function (res) {
         var resData =res.data.data
         console.log(resData)
