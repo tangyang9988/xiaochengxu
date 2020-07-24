@@ -301,7 +301,7 @@ Page({
             company_id = wx.getStorageSync('company_id')
         }else if(role_id == 3){
             company_id = this.data.selectId
-            that.setData({"medicine_id":""})
+            that.setData({"medicine_id":1594290924826})
         }
         var param={
             "user_id":usr_id
