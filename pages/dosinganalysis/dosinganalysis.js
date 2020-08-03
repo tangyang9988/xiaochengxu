@@ -7,106 +7,147 @@ var yuelineChart = null;
 var columnCanvas = null;
 Page({
     data: {
-        option: [{
-            },
-        ],
-        medicine_name: "片碱",
-        medicine_id:1594290924826,
-        medicine_count:"",
-        color:"",
-        consume_percentage:"",
+        option: [], //药品列表
+        medicineList: [], // 药品所有显示信息列表
+        medicine_name: "",
+        medicine_id: "",
+        medicine_count: "",
+        color: "",
+        consume_percentage: "",
         currentDate: new Date().getTime(),
-        start_time:"",
-        end_time:"",
-        showStart:false,
-        showEnd:false,
-        windowWidth:'',
-        "dosage_period":"",
+        start_time: "",
+        end_time: "",
+        showStart: false,
+        showEnd: false,
+        windowWidth: '',
+        "dosage_period": "",
         "categories": [],
         "periodData": [],
         echartMedicineList: [],
-        "one_dosage_period_max":"",
-        "one_dosage_period_min":"",
-        "relative_ration":"",
-        "relative_ration_max_str":"",
-        "relative_ration_min_str":"",
-        "canvsPie":"",
-        "canvsLine":"",
-        "canvsHistogram":"",
-        "transCanvs":false,
-         selectId:"",
-         selectName:"",
+        "one_dosage_period_max": "",
+        "one_dosage_period_min": "",
+        "relative_ration": "",
+        "relative_ration_max_str": "",
+        "relative_ration_min_str": "",
+        "canvsPie": "",
+        "canvsLine": "",
+        "canvsHistogram": "",
+        "transCanvs": false,
+        selectId: "",
+        selectName: "",
     },
-    onOpen(){
-        console.log("true")
-        this.setData({transCanvs:true})
+    onOpen() {
+        this.setData({
+            transCanvs: true
+        })
     },
-    onCloseDropdown(){
-        this.setData({transCanvs:false})
+    onCloseDropdown() {
+        this.setData({
+            transCanvs: false
+        })
         this.onGetInfo()
     },
-    onChange(event){
-        this.setData({medicine_id:Number(event.detail)})
-        this.getNameAndColor(this.data.medicine_id)
+    onChange(event) {
+        this.setData({
+            medicine_id: Number(event.detail)
+        })
+        // this.getNameAndColor(this.data.medicine_id)
         this.onGetInfo()
     },
     showStartPop() {
-        this.setData({ showStart: true, transCanvs:true});
-      },
-      showEndPop() {
-        this.setData({ showEnd: true,transCanvs:true });
-      },
-      // 开始时间
-      confirm(event) {
+        this.setData({
+            showStart: true,
+            transCanvs: true
+        });
+    },
+    showEndPop() {
+        this.setData({
+            showEnd: true,
+            transCanvs: true
+        });
+    },
+    // 开始时间
+    confirm(event) {
         var date = this.formatDate(event.detail)
-        this.setData({start_time: date});
-        this.setData({ showStart: false,transCanvs:false });
+        this.setData({
+            start_time: date
+        });
+        this.setData({
+            showStart: false,
+            transCanvs: false
+        });
 
-        const { end_time } = this.data
-        if ( this.validStr(end_time) ) {
-            var str = this.companyDateTime(date,end_time)
-            if ( this.validStr(str)) {
+        const {
+            end_time
+        } = this.data
+        if (this.validStr(end_time)) {
+            var str = this.companyDateTime(date, end_time)
+            if (this.validStr(str)) {
                 wx.showToast({
-                  title: str, icon : 'none', duration: 2000,
-                })
-            }  else this.onGetInfo()
-        }
-      },
-      onClose() {
-        this.setData({ showStart: false });
-      },
-      // 结束时间
-      onConfirm(event) {
-        var date = this.formatDate(event.detail)
-        this.setData({end_time: date});
-        this.setData({ showEnd: false,transCanvs:false });
-
-        const { start_time } = this.data
-        if ( this.validStr(start_time) ) {
-            var str = this.companyDateTime(start_time,date)
-            if ( this.validStr(str)) {
-                wx.showToast({
-                  title: str, icon : 'none', duration: 2000,
+                    title: str,
+                    icon: 'none',
+                    duration: 2000,
                 })
             } else this.onGetInfo()
         }
-      },
-      onCancel() {
-        this.setData({ showEnd: false,transCanvs:false });
-      },
-      getNameAndColor(medicine_id){
+    },
+    onClose() {
+        this.setData({
+            showStart: false
+        });
+    },
+    // 结束时间
+    onConfirm(event) {
+        var date = this.formatDate(event.detail)
+        this.setData({
+            end_time: date
+        });
+        this.setData({
+            showEnd: false,
+            transCanvs: false
+        });
+
+        const {
+            start_time
+        } = this.data
+        if (this.validStr(start_time)) {
+            var str = this.companyDateTime(start_time, date)
+            if (this.validStr(str)) {
+                wx.showToast({
+                    title: str,
+                    icon: 'none',
+                    duration: 2000,
+                })
+            } else this.onGetInfo()
+        }
+    },
+    onCancel() {
+        this.setData({
+            showEnd: false,
+            transCanvs: false
+        });
+    },
+    getNameAndColor(medicine_id) {
         var option = this.data.option
         for (var i = 0; i < option.length; i++) {
-            if(medicine_id==option[i].value){
-                this.setData({"medicine_name":option[i].text}) 
-                this.setData({"medicine_count":option[i].medicine_count}) 
-                this.setData({"color":option[i].color}) 
-                this.setData({"consume_percentage":option[i].consume_percentage}) 
+            if (medicine_id == option[i].value) {
+                this.setData({
+                    "medicine_name": option[i].text
+                })
+                this.setData({
+                    "medicine_count": option[i].medicine_count
+                })
+                this.setData({
+                    "color": option[i].color
+                })
+                this.setData({
+                    "consume_percentage": option[i].consume_percentage
+                })
             }
-      }
+        }
     },
-      //时间戳转换方法    date:时间戳数字
-     formatDate(date) {
+    //时间戳转换方法    date:时间戳数字
+    formatDate(date) {
         var date = new Date(date);
         var YY = date.getFullYear() + '-';
         var MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
@@ -116,7 +157,7 @@ Page({
         // var ss = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
         // return YY + MM + DD +" "+hh + mm + ss;
         return YY + MM + DD;
-     },
+    },
     // 环形图
     touchHandler: function (e) {
         console.log(ringChart.getCurrentDataIndex(e));
@@ -134,12 +175,12 @@ Page({
     onPie: function () {
         var windowWidth = 320;
         try {
-          var res = wx.getSystemInfoSync();
-          windowWidth = res.windowWidth;
+            var res = wx.getSystemInfoSync();
+            windowWidth = res.windowWidth;
         } catch (e) {
-          console.error('getSystemInfoSync failed!');
+            console.error('getSystemInfoSync failed!');
         }
-        var windowWdithHalf = windowWidth / 5*2;
+        var windowWdithHalf = windowWidth / 5 * 2;
         ringChart = new wxCharts({
             animation: true,
             canvasId: 'ringCanvas',
@@ -169,15 +210,14 @@ Page({
             background: '#f5f5f5',
             padding: 0
         });
-        ringChart.addEventListener('renderComplete', () => {
-        });
+        ringChart.addEventListener('renderComplete', () => {});
         setTimeout(() => {
             ringChart.stopAnimation();
         }, 500);
     },
     // 柱状图
     columnShow: function (type, c1, c2) {
-        
+
         // let column = {
         //     canvasId: 'columnGraph', // canvas-id
         //     type: 'column', // 图表类型，可选值为pie, line, column, area, ring
@@ -291,29 +331,18 @@ Page({
             }
         });
     },
-    onGetInfo(){
+    onGetInfo() {
         var start_time = this.data.start_time
         var end_time = this.data.end_time
         var role_id = wx.getStorageSync('role_id')
         var usr_id = wx.getStorageSync('usr_id');
-        var company_id
-        if(role_id == 2){
+        var company_id;
+        if (role_id == 2) {
             company_id = wx.getStorageSync('company_id')
-        }else if(role_id == 3){
+        } else if (role_id == 3) {
             company_id = this.data.selectId
-            this.setData({"medicine_id":1594290924826})
         }
-        var param={
-            "user_id":usr_id
-        }
-        var that = this;
-        // http.Post('/app/storage/active/query', param, function (res) {
-        //     var storage =res.data.data;
-        //     if(storage.length==0){
-        //         debugger
-        //         that.setData({"medicine_id":""})
-        //     }
-        //   })
+        var that=this;
         //加载接口
         var params = {
             "start_time": that.data.start_time,
@@ -323,61 +352,116 @@ Page({
         };
         http.Post('/app/dosage_review/dosage/period', params, function (res) {
             var dosage_period = res.data.data.dosage_period
-            var medicineList =[]
+            var medicineList = []
             var color;
             for (var i = 0; i < dosage_period.length; i++) {
-                // that.setData({medicine_id:Number(dosage_period[0].id)})
-                // that.setData({medicine_name:dosage_period[0].medicine_name})
-                switch (dosage_period[i].medicine_name) {
-                    case "活性炭": color = '#F8C322'; break;
-                    case "PAM(阳离子)": color = '#5553CE'; break;
-                    case "PAM(阴离子)": color = '#F65050'; break;
-                    case "片碱": color = '#64C676'; break;
-                    case "PAC": color = '#669AFF'; break;
-                    case "葡萄糖": color = '#FF9100'; break;
-                    case "NaCO3": color = '#FFFF03'; break;
-                    case "聚合硫酸铁": color = '#DCC4F3'; break;
-                    case "硫酸亚铁": color = '#CFF1F0'; break;
-                    case "次氯酸钠": color = '#FFB8AA'; break;
-                  }
-                medicineList.push({text: dosage_period[i].medicine_name,value: dosage_period[i].id,color:color,consume_percentage:dosage_period[i].consume_percentage,medicine_count:dosage_period[i].consume});
+                if(that.data.medicine_id== dosage_period[i].id){
+                    var medicine_name =dosage_period[i].medicine_name
+                    switch (medicine_name) {
+                        case "活性炭":
+                            color = '#F8C322';
+                            break;
+                        case "PAM(阳离子)":
+                            color = '#5553CE';
+                            break;
+                        case "PAM(阴离子)":
+                            color = '#F65050';
+                            break;
+                        case "片碱":
+                            color = '#64C676';
+                            break;
+                        case "PAC":
+                            color = '#669AFF';
+                            break;
+                        case "葡萄糖":
+                            color = '#FF9100';
+                            break;
+                        case "NaCO3":
+                            color = '#FFFF03';
+                            break;
+                        case "聚合硫酸铁":
+                            color = '#DCC4F3';
+                            break;
+                        case "硫酸亚铁":
+                            color = '#CFF1F0';
+                            break;
+                        case "次氯酸钠":
+                            color = '#FFB8AA';
+                            break;
+                    }
+                    that.setData({
+                        medicine_name:dosage_period[i].medicine_name,
+                        color: color,
+                        consume_percentage: dosage_period[i].consume_percentage,
+                        medicine_count: dosage_period[i].consume
+                    })
+                }
+                // medicineList.push({
+                //     text: dosage_period[i].medicine_name,
+                //     value: dosage_period[i].id,
+                //     color: color,
+                //     consume_percentage: dosage_period[i].consume_percentage,
+                //     medicine_count: dosage_period[i].consume
+                // });
+                // that.setData({medicine_id:dosage_period[0].id})
             }
-            that.setData({"option":medicineList})
+            // that.setData({
+            //     "option": medicineList
+            // })
             var storageMedicine = [];
             var j = 0;
             var len = 0;
-        
             for (j = 0, len = dosage_period.length; j < len; j++) {
-              storageMedicine.push({
-                name: dosage_period[j].medicine_name,
-                data: dosage_period[j].consume,
-                stroke: false,
-                color: '#64C676'
-              });
-              switch (dosage_period[j].medicine_name) {
-                case "活性炭": storageMedicine[j].color = '#F8C322'; break;
-                case "PAM(阳离子)": storageMedicine[j].color = '#5553CE'; break;
-                case "PAM(阴离子)": storageMedicine[j].color = '#F65050'; break;
-                case "片碱": storageMedicine[j].color = '#64C676'; break;
-                case "PAC": storageMedicine[j].color = '#669AFF'; break;
-                case "葡萄糖": storageMedicine[j].color = '#FF9100'; break;
-                case "NaCO3": storageMedicine[j].color = '#FFFF03'; break;
-                case "聚合硫酸铁": storageMedicine[j].color = '#DCC4F3'; break;
-                case "硫酸亚铁": storageMedicine[j].color = '#CFF1F0'; break;
-                case "次氯酸钠": storageMedicine[j].color = '#FFB8AA'; break;
-              }
+                storageMedicine.push({
+                    name: dosage_period[j].medicine_name,
+                    data: dosage_period[j].consume,
+                    stroke: false,
+                    color: '#64C676'
+                });
+                switch (dosage_period[j].medicine_name) {
+                    case "活性炭":
+                        storageMedicine[j].color = '#F8C322';
+                        break;
+                    case "PAM(阳离子)":
+                        storageMedicine[j].color = '#5553CE';
+                        break;
+                    case "PAM(阴离子)":
+                        storageMedicine[j].color = '#F65050';
+                        break;
+                    case "片碱":
+                        storageMedicine[j].color = '#64C676';
+                        break;
+                    case "PAC":
+                        storageMedicine[j].color = '#669AFF';
+                        break;
+                    case "葡萄糖":
+                        storageMedicine[j].color = '#FF9100';
+                        break;
+                    case "NaCO3":
+                        storageMedicine[j].color = '#FFFF03';
+                        break;
+                    case "聚合硫酸铁":
+                        storageMedicine[j].color = '#DCC4F3';
+                        break;
+                    case "硫酸亚铁":
+                        storageMedicine[j].color = '#CFF1F0';
+                        break;
+                    case "次氯酸钠":
+                        storageMedicine[j].color = '#FFB8AA';
+                        break;
+                }
             }
             if (storageMedicine.length == 0) {
                 //没有数据赋值默认值，防止程序崩溃
                 storageMedicine.push({
-                  name: "",
-                  data: 0,
-                  stroke: false,
-                  color: '#64C676'
+                    name: "",
+                    data: 0,
+                    stroke: false,
+                    color: '#64C676'
                 });
-              }
+            }
             that.setData({
-              echartMedicineList: storageMedicine
+                echartMedicineList: storageMedicine
             })
             that.setData({
                 "categories": res.data.data.x_date
@@ -400,57 +484,90 @@ Page({
             that.setData({
                 "relative_ration_min_str": res.data.data.relative_ration_min_str
             })
-            that.getNameAndColor(that.data.medicine_id)
+            // that.getNameAndColor(that.data.medicine_id)
             that.onPie();
             that.columnShow();
             that.getMothElectro();
         })
     },
     onLoad: function (options) {
-        var selectId =Number(options.selectId)
-        var selectName =options.selectName
-        this.setData({selectId:selectId,selectName:selectName})
-       this.setData({
-        start_time:this.getStartDate(),
-        end_time:this.dateFormat(new Date())
-       })
-       this.getSystemInfo()
-       this.onGetInfo()
-     
-       this.setCanvsPieImage()
-       this.setCanvsLineImage()
-       this.setCanvsHistogramImage()
+        var selectId = Number(options.selectId)
+        var selectName = options.selectName
+        this.setData({
+            selectId: selectId,
+            selectName: selectName
+        })
+        this.setData({
+            start_time: this.getStartDate(),
+            end_time: this.dateFormat(new Date())
+        })
+        var company_id;
+        var role_id = wx.getStorageSync('role_id')
+        if (role_id == 2) {
+            company_id = wx.getStorageSync('company_id')
+        } else if (role_id == 3) {
+            company_id = this.data.selectId
+        }
+        var param = {
+            "company_id": company_id
+        }
+        var that = this;
+        http.Post('/app/storage/company/query', param, function (res) {
+            var storage = res.data.data;
+            var storageList =[]
+            if (storage.length > 0) {
+                for (var i = 0; i < storage.length; i++) {
+                    storageList.push({
+                        text: storage[i].medicine_name,
+                        value: storage[i].id
+                    });
+                    that.setData({
+                        "medicine_id": storage[0].id
+                    })
+                }
+                that.setData({
+                    "option": storageList
+                })
+                console.log(that.data.medicine_id)
+                that.getSystemInfo()
+                that.onGetInfo()
+        
+                that.setCanvsPieImage()
+                that.setCanvsLineImage()
+                that.setCanvsHistogramImage()
+            }
+        })
     },
-    getSystemInfo(){
+    getSystemInfo() {
         wx.getSystemInfo({
             success: (result) => {
-              this.setData({
-                  windowWidth:result.windowWidth-40
-              })
+                this.setData({
+                    windowWidth: result.windowWidth - 40
+                })
             },
-          })
+        })
     },
-    validStr(str){
-        if( str === '' || str === null || typeof(str) === undefined) return false
+    validStr(str) {
+        if (str === '' || str === null) return false
         else return true
     },
-    companyDateTime(start_time,end_time){
+    companyDateTime(start_time, end_time) {
         var str = ''
-         //日期格式化
-         var start_date = new Date(start_time.replace(/-/g, "/"))
-         var end_date = new Date(end_time.replace(/-/g, "/"))
-         //转成毫秒数
-         var start = start_date.getTime()
-         var end = end_date.getTime()
-         var ms = end_date.getTime() - start_date.getTime()
-          //转换成天数
-         var day = parseInt(ms / (1000 * 60 * 60 * 24))
-        if (start_date > end_date) str =  '开始时间不得大于结束时间'
+        //日期格式化
+        var start_date = new Date(start_time.replace(/-/g, "/"))
+        var end_date = new Date(end_time.replace(/-/g, "/"))
+        //转成毫秒数
+        var start = start_date.getTime()
+        var end = end_date.getTime()
+        var ms = end_date.getTime() - start_date.getTime()
+        //转换成天数
+        var day = parseInt(ms / (1000 * 60 * 60 * 24))
+        if (start_date > end_date) str = '开始时间不得大于结束时间'
         else if (day < 0 || day > 30) str = '时间跨度不得大于一月'
         else str = ''
         return str
     },
-    getStartDate(){
+    getStartDate() {
         var span = new Date().getTime();
         var start = span - (1000 * 60 * 60 * 24 * 6)
         return this.formatDate(new Date(start))
@@ -463,50 +580,54 @@ Page({
         const day = dateFormat.getDate() + '';
         return year + month + day;
     },
-    setCanvsPieImage(){
+    setCanvsPieImage() {
         var that = this
         setTimeout(() => {
             wx.canvasToTempFilePath({
                 canvasId: 'ringCanvas',
-                success: function(res) {
+                success: function (res) {
                     console.log("图片")
                     console.log(res)
-                  that.setData({ canvsPie: res.tempFilePath});
+                    that.setData({
+                        canvsPie: res.tempFilePath
+                    });
                 },
-                fail:function(res){
-                }
-              },this)
+                fail: function (res) {}
+            }, this)
         }, 2000);
     },
-    setCanvsLineImage(){
+    setCanvsLineImage() {
         var that = this
         setTimeout(() => {
             wx.canvasToTempFilePath({
                 canvasId: 'yueEle',
-                success: function(res) {
+                success: function (res) {
                     console.log("图片")
                     console.log(res)
-                //   that.setData({ canvsLine: res.tempFilePath},()=>{console.log(that.data.canvsLine)});
-                  that.setData({ canvsLine: res.tempFilePath});
+                    //   that.setData({ canvsLine: res.tempFilePath},()=>{console.log(that.data.canvsLine)});
+                    that.setData({
+                        canvsLine: res.tempFilePath
+                    });
                 },
-                fail:function(res){
-                }
-              },this)
+                fail: function (res) {}
+            }, this)
         }, 2000);
     },
-    setCanvsHistogramImage(){
+    setCanvsHistogramImage() {
         var that = this
         setTimeout(() => {
             wx.canvasToTempFilePath({
                 canvasId: 'columnCanvas',
-                success: function(res) {
-                //   that.setData({ canvsHistogram: res.tempFilePath},()=>{console.log(that.data.canvsLine)});
-                  that.setData({ canvsHistogram: res.tempFilePath});
+                success: function (res) {
+                    //   that.setData({ canvsHistogram: res.tempFilePath},()=>{console.log(that.data.canvsLine)});
+                    that.setData({
+                        canvsHistogram: res.tempFilePath
+                    });
                 },
-                fail:function(res){
+                fail: function (res) {
                     console.log(res)
                 }
-              },this)
+            }, this)
         }, 2000);
     }
 })

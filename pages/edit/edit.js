@@ -21,28 +21,23 @@ Page({
     "currentDate": new Date().getTime(),
     "columns": ['无锡市点位', '苏州市点位', '上海点位'],
     // "option":[{key:159332570586,text:'片碱'},{key:159280864452,text:'PAM(阴离子)'},{key:159280152053,text:'PAM(阳离子)'},]
-    "option":[]
+    "option":[],
+    "unitOption": [{
+      text: '桶',
+      value: '桶'
   },
-  // onChange1(event) {
-  //   this.setData({"dosing_time":event.detail})
-  // },
-  // onChange2(event) {
-  //   this.setData({"position":event.detail})
-  // },
-  // onChange3(event) {
-  //   this.setData({"medicine_id":Number(event.detail)})
-  // },
+  {
+      text: '吨',
+      value: '吨'
+  },
+  {
+      text: '包',
+      value: '包'
+  }
+],
+    "unit":""
+  },
   onChange4(event) {
-    // var regNum=new RegExp('^[0-9]*$');
-    // var rsNum=regNum.exec(event.detail);
-    // if(!rsNum){
-    //   setTimeout(()=>{
-    //       wx.showToast({
-    //           title: '只能输入数字',
-    //           icon: 'none'
-    //       })
-    //   },1000);
-    //   return
     if (!/^-?\d+\.?\d{0,2}$/.test(Number(event.detail))) {
       wx.showToast({
         title: '请输入数字值,最多2位小数',
@@ -101,11 +96,23 @@ Page({
     var ss = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
     return YY + MM + DD +" "+hh + mm + ss;
  },
+ unitChange:function(event){
+  this.setData({
+    "unit": event.detail
+  })
+  wx.setStorage({
+    key: 'unit',
+    data: this.data.unit
+  });
+},
   onLoad: function (options) {  //options专门用于接受数据的
     var usr_id = wx.getStorageSync('usr_id');
     var role_id = wx.getStorageSync('role_id');
-    var params={
-      "user_id":usr_id
+    var company_id = wx.getStorageSync('company_id');
+    var unit = wx.getStorageSync('unit');
+    this.setData({unit:unit})  
+    var params = {
+      "company_id": company_id
     }
     this.setData({
       user_id:usr_id,
@@ -117,6 +124,24 @@ Page({
       medicine_id: Number(options.medicine_id),
       medicine_name:options.medicine_name,
       medicine_count: parseFloat(options.medicine_count)
+    })
+    //http 请求是异步的，必须重新赋值this
+    let that = this;
+    http.Post('/app/storage/company/query', params, function (res) {
+      var storage = res.data.data;
+      var medicineList = [];
+      if (storage.length > 0) {
+        for (var i = 0; i < storage.length; i++) {
+          medicineList.push({
+            key: storage[i].id,
+            text: storage[i].medicine_name
+          });
+        }
+        that.setData({
+          "option": medicineList
+        })
+      }
+
     })
   },
   // 返回自动刷新
@@ -174,16 +199,13 @@ agree:function(){
           http.Post('/app/maotai/modify_dosage', params, function (res) {
             const { data } = res
             if( data.code === 200 ){
-              wx.showToast({ title: '已审批', icon:'success',duration:2000 })
-              setTimeout(() => {
-              wx.navigateBack({})
-              }, 2000);
-            }else wx.showToast({ title: '审批失败',icon: 'none' })
+              wx.showToast({ title: '已归档', icon:'success',duration:2000 })
+            }else wx.showToast({ title: '归档失败',icon: 'none' })
           })
           that.changeParentData()
         } 
       },
-      fail(res){ wx.showToast({ title: '审批失败',icon: 'none' }) }
+      fail(res){ wx.showToast({ title: '归档失败',icon: 'none' }) }
     })
   }
 },
@@ -195,6 +217,7 @@ reject:function(){
     "review_status":2,
     "is_dosage":1
   };
+  var that=this
   wx.showModal({
     title: '提示',
     content: '是否驳回',
@@ -204,9 +227,7 @@ reject:function(){
     const { data } = res
             if (data.code === 200) {
               wx.showToast({ title: '驳回成功', icon :'success',duration: 2000 })
-              setTimeout(() => {
-                wx.navigateBack({})
-              }, 2000);
+              that.changeParentData()
             } else  wx.showToast({ title: '驳回失败',icon: 'none' })
           })
         } 

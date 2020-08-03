@@ -1,41 +1,17 @@
 <view class="container"> 
  <view class="login-icon"> 
- <!-- <image class="login-img" src="../images/loginLog.jpg"></image>  -->
  <image class="login-img" src="../images/tupian.png"></image> 
  </view> 
- <view class="login-from"> 
  
- <!--账号--> 
- <view class="inputView"> 
- <image class="nameImage" src="../images/name.png"></image> 
- <label class="loginLab">账号</label> 
- <input class="inputText" placeholder="请输入账号" bindinput="phoneInput" /> 
- </view> 
- <view class="line"></view> 
- 
- <!--密码--> 
- <view class="inputView"> 
- <image class="keyImage" src="../images/key.png"></image> 
- <label class="loginLab">密码</label> 
- <input class="inputText" password="true" placeholder="请输入密码" bindinput="passwordInput" /> 
- </view> 
- 
- <!--按钮--> 
- <view class="loginBtnView"> 
- <van-button class="loginBtn" round type="info" size="" loading="{{loading}}" disabled="{{disabled}}" bindtap="login">登录</van-button>
- </view> 
-
-
- 
-  <!--一键登录按钮--> 
- <view class="loginBtnView"> 
- <van-button class="loginWeiXin" round type="info" size="mini" open-type="getUserInfo" bindgetphonenumber="onGetUserInfo">微信一键登录</van-button>
- </view> 
- <!-- <button open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber">
-    绑定微信手机号
-</button> -->
-<!-- <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">微信登录</button> -->
-<!-- <button class='dialog-btn' open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">一键登录</button> -->
-
- </view> 
+<van-button wx:if="{{isLogin}}" class="loginBtn" custom-style="width:80%" type="info" bindtap="onGotUserInfo"><span style="font-size:13px">微信用户一键登录</span></van-button>
+<van-button wx:if="{{!isLogin}}" class="loginBtn" custom-style="width:80%" type="info" bindtap="onGotUserInfo"><span style="font-size:13px">微信用户一键注册</span></van-button>
+<!--相关协议-->
+<!-- <label class="weui-agree" for="weuiAgree">
+    <view class="weui-agree__text">
+        <view class="weui-agree__checkbox-icon">
+                <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{isAgree}}"></icon>
+            </view>
+            阅读并同意<navigator url="" class="weui-agree__link">《相关条款》</navigator>
+        </view>
+</label> -->
 </view> 

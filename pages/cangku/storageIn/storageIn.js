@@ -21,9 +21,15 @@ Page({
     this.setData({supplier :event.detail.value})
   },
   onChange3(event) {
-    this.setData({medicine_count :event.detail})
+    if (!/^-?\d+\.?\d{0,5}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多5位小数',
+        icon: 'none'
+      })
+    } else {
+      this.setData({medicine_count :event.detail})
+    }
   },
-
   showPopup() {
     this.setData({ show: true });
   },
@@ -43,7 +49,7 @@ Page({
     let params={
       "user_id":usr_id
     }
-    http.Post('/app/storage/query', params, function (res) {
+    http.Post('/app/storage/active/query', params, function (res) {
       var datas=res.data.data;//res.data就是从后台接收到的值
       let list = []
       for(let i =0;i<datas.length;i++) {
@@ -54,38 +60,9 @@ Page({
         medicinelist: datas
       })
     },
-    // wx.request({
-    //   url: '/app/storage/query',//和后台交互的地址，默认是json数据交互，由于我的就是json，这里就没有对header进行编写
-    //   data: {
-    //     "user_id":usr_id
-    //   },
-    //   method: 'POST',
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },  
-    //   success: function (res) {
-    //     var datas=res.data;//res.data就是从后台接收到的值
-    //     let list = []
-    //     const { data } = datas
-    //     for(let i =0;i<data.length;i++) {
-    //       list.push(data[i].medicine_name)
-    //     }
-    //     that.setData({//循环完后，再对list进行赋值
-    //       columns: list,
-    //       medicinelist: data
-    //     })
-    //   },
-    //   fail: function (res) {
-    //     console.log('submit fail');
-    //   },
-    //   complete: function (res) {
-    //     console.log('submit complete');
-    //   }
-    // })
     )},
   submit:function(){
     var usr_id = wx.getStorageSync('usr_id');
-    var that=this;
     var params={
       "medicine_id":this.data.medicine_id,
       "in_amount":parseFloat(this.data.medicine_count),
@@ -93,19 +70,18 @@ Page({
     }
     wx.showModal({
       title: '提示',
-      content: '是否仓库入库',
+      content: '是否入库',
       success(res){
         if (res.confirm) {
           http.Post('/app/storage/put_in_amount', params, function (res) {
             const { data } = res
             if (data.code === 200) {
               wx.showToast({ title: '入库成功', icon :'success',duration: 1000 })
-              that.clearData()
             } else  wx.showToast({title: "入库失败", icon :"none" })
           })
           wx.navigateBack({
           })
-        } 
+        }
       },
       fail(res){ wx.showToast({title: '入库失败', icon :"none"}) }
     })

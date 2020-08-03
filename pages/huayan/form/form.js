@@ -144,18 +144,27 @@ Page({
         "ph":Number(this.data.ph),
         "ph_name":"ph"
     };
+    var that =this;
     wx.showModal({
       title: '提示',
       content: '是否确认提交化验单',
       success(res){
         if (res.confirm) {
-          http.Post('/app/water_quality/add', params, function (res) {
-            const { data } = res
-            if (data.code === 200) {
-              wx.showToast({ title: '提交化验单成功', icon :'success',duration: 2000 })
-              that.clearData()
-            } else  wx.showToast({title: data.msg, icon :"none" })
-          })
+          if(that.data.cod.length == 0 ||that.data.bod5.length==0||that.data.ammonia_nitrogen.length==0||that.data.phosphorus.length==0||that.data.nitrogen.length==0||that.data.ss.length==0||that.data.chromaticity.length==0||that.data.ph.length==0){
+            wx.showToast({title:"请填写完整化验单", icon :"none",duration: 2000 })
+          }else{
+            http.Post('/app/water_quality/add', params, function (res) {
+              const { data } = res
+              if (data.code === 200) {
+                wx.showToast({ title: '提交化验单成功', icon :'success',duration: 2000 })
+                wx.navigateTo({
+                  url: '../../index/index',
+                })
+              } else{
+                wx.showToast({title: data.msg, icon :"none",duration: 2000 })
+              }  
+            })
+          }
         } 
       },
       fail(res){ wx.showToast({title: '提交化验单失败', icon :"none"}) }

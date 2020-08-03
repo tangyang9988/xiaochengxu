@@ -29,10 +29,11 @@ Page({
     this.onNavigateTo(url)
   },
   onLoad: function (options) {
+    debugger
     var usr_id = wx.getStorageSync('usr_id');
     var name = wx.getStorageSync('name');
     this.setData({usr_id:Number(usr_id),name:name})
-    this.setData({status:Number(options.status)})
+    // this.setData({status:Number(options.status)})
     var params={
       "user_id":usr_id
     }

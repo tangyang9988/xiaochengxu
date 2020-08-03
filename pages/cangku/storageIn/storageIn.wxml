@@ -1,27 +1,27 @@
- <!-- <van-field
-    value="{{medicine_name}}"
-    label="药品名称"
-    placeholder="请选择药品"
-    border="{{ true }}"
-    bind:click="showPopup"/> -->
+
   <van-cell title="药品名称" value="{{medicine_name}}"  bind:click="showPopup" />
   <van-popup show="{{ show }}" closeable position="bottom" custom-style="height: 50%;" bind:close="onClose">
      <van-picker columns="{{ columns }}" value="{{columns[medicine_id].medicine_name}}"  default-index="{{ 1 }}" bind:change="onChange" />
   </van-popup>
 
   <van-cell title="供应商" value="{{supplier}}" />
-  <!-- <van-popup show="{{ show }}" closeable position="bottom" custom-style="height: 50%;" bind:close="onClose">内容</van-popup> -->
-
-<van-cell-group>
-  <van-field
-    value="{{medicine_count}}"
-    label="入库数量"
-    placeholder="请输入入库数量"
-    border="{{ true }}" 
-    bind:change="onChange3"/>
-</van-cell-group>
-<van-button round type="info" style="display:flex;width:100%;margin-top:15%;margin-bottom:5%" bindtap="submit">提交</van-button>
-<van-button round plain type="info" style="display:flex;width:100%;" bindtap="cancle">取消</van-button>
+  <van-row>
+    <van-col span="6">
+      <van-cell title="入库数量" />
+    </van-col>
+    <van-col span="14">
+    <van-field
+      value="{{medicine_count}}"
+      placeholder="请输入入库数量"
+      border="{{ true }}" 
+      bind:change="onChange3"/>
+    </van-col>
+    <van-col span="4">
+    <van-cell value="kg"></van-cell>
+    </van-col>
+  </van-row>
+<van-button round type="info" class="submit" bindtap="submit">提交</van-button>
+<van-button round plain type="info" class="cancle" bindtap="cancle">取消</van-button>
 
 
 

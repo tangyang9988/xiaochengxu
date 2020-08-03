@@ -5,9 +5,13 @@
     <span class="class_none">暂无数据</span>
   </view>
   <view class="cards" wx:for="{{List}}" wx:for-item="item" wx:key="item">
-		<view class="column" data-gId='{{item}}' bindtap="onItemClick" hover-class="hover"> 
+		<view class="nav" data-gId='{{item}}' bindtap="onItemClick" hover-class="hover"> 
+    <view class="column">
 			<view class="card-desc">
-        <view class="circle"></view><view class="circleLeft">编号：{{item.id}}</view>
+        <view class="circle" wx:if="{{item.status==1}}" style="background-color:#64C676"></view>
+        <view class="circle" wx:if="{{item.status==2}}" style="background-color:red"></view>
+        <view class="circle" wx:if="{{item.status==3}}" style="background-color:orange"></view>
+        <view class="circleLeft">编号：{{item.id}}</view>
         <view class="status"  wx:if="{{item.status==1}}" style="color:#64C676">首次提交</view>
         <view class="status"  wx:if="{{item.status==2}}" style="color:red">驳回</view>
         <view class="status"  wx:if="{{item.status==3}}" style="color:orange">重新提交</view>
@@ -17,6 +21,7 @@
       <view class="card-title" wx:if="{{item.is_in==0}}">进出水：{{'出水'}}</view>
       <view class="card-title">提交时间：{{item.created_at}}</view>
       <view class="card-title">提交人员：{{name}}</view>
+    </view>
   </view>
 	<!-- 卡片与卡片的空白间隔 -->
 	<view class="space"></view>

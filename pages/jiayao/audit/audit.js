@@ -25,7 +25,6 @@ Page({
     var params={
       "user_id":usr_id
     }
-
     http.Post('/app/dosage/query', params,function (res) {
        var datas=res.data;//res.data就是从后台接收到的值
         that.setData({//循环完后，再对list进行赋值
@@ -35,7 +34,6 @@ Page({
       })
   },
   onSearch(){
-    console.log("search value:",this.data.searchValue)
     var that = this
     var params={
       "user_id":this.data.userId,
@@ -53,7 +51,7 @@ Page({
     this.setData({
       searchValue: e.detail,
     });
-    console.log("search value:",e.detail)
+    this.onSearch()
   },
   onCancel(){
     this.setData({

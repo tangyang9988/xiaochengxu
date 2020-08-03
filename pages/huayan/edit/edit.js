@@ -19,7 +19,12 @@ Page({
     ss:"",
     chromaticity:"",
     ph:"",
-    advice:""
+    advice:"",
+    domesticSewageAmount:"",
+    wastewaterAmount:"",
+    dewateredSludgeAmount:"",
+    moistureSludge:"",
+    sludgeAmount:""
   },
   showPopup() {
     this.setData({ show: true });
@@ -97,7 +102,56 @@ Page({
     }else{
       this.setData({chromaticity :event.detail})
     }
-
+  },
+  onChange71(event) {
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({domesticSewageAmount :event.detail})
+    }
+  },
+  onChange72(event) {
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({wastewaterAmount :event.detail})
+    }
+  },
+  onChange73(event) {
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({dewateredSludgeAmount :event.detail})
+    }
+  },
+  onChange74(event) {
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({moistureSludge :event.detail})
+    }
+  },
+  onChange75(event) {
+    if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
+      wx.showToast({
+        title: '请输入数字值,最多2位小数',
+        icon: 'none'
+      })
+    }else{
+      this.setData({sludgeAmount :event.detail})
+    }
   },
   onChange8(event) {
     if (!/^-?\d+\.?\d{0,2}$/.test(event.detail)) {
@@ -159,6 +213,7 @@ Page({
         "chromaticity":Number(this.data.chromaticity),
         "ph":Number(this.data.ph)
     }
+    var that =this
     wx.showModal({
       title: '提示',
       content: '是否重新提交化验单',
@@ -168,9 +223,7 @@ Page({
             const { data } = res
             if( data.code === 200 ){
               wx.showToast({ title: '重新提交成功！', icon:'success',duration:2000 })
-              setTimeout(() => {
-              wx.navigateBack({})
-              }, 2000);
+              that.changeLocalData()
             }else wx.showToast({ title: '重新提交失败！',icon: 'none',duration:2000 })
           })
         } 
@@ -185,41 +238,54 @@ Page({
         "review_status":4,
         "is_dosage":this.data.is_dosage
       };
-      http.Post('/app/dosage_review/add', params, function (res) {
-        const { data } = res
-      if( data.code === 200 ){
-        wx.showToast({ title: '已同意', icon:'success',duration:2000 })
-        setTimeout(() => {
-        wx.navigateBack({})
-        }, 2000);
-      }else wx.showToast({ title: '同意失败',icon: 'none',duration:2000 })
+      var that =this
+      wx.showModal({
+        title: '提示',
+        content: '是否同意',
+        success(res){
+          if (res.confirm) {
+            http.Post('/app/dosage_review/add', params, function (res) {
+              const { data } = res
+            if( data.code === 200 ){
+              wx.showToast({ title: '已同意', icon:'success',duration:2000 })
+              that.changeParentData()
+            }else wx.showToast({ title: '同意失败',icon: 'none',duration:2000 })
+            })
+          } 
+        }
       })
     }
     if(this.data.role_id ==3){
       var params={
-        "water_quality_id":this.data.id,
-        "cod":this.data.cod,
-        "bod5":this.data.bod5,
-        "ammonia_nitrogen":this.data.ammonia_nitrogen,
-        "phosphorus":this.data.phosphorus,
-        "nitrogen":this.data.nitrogen,
-        "ss":this.data.ss,
-        "chromaticity":this.data.chromaticity,
-        "ph":this.data.ph,
-        "user_id":this.data.usr_id,
+        "water_quality_id":Number(this.data.id),
+        "cod":Number(this.data.cod),
+        "bod5":Number(this.data.bod5),
+        "ammonia_nitrogen":Number(this.data.ammonia_nitrogen),
+        "phosphorus":Number(this.data.phosphorus),
+        "nitrogen":Number(this.data.nitrogen),
+        "ss":Number(this.data.ss),
+        "chromaticity":Number(this.data.chromaticity),
+        "ph":Number(this.data.ph),
+        "user_id":Number(this.data.usr_id),
         "review_status":5,
       };
-      http.Post('/app/maotai/modify_water', params, function (res) {
-        const { data } = res
-      if( data.code === 200 ){
-        wx.showToast({ title: '已审批', icon:'success',duration:2000 })
-        setTimeout(() => {
-        wx.navigateBack({})
-        }, 2000);
-      }else wx.showToast({ title: '审批失败',icon: 'none',duration:2000 })
+      var that =this
+      wx.showModal({
+        title: '提示',
+        content: '是否归档',
+        success(res){
+          if (res.confirm) {
+            http.Post('/app/maotai/modify_water', params, function (res) {
+              const { data } = res
+            if( data.code === 200 ){
+              wx.showToast({ title: '已归档', icon:'success',duration:2000 })
+              that.changeParentData()
+            }else wx.showToast({ title: '归档失败',icon: 'none',duration:2000 })
+            })
+          } 
+        }
       })
     }
-
   },
   reject:function(){
     var params={
@@ -229,6 +295,7 @@ Page({
       "review_status":2,
       "is_dosage":this.data.is_dosage
     };
+    var that =this
     wx.showModal({
       title: '提示',
       content: '是否驳回',
@@ -238,10 +305,7 @@ Page({
             const { data } = res
             if (data.code === 200) {
               wx.showToast({ title: '驳回成功', icon :'success',duration: 2000 })
-              that.clearData()
-              setTimeout(() => {
-                wx.navigateBack({})
-              }, 2000);
+              that.changeParentData()
             } else  wx.showToast({ title: '驳回失败', icon: 'none'})
           })
         } 
@@ -251,5 +315,27 @@ Page({
   },
   cancle() {
     wx.navigateBack({})
-  }
+  },
+  // 返回自己审核页面刷新
+  changeLocalData() {
+    var pages = getCurrentPages();//当前页面栈
+    if (pages.length > 1) {
+      var beforePage = pages[pages.length - 2];//获取上一个页面实例对象
+      beforePage.onLoad();//触发父页面中的方法
+    }
+    wx.navigateBack({
+      delta: 1
+    });
+  },
+  // 返回上层页面刷新
+  changeParentData() {
+    var pages = getCurrentPages();//当前页面栈
+    if (pages.length > 1) {
+      var beforePage = pages[pages.length - 2];//获取上一个页面实例对象
+      beforePage.onWater();//触发父页面中的方法
+    }
+    wx.navigateBack({
+      delta: 1
+    });
+  },
 });

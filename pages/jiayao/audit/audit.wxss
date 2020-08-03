@@ -63,7 +63,6 @@
 .circle{
   width: 10px;
   height: 10px;
-  background-color:#64C676;
   border-radius: 50%; 
   display: inline-block;
   margin-top:5px;

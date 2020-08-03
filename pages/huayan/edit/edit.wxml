@@ -1,328 +1,295 @@
 <!-- 化验员 -->
 <view wx:if="{{role_id==5}}">
-<!-- 首次提交 -->
-<view wx:if="{{status==1 || status==3}}">
-<van-cell-group>
-  <van-field
-    disabled
-    value="{{cod}}"
-    v-model="cod"
-    label="COD"
-    placeholder="请输入COD"
-    border="{{ true }}"
-    bind:change="onChange1"/>
-</van-cell-group>
-<van-cell-group>
-  <van-field
-    disabled
-    value="{{bod5}}"
-    label="BOD5"
-    placeholder="请输入BOD5"
-    border="{{ true }}"
-    bind:change="onChange2"/>
-</van-cell-group>
-<van-cell-group>
-  <van-field
-    disabled
-    value="{{ammonia_nitrogen}}"
-    label="氨氮"
-    placeholder="请输入氨氮"
-    border="{{ true }}"
-    bind:change="onChange3"/>
-</van-cell-group>
-<van-cell-group>
-  <van-field
-    disabled
-    value="{{phosphorus}}"
-    label="总磷"
-    placeholder="请输入总磷"
-    border="{{ true }}"
-    bind:change="onChange4"/>
-  <van-field
-    disabled
-    value="{{nitrogen}}"
-    label="总氮"
-    placeholder="请输入总氮"
-    border="{{ true }}"
-    bind:change="onChange5"/>
-  <van-field
-    disabled
-    value="{{ss}}"
-    label="SS"
-    placeholder="请输入SS"
-    border="{{ true }}"
-    bind:change="onChange6"/>
-  <van-field
-    disabled
-    value="{{chromaticity}}"
-    label="色度"
-    placeholder="请输入色度"
-    border="{{ true }}"
-    bind:change="onChange7"/>
-  <van-field
-    disabled
-    value="{{ph}}"
-    label="PH"
-    placeholder="请输入PH"
-    border="{{ true }}"
-    bind:change="onChange8"/>
-</van-cell-group>
-  <van-cell-group>
-  <van-field
-    disabled
-    v-model="username"
-    value="{{name}}"
-    label="化验员"
-    border="{{ true }}"/>
-  </van-cell-group>
-</view>
-<!-- 重新提交 -->
-<view wx:if="{{status==2}}">
-<van-cell-group>
-  <van-field
-    value="{{cod}}"
-    v-model="cod"
-    label="COD"
-    placeholder="请输入COD"
-    border="{{ true }}"
-    bind:change="onChange1"/>
-</van-cell-group>
-<van-cell-group>
-  <van-field
-    value="{{bod5}}"
-    label="BOD5"
-    placeholder="请输入BOD5"
-    border="{{ true }}"
-    bind:change="onChange2"/>
-</van-cell-group>
-<van-cell-group>
-  <van-field
-    value="{{ammonia_nitrogen}}"
-    label="氨氮"
-    placeholder="请输入氨氮"
-    border="{{ true }}"
-    bind:change="onChange3"/>
-</van-cell-group>
-<van-cell-group>
-  <van-field
-    value="{{phosphorus}}"
-    label="总磷"
-    placeholder="请输入总磷"
-    border="{{ true }}"
-    bind:change="onChange4"/>
-  <van-field
-    value="{{nitrogen}}"
-    label="总氮"
-    placeholder="请输入总氮"
-    border="{{ true }}"
-    bind:change="onChange5"/>
-  <van-field
-    value="{{ss}}"
-    label="SS"
-    placeholder="请输入SS"
-    border="{{ true }}"
-    bind:change="onChange6"/>
-  <van-field
-    value="{{chromaticity}}"
-    label="色度"
-    placeholder="请输入色度"
-    border="{{ true }}"
-    bind:change="onChange7"/>
-  <van-field
-    value="{{ph}}"
-    label="PH"
-    placeholder="请输入PH"
-    border="{{ true }}"
-    bind:change="onChange8"/>
-</van-cell-group>
-    <van-cell-group>
-    <van-field
-      disabled
-      value="{{advice}}"
-      label="审核意见"
-      type="textarea"
-      placeholder="请输入审核意见"
-      rows="1"
-      autosize/>
-  </van-cell-group>
-  <van-cell-group>
-  <van-field
-    v-model="username"
-    value="{{name}}"
-    label="化验员"
-    border="{{ true }}"/>
-  </van-cell-group>
-
-
-  <van-button round type="info" style="display:flex;width:100%;margin-top:10%;margin-bottom:5%" bind:click="agree">重新提交</van-button>
-  <van-button round plain type="info" style="display:flex;width:100%;" bindtap="cancle">取消</van-button>
-</view>
+	<!-- 首次提交 -->
+	<view wx:if="{{status==1 || status==3}}">
+		<van-cell-group>
+			<van-field disabled value="{{cod}}" v-model="cod" label="COD" placeholder="请输入COD" border="{{ true }}" bind:change="onChange1" />
+		</van-cell-group>
+		<van-cell-group>
+			<van-field disabled value="{{bod5}}" label="BOD5" placeholder="请输入BOD5" border="{{ true }}" bind:change="onChange2" />
+		</van-cell-group>
+		<van-cell-group>
+			<van-field disabled value="{{ammonia_nitrogen}}" label="氨氮" placeholder="请输入氨氮" border="{{ true }}" bind:change="onChange3" />
+		</van-cell-group>
+		<van-cell-group>
+			<van-field disabled value="{{phosphorus}}" label="总磷" placeholder="请输入总磷" border="{{ true }}" bind:change="onChange4" />
+			<van-field disabled value="{{nitrogen}}" label="总氮" placeholder="请输入总氮" border="{{ true }}" bind:change="onChange5" />
+			<van-field disabled value="{{ss}}" label="SS" placeholder="请输入SS" border="{{ true }}" bind:change="onChange6" />
+			<van-field disabled value="{{chromaticity}}" label="色度" placeholder="请输入色度" border="{{ true }}" bind:change="onChange7" />
+			<van-field disabled value="{{ph}}" label="PH" placeholder="请输入PH" border="{{ true }}" bind:change="onChange8" />
+		</van-cell-group>
+		<van-cell-group>
+			<van-field disabled v-model="username" value="{{name}}" label="化验员" border="{{ true }}" />
+		</van-cell-group>
+	</view>
+	<!-- 重新提交 -->
+	<view wx:if="{{status==2}}">
+		<van-cell-group>
+			<van-field value="{{cod}}" v-model="cod" label="COD" placeholder="请输入COD" border="{{ true }}" bind:change="onChange1" />
+		</van-cell-group>
+		<van-cell-group>
+			<van-field value="{{bod5}}" label="BOD5" placeholder="请输入BOD5" border="{{ true }}" bind:change="onChange2" />
+		</van-cell-group>
+		<van-cell-group>
+			<van-field value="{{ammonia_nitrogen}}" label="氨氮" placeholder="请输入氨氮" border="{{ true }}" bind:change="onChange3" />
+		</van-cell-group>
+		<van-cell-group>
+			<van-field value="{{phosphorus}}" label="总磷" placeholder="请输入总磷" border="{{ true }}" bind:change="onChange4" />
+			<van-field value="{{nitrogen}}" label="总氮" placeholder="请输入总氮" border="{{ true }}" bind:change="onChange5" />
+			<van-field value="{{ss}}" label="SS" placeholder="请输入SS" border="{{ true }}" bind:change="onChange6" />
+			<van-field value="{{chromaticity}}" label="色度" placeholder="请输入色度" border="{{ true }}" bind:change="onChange7" />
+			<van-field value="{{ph}}" label="PH" placeholder="请输入PH" border="{{ true }}" bind:change="onChange8" />
+		</van-cell-group>
+		<van-cell-group>
+			<van-field disabled value="{{advice}}" label="审核意见" type="textarea" placeholder="请输入审核意见" rows="1" autosize />
+		</van-cell-group>
+		<van-cell-group>
+			<van-field value="{{name}}" label="化验员" disabled border="{{ true }}" />
+		</van-cell-group>
+		<van-button round type="info" class="submit" bind:click="agree">重新提交</van-button>
+		<van-button round plain type="info" class="cancle" bindtap="cancle">取消</van-button>
+	</view>
 </view>
 
 <!-- 运维审核员 -->
 <view wx:if="{{role_id==2}}">
-  <van-cell-group>
-    <van-field
-      disabled
-      value="{{cod}}"
-      label="COD"
-      border="{{ true }}"
-      bind:change="onChange1"/>
-  </van-cell-group>
-  <van-cell-group>
-    <van-field
-      disabled
-      value="{{bod5}}"
-      label="BOD5"
-      border="{{ true }}"
-      bind:change="onChange"/>
-  </van-cell-group>
-  <van-cell-group>
-    <van-field
-      disabled
-      value="{{ammonia_nitrogen}}"
-      label="氨氮"
-      border="{{ true }}"
-      bind:change="onChange3"/>
-  </van-cell-group>
-  <van-cell-group>
-    <van-field
-      disabled
-      value="{{phosphorus}}"
-      label="总磷"
-      border="{{ true }}"
-      bind:change="onChange4"/>
-  </van-cell-group>
-  <van-cell-group>
-    <van-field
-      disabled
-      value="{{nitrogen}}"
-      label="总氮"
-      border="{{ true }}"
-      bind:change="onChange4"/>
-  </van-cell-group>
-  <van-cell-group>
-    <van-field
-      disabled
-      value="{{ss}}"
-      label="SS"
-      border="{{ true }}"
-      bind:change="onChange5"/>
-  </van-cell-group>
-  <van-cell-group>
-    <van-field
-      disabled
-      value="{{chromaticity}}"
-      label="色度"
-      border="{{ true }}"
-      bind:change="onChange6"/>
-  </van-cell-group>
-  <van-cell-group>
-    <van-field
-      disabled
-      value="{{ph}}"
-      label="PH"
-      border="{{ true }}"
-      bind:change="onChange7"/>
-  </van-cell-group>
-    <van-cell-group>
-    <van-field
-      disabled
-      value="{{user_name}}"
-      label="化验员"
-      placeholder="请输入加药员"
-      border="{{ true }}"/>
-  </van-cell-group>
-  <van-cell-group>
-    <van-field
-      value="{{advice}}"
-      label="审核意见"
-      type="textarea"
-      placeholder="请输入审核意见"
-      rows="1"
-      autosize
-      bind:change="onChange"/>
-  </van-cell-group>
-  <van-button round type="info" style="display:flex;width:100%;margin-top:3%;margin-bottom:2%" bindtap="agree">同意</van-button>
-  <van-button round type="danger" style="display:flex;width:100%;" bindtap="reject">驳回</van-button>
+	<van-row>
+		<van-col span="10">
+			<van-cell title="COD" />
+		</van-col>
+		<van-col span="14">
+			<van-field disabled value="{{cod}}mg/L" border="{{ true }}" />
+		</van-col>
+	</van-row>
+	<van-row>
+		<van-col span="10">
+			<van-cell title="BOD5" />
+		</van-col>
+		<van-col span="14">
+			<van-field disabled value="{{bod5}}mg/L" border="{{ true }}" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="氨氮" />
+		</van-col>
+		<van-col span="14">
+			<van-field disabled value="{{ammonia_nitrogen}}mg/L" border="{{ true }}" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="总磷" />
+		</van-col>
+		<van-col span="14">
+			<van-field disabled value="{{phosphorus}}mg/L" border="{{ true }}" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="总氮" />
+		</van-col>
+		<van-col span="14">
+			<van-field disabled value="{{nitrogen}}mg/L" border="{{ true }}" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="SS" />
+		</van-col>
+		<van-col span="14">
+			<van-field disabled value="{{ss}}mg/L" border="{{ true }}" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="色度" />
+		</van-col>
+		<van-col span="14">
+			<van-field disabled value="{{chromaticity}}" border="{{ true }}" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="PH" />
+		</van-col>
+		<van-col span="14">
+			<van-field disabled value="{{ph}}" border="{{ true }}" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="生活污水处理量" />
+		</van-col>
+		<van-col span="14">
+      <van-field value="{{domesticSewageAmount}}" placeholder="请输入生活污水处理量(吨) "border="{{ true }}" bind:change="onChange71" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="生产废水处理量" />
+		</van-col>
+		<van-col span="14">
+      <van-field value="{{wastewaterAmount}}" placeholder="请输入生产废水处理量(吨) "border="{{ true }}" bind:change="onChange72" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="脱水污泥量" />
+		</van-col>
+		<van-col span="14">
+      <van-field value="{{dewateredSludgeAmount}}" placeholder="请输入脱水污泥量(吨) "border="{{ true }}" bind:change="onChange73" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="污泥含水率" />
+		</van-col>
+		<van-col span="14">
+      <van-field value="{{moistureSludge}}" placeholder="请输入污泥含水率(%) "border="{{ true }}" bind:change="onChange74" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="污泥处置量" />
+		</van-col>
+		<van-col span="14">
+      <van-field value="{{sludgeAmount}}" placeholder="请输入污泥处置量(吨) "border="{{ true }}" bind:change="onChange75" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="化验员" />
+		</van-col>
+		<van-col span="14">
+			<van-field disabled value="{{user_name}}" border="{{ true }}" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="审核意见" />
+		</van-col>
+		<van-col span="14">
+      <van-field value="{{advice}}" type="textarea" placeholder="请输入审核意见" rows="1" autosize bind:change="onChange" />
+		</van-col>
+	</van-row>
+	<van-button round type="info" class="submit" bindtap="agree">同意</van-button>
+	<van-button round type="danger" class="cancle" bindtap="reject">驳回</van-button>
 </view>
 
 <!-- 茅台审核员 -->
 <view wx:if="{{role_id==3}}">
-  <van-cell-group>
-    <van-field
-      value="{{cod}}"
-      label="COD"
-      border="{{ true }}"
-      bind:change="onChange1"/>
-  </van-cell-group>
-  <van-cell-group>
-    <van-field
-      value="{{bod5}}"
-      label="BOD5"
-      border="{{ true }}"
-      bind:change="onChange2"/>
-  </van-cell-group>
-  <van-cell-group>
-    <van-field
-      value="{{ammonia_nitrogen}}"
-      label="氨氮"
-      border="{{ true }}"
-      bind:change="onChange3"/>
-  </van-cell-group>
-  <van-cell-group>
-    <van-field
-      value="{{phosphorus}}"
-      label="总磷"
-      border="{{ true }}"
-      bind:change="onChange4"/>
-  </van-cell-group>
-  <van-cell-group>
-    <van-field
-      value="{{nitrogen}}"
-      label="总氮"
-      border="{{ true }}"
-      bind:change="onChange5"/>
-  </van-cell-group>
-  <van-cell-group>
-    <van-field
-      value="{{ss}}"
-      label="SS"
-      border="{{ true }}"
-      bind:change="onChange6"/>
-  </van-cell-group>
-  <van-cell-group>
-    <van-field
-      value="{{chromaticity}}"
-      label="色度"
-      border="{{ true }}"
-      bind:change="onChange7"/>
-  </van-cell-group>
-  <van-cell-group>
-    <van-field
-      value="{{ph}}"
-      label="PH"
-      border="{{ true }}"
-      bind:change="onChange8"/>
-  </van-cell-group>
-    <van-cell-group>
-    <van-field
-      value="{{user_name}}"
-      label="化验员"
-      placeholder="请输入加药员"
-      border="{{ true }}"/>
-  </van-cell-group>
-  <van-cell-group>
-    <van-field
-      value="{{advice}}"
-      label="审核意见"
-      type="textarea"
-      placeholder="请输入审核意见"
-      rows="1"
-      autosize
-      bind:change="onChange"/>
-  </van-cell-group>
-  <van-button round type="info" style="display:flex;width:100%;margin-top:3%;margin-bottom:2%" bindtap="agree">同意归档</van-button>
+	<van-row>
+		<van-col span="10">
+			<van-cell title="COD" />
+		</van-col>
+		<van-col span="14">
+		<van-field value="{{cod}}" border="{{ true }}" bind:change="onChange1" />
+		</van-col>
+	</van-row>
+	<van-row>
+		<van-col span="10">
+			<van-cell title="BOD5" />
+		</van-col>
+		<van-col span="14">
+		<van-field value="{{bod5}}" border="{{ true }}" bind:change="onChange2" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="氨氮" />
+		</van-col>
+		<van-col span="14">
+		<van-field value="{{ammonia_nitrogen}}"  border="{{ true }}" bind:change="onChange3" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="总磷" />
+		</van-col>
+		<van-col span="14">
+		<van-field value="{{phosphorus}}"  border="{{ true }}" bind:change="onChange4" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="总氮" />
+		</van-col>
+		<van-col span="14">
+		<van-field value="{{nitrogen}}" border="{{ true }}" bind:change="onChange5" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="SS" />
+		</van-col>
+		<van-col span="14">
+		<van-field value="{{ss}}" border="{{ true }}" bind:change="onChange6" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="色度" />
+		</van-col>
+		<van-col span="14">
+		<van-field value="{{chromaticity}}" border="{{ true }}" bind:change="onChange7" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="PH" />
+		</van-col>
+		<van-col span="14">
+		<van-field value="{{ph}}" border="{{ true }}" bind:change="onChange8" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="生活污水处理量" />
+		</van-col>
+		<van-col span="14">
+      <van-field value="{{domesticSewageAmount}}" border="{{ true }}" bind:change="onChange71" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="生产废水处理量" />
+		</van-col>
+		<van-col span="14">
+      <van-field value="{{wastewaterAmount}}" border="{{ true }}" bind:change="onChange72" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="脱水污泥量" />
+		</van-col>
+		<van-col span="14">
+      <van-field value="{{dewateredSludgeAmount}}" border="{{ true }}" bind:change="onChange73" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="污泥含水率" />
+		</van-col>
+		<van-col span="14">
+      <van-field value="{{moistureSludge}}" border="{{ true }}" bind:change="onChange74" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="污泥处置量" />
+		</van-col>
+		<van-col span="14">
+      <van-field value="{{sludgeAmount}}" border="{{ true }}" bind:change="onChange75" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="化验员" />
+		</van-col>
+		<van-col span="14">
+			<van-field disabled value="{{user_name}}" border="{{ true }}" />
+		</van-col>
+	</van-row>
+	<van-button round type="info" class="submit" bindtap="agree">同意归档</van-button>
 </view>
-
-

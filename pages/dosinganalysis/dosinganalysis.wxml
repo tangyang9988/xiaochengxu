@@ -1,9 +1,13 @@
 <view style="margin:15px 20px;background:#fff">
 <van-row>
   <van-col span="6">
-    <van-dropdown-menu>
+    <!-- <van-dropdown-menu>
       <van-dropdown-item value="{{medicine_id}}" options="{{ option }}" bind:change="onChange" bind:open='onOpen' bind:closed='onCloseDropdown'/>
+    </van-dropdown-menu> -->
+    <van-dropdown-menu active-color='#2C65F7' >
+      <van-dropdown-item value="{{ medicine_id }}" options="{{ option }}" bind:change="onChange" bind:open='onOpen' bind:closed='onCloseDropdown'/>
     </van-dropdown-menu>
+
   </van-col>
     <van-col span="9">
     <van-cell title="{{start_time}}"  bind:click="showStartPop" />

@@ -61,9 +61,8 @@
 
 }
 .circle{
-  width: 15px;
-  height: 15px;
-  background-color:#64C676;
+  width: 10px;
+  height: 10px;
   border-radius: 50%; 
   display: inline-block;
   margin-top:5px;

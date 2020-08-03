@@ -82,5 +82,5 @@
     label="提交人"
     border="{{ true }}"/>
   </van-cell-group>
-    <van-button round type="info" style="display:flex;width:100%;margin-top:10%;margin-bottom:5%" bind:click="submit">提交</van-button>
-    <van-button round plain type="info" style="display:flex;width:100%;" bindtap="cancle">取消</van-button>
+    <van-button round type="info" class="submit" bind:click="submit">提交</van-button>
+    <van-button round plain type="info" class="cancle"  bindtap="cancle">取消</van-button>

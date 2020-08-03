@@ -19,7 +19,21 @@ Page({
     "currentDate": new Date().getTime(),
     "columns": ['无锡市点位', '苏州市点位', '上海点位'],
     // "option":[{key:159332570586,text:'片碱'},{key:159280864452,text:'PAM(阴离子)'},{key:159280152053,text:'PAM(阳离子)'},]
-    "option":[]
+    "option":[],
+    "unitOption": [{
+      text: '桶',
+      value: '桶'
+  },
+  {
+      text: '吨',
+      value: '吨'
+  },
+  {
+      text: '包',
+      value: '包'
+  }
+],
+    "unit":""
   },
   // onChange1(event) {
   //   this.setData({dosing_time:event.detail})
@@ -86,9 +100,20 @@ Page({
     var ss = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
     return YY + MM + DD +" "+hh + mm + ss;
  },
+ unitChange:function(event){
+  this.setData({
+    "unit": event.detail
+  })
+  wx.setStorage({
+    key: 'unit',
+    data: this.data.unit
+  });
+},
   onLoad: function (options) {     //options专门用于接受数据的
     var usr_id = wx.getStorageSync('usr_id');
     var name = wx.getStorageSync('name');
+    var unit = wx.getStorageSync('unit');
+    this.setData({unit:unit})  
     var params={
       "user_id":usr_id
     }
@@ -127,6 +152,7 @@ agree:function(){
     "medicine_id":Number(this.data.medicine_id),
     "medicine_count":parseFloat(this.data.medicine_count),
   }
+  var that =this
    wx.showModal({
     title: '提示',
     content: '是否重新提交加药单',
@@ -136,12 +162,9 @@ agree:function(){
           const { data } = res
           if (data.code === 200) {
             wx.showToast({ title: '重新提交成功', icon :'success',duration: 2000 })
-            that.clearData()
           } else  wx.showToast({ title: '重新提交成功失败',icon: 'none' })
         })
-        wx.navigateBack({
-          complete: (res) => {},
-        })
+        that.changeParentData()
       } 
     }
   })
@@ -150,5 +173,16 @@ reject:function(){
   wx.navigateBack({
     complete: (res) => {},
   })
-}
+},
+  // 返回自动刷新
+  changeParentData() {
+    var pages = getCurrentPages();//当前页面栈
+    if (pages.length > 1) {
+      var beforePage = pages[pages.length - 2];//获取上一个页面实例对象
+      beforePage.onLoad();//触发父页面中的方法
+    }
+    wx.navigateBack({
+      delta: 1
+    });
+  },
 })

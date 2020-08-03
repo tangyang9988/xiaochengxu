@@ -1,0 +1,14 @@
+.loginBtn { 
+  width: 100%; 
+  margin-top: 20px; 
+  display: flex;
+  direction: center;
+ } 
+ .weui-agree__link{
+  /* color: #467df5; */
+  color: #31cc32;
+  font-size:13px;margin-top:5px
+}
+.weui-agree{
+  font-size:13px;margin-top:5px
+}

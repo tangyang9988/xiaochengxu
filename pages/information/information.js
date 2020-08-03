@@ -36,6 +36,20 @@ Page({
     this.setData({transCanvs:false})
     //this.onLoad()
   },
+//   wx.downloadFile({
+//     url: fileUrl,
+//     success (res) {
+//         wx.saveFile({
+//             tempFilePath: res.tempFilePath,
+//             success (res) {
+//                 Toast('下载成功')
+//             },
+//             fail(error){
+//                 Toast('下载失败')
+//             }
+//         })
+//     }
+// })
 
   onLoad: function (options) {
     var role_id = wx.getStorageSync('role_id');

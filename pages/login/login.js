@@ -18,28 +18,20 @@ Page({
     osVersion: "",
     phoneNumber: "",
     showModal: false, //定义登录弹窗
+    checked:false
   },
   //在页面加载的时候，判断缓存中是否有内容，如果有，存入到对应的字段里
   onLoad: function () {
-    // var open_id =wx.getStorageSync('open_id')
-    // if(open_id){
-    //   wx.request({
-    //     url: 'https://wx.jslcznkj.cn/maotai/app/region/refresh', //自己的解密地址
-    //     data:{
-    //       openid:open_id
-    //     },
-    //     method: "post",
-    //     header: {
-    //       'content-type': 'application/json'
-    //     },
-    //     success: function (res) {
-    //     }
-    //   })
-    // }else{
-    // }
+  },
+  onChange:function(event){
+    if(event.detail.value ==''){
+    this.setData({checked:false})
+    }else{
+      this.setData({checked:true})
+    }
+
   },
   onGotUserInfo: function (e) {
-    debugger
     var role_id = wx.getStorageSync('role_id')
     if(role_id){
       this.hideModal();
@@ -160,64 +152,12 @@ Page({
       that.hideModal()
     }
   },
-  // getPhoneNumber: function (e) {
-  //   var that = this;
-  //   that.hideModal();
-  //   wx.checkSession({
-  //     success: function (e) {
-  //       wx.login({
-  //         success: res => {
-  //           this.setData({ phone_encrypted_data: e.detail.encrypted_data });
-  //           this.setData({ phone_iv: e.detail.iv });
-  //         }
-  //       })
-
-
-  //     },
-  //     fail: function () {
-  //       wx.login({
-  //         success: res => {
-  //           wx.request({
-  //             url: '自己的登录接口', //仅为示例，并非真实的接口地址
-  //             data: {
-  //               account: '1514382701',
-  //               jscode: res.code
-  //             },
-  //             method: "POST",
-  //             header: {
-  //               'content-type': 'application/json' // 默认值
-  //             },
-  //             success(res) {
-  //               if (res.data.r == "T") {
-  //                 wx.setStorage({
-  //                   key: "openid",
-  //                   data: res.data.openid
-  //                 })
-  //                 wx.setStorage({
-  //                   key: "sessionkey",
-  //                   data: res.data.sessionkey
-  //                 })
-  //                 wx.request({
-  //                   url: '自己的解密接口',//自己的解密地址
-  //                   data: {
-  //                     encryptedData: e.detail.encryptedData,
-  //                     iv: e.detail.iv,
-  //                     code: res.data.sessionkey
-  //                   },
-  //                   method: "post",
-  //                   header: {
-  //                     'content-type': 'application/json'
-  //                   },
-  //                   success: function (res) {
-  //                     that.onshow(that.data.openid, that.data.userInfo, res.data.d.phoneNumber);//调用onshow方法，并传递三个参数
-  //                   }
-  //                 })
-  //               }
-  //             }
-  //           })
-  //         }
-  //       })
-  //     }
-  //   }
-  // },
+  goToUserLicence: function(){
+    wx.navigateTo({
+      url: '../login/licence',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  }
 })

@@ -1,34 +1,6 @@
 
   <loading hidden="{{!loading}}">加载中</loading>
   <van-search value="{{ searchValue }}" shape="round" placeholder="请输入药剂名称或加药单编号" bind:change="onChange" bind:search="onSearch" bind:cancel="onCancel" />
-  
-  <!-- <view class="comlist">
-  <block class="" wx:for="{{List}}">
-   
-    <navigator url='../edit/edit?id={{item.id}}&status={{item.status}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}&content={{item.reviews[0].content}}'>
-      <view hover-class='hover-class' id="{{item.id}}" style='height:90px;border-bottom: 1px solid #DBDBDB'>
-
-        <view class="column">
-
-         <label wx:if="{{item.status==1}}" >编号：{{item.id}}
-         <p style="color:green">首次提交</p>
-         </label>
-         <label wx:elif="{{item.status==2}}" >编号：{{item.id}}
-         <p style="color:red">驳回</p>
-         </label>
-         <label wx:elif="{{item.status==3}}" >编号：{{item.id}}
-         <p style="color:orange">重新提交</p>
-         </label>
-         <label>药剂名称：{{item.medicine_id}}</label>
-         <label>点位名称：{{item.position}}</label>
-         <label>提交时间：{{item.dosing_time}}</label>
-        </view>
-      </view>
-    </navigator>
-  </block>
-  </view> -->
-
-
   <!-- html -->
 <view class="cards" wx:for="{{List}}" wx:for-item="item" wx:key="item">
  <navigator class="nav" url='../edit/edit?id={{item.id}}&status={{item.status}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}&content={{item.reviews[0].content}}'>
@@ -39,7 +11,10 @@
 		<!-- 右侧文本区域 -->
 		<view class="column">
 			<view class="card-desc">
-        <view class="circle"></view><view class="circleLeft">编号：{{item.id}}</view>
+        <view class="circle" wx:if="{{item.status==1}}" style="background-color:#64C676"></view>
+        <view class="circle" wx:if="{{item.status==2}}" style="background-color:red"></view>
+        <view class="circle" wx:if="{{item.status==3}}" style="background-color:orange"></view>
+        <view class="circleLeft">编号：{{item.id}}</view>
         <view class="status"  wx:if="{{item.status==1}}" style="color:#64C676">首次提交</view>
         <view class="status"  wx:if="{{item.status==2}}" style="color:red">驳回</view>
         <view class="status"  wx:if="{{item.status==3}}" style="color:orange">重新提交</view>
@@ -48,7 +23,6 @@
       <view class="card-title">点位名称：{{item.position}}</view>
       <view class="card-title">提交时间：{{item.dosing_time}}</view>
       <view class="card-title">提交人员：{{name}}</view>
-
 		</view>
 	</navigator>
 	<!-- 卡片与卡片的空白间隔 -->

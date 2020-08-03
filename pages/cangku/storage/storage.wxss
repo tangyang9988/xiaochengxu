@@ -66,8 +66,8 @@ page{
   top:0
 }
 .td {
-    width:30%;
-    justify-content: center;
+    width:35%;
+    justify-content: right;
     /* text-align: center; */
     margin-left: 30px;
 }

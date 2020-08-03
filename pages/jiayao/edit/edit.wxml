@@ -27,7 +27,7 @@
 <van-cell-group>
   <van-field
     disabled
-    value="{{medicine_count}}"
+    value="{{medicine_count}} ({{unit}})"
     label="加药量"
     border="{{ true }}"
     bind:change="onChange4"/>
@@ -54,13 +54,6 @@
 </view>
 <!-- 驳回后重新提交 -->
 <view wx:if="{{status==2}}">
-<!-- <van-cell-group>
-  <van-field
-    value="{{dosing_time}}"
-    label="加药时间"
-    border="{{ true }}"
-    bind:change="onChange1"/>
-</van-cell-group> -->
 <van-row>
   <van-col span="7">
     <van-cell title="加药时间"/>
@@ -76,13 +69,7 @@
     </van-popup>
   </van-col>
 </van-row>
-<!-- <van-cell-group>
-  <van-field
-    value="{{position}}"
-    label="加药点位"
-    border="{{ true }}"
-     bind:change="onChange2"/>
-</van-cell-group> -->
+
 <van-row>
   <van-col span="7">
     <van-cell title="加药点位"/>
@@ -94,13 +81,6 @@
     </van-popup>
   </van-col>
 </van-row>
-<!-- <van-cell-group>
-  <van-field
-    value="{{medicine_id}}"
-    label="药剂名称"
-    border="{{ true }}"
-    bind:change="onChange3"/>
-</van-cell-group> -->
 <van-row>
   <van-col span="7">
     <van-cell title="药剂名称"/>
@@ -116,17 +96,15 @@
   <van-col span="7">
     <van-cell title="加药量"/>
   </van-col>
-  <van-col span="17">
+  <van-col span="10">
     <van-field value="{{medicine_count}}" bind:change="onChange4"/>
   </van-col>
+  <van-col span="7">
+    <van-dropdown-menu active-color='#2C65F7' border="{{ true }}" >
+      <van-dropdown-item value="{{unit}}" options="{{ unitOption }}" bind:change="unitChange" />
+    </van-dropdown-menu>
+  </van-col>
 </van-row>
-<!-- <van-cell-group>
-  <van-field
-    value="{{medicine_count}}"
-    label="加药量"
-    border="{{ true }}"
-    bind:change="onChange4"/>
-</van-cell-group> -->
 <van-row>
   <van-col span="7">
     <van-cell title="加药员"/>
@@ -137,25 +115,6 @@
     value="{{name}}"/>
   </van-col>
 </van-row>
-  <!-- <van-cell-group>
-  <van-field
-    disabled
-    value="张晓明"
-    label="加药员"
-    placeholder="请输入加药员"
-    border="{{ true }}"/>
-</van-cell-group> -->
-<!-- <van-cell-group>
-  <van-field
-    disabled
-    value="{{content}}"
-    label="审核意见"
-    type="textarea"
-    placeholder="请输入审核意见"
-    rows="1"
-    autosize
-    bind:change="onChange"/>
-</van-cell-group> -->
 <van-row>
   <van-col span="7">
     <van-cell title="审核意见"/>
@@ -165,6 +124,6 @@
   </van-col>
 </van-row>
 
-  <van-button round type="info" style="display:flex;width:100%;margin-top:25%;margin-bottom:5%" bindtap="agree">重新提交</van-button>
-  <van-button round type="danger" style="display:flex;width:100%;" bindtap="reject">取消</van-button>
+  <van-button round type="info" class="agree" bindtap="agree">重新提交</van-button>
+  <van-button round type="danger" class="cancle" bindtap="reject">取消</van-button>
 </view>

@@ -19,19 +19,20 @@
     "van-dropdown-item": "@vant/weapp/dist/dropdown-item/index",
     "van-datetime-picker": "@vant/weapp/dist/datetime-picker/index",
     "van-tag": "@vant/weapp/dist/tag/index",
-    "van-progress": "@vant/weapp/dist/progress/index"
+    "van-progress": "@vant/weapp/dist/progress/index",
+    "van-steps": "@vant/weapp/dist/steps/index"
   },
   "pages":[ 
-
-    "pages/login/login",
     "pages/login/register",
+    "pages/login/invite/invite",
+    "pages/login/licence/licence",
+    "pages/index/index",
+    "pages/login/login",
+
+    "pages/login/addUser/addUser",
     "pages/audit/audit",
 
     "pages/edit/edit",
-    "pages/index/index",
-
-
-    "pages/hedit/hedit",
 
     "pages/huayan/form/form",
     "pages/huayan/audit/audit",

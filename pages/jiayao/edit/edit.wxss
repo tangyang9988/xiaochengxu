@@ -27,3 +27,10 @@
   width: 800rpx;
   height: 1000rpx;
   }
+
+  .agree{
+    display:flex;width:50%;margin-top:8%;margin-bottom:5%;margin-left: 25%;
+  }
+  .cancle{
+    display:flex;width:50%;margin-left: 25%;
+  }

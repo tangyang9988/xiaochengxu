@@ -1,0 +1,33 @@
+<!-- 加药或化验 -->
+<van-field label="用户名" value="{{name}}" placeholder="请输入用户名" bind:change="onChange" />
+<van-field value="{{password}}" label="密码" placeholder="请输入密码" bind:change="onChange1" />
+<van-field value="{{cellphone}}" label="手机号" placeholder="请输入手机号" bind:change="onChange2" />
+<van-field value="{{role_name}}" label="角色" disabled />
+<van-field value="{{company_name}}" border label="公司" disabled />
+
+<!-- <van-row>
+	<van-col span="6">
+		<van-cell title="角色" />
+	</van-col>
+	<van-col span="16">
+    <van-cell>
+			<van-radio-group value="{{ radio }}" bind:change="onChang3">
+        	<van-col span="8">
+					<van-radio name="1">加药员</van-radio>
+          	</van-col>
+          <van-col span="8">
+					<van-radio name="2">化验员</van-radio>
+          	</van-col>
+			</van-radio-group>
+    </van-cell>
+	</van-col>
+</van-row> -->
+
+<van-button  wx:if="{{!checked}}" disabled class="loginBtn" custom-style="width:80%" type="info" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">注册</van-button>
+<van-button  wx:if="{{checked}}"  class="loginBtn" custom-style="width:80%" type="info" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">注册</van-button>
+<view style="width:80%;display:flex;direction:center;margin-left: 15%;">
+    <checkbox-group  bindchange="inviteChange">
+      <checkbox id="weuiAgree" value="agree"/>
+    </checkbox-group>
+    <view class="weui-agree">已阅读<span bindtap='goToUserLicence' class="weui-agree__link">《松鼠智水小程序》</span>使用协议</view>
+</view>

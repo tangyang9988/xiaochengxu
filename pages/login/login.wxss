@@ -18,7 +18,39 @@ page{
  .login-img{ 
   width: 700rpx; 
   height: 550rpx;
- } 
+ }
+ .header{
+   width: 80%;
+   height: 100px;
+  border-radius: 50%; 
+  display: inline-block;
+  margin-top:10% ;
+}
+.number{
+  font-size:20px;color:#fff;
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  margin-top: 15%;
+}
+ .circle{
+  width: 40px;
+  height: 40px;
+  background-color: rgb(62, 141, 245);
+  border-radius: 50%; 
+  display: inline-block;
+  margin-left:20% ;
+}
+.line{
+  width: 50%;
+  height: 2px;
+  margin-top: 11% !important;
+  border-top: solid rgb(62, 141, 245) 1px;
+}
+.lineEmpty{
+  width: 50%;
+  height: 2px;
+}
   
  /*表单内容*/ 
  .login-from { 
@@ -69,7 +101,7 @@ page{
   
  .loginBtn { 
   width: 100%; 
-  margin-top: 20px; 
+  margin-top: 10px; 
   display: flex;
   direction: center;
  } 
@@ -162,4 +194,12 @@ page{
 }
 button::after{
   border: none;
+}
+.weui-agree__link{
+  /* color: #467df5; */
+  color: #31cc32;
+  font-size:13px;margin-top:5px
+}
+.weui-agree{
+  font-size:13px;margin-top:5px
 }

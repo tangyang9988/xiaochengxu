@@ -116,19 +116,3 @@ page{
 .class_none{
   color: #8a8a8a;
 }
-/* .class_none::after{
-  font-family: 'none' !important;
-  font-size: 38px;
-  font-style: normal;
-
-  position: absolute;
-  top: 75px;
-  left: 45%;
-
-  content: '\e60b';
-
-  color: #8a8a8a;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-} */

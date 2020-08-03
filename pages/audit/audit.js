@@ -30,15 +30,14 @@ Page({
     var params;
     if(role_id==2){
       params={
-        "user_id":usr_id
+        "company_id":wx.getStorageSync('company_id')
       }
-      url = "/app/dosage_review/dosage/query";
+      url = "/app/dosage_review/dosage/company/query";
     }else if(role_id==3){
         params={
-          "user_id":usr_id,
           "company_id":Number(selectId)
         }
-      url = "/app/maotai/dosage/company/query";
+      url = "/app/maotai/dosage/company/all/query";
     }
     http.Post(url, params, function (res) {
         var dosageList=res.data.data.dosage;//res.data就是从后台接收到的值

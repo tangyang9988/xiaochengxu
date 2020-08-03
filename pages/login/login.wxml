@@ -1,42 +1,42 @@
 <view class="container"> 
- <view class="login-icon"> 
- <!-- <image class="login-img" src="../images/loginLog.jpg"></image>  -->
+ <!-- <view class="login-icon"> 
  <image class="login-img" src="../images/tupian.png"></image> 
- </view> 
- 
- <!--账号--> 
- <!-- <view class="inputView"> 
- <image class="nameImage" src="../images/name.png"></image> 
- <label class="loginLab">账号</label> 
- <input class="inputText" placeholder="请输入账号" bindinput="phoneInput" /> 
- </view> 
- <view class="line"></view>  -->
- 
- <!--密码--> 
- <!-- <view class="inputView"> 
- <image class="keyImage" src="../images/key.png"></image> 
- <label class="loginLab">密码</label> 
- <input class="inputText" password="true" placeholder="请输入密码" bindinput="passwordInput" /> 
  </view>  -->
+ <view class="header">
+ <van-row >
+    <van-col span="5">
+    <view class="circle"><span class="number">1</span></view>
+    </van-col>
+    <van-col span="14">
+    <view class="line"></view>
+    </van-col>
+    <van-col span="5">
+    <view class="circle"><span class="number">2</span></view>
+    </van-col>
+</van-row>
+ <van-row >
+    <van-col span="8">
+    <span style="font-size:12px;margin-left:10px">用户信息</span>
+    </van-col>
+    <van-col span="11">
+    <view class="lineEmpty"></view>
+    </van-col>
+    <van-col span="5">
+        <span style="font-size:12px;">电话号码</span>
+    </van-col>
+</van-row>
+ <van-row >
+   <!-- <van-tab title="微信授权">微信授权</van-tab> -->
+    <van-col span="8" offset="9">
+    <span style="font-size:15px;margin-left:10px;text-decoration: underline;color:rgb(62, 141, 245)">微信授权</span>
+    </van-col>
+</van-row>
+</view>
+
  
- <!--按钮--> 
- <!-- <view class="loginBtnView"> 
- <van-button class="loginBtn" round type="info" size="" loading="{{loading}}" disabled="{{disabled}}" bindtap="login">登录</van-button>
- </view>  -->
 
-
- 
-  <!--一键登录按钮--> 
- <!-- <view class="loginBtnView"> 
- <van-button class="loginWeiXin" round type="info" size="mini" open-type="getUserInfo" bindgetphonenumber="onGetUserInfo">微信用户一键登录</van-button>
- </view>  -->
- <!-- <button open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber">
-    绑定微信手机号
-</button> -->
-<!-- <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">微信登录</button> -->
-<!-- <button class='dialog-btn' open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">一键登录</button> -->
-
-<van-button class="loginBtn" custom-style="width:80%" type="info" open-type="getUserInfo"  lang="zh_CN" bindgetuserinfo="onGotUserInfo"><span style="font-size:13px">微信用户一键登录</span></van-button>
+<van-button wx:if="{{!checked}}"class="loginBtn" custom-style="width:80%" type="info" disabled open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo"><span style="font-size:13px">获取用户信息</span></van-button>
+<van-button wx:if="{{checked}}"class="loginBtn" custom-style="width:80%" type="info" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo"><span style="font-size:13px">获取用户信息</span></van-button>
 <!--登录弹窗-->
 <view class="modal-mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
   <view class="modal-dialog" wx:if="{{showModal}}">
@@ -48,6 +48,12 @@
       <image src='../images/showWx.png' class='iconWx'></image>微信用户一键绑定
     </button>
   </view>
+</view>
+<view style="width:80%;display:flex;direction:center">
+    <checkbox-group  bindchange="onChange">
+      <checkbox id="weuiAgree" value="agree"/>
+    </checkbox-group>
+    <view class="weui-agree">已阅读<span bindtap='goToUserLicence' class="weui-agree__link">《松鼠智水小程序》</span>使用协议</view>
 </view>
 
 </view> 

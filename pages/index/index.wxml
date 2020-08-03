@@ -1,11 +1,7 @@
-
-<van-card
-  title="{{name}}"
-  desc="{{company_name}}    {{desc}}"
-  thumb="{{avatar_url}}">
-  <view slot="tags" class="phone">
-  <van-tag plain type="primary" size="large">{{cellphone}}</van-tag>
-  </view>
+<van-card title="{{name}}" desc="{{company_name}}    {{desc}}" thumb="{{avatar_url}}">
+	<view slot="tags" class="phone">
+		<van-tag plain type="primary" size="large">{{cellphone}}</van-tag>
+	</view>
 </van-card>
 <!-- <view class="header">
  <van-row>
@@ -18,112 +14,112 @@
  </van-row>
 </view> -->
 <view class="datalist" wx:if="{{role_id==1}}">
-  <navigator url='../jiayao/form/form'>
-    <view class="data_one bg_1">
-      <view class="data_data">
-        <view class="data_ico">
-          <image class="yao" src='/pages/images/yao.png'></image>
-        </view>
-      </view>
-      <view class="data_title">填报加药</view>
-    </view>
-  </navigator>
-  <navigator url='../jiayao/audit/audit'>
-    <view class="data_one bg_2">
-      <view class="data_data">
-        <view class="data_ico">
-          <image class="yao" src='/pages/images/icon.png'></image>
-        </view>
-        <view class="data_num">{{isHandled}}</view>
-      </view>
-      <view class="data_title">审核情况</view>
-    </view>
-    </navigator>
-  <navigator url='../cangku/storage/storage'>
-    <view class="data_one bg_3">
-      <view class="data_data">
-        <view class="data_ico">
-          <image class="yao" src='/pages/images/cangku.png'></image>
-        </view>
-        <view class="data_num">{{isHandled}}</view>
-      </view>
-      <view class="data_title">仓库详情</view>
-    </view>
-    </navigator>
-   <navigator url='../jiayao/waterReport/waterReport'>
-      <view class="data_one bg_6">
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/lirunfenxi.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">每日进水</view>
-      </view>
-     </navigator>
-<navigator url='../userInfo/userInfo?usr_id={{usr_id}}'>
-      <view class="data_one bg_5">
-        <view class="data_data">
-          <view class="data_ico">
-          <image class="yao" src='/pages/images/编组.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">个人信息</view>
-      </view>
-  </navigator>
+	<navigator url='../jiayao/form/form'>
+		<view class="data_one bg_1">
+			<view class="data_data">
+				<view class="data_ico">
+					<image class="yao" src='/pages/images/yao.png'></image>
+				</view>
+			</view>
+			<view class="data_title">填报加药</view>
+		</view>
+	</navigator>
+	<navigator url='../jiayao/audit/audit'>
+		<view class="data_one bg_2">
+			<view class="data_data">
+				<view class="data_ico">
+					<image class="yao" src='/pages/images/icon.png'></image>
+				</view>
+				<view class="data_num">{{isHandled}}</view>
+			</view>
+			<view class="data_title">审核情况</view>
+		</view>
+	</navigator>
+	<navigator url='../cangku/storage/storage'>
+		<view class="data_one bg_3">
+			<view class="data_data">
+				<view class="data_ico">
+					<image class="yao" src='/pages/images/cangku.png'></image>
+				</view>
+				<view class="data_num">{{isHandled}}</view>
+			</view>
+			<view class="data_title">仓库详情</view>
+		</view>
+	</navigator>
+	<navigator url='../jiayao/waterReport/waterReport'>
+		<view class="data_one bg_6">
+			<view class="data_data">
+				<view class="data_ico">
+					<image class="yao" src='/pages/images/lirunfenxi.png'></image>
+				</view>
+				<view class="data_num">{{isHandled}}</view>
+			</view>
+			<view class="data_title">每日进水</view>
+		</view>
+	</navigator>
+	<navigator url='../userInfo/userInfo?usr_id={{usr_id}}'>
+		<view class="data_one bg_5">
+			<view class="data_data">
+				<view class="data_ico">
+					<image class="yao" src='/pages/images/编组.png'></image>
+				</view>
+				<view class="data_num">{{isHandled}}</view>
+			</view>
+			<view class="data_title">个人信息</view>
+		</view>
+	</navigator>
 </view>
 <!-- 化验员 -->
-  <view class="datalist" wx:if="{{role_id==5}}">
-    <navigator url='../huayan/form/form'>
-      <view class="data_one bg_1">
-        <view class="data_data">
-          <view class="data_ico">
-            <image class="yao" src='/pages/images/yao.png'></image>
-          </view>
-          <view class="data_num">{{unHandled}}</view>
-        </view>
-        <view class="data_title">化验填报</view>
-      </view>
-    </navigator>
-    <navigator url='../huayan/audit/audit?usr_id={{usr_id}}'>
-      <view class="data_one bg_2">
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/icon.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">审核情况</view>
-      </view>
-     </navigator>
-    <navigator url='../cangku/storage/storage'>
-      <view class="data_one bg_3">
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/cangku.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">库存情况</view>
-      </view>
-     </navigator>
-     <view class="datalist">
-  <navigator url='../userInfo/userInfo?usr_id={{usr_id}}'>
-      <view class="data_one bg_5">
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/编组.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">个人信息</view>
-      </view>
-     </navigator>
-     </view>
-    </view>
+<view class="datalist" wx:if="{{role_id==5}}">
+	<navigator url='../huayan/form/form'>
+		<view class="data_one bg_1">
+			<view class="data_data">
+				<view class="data_ico">
+					<image class="yao" src='/pages/images/yao.png'></image>
+				</view>
+				<view class="data_num">{{unHandled}}</view>
+			</view>
+			<view class="data_title">化验填报</view>
+		</view>
+	</navigator>
+	<navigator url='../huayan/audit/audit?usr_id={{usr_id}}'>
+		<view class="data_one bg_2">
+			<view class="data_data">
+				<view class="data_ico">
+					<image class="yao" src='/pages/images/icon.png'></image>
+				</view>
+				<view class="data_num">{{isHandled}}</view>
+			</view>
+			<view class="data_title">审核情况</view>
+		</view>
+	</navigator>
+	<navigator url='../cangku/storage/storage'>
+		<view class="data_one bg_3">
+			<view class="data_data">
+				<view class="data_ico">
+					<image class="yao" src='/pages/images/cangku.png'></image>
+				</view>
+				<view class="data_num">{{isHandled}}</view>
+			</view>
+			<view class="data_title">库存情况</view>
+		</view>
+	</navigator>
+	<view class="datalist">
+		<navigator url='../userInfo/userInfo?usr_id={{usr_id}}'>
+			<view class="data_one bg_5">
+				<view class="data_data">
+					<view class="data_ico">
+						<image class="yao" src='/pages/images/编组.png'></image>
+					</view>
+					<view class="data_num">{{isHandled}}</view>
+				</view>
+				<view class="data_title">个人信息</view>
+			</view>
+		</navigator>
+	</view>
+</view>
 <!-- 库管员 -->
-  <!-- <view class="datalist" wx:if="{{usr_id==7}}">
+<!-- <view class="datalist" wx:if="{{usr_id==7}}">
     <navigator url='../cangku/storageIn/storageIn'>
         <view class="data_one bg_1">
           <view class="data_title">填报入库</view>
@@ -170,219 +166,264 @@
       </view>
     </navigator>
   </view> -->
-  <!-- 运维 -->
-  <view class="datalist" wx:if="{{role_id==2}}">
-    <navigator url='../information/information'>
-      <view class="data_one bg_8">
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/-shuju.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">信息舱</view>
-      </view>
-     </navigator>
-    <navigator url='../audit/audit?usr_id={{usr_id}}'>
-      <view class="data_one bg_2">
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/icon.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">数据审核</view>
-      </view>
-     </navigator>
-   <navigator url='../dosinganalysis/dosinganalysis'>
-      <view class="data_one bg_7">
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/huabanfuben.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">加药分析</view>
-      </view>
-     </navigator>
-   <navigator url='../wateranalysis/wateranalysis'>
-      <view class="data_one bg_6">
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/lirunfenxi.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">水质分析</view>
-      </view>
-     </navigator>
-    <navigator url='../cangku/storageIn/storageIn'>
-        <view class="data_one bg_1">
-          <view class="data_data">
-            <view class="data_ico">
-            <image class="yao" src='/pages/images/ruku.png'></image>
-            </view>
-            <view class="data_num">{{isHandled}}</view>
-          </view>
-          <view class="data_title">填报入库</view>
-        </view>
-    </navigator>
-    <navigator url='../cangku/storage/storage'>
-      <view class="data_one bg_3">
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/cangku.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">库存情况</view>
-      </view>
-     </navigator>
-    <navigator url='../cangku/stockInOut/stockInOut'>
-      <view class="data_one bg_1">
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/yao.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">仓库日志</view>
-      </view>
-     </navigator>
-     <view class="datalist">
-  <navigator url='../userInfo/userInfo?usr_id={{usr_id}}'>
-      <view class="data_one bg_5">
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/编组.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">个人信息</view>
-      </view>
-     </navigator>
-    <navigator url='../user/userList/userList'>
-      <view class="data_one bg_9">
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/yonghuguanli.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">用户管理</view>
-      </view>
-     </navigator>
-     </view>
+<!-- 运维 -->
+<view wx:if="{{role_id==2}}">
+	<van-row>
+		<van-col span="7" offset="1">
+			<van-cell title="选择角色" style="font-size:Medium" />
+		</van-col>
+		<van-col span="7" offset="1" style="height:40px; line-height:40px">
+			<van-cell title="{{selectRole_name}}" bind:click="showPopup" />
+			<van-popup show="{{ show }}" position="bottom" custom-style="height: 35%;" bind:close="onClose">
+				<van-picker title="选择" columns="{{ perColumns }}" default-index="{{ 0 }}" show-toolbar bind:confirm="confirm" bind:cancel="onClose" />
+			</van-popup>
+		</van-col>
+		<van-col span="6" offset="1" style="height:40px; line-height:40px">
+			<van-tag mark type="danger" bindtap="invite" size="large">生成邀请码</van-tag>
+			<!-- <van-tag mark type="primary" bindtap="copyBtn" size="large">一键复制</van-tag> -->
+		</van-col>
+	</van-row>
+  <view class="modal-mask" bindtap="hideModal" wx:if="{{showModal}}"></view>
+  <view wx:if="{{showModal}}">
+    <view class="modal-content">
+      <view class='modal_title'>邀请码</view>
+      <view class='content'>你的邀请码已生成</view>
+       <view class='content'>{{invitation}}</view>
+       <view class='content2'>复制生成的邀请码，即可分享给相关人员</view>
+      <!-- <view class='modal_textarea'>
+        <textarea placeholder='备注' maxlength='-1'></textarea>
+      </view> -->
+      <view class='btn' bindtap='copyBtn'>一键复制</view>
+			<view class='return' bindtap='returnBtn'>一键退出</view>
     </view>
+  </view>
+	<view class="datalist">
+		<navigator url='../information/information'>
+			<view class="data_one bg_8">
+				<view class="data_data">
+					<view class="data_ico">
+						<image class="yao" src='/pages/images/-shuju.png'></image>
+					</view>
+					<view class="data_num">{{isHandled}}</view>
+				</view>
+				<view class="data_title">信息舱</view>
+			</view>
+		</navigator>
+		<navigator url='../audit/audit?usr_id={{usr_id}}'>
+			<view class="data_one bg_2">
+				<view class="data_data">
+					<view class="data_ico">
+						<image class="yao" src='/pages/images/icon.png'></image>
+					</view>
+					<view class="data_num">{{isHandled}}</view>
+				</view>
+				<view class="data_title">数据审核</view>
+			</view>
+		</navigator>
+		<navigator url='../dosinganalysis/dosinganalysis'>
+			<view class="data_one bg_7">
+				<view class="data_data">
+					<view class="data_ico">
+						<image class="yao" src='/pages/images/huabanfuben.png'></image>
+					</view>
+					<view class="data_num">{{isHandled}}</view>
+				</view>
+				<view class="data_title">加药分析</view>
+			</view>
+		</navigator>
+		<navigator url='../wateranalysis/wateranalysis'>
+			<view class="data_one bg_6">
+				<view class="data_data">
+					<view class="data_ico">
+						<image class="yao" src='/pages/images/lirunfenxi.png'></image>
+					</view>
+					<view class="data_num">{{isHandled}}</view>
+				</view>
+				<view class="data_title">水质分析</view>
+			</view>
+		</navigator>
+		<navigator url='../cangku/storageIn/storageIn'>
+			<view class="data_one bg_1">
+				<view class="data_data">
+					<view class="data_ico">
+						<image class="yao" src='/pages/images/ruku.png'></image>
+					</view>
+					<view class="data_num">{{isHandled}}</view>
+				</view>
+				<view class="data_title">填报入库</view>
+			</view>
+		</navigator>
+		<navigator url='../cangku/storage/storage'>
+			<view class="data_one bg_3">
+				<view class="data_data">
+					<view class="data_ico">
+						<image class="yao" src='/pages/images/cangku.png'></image>
+					</view>
+					<view class="data_num">{{isHandled}}</view>
+				</view>
+				<view class="data_title">库存情况</view>
+			</view>
+		</navigator>
+		<navigator url='../cangku/stockInOut/stockInOut'>
+			<view class="data_one bg_1">
+				<view class="data_data">
+					<view class="data_ico">
+						<image class="yao" src='/pages/images/yao.png'></image>
+					</view>
+					<view class="data_num">{{isHandled}}</view>
+				</view>
+				<view class="data_title">仓库日志</view>
+			</view>
+		</navigator>
+		<view class="datalist">
+			<navigator url='../userInfo/userInfo?usr_id={{usr_id}}'>
+				<view class="data_one bg_5">
+					<view class="data_data">
+						<view class="data_ico">
+							<image class="yao" src='/pages/images/编组.png'></image>
+						</view>
+						<view class="data_num">{{isHandled}}</view>
+					</view>
+					<view class="data_title">个人信息</view>
+				</view>
+			</navigator>
+			<navigator url='../user/userList/userList'>
+				<view class="data_one bg_9">
+					<view class="data_data">
+						<view class="data_ico">
+							<image class="yao" src='/pages/images/yonghuguanli.png'></image>
+						</view>
+						<view class="data_num">{{isHandled}}</view>
+					</view>
+					<view class="data_title">用户管理</view>
+				</view>
+			</navigator>
+		</view>
+	</view>
+</view>
 
 <!-- 茅台 -->
-  <view wx:if="{{role_id==3}}">
-    <van-row>
-      <van-col span="8">
-        <van-cell title="运维公司" style="font-size:Medium" />
-      </van-col>
-      <van-col span="16">
-          <van-cell title="{{selectName}}"  bind:click="showNamePopup" />
-        <van-popup show="{{ showName }}" position="bottom" custom-style="height: 35%;" bind:close="onClose">
-          <van-picker title="选择" columns="{{ columns }}" default-index="{{ 0 }}" show-toolbar bind:confirm="confirmName" bind:cancel="onCloseName" />
-        </van-popup>
-        </van-col>
-    </van-row>
-  <view class="datalist">
-    <navigator url='../information/information?selectName={{selectName}}&selectId={{selectId}}'>
-      <view class="data_one bg_8">
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/-shuju.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">信息舱</view>
-      </view>
-     </navigator>
-    <navigator url='../audit/audit?selectName={{selectName}}&selectId={{selectId}}'>
-      <view class="data_one bg_2">
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/icon.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">数据审核</view>
-      </view>
-     </navigator>
-   <navigator url='../dosinganalysis/dosinganalysis?selectName={{selectName}}&selectId={{selectId}}'>
-      <view class="data_one bg_7">
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/huabanfuben.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">加药分析</view>
-      </view>
-     </navigator>
-   <navigator url='../wateranalysis/wateranalysis?selectName={{selectName}}&selectId={{selectId}}'>
-      <view class="data_one bg_6">
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/lirunfenxi.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">水质分析</view>
-      </view>
-     </navigator>
-    <navigator url='../cangku/storage/storage?selectName={{selectName}}&selectId={{selectId}}'>
-      <view class="data_one bg_3">
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/cangku.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">库存情况</view>
-      </view>
-     </navigator>
-    <navigator url='../cangku/stockInOut/stockInOut?selectName={{selectName}}&selectId={{selectId}}'>
-      <view class="data_one bg_1">
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/yao.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">仓库日志</view>
-      </view>
-     </navigator>
-     <view class="datalist">
-    <navigator url='../userInfo/userInfo?usr_id={{usr_id}}'>
-      <view class="data_one bg_5">
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/编组.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">个人信息</view> 
-      </view>
-     </navigator>
-    <navigator url='../user/userList/userList?selectName={{selectName}}&selectId={{selectId}}'>
-      <view class="data_one bg_9">
-        <view class="data_data">
-          <view class="data_ico">
-           <image class="yao" src='/pages/images/yonghuguanli.png'></image>
-          </view>
-          <view class="data_num">{{isHandled}}</view>
-        </view>
-        <view class="data_title">运维管理</view>
-      </view>
-     </navigator>
-     </view>
+<view wx:if="{{role_id==3}}">
+	<van-row>
+		<van-col span="6" >
+			<van-cell title="运维公司"/>
+		</van-col>
+		<van-col span="14" >
+			<van-cell title="{{selectName}}" bind:click="showNamePopup" />
+			<van-popup show="{{ showName }}" position="bottom" custom-style="height: 35%;" bind:close="onClose">
+				<van-picker title="选择" columns="{{ columns }}" default-index="{{ 0 }}" show-toolbar bind:confirm="confirmName" bind:cancel="onCloseName" />
+			</van-popup>
+		</van-col>
+  		<van-col span="4" style="height:48px;line-height:48px;">
+			<van-tag mark type="danger" bindtap="invite" size="large">邀请码</van-tag>
+		</van-col>
+	</van-row>
+  <view class="modal-mask" bindtap="hideModal" wx:if="{{showModal}}"></view>
+  <view wx:if="{{showModal}}">
+    <view class="modal-content">
+      <view class='modal_title'>邀请码</view>
+      <view class='content'>你的邀请码已生成</view>
+       <view class='content'>{{invitation}}</view>
+       <view class='content2'>复制生成的邀请码，即可分享给相关人员</view>
+      <!-- <view class='modal_textarea'>
+        <textarea placeholder='备注' maxlength='-1'></textarea>
+      </view> -->
+      <view class='btn' bindtap='copyBtn'>一键复制</view>
+			<view class='return' bindtap='returnBtn'>一键退出</view>
     </view>
-    </view>
+  </view>
+	<view class="datalist">
+		<navigator url='../information/information?selectName={{selectName}}&selectId={{selectId}}'>
+			<view class="data_one bg_8">
+				<view class="data_data">
+					<view class="data_ico">
+						<image class="yao" src='/pages/images/-shuju.png'></image>
+					</view>
+					<view class="data_num">{{isHandled}}</view>
+				</view>
+				<view class="data_title">信息舱</view>
+			</view>
+		</navigator>
+		<navigator url='../audit/audit?selectName={{selectName}}&selectId={{selectId}}'>
+			<view class="data_one bg_2">
+				<view class="data_data">
+					<view class="data_ico">
+						<image class="yao" src='/pages/images/icon.png'></image>
+					</view>
+					<view class="data_num">{{isHandled}}</view>
+				</view>
+				<view class="data_title">数据审核</view>
+			</view>
+		</navigator>
+		<navigator url='../dosinganalysis/dosinganalysis?selectName={{selectName}}&selectId={{selectId}}'>
+			<view class="data_one bg_7">
+				<view class="data_data">
+					<view class="data_ico">
+						<image class="yao" src='/pages/images/huabanfuben.png'></image>
+					</view>
+					<view class="data_num">{{isHandled}}</view>
+				</view>
+				<view class="data_title">加药分析</view>
+			</view>
+		</navigator>
+		<navigator url='../wateranalysis/wateranalysis?selectName={{selectName}}&selectId={{selectId}}'>
+			<view class="data_one bg_6">
+				<view class="data_data">
+					<view class="data_ico">
+						<image class="yao" src='/pages/images/lirunfenxi.png'></image>
+					</view>
+					<view class="data_num">{{isHandled}}</view>
+				</view>
+				<view class="data_title">水质分析</view>
+			</view>
+		</navigator>
+		<navigator url='../cangku/storage/storage?selectName={{selectName}}&selectId={{selectId}}'>
+			<view class="data_one bg_3">
+				<view class="data_data">
+					<view class="data_ico">
+						<image class="yao" src='/pages/images/cangku.png'></image>
+					</view>
+					<view class="data_num">{{isHandled}}</view>
+				</view>
+				<view class="data_title">库存情况</view>
+			</view>
+		</navigator>
+		<navigator url='../cangku/stockInOut/stockInOut?selectName={{selectName}}&selectId={{selectId}}'>
+			<view class="data_one bg_1">
+				<view class="data_data">
+					<view class="data_ico">
+						<image class="yao" src='/pages/images/yao.png'></image>
+					</view>
+					<view class="data_num">{{isHandled}}</view>
+				</view>
+				<view class="data_title">仓库日志</view>
+			</view>
+		</navigator>
+		<view class="datalist">
+			<navigator url='../userInfo/userInfo?usr_id={{usr_id}}'>
+				<view class="data_one bg_5">
+					<view class="data_data">
+						<view class="data_ico">
+							<image class="yao" src='/pages/images/编组.png'></image>
+						</view>
+						<view class="data_num">{{isHandled}}</view>
+					</view>
+					<view class="data_title">个人信息</view>
+				</view>
+			</navigator>
+			<navigator url='../user/userList/userList?selectName={{selectName}}&selectId={{selectId}}'>
+				<view class="data_one bg_9">
+					<view class="data_data">
+						<view class="data_ico">
+							<image class="yao" src='/pages/images/yonghuguanli.png'></image>
+						</view>
+						<view class="data_num">{{isHandled}}</view>
+					</view>
+					<view class="data_title">运维管理</view>
+				</view>
+			</navigator>
+		</view>
+	</view>
+</view>
 
 <van-button round type="info" style="display:flex;width:100%;margin-top:8%;" bind:click="return">一键退出</van-button>
-    
-
-
