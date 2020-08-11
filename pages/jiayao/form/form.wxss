@@ -5,3 +5,9 @@
 .cancle{
   display:flex;width:50%;margin-left: 25%;
 }
+
+
+/* css */
+.section{font-size:28rpx}
+.on{display: block}
+.off{display: none}

@@ -27,7 +27,7 @@
 <van-cell-group>
   <van-field
     disabled
-    value="{{medicine_count}} ({{unit}})"
+    value="{{medicine_count}} {{unit_name}}"
     label="加药量"
     border="{{ true }}"
     bind:change="onChange4"/>
@@ -74,8 +74,13 @@
   <van-col span="7">
     <van-cell title="加药点位"/>
   </van-col>
-  <van-col span="17">
-   <van-cell title="{{position}}"  bind:click="showPositionPop" />
+  <van-col span="12">
+    <van-field
+    value="{{position}}"
+    bind:change="positionChange"/>
+  </van-col>
+  <van-col span="5">
+   <van-cell title="选择"  bind:click="showPositionPop" />
     <van-popup show="{{ showPosition }}" position="bottom" custom-style="height: 50%;">
       <van-picker columns="{{ columns }}" default-index="{{ 1 }}"  title="加药点位" show-toolbar bind:confirm="onConfirm" bind:cancel="onCancel" />
     </van-popup>
@@ -96,13 +101,16 @@
   <van-col span="7">
     <van-cell title="加药量"/>
   </van-col>
-  <van-col span="10">
+  <van-col span="12">
     <van-field value="{{medicine_count}}" bind:change="onChange4"/>
   </van-col>
-  <van-col span="7">
-    <van-dropdown-menu active-color='#2C65F7' border="{{ true }}" >
-      <van-dropdown-item value="{{unit}}" options="{{ unitOption }}" bind:change="unitChange" />
-    </van-dropdown-menu>
+  <van-col span="5">
+    <!-- <van-dropdown-menu active-color='#2C65F7' border="{{ true }}" >
+      <van-dropdown-item value="{{unit_id}}" options="{{ unitOption }}" bind:change="unitChange" />
+    </van-dropdown-menu> -->
+    <van-field
+  disabled
+    value="kg"/>  
   </van-col>
 </van-row>
 <van-row>
@@ -123,7 +131,6 @@
   <van-field value="{{content}}" disabled/>
   </van-col>
 </van-row>
-
   <van-button round type="info" class="agree" bindtap="agree">重新提交</van-button>
   <van-button round type="danger" class="cancle" bindtap="reject">取消</van-button>
 </view>

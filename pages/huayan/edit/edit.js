@@ -4,6 +4,7 @@ var http = require("../../../utils/httpUtil.js")
 let app = getApp();
 Page({
   data:{
+    is_in:"",
     id:"",
     usr_id:"",
     user_name:"",
@@ -24,7 +25,8 @@ Page({
     wastewaterAmount:"",
     dewateredSludgeAmount:"",
     moistureSludge:"",
-    sludgeAmount:""
+    sludgeAmount:"",
+    approveStatus:""
   },
   showPopup() {
     this.setData({ show: true });
@@ -170,14 +172,22 @@ Page({
     this.setData({ show: false });
   },
   onLoad: function (options) {
+    debugger
     var usr_id = wx.getStorageSync('usr_id');
     var role_id = wx.getStorageSync('role_id');
     var user_name;
+    var approveStatus = options.wait;
+    if(approveStatus=="wait"){
+      this.setData({approveStatus:approveStatus})
+    }else{
+      this.setData({approveStatus:"none"})
+    }
     if(role_id ==2 ||role_id ==3){
       user_name =options.user_name
     }
     var name = wx.getStorageSync('name');
       this.setData({
+        is_in:Number(options.is_in),
         id: Number(options.id),
         usr_id: Number(usr_id),
         name:name,
@@ -185,6 +195,7 @@ Page({
         role_id: role_id,
         status: Number(options.status),
         is_dosage:Number(options.is_dosage),
+        selectId:Number(options.selectId),
         cod: Number(options.cod),
         bod5: Number(options.bod5),
         ammonia_nitrogen: Number(options.ammonia_nitrogen),
@@ -193,10 +204,13 @@ Page({
         ss: Number(options.ss),
         chromaticity: Number(options.chromaticity),
         ph: Number(options.ph),
-        advice: options.advice
+        advice: options.advice,
+        domesticSewageAmount:options.sewage==undefined?"":Number(options.sewage),
+        wastewaterAmount:options.production_wastewater==undefined?"":Number(options.production_wastewater),
+        dewateredSludgeAmount:options.sludge_dewatering==undefined?"":Number(options.sludge_dewatering),
+        moistureSludge:options.sludge_moisture_content==undefined?"":Number(options.sludge_moisture_content),
+        sludgeAmount:options.sludge_treatment_capacity==undefined?"":Number(options.sludge_treatment_capacity)
       })
-
-
   },
   agree:function(e){
     if(this.data.role_id ==5){
@@ -236,7 +250,12 @@ Page({
         "content":this.data.advice,
         "user_id":this.data.usr_id,
         "review_status":4,
-        "is_dosage":this.data.is_dosage
+        "is_dosage":this.data.is_dosage,
+        "sewage":Number(this.data.domesticSewageAmount),
+        "production_wastewater":Number(this.data.wastewaterAmount),
+        "sludge_dewatering":Number(this.data.dewateredSludgeAmount),
+        "sludge_moisture_content":Number(this.data.moistureSludge),
+        "sludge_treatment_capacity":Number(this.data.sludgeAmount),
       };
       var that =this
       wx.showModal({
@@ -248,9 +267,9 @@ Page({
               const { data } = res
             if( data.code === 200 ){
               wx.showToast({ title: '已同意', icon:'success',duration:2000 })
-              that.changeParentData()
-            }else wx.showToast({ title: '同意失败',icon: 'none',duration:2000 })
+            }else wx.showToast({ title: data.msg,icon: 'none',duration:2000 })
             })
+            that.changeParentData()
           } 
         }
       })
@@ -268,6 +287,11 @@ Page({
         "ph":Number(this.data.ph),
         "user_id":Number(this.data.usr_id),
         "review_status":5,
+        "sewage":Number(this.data.domesticSewageAmount),
+        "production_wastewater":Number(this.data.wastewaterAmount),
+        "sludge_dewatering":Number(this.data.dewateredSludgeAmount),
+        "sludge_moisture_content":Number(this.data.moistureSludge)/100,
+        "sludge_treatment_capacity":Number(this.data.sludgeAmount),
       };
       var that =this
       wx.showModal({
@@ -279,9 +303,9 @@ Page({
               const { data } = res
             if( data.code === 200 ){
               wx.showToast({ title: '已归档', icon:'success',duration:2000 })
-              that.changeParentData()
-            }else wx.showToast({ title: '归档失败',icon: 'none',duration:2000 })
+            }else wx.showToast({ title: data.msg,icon: 'none',duration:2000 })
             })
+            that.changeParentData()
           } 
         }
       })
@@ -305,9 +329,9 @@ Page({
             const { data } = res
             if (data.code === 200) {
               wx.showToast({ title: '驳回成功', icon :'success',duration: 2000 })
-              that.changeParentData()
-            } else  wx.showToast({ title: '驳回失败', icon: 'none'})
+            } else  wx.showToast({ title: data.msg, icon: 'none'})
           })
+          that.changeParentData()
         } 
       },
       fail(res){ wx.showToast({ title: '驳回失败', icon: 'none'}) }
@@ -329,10 +353,11 @@ Page({
   },
   // 返回上层页面刷新
   changeParentData() {
+    var selectId =this.data.selectId
     var pages = getCurrentPages();//当前页面栈
     if (pages.length > 1) {
       var beforePage = pages[pages.length - 2];//获取上一个页面实例对象
-      beforePage.onWater();//触发父页面中的方法
+      beforePage.onWater(selectId);//触发父页面中的方法
     }
     wx.navigateBack({
       delta: 1

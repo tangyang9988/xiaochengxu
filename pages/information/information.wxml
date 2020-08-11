@@ -1,5 +1,5 @@
 <!-- 整体内容开始 -->
-<!-- <view class="infoHeader"> -->
+<view class="infoHeader">
 	<!-- 选择公司 -->
 	<!-- <van-row>
 	<van-col span="12" offset="2">
@@ -9,20 +9,21 @@
 			<image class="tupian circleProgress" style="width:50px;height:50px;"  src="{{avatar_url}}"></image>
 		</van-col>
 	</van-row>
-</view> -->
+</view>
 
 <view class="content">
-
-	<!-- todo 所有的栅栏固定高度，把内容撑到最下面 -->
+	<-- todo 所有的栅栏固定高度，把内容撑到最下面 -->
 	<van-row>
 		<van-col span="1"></van-col>
-
 		<van-col span="22" offset="1">
 			<view class="mainContent">
 				<!-- 主内容开始 -->
-
+				<view style="display:fllex;justify-content:space-between;margin-top:10px;padding-top:10px;">
+					<van-tag round type="danger" size="medium" style="margin-left:10%;" bindtap="copyFile">复制下载链接</van-tag>
+					<van-tag round type="primary" size="medium" style="margin-right:10%;float:right;" bindtap="downloadFile">在线预览月报表</van-tag>
+				</view>
 				<!-- 库存预警 -->
-				<view style="height:30px; margin-top:10px;padding-top:20px;">
+				<view style="height:30px; margin-top:10px;padding-top:10px;">
 				<van-row>
 					<van-col span="1" offset="1" style="font-size:12px;color:#999999;">
 						<view style="width: 5px;height: 15px; background: #E4EAFB;"></view>
@@ -39,8 +40,6 @@
 					<van-col span="4" style="font-size:10px;color:#999999;">总量{{information.storage_number}}</van-col>
 				</van-row>
 				</view>
-				
-
 				<!-- <view style="width: 5px;height: 10px; "></view> -->
 
 				<!-- 预警进度条 -->

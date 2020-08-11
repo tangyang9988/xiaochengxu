@@ -1,74 +1,61 @@
-
 <van-row>
-  <van-col span="7">
-    <van-cell title="加药时间"/>
-  </van-col>
-  <van-col span="17">
-   <van-cell title="{{dosing_time}}"  bind:click="showTimePop" />
-   <van-popup show="{{ showTime }}" position="bottom" custom-style="height: 50%;">
-    <van-datetime-picker
-    type="datetime"
-    value="{{ currentDate }}"
-    bind:confirm="confirm"
-    bind:cancel="onClose"/>
-    </van-popup>
-  </van-col>
+	<van-col span="7">
+		<van-cell title="加药时间" />
+	</van-col>
+	<van-col span="17">
+		<van-cell title="{{dosing_time}}" bind:click="showTimePop" />
+		<van-popup show="{{ showTime }}" position="bottom" custom-style="height: 50%;">
+			<van-datetime-picker type="datetime" value="{{ currentDate }}" bind:confirm="confirm" bind:cancel="onClose" />
+		</van-popup>
+	</van-col>
 </van-row>
 <van-row>
-  <van-col span="7">
-    <van-cell title="加药点位"/>
-  </van-col>
-  <van-col span="17">
-   <van-cell title="{{position}}"  bind:click="showPositionPop" />
-    <van-popup show="{{ showPosition }}" position="bottom" custom-style="height: 50%;">
-      <van-picker columns="{{ columns }}" default-index="{{ 1 }}"  title="加药点位" show-toolbar bind:confirm="onConfirm" bind:cancel="onCancel" />
-    </van-popup>
-  </van-col>
+	<van-col span="7">
+		<van-cell title="加药点位" />
+	</van-col>
+	<van-col span="12">
+		<van-field value="{{position}}" bind:change="positionChange" />
+	</van-col>
+	<van-col span="5">
+		<van-cell title="选择" bind:click="showPositionPop" />
+		<van-popup show="{{ showPosition }}" position="bottom" custom-style="height: 50%;">
+			<van-picker columns="{{ columns }}" default-index="{{ 1 }}" title="加药点位" show-toolbar bind:confirm="onConfirm" bind:cancel="onCancel" />
+		</van-popup>
+	</van-col>
 </van-row>
 <van-row>
-  <van-col span="7">
-    <van-cell title="药剂名称"/>
-  </van-col>
-  <van-col span="17">
-   <van-cell title="{{medicine_name}}"  bind:click="showNamePop" />
-    <van-popup show="{{ showName }}" value-key="text" position="bottom" custom-style="height: 50%;">
-      <van-picker columns="{{ option }}" default-index="{{ 0 }}"  title="选择药品" show-toolbar bind:confirm="nameConfirm" bind:cancel="nameCancel" />
-    </van-popup>
-  </van-col>
+	<van-col span="7">
+		<van-cell title="药剂名称" />
+	</van-col>
+	<van-col span="17">
+		<van-cell title="{{medicine_name}}" bind:click="showNamePop" />
+		<van-popup show="{{ showName }}" value-key="text" position="bottom" custom-style="height: 50%;">
+			<van-picker columns="{{ option }}" default-index="{{ 0 }}" title="选择药品" show-toolbar bind:confirm="nameConfirm" bind:cancel="nameCancel" />
+		</van-popup>
+	</van-col>
 </van-row>
 <van-row border="{{ true }}">
-  <van-col span="7">
-    <van-cell title="加药量" />
-  </van-col>
-  <van-col span="10">
-    <van-field
-    value="{{medicine_count}}"
-    clickable
-    type="digit"
-    bind:change="onChange4"/>
-  </van-col>
-  <van-col span="7">
-    <van-dropdown-menu active-color='#2C65F7' border="{{ true }}" >
+	<van-col span="7">
+		<van-cell title="加药量" />
+	</van-col>
+	<van-col span="12">
+		<van-field value="{{medicine_count}}" clickable type="digit" bind:change="onChange4" />
+	</van-col>
+	<van-col span="5">
+		<!-- <van-dropdown-menu active-color='#2C65F7' border="{{ true }}" >
       <van-dropdown-item value="{{unit}}" options="{{ unitOption }}" bind:change="unitChange" />
-    </van-dropdown-menu>
-  </van-col>
+    </van-dropdown-menu> -->
+		<van-field disabled value="kg" />
+	</van-col>
 </van-row>
 <van-row>
-  <van-col span="7">
-    <van-cell title="加药员"/>
-  </van-col>
-  <van-col span="17">
-    <van-field
-    disabled
-    value="{{name}}"/>
-  </van-col>
+	<van-col span="7">
+		<van-cell title="加药员" />
+	</van-col>
+	<van-col span="17">
+		<van-field disabled value="{{name}}" />
+	</van-col>
 </van-row>
 
 <van-button round type="info" class="submit" bindtap="submit">提交</van-button>
 <van-button round plain type="info" class="cancle" bindtap="cancle">重置</van-button>
-
-
-
-
-
-

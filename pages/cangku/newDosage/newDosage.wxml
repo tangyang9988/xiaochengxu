@@ -35,17 +35,28 @@
   <van-cell title="是否在用">
       <van-switch checked="{{ is_active }}" bind:change="onChange" size="24px" />
   </van-cell>
-  <!-- <van-row>
-    <van-col span="8">
-      <van-cell title="库存数量"/>
-    </van-col>
-    <van-col span="16">
-      <van-field
-     placeholder="请输入库存数量"
-      value="{{storage_amount}}"
-      bind:change="onChange3"/>
-    </van-col>
-</van-row> -->
+<van-row>
+  <van-col span="10">
+    <van-cell title="药品单位"/>
+  </van-col>
+  <van-col span="14">
+    <van-field
+     placeholder="请输入药品单位"
+    value="{{unit_name}}"
+    bind:change="unitChange"/>
+  </van-col>
+</van-row>
+<van-row>
+  <van-col span="10">
+    <van-cell title="换算系数"/>
+  </van-col>
+  <van-col span="14">
+    <van-field
+     placeholder="请输入换算系数"
+    value="{{factor}}"
+    bind:change="factorChange"/>
+  </van-col>
+</van-row>
 <van-button round type="info" class="submit" bindtap="add">新增</van-button>
 <van-button round plain type="info" class="cancle"  bindtap="cancle">取消</van-button>
 <!-- </form> -->

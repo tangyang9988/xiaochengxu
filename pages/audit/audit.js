@@ -13,13 +13,51 @@ Page({
      radio:'1',
     //加载样式是否显示
      loading: true,
-      selectId:""
+     selectId:"",
+     wait:"wait"
   },
   onChange(event) {
     this.setData({radio: event.detail});
     this.onWater(this.data.selectId);
   },
-  onWater(selectId){
+  approveChange(event) {
+    this.setData({wait: event.detail.name})
+  },
+    /**
+   * 列表子项点击事件
+   * @param { item子项 } e 
+   */
+  disItemClick(e) {
+    var usr_id = wx.getStorageSync('usr_id');
+    var wait =this.data.wait
+    const { gid } = e.currentTarget.dataset
+    var advice="";
+    if(gid.reviews.length>0){
+    advice = gid.reviews[0].content
+    }else{
+      advice =""
+    }
+    const url = `../edit/edit?usr_id=${usr_id}&user_name=${gid.user_name}&id=${gid.id}&dosing_time=${gid.dosing_time}&position=${gid.position}&medicine_id=${gid.medicine_id}&medicine_name=${gid.medicine_name}&medicine_count=${gid.medicine_count}&unit_name=${gid.unit_name}&wait=${wait}&advice=${advice}`
+    this.onNavigateTo(url)
+  },
+     /**
+   * 列表子项点击事件
+   * @param { item子项 } e 
+   */
+  huayanDisItemClick(e) {
+    var usr_id = wx.getStorageSync('usr_id');
+    var wait =this.data.wait
+    const { gid } = e.currentTarget.dataset
+    var advice="";
+    if(gid.reviews.length>0){
+    advice = gid.reviews[0].content
+    }else{
+      advice =""
+    }
+    const url = `../huayan/edit/edit?id=${gid.id}&is_in=${gid.is_in}&user_name=${gid.user_name}&status=${gid.status}&is_dosage=${gid.is_dosage}&usr_id=${usr_id}&cod=${gid.cod}&bod5=${gid.bod5}&ammonia_nitrogen=${gid.ammonia_nitrogen}&phosphorus=${gid.phosphorus}&nitrogen=${gid.nitrogen}&ss=${gid.ss}&chromaticity=${gid.chromaticity}&ph=${gid.ph}&sewage=${gid.sewage}&production_wastewater=${gid.production_wastewater}&sludge_dewatering=${gid.sludge_dewatering}&sludge_moisture_content=${gid.sludge_moisture_content}&sludge_treatment_capacity=${gid.sludge_treatment_capacity}&advice=${advice}`
+    this.onNavigateTo(url)
+  },
+  onWater(){
     var usr_id = wx.getStorageSync('usr_id');
     var role_id = wx.getStorageSync('role_id');
     var that = this //很重要，一定要写
@@ -30,12 +68,13 @@ Page({
     var params;
     if(role_id==2){
       params={
-        "company_id":wx.getStorageSync('company_id')
+        "company_id":wx.getStorageSync('company_id'),
+        "user_id":usr_id
       }
       url = "/app/dosage_review/dosage/company/query";
     }else if(role_id==3){
         params={
-          "company_id":Number(selectId)
+          "company_id":Number(this.data.selectId)
         }
       url = "/app/maotai/dosage/company/all/query";
     }
@@ -83,7 +122,47 @@ Page({
     var role_id = wx.getStorageSync('role_id');
     this.setData({role_id:role_id})
     var selectId = options.selectId
-      this.setData({selectId:selectId})
-      this.onWater(selectId)
-  }
+    this.setData({selectId:selectId})
+    this.onWater()
+  },
+     /**
+   * 列表子项点击事件
+   * @param { item子项 } e 
+   */
+  onItemClick(e) {
+    var selectId =this.data.selectId;
+    var usr_id = wx.getStorageSync('usr_id');
+    const { gid } = e.currentTarget.dataset
+    var advice="";
+    if(gid.reviews.length>0){
+    advice = gid.reviews[0].content
+    }else{
+      advice =""
+    }
+    const url = `../huayan/edit/edit?id=${gid.id}&is_in=${gid.is_in}&selectId=${selectId}&user_name=${gid.user_name}&status=${gid.status}&is_dosage=${gid.is_dosage}&usr_id=${usr_id}&cod=${gid.cod}&bod5=${gid.bod5}&ammonia_nitrogen=${gid.ammonia_nitrogen}&phosphorus=${gid.phosphorus}&nitrogen=${gid.nitrogen}&ss=${gid.ss}&chromaticity=${gid.chromaticity}&ph=${gid.ph}&sewage=${gid.sewage}&production_wastewater=${gid.production_wastewater}&sludge_dewatering=${gid.sludge_dewatering}&sludge_moisture_content=${gid.sludge_moisture_content}&sludge_treatment_capacity=${gid.sludge_treatment_capacity}&advice=${advice}`
+    this.onNavigateTo(url)
+  },
+       /**
+   * 药剂列表子项点击事件
+   * @param { item子项 } e 
+   */
+  yaoItemClick(e) {
+    var usr_id = wx.getStorageSync('usr_id');
+    const { gid } = e.currentTarget.dataset
+    var advice="";
+    if(gid.reviews.length>0){
+    advice = gid.reviews[0].content
+    }else{
+      advice =""
+    }
+    const url = `../edit/edit?usr_id=${usr_id}&user_name=${gid.user_name}&id=${gid.id}&dosing_time=${gid.dosing_time}&position=${gid.position}&medicine_id=${gid.medicine_id}&medicine_name=${gid.medicine_name}&medicine_count=${gid.medicine_count}&unit_id=${gid.unit_id}&unit_name=${gid.unit_name}&advice=${advice}`
+    this.onNavigateTo(url)
+  },
+      /**
+   * 页面跳转
+   * @param { 路由地址 } url 
+   */
+  onNavigateTo(url) {
+    wx.navigateTo({ url })
+  },
 })

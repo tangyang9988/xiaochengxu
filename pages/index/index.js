@@ -32,9 +32,13 @@ Page({
       text: '201厂新寨4000吨污水处理厂',
       cp_id: 159529686074
     }, {
-      text: '201厂大地3000吨污水处理厂',
-      cp_id: 159529687331
-    }],
+      text: '中耀201厂3000吨污水处理厂',
+      cp_id: 15964237533997
+    },{
+      text: '贵州茅台301厂二合污水处理厂',
+      cp_id: 15964239607284
+    },
+  ],
     perColumns: [{text:'加药员',role_id:1}, {text:'化验员',role_id:5}],
     desc: "",
     motto: '污⽔⼚加药监控小程序',
@@ -170,7 +174,7 @@ Page({
         setTimeout(() => {
           wx.hideToast();
         }, 500)
-        that.setData({showModal: false})
+        // that.setData({showModal: false})
       }
     });
   },

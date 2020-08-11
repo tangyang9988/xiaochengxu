@@ -426,4 +426,4 @@
 	</view>
 </view>
 
-<van-button round type="info" style="display:flex;width:100%;margin-top:8%;" bind:click="return">一键退出</van-button>
+<!-- <van-button round type="info" style="display:flex;width:100%;margin-top:8%;" bind:click="return">一键退出</van-button> -->

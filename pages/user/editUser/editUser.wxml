@@ -15,10 +15,10 @@
     bind:change="onChange1"/>
 </van-cell-group>
 <van-row>
-  <van-col span="5">
+  <van-col span="6">
     <van-cell title="角色" />
   </van-col>
-  <van-col span="19">
+  <van-col span="18">
       <van-cell title="{{selectRole_name}}"  bind:click="showPopup" />
     <van-popup show="{{ show }}" position="bottom" custom-style="height: 35%;" bind:close="onClose">
       <van-picker title="选择" columns="{{ columns }}" default-index="{{ 0 }}" show-toolbar bind:confirm="confirm" bind:cancel="onClose" />

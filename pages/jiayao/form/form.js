@@ -6,8 +6,8 @@ Page({
     "usr_id": "",
     "name": "",
     "selectId": "",
-    "position": "无锡市点位",
-    "dosing_time": "2020-07-30 10:00:00",
+    "position": "",
+    "dosing_time": "",
     "medicine_id": "",
     "medicine_name": "",
     "medicine_count": 10,
@@ -15,25 +15,29 @@ Page({
     "showPosition": false,
     "showName": false,
     "currentDate": new Date().getTime(),
-    "columns": ['无锡市点位', '苏州市点位', '上海点位'],
+    "columns": ['高效多功能净水器', '脱水机', '清水池','初沉池','好氧池','高密沉淀池','污泥脱水间','混凝反应池','氧化沟/a/o池1','氧化沟/a/o池2','氧化沟/a/o池3'],
     // "option":[{key:159332570586,text:'片碱'},{key:159280864452,text:'PAM(阴离子)'},{key:159280152053,text:'PAM(阳离子)'},]
     "option": [],
     "unitOption": [{
+            text: 'kg',
+            value: 15953129609
+        },
+        {
+            text: '袋',
+            value: 159531299950
+        },
+        {
             text: '桶',
-            value: '桶'
-        },
-        {
-            text: '吨',
-            value: '吨'
-        },
-        {
-            text: '包',
-            value: '包'
+            value: 15965954342777
         }
     ],
-    unit:""
+    unit:15953129609
   },
-  list: "",
+  positionChange(event){
+    this.setData({
+      position: event.detail
+    });
+  },
   onChange3(event) {
     this.setData({
       "medicine_id": Number(event.detail)
@@ -130,12 +134,8 @@ Page({
   },
   unitChange:function(event){
     this.setData({
-      "unit": event.detail
+      "unit":Number(event.detail)
     })
-    wx.setStorage({
-      key: 'unit',
-      data: this.data.unit
-    });
   },
   //时间戳转换方法    date:时间戳数字
   formatDate(date) {
@@ -152,6 +152,11 @@ Page({
     var usr_id = wx.getStorageSync('usr_id');
     var company_id = wx.getStorageSync('company_id');
     var name = wx.getStorageSync('name');
+    var currentDate=this.formatDate(new Date())
+    this.setData({
+      dosing_time: currentDate
+    });
+    this.setData({position:this.data.columns[0]})
     this.setData({
       usr_id: usr_id,
       name: name
@@ -181,6 +186,27 @@ Page({
       }
 
     })
+    // var param = {
+    // }
+    // http.Post('/app/unit/query', param, function (res) {
+    //   var storage = res.data.data;
+    //   var unitList = [];
+    //   if (storage.length > 0) {
+    //     for (var i = 0; i < storage.length; i++) {
+    //       unitList.push({
+    //         id: storage[i].id,
+    //         text: storage[i].name
+    //       });
+    //       that.setData({
+    //         "unit": Number(storage[0].id),
+    //       })
+    //     }
+    //     that.setData({
+    //       "unitOption": unitList
+    //     })
+    //   }
+
+    // })
   },
   submit: function () {
     var that = this
@@ -188,9 +214,10 @@ Page({
       "dosing_time": this.data.dosing_time,
       "position": this.data.position,
       "medicine_id": this.data.medicine_id,
-      "medicine_count": Number(this.data.medicine_count),
+      "medicine_count": parseFloat(this.data.medicine_count),
       "status": 1,
-      "user_id": this.data.usr_id
+      "user_id": this.data.usr_id,
+      "unit_id":this.data.unit
     };
     wx.showModal({
       title: '提示',

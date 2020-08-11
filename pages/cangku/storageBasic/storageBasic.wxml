@@ -1,19 +1,19 @@
 <!-- <form bindsubmit="formSubmit" method="post" action="http地址" name="myform" id="myform"> -->
 <van-row>
-  <van-col span="15">
+  <van-col span="10">
     <van-cell title="药品名称"/>
   </van-col>
-  <van-col span="9">
+  <van-col span="14">
     <van-field
     value="{{medicine_name}}"
     bind:change="onChange1"/>
   </van-col>
 </van-row>
 <van-row>
-  <van-col span="15">
+  <van-col span="10">
     <van-cell title="供应商"/>
   </van-col>
-  <van-col span="9">
+  <van-col span="14">
    <van-field
    disabled
     value="{{supplier}}"
@@ -22,10 +22,10 @@
   </van-col>
 </van-row>
 <van-row>
-  <van-col span="15">
+  <van-col span="10">
     <van-cell title="低库存阀值设置"/>
   </van-col>
-  <van-col span="9">
+  <van-col span="14">
    <van-field
     value="{{minimum}}"
     border="{{ true }}"
@@ -36,10 +36,10 @@
     <van-switch checked="{{ is_active }}" bind:change="onChange" size="24px"/>
   </van-cell>
   <van-row>
-    <van-col span="15">
+    <van-col span="10">
       <van-cell title="库存数量"/>
     </van-col>
-    <van-col span="9">
+    <van-col span="14">
       <van-field
         disabled
         border="{{ true }}"

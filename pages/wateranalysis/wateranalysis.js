@@ -69,7 +69,6 @@ Page({
         this.setData({transCanvs:true})
     },
     onCloseDropdown(){
-        console.log("false")
         this.setData({transCanvs:false})
         this.onGetInfo()
     },
@@ -316,7 +315,7 @@ Page({
         if(role_id == 2){
             company_id = wx.getStorageSync('company_id')
         }else if(role_id == 3){
-            company_id = this.data.selectId
+            company_id = Number(this.data.selectId)
         }
         //加载接口
         var params = {
@@ -327,16 +326,6 @@ Page({
         };
         var that = this;
         http.Post('/app/dosage_review/water_quality/period', params, function (res) {
-            // console.log(res)
-            // for (var i = 0; i < res.data.data.x_date.length; i++) {
-            //     categories.push(res.data.data.x_date[i]);
-            // }
-            // for (var i = 0; i < res.data.data.one_dosage_period.length; i++) {
-            //     data.push(res.data.data.one_dosage_period[i]);
-            // }
-            // that.setData({"categories":res.data.data.x_date})
-            // that.setData({"periodData":res.data.data.one_dosage_period})
-            // that.lineChart.data
             that.setData({
                 "categories": res.data.data.x_date
             })

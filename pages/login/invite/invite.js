@@ -5,9 +5,17 @@ Page({
     modalHidden: true,
   },
   changeInput: function (e) {
-    this.setData({
-      invitation: e.detail.value
-    })
+    if (/[^a-zA-Z0-9]/.test(e.detail.value)) {
+      wx.showToast({
+        title: '请输入数字或英文',
+        icon: 'none'
+      })
+    } else {
+      this.setData({
+        invitation: e.detail.value
+      })
+    }
+
   },
   modalChange: function (e) {
     this.setData({
@@ -27,9 +35,18 @@ Page({
           var role_id=res.data.data.role_id;
           var company_id=res.data.data.company_id;
           var company_name=res.data.data.company_name;
-          wx.navigateTo({
-            url: '/pages/login/addUser/addUser?invitation=' + invitation + '&role_id=' + role_id + '&company_id=' + company_id + '&company_name=' + company_name
-          })
+          var count=res.data.data.count;
+          if(count ==0){
+            wx.showToast({
+              title: '邀请码已超过使用次数',
+              icon:"none",
+              duration: 2000,
+            })
+          }else if(count>0){
+            wx.navigateTo({
+              url: '/pages/login/addUser/addUser?invitation=' + invitation + '&role_id=' + role_id + '&company_id=' + company_id + '&company_name=' + company_name
+            })
+          }
         }else{
           that.setData({
             modalHidden: false

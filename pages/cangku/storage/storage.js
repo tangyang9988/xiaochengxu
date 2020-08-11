@@ -14,10 +14,10 @@ Page({
     var selectId =Number(options.selectId)
     var selectName =options.selectName
     }
-
     this.setData({selectId:selectId,selectName:selectName})
     var usr_id = wx.getStorageSync('usr_id');
     var role_id = wx.getStorageSync('role_id');
+    var company_id = wx.getStorageSync('company_id');
     this.setData({role_id:role_id})
     this.setData({usr_id},()=>{console.log(this.data.usr_id)})
     this.getSystemInfo()
@@ -27,10 +27,13 @@ Page({
       params={
         "company_id":that.data.selectId
       }
-
+    }else if(role_id ==2){
+      params={
+        "company_id":company_id
+      }
     }else{
       params={
-        "company_id":wx.getStorageSync('company_id')
+        "company_id":company_id
       }
     }
     http.Post('/app/storage/company/all/query', params, function (res) {

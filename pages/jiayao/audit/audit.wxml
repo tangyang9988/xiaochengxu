@@ -1,9 +1,9 @@
 
-  <loading hidden="{{!loading}}">加载中</loading>
-  <van-search value="{{ searchValue }}" shape="round" placeholder="请输入药剂名称或加药单编号" bind:change="onChange" bind:search="onSearch" bind:cancel="onCancel" />
+  <!-- <loading hidden="{{!loading}}">加载中</loading>
+  <van-search value="{{ searchValue }}" shape="round" placeholder="请输入药剂名称或加药单编号" bind:change="onChange" bind:search="onSearch" bind:cancel="onCancel" /> -->
   <!-- html -->
 <view class="cards" wx:for="{{List}}" wx:for-item="item" wx:key="item">
- <navigator class="nav" url='../edit/edit?id={{item.id}}&status={{item.status}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}&content={{item.reviews[0].content}}'>
+ <navigator class="nav" url='../edit/edit?id={{item.id}}&status={{item.status}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}&content={{item.reviews[0].content}}&unit_id={{item.unit_id}}&unit_name={{item.unit_name}}'>
 		<!-- 左侧图片 -->
 		<!-- <view class="card card-url">
 			<image src="{{item.img_src}}" mode="widthFix"></image>

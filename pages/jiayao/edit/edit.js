@@ -17,23 +17,28 @@ Page({
     "showPosition":false,
     "showName":false,
     "currentDate": new Date().getTime(),
-    "columns": ['无锡市点位', '苏州市点位', '上海点位'],
-    // "option":[{key:159332570586,text:'片碱'},{key:159280864452,text:'PAM(阴离子)'},{key:159280152053,text:'PAM(阳离子)'},]
+    "columns": ['高效多功能净水器', '脱水机', '清水池','初沉池','好氧池','高密沉淀池','污泥脱水间','混凝反应池','氧化沟/a/o池1','氧化沟/a/o池2','氧化沟/a/o池3'],
     "option":[],
     "unitOption": [{
+      text: 'kg',
+      value: 15953129609
+  },
+  {
+      text: '袋',
+      value: 159531299950
+  },
+  {
       text: '桶',
-      value: '桶'
-  },
-  {
-      text: '吨',
-      value: '吨'
-  },
-  {
-      text: '包',
-      value: '包'
+      value: 15965954342777
   }
 ],
-    "unit":""
+    "unit_id":"",
+    "unit_name":"",
+  },
+  positionChange(event){
+    this.setData({
+      position: event.detail
+    });
   },
   // onChange1(event) {
   //   this.setData({dosing_time:event.detail})
@@ -138,7 +143,9 @@ Page({
       position: options.position,
       medicine_id: Number(options.medicine_id),
       medicine_name:options.medicine_name,
-      medicine_count: parseFloat(options.medicine_count)
+      medicine_count: parseFloat(options.medicine_count),
+      unit_id:Number(options.unit_id),
+      unit_name:options.unit_name
     })
   },
 agree:function(){
@@ -151,6 +158,7 @@ agree:function(){
     "position":this.data.position,
     "medicine_id":Number(this.data.medicine_id),
     "medicine_count":parseFloat(this.data.medicine_count),
+    "unit_id":Number(this.data.unit)
   }
   var that =this
    wx.showModal({

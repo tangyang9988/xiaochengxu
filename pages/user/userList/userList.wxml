@@ -24,9 +24,9 @@
       </view>
     </view>
   </scroll-view>
-  <view class="addBtn" hover-class="hover" bindtap="onAddUser" >
+  <!-- <view class="addBtn" hover-class="hover" bindtap="onAddUser" >
     新增用户
-  </view>
+  </view> -->
 </view>
 <view class="body" wx:if="{{role_id==3}}">
   <!-- 茅台管理 -->
@@ -56,8 +56,8 @@
       </view>
     </view>
   </scroll-view>
-  <view class="addBtn" hover-class="hover" bindtap="onAddUser" >
+  <!-- <view class="addBtn" hover-class="hover" bindtap="onAddUser" >
     新增运维人员
-  </view>
+  </view> -->
 </view>
 

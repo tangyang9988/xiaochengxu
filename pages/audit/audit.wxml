@@ -15,13 +15,13 @@
 </view>
 <!-- 运维人员 -->
 <view wx:if="{{role_id==2}}">
-	<van-tabs animated active="wait" wx:if="{{radio=='1'}}" color="#2C65F7">
+	<van-tabs animated active="wait" bind:change="approveChange" wx:if="{{radio=='1'}}" color="#2C65F7">
 		<van-tab title="待审核" name="wait" title-style="color:#2C65F7;font-size:500">
 			<view class="data_none {{pendingList.length === 0 ? 'show' : 'hidden'}}">
 				<span class="class_none">暂无数据</span>
 			</view>
 			<view class="cards {{pendingList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{pendingList}}" wx:for-item="item" wx:key="item">
-				<navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&user_name={{item.user_name}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}'>
+				<navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&user_name={{item.user_name}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}&unit_name={{item.unit_name}}&wait={{wait}}'>
 					<view class="column">
 						<view class="card-desc">
 							<view class="circle"></view>
@@ -37,12 +37,12 @@
 				<view class="space"></view>
 			</view>
 		</van-tab>
-		<van-tab title="未通过">
+		<van-tab title="未通过" name="disapprove">
 			<view class="data_none {{disapproveList.length === 0 ? 'show' : 'hidden'}}">
 				<span class="class_none">暂无数据</span>
 			</view>
 			<view class="cards {{disapproveList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{disapproveList}}" wx:for-item="item" wx:key="item">
-				<navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&user_name={{item.user_name}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}'>
+				<view class="nav" data-gId='{{item}}' bindtap="disItemClick" hover-class="hover">
 					<view class="column">
 						<view class="card-desc">
 							<view class="circle"></view>
@@ -53,17 +53,17 @@
 						<view class="card-title">提交时间：{{item.dosing_time}}</view>
 						<view class="card-title">提交人员：{{item.user_name}}</view>
 					</view>
-				</navigator>
+				</view>
 				<!-- 卡片与卡片的空白间隔 -->
 				<view class="space"></view>
 			</view>
 		</van-tab>
-		<van-tab title="通过">
+		<van-tab title="通过" name="approve">
 			<view class="data_none {{approveList.length === 0 ? 'show' : 'hidden'}}">
 				<span class="class_none">暂无数据</span>
 			</view>
 			<view class="cards {{approveList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{approveList}}" wx:for-item="item" wx:key="item">
-				<navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&user_name={{item.user_name}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_count={{item.medicine_count}}'>
+				<view class="nav" data-gId='{{item}}' bindtap="disItemClick" hover-class="hover">
 					<view class="column">
 						<view class="card-desc">
 							<view class="circle"></view>
@@ -74,17 +74,17 @@
 						<view class="card-title">提交时间：{{item.dosing_time}}</view>
 						<view class="card-title">提交人员：{{item.user_name}}</view>
 					</view>
-				</navigator>
+				</view>
 				<!-- 卡片与卡片的空白间隔 -->
 				<view class="space"></view>
 			</view>
 		</van-tab>
-		<van-tab title="全部">
-			<!-- <view class="data_none {{totalList.length === 0 ? 'show' : 'hidden'}}" >
+		<!-- <van-tab title="全部" name="all">
+			<view class="data_none {{totalList.length === 0 ? 'show' : 'hidden'}}" >
     <span class="class_none">暂无数据</span>
-  </view> -->
+  </view>
 			<view class="cards {{totalList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{totalList}}" wx:for-item="item" wx:key="item">
-				<navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&user_name={{item.user_name}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}'>
+				<navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&user_name={{item.user_name}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}&unit_name={{item.unit_name}}&wait={{wait}}'>
 					<view class="column">
 						<view class="card-desc">
 							<view class="circle"></view>
@@ -96,27 +96,26 @@
 						<view class="card-title">提交人员：{{item.user_name}}</view>
 					</view>
 				</navigator>
-				<!-- 卡片与卡片的空白间隔 -->
 				<view class="space"></view>
 			</view>
-		</van-tab>
+		</van-tab> -->
 	</van-tabs>
 	<!-- 化验 -->
-	<van-tabs animated active="wait" wx:if="{{radio=='2'}}" color="#2C65F7" border>
+	<van-tabs animated active="wait" bind:change="approveChange" wx:if="{{radio=='2'}}" color="#2C65F7" border>
 		<van-tab title="待审核" name="wait" color="#2C65F7">
 			<view class="data_none {{pendingList.length === 0? 'show' : 'hidden'}}">
 				<span class="class_none">暂无数据</span>
 			</view>
 			<view class="cards {{pendingList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{pendingList}}" wx:for-item="item" wx:key="item">
-				<navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&user_name={{item.user_name}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}'>
+				<navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&is_in={{item.is_in}}&user_name={{item.user_name}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}}&wait={{wait}}'>
 					<view class="column">
 						<view class="card-desc">
 							<view class="circle"></view>
 							<view class="circleLeft">编号：{{item.id}}</view>
 						</view>
 						<view class="card-title">类型：{{'化验单'}}</view>
-						<view class="card-title" wx:if="{{item.is_dosage==1}}">进出水：{{'进水'}}</view>
-						<view class="card-title" wx:if="{{item.is_dosage==0}}">进出水：{{'出水'}}</view>
+						<view class="card-title" wx:if="{{item.is_in==1}}">进出水：{{'进水'}}</view>
+						<view class="card-title" wx:if="{{item.is_in==0}}">进出水：{{'出水'}}</view>
 						<view class="card-title">提交时间：{{item.created_at}}</view>
 						<view class="card-title">提交人员：{{item.user_name}}</view>
 					</view>
@@ -125,78 +124,79 @@
 				<view class="space"></view>
 			</view>
 		</van-tab>
-		<van-tab title="未通过" name="c">
+		<van-tab title="未通过" name="disapprove">
 			<view class="data_none {{disapproveList.length === 0 ? 'show' : 'hidden'}}">
 				<span class="class_none">暂无数据</span>
 			</view>
 			<view class="cards  {{disapproveList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{disapproveList}}" wx:for-item="item" wx:key="item">
-				<navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&user_name={{item.user_name}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}'>
+				<view class="nav"  data-gId='{{item}}' bindtap="huayanDisItemClick" hover-class="hover">
 					<view class="column">
 						<view class="card-desc">
 							<view class="circle"></view>
 							<view class="circleLeft">编号：{{item.id}}</view>
 						</view>
 						<view class="card-title">类型：{{'化验单'}}</view>
-						<view class="card-title" wx:if="{{item.is_dosage==1}}">进出水：{{'进水'}}</view>
-						<view class="card-title" wx:if="{{item.is_dosage==0}}">进出水：{{'出水'}}</view>
+						<view class="card-title" wx:if="{{item.is_in==1}}">进出水：{{'进水'}}</view>
+						<view class="card-title" wx:if="{{item.is_in==0}}">进出水：{{'出水'}}</view>
 						<view class="card-title">提交时间：{{item.created_at}}</view>
 						<view class="card-title">提交人员：{{item.user_name}}</view>
 					</view>
-				</navigator>
+				</view>
 				<!-- 卡片与卡片的空白间隔 -->
 				<view class="space"></view>
 			</view>
 		</van-tab>
-		<van-tab title="通过" name="c">
+		<van-tab title="通过" name="approve">
 			<view class="data_none {{approveList.length === 0 ? 'show' : 'hidden'}}">
 				<span class="class_none">暂无数据</span>
 			</view>
 			<view class="cards  {{approveList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{approveList}}" wx:for-item="item" wx:key="item">
-				<navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&user_name={{item.user_name}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}'>
-					<view class="column">
-						<view class="card-desc">
-							<view class="circle"></view>
-							<view class="circleLeft">编号：{{item.id}}</view>
-						</view>2
-						<view class="card-title">类型：{{'化验单'}}</view>
-						<view class="card-title" wx:if="{{item.is_dosage==1}}">进出水：{{'进水'}}</view>
-						<view class="card-title" wx:if="{{item.is_dosage==0}}">进出水：{{'出水'}}</view>
-						<view class="card-title">提交时间：{{item.created_at}}</view>
-						<view class="card-title">提交人员：{{item.user_name}}</view>
-					</view>
-				</navigator>
-				<view class="space"></view>
-			</view>
-		</van-tab>
-		<van-tab title="全部" name="all">
-			<view class="data_none {{totalList.length === 0 ? 'show' : 'hidden'}}">
-				<span class="class_none">暂无数据</span>
-			</view>
-			<view class="cards {{totalList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{totalList}}" wx:for-item="item" wx:key="item">
-				<navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&user_name={{item.user_name}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}'>
+				<view class="nav" data-gId='{{item}}' bindtap="huayanDisItemClick" hover-class="hover">
 					<view class="column">
 						<view class="card-desc">
 							<view class="circle"></view>
 							<view class="circleLeft">编号：{{item.id}}</view>
 						</view>
 						<view class="card-title">类型：{{'化验单'}}</view>
-						<view class="card-title" wx:if="{{item.is_dosage==1}}">进出水：{{'进水'}}</view>
-						<view class="card-title" wx:if="{{item.is_dosage==0}}">进出水：{{'出水'}}</view>
+						<view class="card-title" wx:if="{{item.is_in==1}}">进出水：{{'进水'}}</view>
+						<view class="card-title" wx:if="{{item.is_in==0}}">进出水：{{'出水'}}</view>
+						<view class="card-title">提交时间：{{item.created_at}}</view>
+						<view class="card-title">提交人员：{{item.user_name}}</view>
+					</view>
+				</view>
+				<view class="space"></view>
+			</view>
+		</van-tab>
+		<!-- TODO 是否删除全部 -->
+		<!-- <van-tab title="全部" name="all">
+			<view class="data_none {{totalList.length === 0 ? 'show' : 'hidden'}}">
+				<span class="class_none">暂无数据</span>
+			</view>
+			<view class="cards {{totalList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{totalList}}" wx:for-item="item" wx:key="item">
+				<navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&is_in={{item.is_in}}&user_name={{item.user_name}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}'>
+					<view class="column">
+						<view class="card-desc">
+							<view class="circle"></view>
+							<view class="circleLeft">编号：{{item.id}}</view>
+						</view>
+						<view class="card-title">类型：{{'化验单'}}</view>
+						<view class="card-title" wx:if="{{item.is_in==1}}">进出水：{{'进水'}}</view>
+						<view class="card-title" wx:if="{{item.is_in==0}}">进出水：{{'出水'}}</view>
 						<view class="card-title">提交时间：{{item.created_at}}</view>
 						<view class="card-title">提交人员：{{item.user_name}}</view>
 					</view>
 				</navigator>
-				<!-- 卡片与卡片的空白间隔 -->
+
 				<view class="space"></view>
 			</view>
-		</van-tab>
+		</van-tab> -->
 	</van-tabs>
 </view>
 <!-- 茅台人员 -->
 <view wx:if="{{role_id==3}}">
 	<view wx:if="{{radio=='1'}}">
 		<view class="cards {{totalList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{totalList}}" wx:for-item="item" wx:key="item">
-			<navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&user_name={{item.user_name}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}'>
+			<view class="nav" data-gId='{{item}}' bindtap="yaoItemClick" >
 				<view class="column">
 					<view class="card-desc">
 						<view class="circle"></view>
@@ -207,7 +207,7 @@
 					<view class="card-title">提交时间：{{item.dosing_time}}</view>
 					<view class="card-title">提交人员：{{item.user_name}}</view>
 				</view>
-			</navigator>
+			</view>
 			<!-- 卡片与卡片的空白间隔 -->
 			<view class="space"></view>
 		</view>
@@ -219,19 +219,19 @@
 			<span class="class_none">暂无数据</span>
 		</view> -->
 		<view class="cards {{totalList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{totalList}}" wx:for-item="item" wx:key="item">
-			<navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&user_name={{item.user_name}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}'>
+			<view class="nav" data-gId='{{item}}' bindtap="onItemClick" >
 				<view class="column">
 					<view class="card-desc">
 						<view class="circle"></view>
 						<view class="circleLeft">编号：{{item.id}}</view>
 					</view>
 					<view class="card-title">类型：{{'化验单'}}</view>
-					<view class="card-title" wx:if="{{item.is_dosage==1}}">进出水：{{'进水'}}</view>
-					<view class="card-title" wx:if="{{item.is_dosage==0}}">进出水：{{'出水'}}</view>
+					<view class="card-title" wx:if="{{item.is_in==1}}">进出水：{{'进水'}}</view>
+					<view class="card-title" wx:if="{{item.is_in==0}}">进出水：{{'出水'}}</view>
 					<view class="card-title">提交时间：{{item.created_at}}</view>
 					<view class="card-title">提交人员：{{item.user_name}}</view>
 				</view>
-			</navigator>
+			</view>
 			<!-- 卡片与卡片的空白间隔 -->
 			<view class="space"></view>
 		</view>

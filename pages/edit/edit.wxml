@@ -1,108 +1,100 @@
 <view wx:if="{{role_id==2}}">
-<van-cell-group>
-  <van-field
-    disabled
-    value="{{dosing_time}}"
-    label="加药时间"
-    border="{{ true }}"/>
-  <van-field
-    disabled
-    value="{{position}}"
-    label="加药点位"
-    border="{{ true }}"/>
-  <van-field
-    disabled
-    value="{{medicine_name}}"
-    label="药剂名称"
-    border="{{ true }}"/>
-  <van-field
-    disabled
-    value="{{medicine_count}} ({{unit}})"
-    label="加药量"
-    border="{{ true }}"
-    bind:change="onChange4"/>
-  <van-field
-    disabled
-    value="{{user_name}}"
-    label="加药员"
-    border="{{ true }}"/>
-  <van-field
-    value="{{content}}"
-    label="审核意见"
-    type="textarea"
-    placeholder="请输入审核意见"
-    rows="1"
-    autosize
-    bind:change="onChange5"/>
-</van-cell-group>
-  <van-button round type="info" class="submit" bindtap="agree">同意</van-button>
-  <van-button round type="danger" class="cancle" bindtap="reject">驳回</van-button>
+	<view wx:if="{{approveStatus == 'wait'}}">
+	<van-cell-group >
+		<van-field disabled value="{{dosing_time}}" label="加药时间" border="{{ true }}" />
+		<van-field disabled value="{{position}}" label="加药点位" border="{{ true }}" />
+		<van-field disabled value="{{medicine_name}}" label="药剂名称" border="{{ true }}" />
+		<van-field disabled value="{{medicine_count}} {{unit_name}}" label="加药量" border="{{ true }}" bind:change="onChange4" />
+		<van-field disabled value="{{user_name}}" label="加药员" border="{{ true }}" />
+		<van-field value="{{content}}" label="审核意见" type="textarea" placeholder="请输入审核意见" rows="1" autosize bind:change="onChange5" />
+	</van-cell-group >
+		<van-button round type="info" class="submit" bindtap="agree">同意</van-button>
+		<van-button round type="danger" class="cancle" bindtap="reject">驳回</van-button>
+	</view>
+	<view wx:else>
+	<van-cell-group >
+		<van-field disabled value="{{dosing_time}}" label="加药时间" border="{{ true }}" />
+		<van-field disabled value="{{position}}" label="加药点位" border="{{ true }}" />
+		<van-field disabled value="{{medicine_name}}" label="药剂名称" border="{{ true }}" />
+		<van-field disabled value="{{medicine_count}} {{unit_name}}" label="加药量" border="{{ true }}" bind:change="onChange4" />
+		<van-field disabled value="{{user_name}}" label="加药员" border="{{ true }}" />
+		<van-field disabled value="{{advice}}" label="审核意见" border="{{ true }}" />
+	</van-cell-group >
+		<van-button disabled round type="info" class="submit" >同意</van-button>
+		<van-button disabled round type="danger" class="cancle" >驳回</van-button>
+	</view>
 </view>
 <view wx:elif="{{role_id==3}}">
-  <van-row>
-  <van-col span="7">
-    <van-cell title="加药时间"/>
-  </van-col>
-  <van-col span="17">
-   <van-cell title="{{dosing_time}}"  bind:click="showTimePop" />
-   <van-popup show="{{ showTime }}" position="bottom" custom-style="height: 50%;">
-    <van-datetime-picker
-    type="datetime"
-    value="{{ currentDate }}"
-    bind:confirm="confirm"
-    bind:cancel="onClose"/>
-    </van-popup>
-  </van-col>
-</van-row>
-  <van-row>
-    <van-col span="7">
-      <van-cell title="加药点位"/>
-    </van-col>
-    <van-col span="17">
-    <van-cell title="{{position}}"  bind:click="showPositionPop" />
-      <van-popup show="{{ showPosition }}" position="bottom" custom-style="height: 50%;">
-        <van-picker columns="{{ columns }}" default-index="{{ 1 }}"  title="加药点位" show-toolbar bind:confirm="onConfirm" bind:cancel="onCancel" />
-      </van-popup>
-    </van-col>
-  </van-row>
-  <van-row>
-      <van-col span="7">
-      <van-cell title="药剂名称"/>
-    </van-col>
-    <van-col span="17">
-    <van-cell title="{{medicine_name}}"  bind:click="showNamePop" />
-      <van-popup show="{{ showName }}" value-key="text" position="bottom" custom-style="height: 50%;">
-        <van-picker columns="{{ option }}" default-index="{{ 0 }}"  title="选择药品" show-toolbar bind:confirm="nameConfirm" bind:cancel="nameCancel" />
-      </van-popup>
-    </van-col>
-  </van-row>
+	<van-row>
+		<van-col span="8">
+			<van-cell title="加药时间" />
+		</van-col>
+		<van-col span="16">
+			<van-cell title="{{dosing_time}}" bind:click="showTimePop" />
+			<van-popup show="{{ showTime }}" position="bottom" custom-style="height: 50%;">
+				<van-datetime-picker type="datetime" value="{{ currentDate }}" bind:confirm="confirm" bind:cancel="onClose" />
+			</van-popup>
+		</van-col>
+	</van-row>
+	<van-row>
+		<van-col span="8">
+			<van-cell title="加药点位" />
+		</van-col>
+		<van-col span="11">
+			<van-field value="{{position}}" bind:change="positionChange" />
+		</van-col>
+		<van-col span="5">
+			<van-cell title="选择" bind:click="showPositionPop" />
+			<van-popup show="{{ showPosition }}" position="bottom" custom-style="height: 50%;">
+				<van-picker columns="{{ columns }}" default-index="{{ 1 }}" title="加药点位" show-toolbar bind:confirm="onConfirm" bind:cancel="onCancel" />
+			</van-popup>
+		</van-col>
+	</van-row>
+	<van-row>
+		<van-col span="8">
+			<van-cell title="药剂名称" />
+		</van-col>
+		<van-col span="16">
+			<van-cell title="{{medicine_name}}" bind:click="showNamePop" />
+			<van-popup show="{{ showName }}" value-key="text" position="bottom" custom-style="height: 50%;">
+				<van-picker columns="{{ option }}" default-index="{{ 0 }}" title="选择药品" show-toolbar bind:confirm="nameConfirm" bind:cancel="nameCancel" />
+			</van-popup>
+		</van-col>
+	</van-row>
 
-<van-row>
-  <van-col span="7">
-    <van-cell title="加药量"/>
-  </van-col>
-  <van-col span="10">
-    <van-field
-    value="{{medicine_count}}"
-    clickable
-    type="digit"
-    bind:change="onChange4"/>
-  </van-col>
-  <van-col span="7">
-    <van-dropdown-menu active-color='#2C65F7' border="{{ true }}" >
-      <van-dropdown-item value="{{unit}}" options="{{ unitOption }}" bind:change="unitChange" />
-    </van-dropdown-menu>
-  </van-col>
-</van-row>
-<van-row>
-  <van-col span="7">
-    <van-cell title="加药员"/>
-  </van-col>
-  <van-col span="17">
-    <van-field
-    disabled
-    value="{{user_name}}"/>
-  </van-col>
-</van-row>
-  <van-button round type="info" class="submit" bindtap="agree">同意归档</van-button>
+	<van-row>
+		<van-col span="8">
+			<van-cell title="加药量" />
+		</van-col>
+		<van-col span="11">
+			<van-field value="{{medicine_count}}" clickable type="digit" bind:change="onChange4" />
+		</van-col>
+		<!-- <van-col span="7">
+			<van-dropdown-menu active-color='#2C65F7' border="{{ true }}">
+				<van-dropdown-item value="{{unit_id}}" options="{{ unitOption }}" bind:change="unitChange" />
+			</van-dropdown-menu>
+		</van-col> -->
+		<van-col span="5">
+			<van-field
+		disabled
+			value="kg"/>  
+		</van-col>
+	</van-row>
+	<van-row>
+		<van-col span="8">
+			<van-cell title="加药员" />
+		</van-col>
+		<van-col span="16">
+			<van-field disabled value="{{user_name}}" />
+		</van-col>
+	</van-row>
+	<van-row>
+		<van-col span="8">
+			<van-cell title="运维审核意见" />
+		</van-col>
+		<van-col span="16">
+			<van-field disabled value="{{advice}}" />
+		</van-col>
+	</van-row>
+	<van-button round type="info" class="submit" bindtap="agree">同意归档</van-button>
 </view>

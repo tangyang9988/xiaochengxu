@@ -4,7 +4,7 @@ const app = getApp()
 var http = require("../../utils/httpUtil.js")
 Page({
   data: {
-    "user_id ":"",
+    "user_id":"",
     "user_name":"",
     "role_id ":"",
     "dosage_id":"",
@@ -18,24 +18,31 @@ Page({
     "showTime":false,
     "showPosition":false,
     "showName":false,
+    "advice":"",
     "currentDate": new Date().getTime(),
-    "columns": ['无锡市点位', '苏州市点位', '上海点位'],
-    // "option":[{key:159332570586,text:'片碱'},{key:159280864452,text:'PAM(阴离子)'},{key:159280152053,text:'PAM(阳离子)'},]
+    "columns": ['高效多功能净水器', '脱水机', '清水池','初沉池','好氧池','高密沉淀池','污泥脱水间','混凝反应池','氧化沟/a/o池1','氧化沟/a/o池2','氧化沟/a/o池3'],
     "option":[],
     "unitOption": [{
+      text: 'kg',
+      value: 15953129609
+  },
+  {
+      text: '袋',
+      value: 159531299950
+  },
+  {
       text: '桶',
-      value: '桶'
-  },
-  {
-      text: '吨',
-      value: '吨'
-  },
-  {
-      text: '包',
-      value: '包'
+      value: 15965954342777
   }
 ],
-    "unit":""
+    "unit_name":"",
+    "unit_id":"",
+    "approveStatus":""
+  },
+  positionChange(event){
+    this.setData({
+      position: event.detail
+    });
   },
   onChange4(event) {
     if (!/^-?\d+\.?\d{0,2}$/.test(Number(event.detail))) {
@@ -98,19 +105,22 @@ Page({
  },
  unitChange:function(event){
   this.setData({
-    "unit": event.detail
+    "unit_id": event.detail
   })
-  wx.setStorage({
-    key: 'unit',
-    data: this.data.unit
-  });
 },
   onLoad: function (options) {  //options专门用于接受数据的
     var usr_id = wx.getStorageSync('usr_id');
     var role_id = wx.getStorageSync('role_id');
     var company_id = wx.getStorageSync('company_id');
-    var unit = wx.getStorageSync('unit');
-    this.setData({unit:unit})  
+    var approveStatus = options.wait;
+    if(approveStatus=="wait"){
+      this.setData({approveStatus:approveStatus})
+    }else{
+      this.setData({approveStatus:"none"})
+    }
+    if(options.advice){
+      this.setData({advice:options.advice})
+    }
     var params = {
       "company_id": company_id
     }
@@ -123,7 +133,9 @@ Page({
       position: options.position,
       medicine_id: Number(options.medicine_id),
       medicine_name:options.medicine_name,
-      medicine_count: parseFloat(options.medicine_count)
+      medicine_count: parseFloat(options.medicine_count),
+      unit_id:Number(options.unit_id),
+      unit_name:options.unit_name,
     })
     //http 请求是异步的，必须重新赋值this
     let that = this;
@@ -174,7 +186,7 @@ agree:function(){
             const { data } = res
             if (data.code === 200) {
               wx.showToast({ title: '已同意', icon :'success',duration: 2000 })
-            } else  wx.showToast({ title: '同意失败',icon: 'none' })
+            } else  wx.showToast({ title: data.msg,icon: 'none',duration: 2000 })
           })
           that.changeParentData()
         } 
@@ -189,7 +201,8 @@ agree:function(){
       "medicine_count":Number(that.data.medicine_count),
       "dosing_time":that.data.dosing_time,
       "position":that.data.position,
-      "content":that.data.content
+      "content":that.data.content,
+      "unit_id":that.data.unit_id
     }
     wx.showModal({
       title: '提示',
@@ -200,9 +213,9 @@ agree:function(){
             const { data } = res
             if( data.code === 200 ){
               wx.showToast({ title: '已归档', icon:'success',duration:2000 })
-            }else wx.showToast({ title: '归档失败',icon: 'none' })
+              that.changeParentData()
+            }else wx.showToast({ title: data.msg,icon: 'none',duration:2000 })
           })
-          that.changeParentData()
         } 
       },
       fail(res){ wx.showToast({ title: '归档失败',icon: 'none' }) }
@@ -213,7 +226,7 @@ reject:function(){
   var params ={
     "dosage_id":this.data.dosage_id,
     "content":this.data.content,
-    "user_id":this.data.usr_id,
+    "user_id":this.data.user_id,
     "review_status":2,
     "is_dosage":1
   };
@@ -228,11 +241,13 @@ reject:function(){
             if (data.code === 200) {
               wx.showToast({ title: '驳回成功', icon :'success',duration: 2000 })
               that.changeParentData()
-            } else  wx.showToast({ title: '驳回失败',icon: 'none' })
+            } else{
+              wx.showToast({ title: data.msg,icon: 'none' ,duration: 2000})
+              that.changeParentData()
+            }  
           })
         } 
       },
-      fail(res){ wx.showToast({ title: '驳回失败',icon: 'none' }) }
     })
 }
 })

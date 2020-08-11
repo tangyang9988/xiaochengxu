@@ -102,9 +102,6 @@ page{
   /* background:rgba(230, 221, 221, 0.871); */
   background:rgba(248,248,248,1);
 }
-
-
-
 .data_none{
   height: 100px;
   width: 100px;

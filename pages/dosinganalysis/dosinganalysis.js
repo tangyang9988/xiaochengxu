@@ -348,146 +348,137 @@ Page({
             "start_time": that.data.start_time,
             "end_time": that.data.end_time,
             "company_id": company_id,
-            "medicine_id": that.data.medicine_id
+            "medicine_id": Number(that.data.medicine_id)
         };
         http.Post('/app/dosage_review/dosage/period', params, function (res) {
             var dosage_period = res.data.data.dosage_period
-            var medicineList = []
-            var color;
-            for (var i = 0; i < dosage_period.length; i++) {
-                if(that.data.medicine_id== dosage_period[i].id){
-                    var medicine_name =dosage_period[i].medicine_name
-                    switch (medicine_name) {
-                        case "活性炭":
-                            color = '#F8C322';
-                            break;
-                        case "PAM(阳离子)":
-                            color = '#5553CE';
-                            break;
-                        case "PAM(阴离子)":
-                            color = '#F65050';
-                            break;
-                        case "片碱":
-                            color = '#64C676';
-                            break;
-                        case "PAC":
-                            color = '#669AFF';
-                            break;
-                        case "葡萄糖":
-                            color = '#FF9100';
-                            break;
-                        case "NaCO3":
-                            color = '#FFFF03';
-                            break;
-                        case "聚合硫酸铁":
-                            color = '#DCC4F3';
-                            break;
-                        case "硫酸亚铁":
-                            color = '#CFF1F0';
-                            break;
-                        case "次氯酸钠":
-                            color = '#FFB8AA';
-                            break;
+            if(dosage_period.length>0){
+                var medicineList = []
+                var colorArr=['#F8C322','#5553CE','#F65050','#64C676','#669AFF','#FF9100','#FFFF03','#DCC4F3','#CFF1F0','#FFB8AA','#8A2BE2','#DA70D6','#8B4500','#EED5B7','#8B1C62','#8B7D7B','#CD6600','#8B2323','#4A708B','#4F4F4F']
+                for (var i = 0; i < dosage_period.length; i++) {
+                    if(that.data.medicine_id== dosage_period[i].id){
+                        // switch (medicine_name) {
+                        //     case "活性炭":
+                        //         color = '#F8C322';
+                        //         break;
+                        //     case "PAM(阳离子)":
+                        //         color = '#5553CE';
+                        //         break;
+                        //     case "PAM(阴离子)":
+                        //         color = '#F65050';
+                        //         break;
+                        //     case "片碱":
+                        //         color = '#64C676';
+                        //         break;
+                        //     case "PAC":
+                        //         color = '#669AFF';
+                        //         break;
+                        //     case "葡萄糖":
+                        //         color = '#FF9100';
+                        //         break;
+                        //     case "NaCO3":
+                        //         color = '#FFFF03';
+                        //         break;
+                        //     case "聚合硫酸铁":
+                        //         color = '#DCC4F3';
+                        //         break;
+                        //     case "硫酸亚铁":
+                        //         color = '#CFF1F0';
+                        //         break;
+                        //     case "次氯酸钠":
+                        //         color = '#FFB8AA';
+                        //         break;
+                        // }
+                        that.setData({
+                            medicine_name:dosage_period[i].medicine_name,
+                            color: colorArr[i],
+                            consume_percentage: dosage_period[i].consume_percentage,
+                            medicine_count: dosage_period[i].consume
+                        })
                     }
-                    that.setData({
-                        medicine_name:dosage_period[i].medicine_name,
-                        color: color,
-                        consume_percentage: dosage_period[i].consume_percentage,
-                        medicine_count: dosage_period[i].consume
-                    })
                 }
-                // medicineList.push({
-                //     text: dosage_period[i].medicine_name,
-                //     value: dosage_period[i].id,
-                //     color: color,
-                //     consume_percentage: dosage_period[i].consume_percentage,
-                //     medicine_count: dosage_period[i].consume
-                // });
-                // that.setData({medicine_id:dosage_period[0].id})
-            }
-            // that.setData({
-            //     "option": medicineList
-            // })
-            var storageMedicine = [];
-            var j = 0;
-            var len = 0;
-            for (j = 0, len = dosage_period.length; j < len; j++) {
-                storageMedicine.push({
-                    name: dosage_period[j].medicine_name,
-                    data: dosage_period[j].consume,
-                    stroke: false,
-                    color: '#64C676'
-                });
-                switch (dosage_period[j].medicine_name) {
-                    case "活性炭":
-                        storageMedicine[j].color = '#F8C322';
-                        break;
-                    case "PAM(阳离子)":
-                        storageMedicine[j].color = '#5553CE';
-                        break;
-                    case "PAM(阴离子)":
-                        storageMedicine[j].color = '#F65050';
-                        break;
-                    case "片碱":
-                        storageMedicine[j].color = '#64C676';
-                        break;
-                    case "PAC":
-                        storageMedicine[j].color = '#669AFF';
-                        break;
-                    case "葡萄糖":
-                        storageMedicine[j].color = '#FF9100';
-                        break;
-                    case "NaCO3":
-                        storageMedicine[j].color = '#FFFF03';
-                        break;
-                    case "聚合硫酸铁":
-                        storageMedicine[j].color = '#DCC4F3';
-                        break;
-                    case "硫酸亚铁":
-                        storageMedicine[j].color = '#CFF1F0';
-                        break;
-                    case "次氯酸钠":
-                        storageMedicine[j].color = '#FFB8AA';
-                        break;
+                var storageMedicine = [];
+                var j = 0;
+                var len = 0;
+                for (j = 0, len = dosage_period.length; j < len; j++) {
+                    storageMedicine.push({
+                        name: dosage_period[j].medicine_name,
+                        data: dosage_period[j].consume,
+                        stroke: false,
+                        color: colorArr[j]
+                    });
+                    // switch (dosage_period[j].medicine_name) {
+                    //     case "活性炭":
+                    //         storageMedicine[j].color = '#F8C322';
+                    //         break;
+                    //     case "PAM(阳离子)":
+                    //         storageMedicine[j].color = '#5553CE';
+                    //         break;
+                    //     case "PAM(阴离子)":
+                    //         storageMedicine[j].color = '#F65050';
+                    //         break;
+                    //     case "片碱":
+                    //         storageMedicine[j].color = '#64C676';
+                    //         break;
+                    //     case "PAC":
+                    //         storageMedicine[j].color = '#669AFF';
+                    //         break;
+                    //     case "葡萄糖":
+                    //         storageMedicine[j].color = '#FF9100';
+                    //         break;
+                    //     case "NaCO3":
+                    //         storageMedicine[j].color = '#FFFF03';
+                    //         break;
+                    //     case "聚合硫酸铁":
+                    //         storageMedicine[j].color = '#DCC4F3';
+                    //         break;
+                    //     case "硫酸亚铁":
+                    //         storageMedicine[j].color = '#CFF1F0';
+                    //         break;
+                    //     case "次氯酸钠":
+                    //         storageMedicine[j].color = '#FFB8AA';
+                    //         break;
+                    // }
                 }
+                if (storageMedicine.length == 0) {
+                    //没有数据赋值默认值，防止程序崩溃
+                    storageMedicine.push({
+                        name: "",
+                        data: 0,
+                        stroke: false,
+                        color: '#64C676'
+                    });
+                }
+                console.log(storageMedicine)
+                that.setData({
+                    echartMedicineList: storageMedicine
+                })
+                that.setData({
+                    "categories": res.data.data.x_date
+                })
+                that.setData({
+                    "periodData": res.data.data.one_dosage_period
+                })
+                that.setData({
+                    "one_dosage_period_max": res.data.data.one_dosage_period_max
+                })
+                that.setData({
+                    "one_dosage_period_min": res.data.data.one_dosage_period_min
+                })
+                that.setData({
+                    "relative_ration": res.data.data.relative_ration
+                })
+                that.setData({
+                    "relative_ration_max_str": res.data.data.relative_ration_max_str
+                })
+                that.setData({
+                    "relative_ration_min_str": res.data.data.relative_ration_min_str
+                })
+                // that.getNameAndColor(that.data.medicine_id)
+                that.onPie();
+                that.columnShow();
+                that.getMothElectro();
             }
-            if (storageMedicine.length == 0) {
-                //没有数据赋值默认值，防止程序崩溃
-                storageMedicine.push({
-                    name: "",
-                    data: 0,
-                    stroke: false,
-                    color: '#64C676'
-                });
-            }
-            that.setData({
-                echartMedicineList: storageMedicine
-            })
-            that.setData({
-                "categories": res.data.data.x_date
-            })
-            that.setData({
-                "periodData": res.data.data.one_dosage_period
-            })
-            that.setData({
-                "one_dosage_period_max": res.data.data.one_dosage_period_max
-            })
-            that.setData({
-                "one_dosage_period_min": res.data.data.one_dosage_period_min
-            })
-            that.setData({
-                "relative_ration": res.data.data.relative_ration
-            })
-            that.setData({
-                "relative_ration_max_str": res.data.data.relative_ration_max_str
-            })
-            that.setData({
-                "relative_ration_min_str": res.data.data.relative_ration_min_str
-            })
-            // that.getNameAndColor(that.data.medicine_id)
-            that.onPie();
-            that.columnShow();
-            that.getMothElectro();
         })
     },
     onLoad: function (options) {

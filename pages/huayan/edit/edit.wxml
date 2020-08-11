@@ -53,6 +53,7 @@
 
 <!-- 运维审核员 -->
 <view wx:if="{{role_id==2}}">
+	<view wx:if="{{approveStatus == 'wait'}}">
 	<van-row>
 		<van-col span="10">
 			<van-cell title="COD" />
@@ -117,46 +118,51 @@
 			<van-field disabled value="{{ph}}" border="{{ true }}" />
 		</van-col>
 	</van-row>
-  <van-row>
-		<van-col span="10">
-			<van-cell title="生活污水处理量" />
-		</van-col>
-		<van-col span="14">
-      <van-field value="{{domesticSewageAmount}}" placeholder="请输入生活污水处理量(吨) "border="{{ true }}" bind:change="onChange71" />
-		</van-col>
-	</van-row>
-  <van-row>
-		<van-col span="10">
-			<van-cell title="生产废水处理量" />
-		</van-col>
-		<van-col span="14">
-      <van-field value="{{wastewaterAmount}}" placeholder="请输入生产废水处理量(吨) "border="{{ true }}" bind:change="onChange72" />
-		</van-col>
-	</van-row>
-  <van-row>
-		<van-col span="10">
-			<van-cell title="脱水污泥量" />
-		</van-col>
-		<van-col span="14">
-      <van-field value="{{dewateredSludgeAmount}}" placeholder="请输入脱水污泥量(吨) "border="{{ true }}" bind:change="onChange73" />
-		</van-col>
-	</van-row>
-  <van-row>
-		<van-col span="10">
-			<van-cell title="污泥含水率" />
-		</van-col>
-		<van-col span="14">
-      <van-field value="{{moistureSludge}}" placeholder="请输入污泥含水率(%) "border="{{ true }}" bind:change="onChange74" />
-		</van-col>
-	</van-row>
-  <van-row>
-		<van-col span="10">
-			<van-cell title="污泥处置量" />
-		</van-col>
-		<van-col span="14">
-      <van-field value="{{sludgeAmount}}" placeholder="请输入污泥处置量(吨) "border="{{ true }}" bind:change="onChange75" />
-		</van-col>
-	</van-row>
+	<view wx:if="{{is_in == 0}}">
+		<van-row>
+			<van-col span="10">
+				<van-cell title="生活污水处理量" />
+			</van-col>
+			<van-col span="14">
+				<van-field value="{{domesticSewageAmount}}" placeholder="请输入生活污水处理量(吨) "border="{{ true }}" bind:change="onChange71" />
+			</van-col>
+		</van-row>
+		<van-row>
+			<van-col span="10">
+				<van-cell title="生产废水处理量" />
+			</van-col>
+			<van-col span="14">
+				<van-field value="{{wastewaterAmount}}" placeholder="请输入生产废水处理量(吨) "border="{{ true }}" bind:change="onChange72" />
+			</van-col>
+		</van-row>
+		<van-row>
+			<van-col span="10">
+				<van-cell title="脱水污泥量" />
+			</van-col>
+			<van-col span="14">
+				<van-field value="{{dewateredSludgeAmount}}" placeholder="请输入脱水污泥量(吨) "border="{{ true }}" bind:change="onChange73" />
+			</van-col>
+		</van-row>
+		<van-row>
+			<van-col span="10">
+				<van-cell title="污泥含水率" />
+			</van-col>
+			<van-col span="10">
+				<van-field value="{{moistureSludge}}" placeholder="请输入污泥含水率 "border="{{ true }}" bind:change="onChange74" />
+			</van-col>
+			<van-col span="4">
+				<van-field value="%"  disabled/>
+			</van-col>
+		</van-row>
+		<van-row>
+			<van-col span="10">
+				<van-cell title="污泥处置量" />
+			</van-col>
+			<van-col span="14">
+				<van-field value="{{sludgeAmount}}" placeholder="请输入污泥处置量(吨) "border="{{ true }}" bind:change="onChange75" />
+			</van-col>
+		</van-row>
+	</view>
   <van-row>
 		<van-col span="10">
 			<van-cell title="化验员" />
@@ -175,7 +181,138 @@
 	</van-row>
 	<van-button round type="info" class="submit" bindtap="agree">同意</van-button>
 	<van-button round type="danger" class="cancle" bindtap="reject">驳回</van-button>
+	</view>
+	<view wx:else>
+	<van-row>
+		<van-col span="10">
+			<van-cell title="COD" />
+		</van-col>
+		<van-col span="14">
+			<van-field disabled value="{{cod}}mg/L" border="{{ true }}" />
+		</van-col>
+	</van-row>
+	<van-row>
+		<van-col span="10">
+			<van-cell title="BOD5" />
+		</van-col>
+		<van-col span="14">
+			<van-field disabled value="{{bod5}}mg/L" border="{{ true }}" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="氨氮" />
+		</van-col>
+		<van-col span="14">
+			<van-field disabled value="{{ammonia_nitrogen}}mg/L" border="{{ true }}" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="总磷" />
+		</van-col>
+		<van-col span="14">
+			<van-field disabled value="{{phosphorus}}mg/L" border="{{ true }}" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="总氮" />
+		</van-col>
+		<van-col span="14">
+			<van-field disabled value="{{nitrogen}}mg/L" border="{{ true }}" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="SS" />
+		</van-col>
+		<van-col span="14">
+			<van-field disabled value="{{ss}}mg/L" border="{{ true }}" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="色度" />
+		</van-col>
+		<van-col span="14">
+			<van-field disabled value="{{chromaticity}}" border="{{ true }}" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="PH" />
+		</van-col>
+		<van-col span="14">
+			<van-field disabled value="{{ph}}" border="{{ true }}" />
+		</van-col>
+	</van-row>
+	<view wx:if="{{is_in == 0}}">
+		<van-row>
+			<van-col span="10">
+				<van-cell title="生活污水处理量" />
+			</van-col>
+			<van-col span="14">
+				<van-field disabled value="{{domesticSewageAmount}}" border="{{ true }}" bind:change="onChange71" />
+			</van-col>
+		</van-row>
+		<van-row>
+			<van-col span="10">
+				<van-cell title="生产废水处理量" />
+			</van-col>
+			<van-col span="14">
+				<van-field disabled value="{{wastewaterAmount}}" border="{{ true }}" bind:change="onChange72" />
+			</van-col>
+		</van-row>
+		<van-row>
+			<van-col span="10">
+				<van-cell title="脱水污泥量" />
+			</van-col>
+			<van-col span="14">
+				<van-field disabled value="{{dewateredSludgeAmount}}" border="{{ true }}" bind:change="onChange73" />
+			</van-col>
+		</van-row>
+		<van-row>
+			<van-col span="10">
+				<van-cell title="污泥含水率" />
+			</van-col>
+			<van-col span="10">
+				<van-field disabled value="{{moistureSludge}}" border="{{ true }}" bind:change="onChange74" />
+			</van-col>
+			<van-col span="4">
+				<van-field value="%"  disabled/>
+			</van-col>
+		</van-row>
+		<van-row>
+			<van-col span="10">
+				<van-cell title="污泥处置量" />
+			</van-col>
+			<van-col span="14">
+				<van-field disabled value="{{sludgeAmount}}" border="{{ true }}" bind:change="onChange75" />
+			</van-col>
+		</van-row>
+	</view>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="化验员" />
+		</van-col>
+		<van-col span="14">
+			<van-field disabled value="{{user_name}}" border="{{ true }}" />
+		</van-col>
+	</van-row>
+  <van-row>
+		<van-col span="10">
+			<van-cell title="审核意见" />
+		</van-col>
+		<van-col span="14">
+      <van-field value="{{advice}}" disabled />
+		</van-col>
+	</van-row>
+	<van-button disabled round type="info" class="submit" >同意</van-button>
+	<van-button disabled round type="danger" class="cancle">驳回</van-button>
+	</view>
 </view>
+
 
 <!-- 茅台审核员 -->
 <view wx:if="{{role_id==3}}">
@@ -243,52 +380,65 @@
 		<van-field value="{{ph}}" border="{{ true }}" bind:change="onChange8" />
 		</van-col>
 	</van-row>
-  <van-row>
-		<van-col span="10">
-			<van-cell title="生活污水处理量" />
-		</van-col>
-		<van-col span="14">
-      <van-field value="{{domesticSewageAmount}}" border="{{ true }}" bind:change="onChange71" />
-		</van-col>
-	</van-row>
-  <van-row>
-		<van-col span="10">
-			<van-cell title="生产废水处理量" />
-		</van-col>
-		<van-col span="14">
-      <van-field value="{{wastewaterAmount}}" border="{{ true }}" bind:change="onChange72" />
-		</van-col>
-	</van-row>
-  <van-row>
-		<van-col span="10">
-			<van-cell title="脱水污泥量" />
-		</van-col>
-		<van-col span="14">
-      <van-field value="{{dewateredSludgeAmount}}" border="{{ true }}" bind:change="onChange73" />
-		</van-col>
-	</van-row>
-  <van-row>
-		<van-col span="10">
-			<van-cell title="污泥含水率" />
-		</van-col>
-		<van-col span="14">
-      <van-field value="{{moistureSludge}}" border="{{ true }}" bind:change="onChange74" />
-		</van-col>
-	</van-row>
-  <van-row>
-		<van-col span="10">
-			<van-cell title="污泥处置量" />
-		</van-col>
-		<van-col span="14">
-      <van-field value="{{sludgeAmount}}" border="{{ true }}" bind:change="onChange75" />
-		</van-col>
-	</van-row>
+	<view wx:if="{{is_in == 0}}">
+		<van-row>
+			<van-col span="10">
+				<van-cell title="生活污水处理量" />
+			</van-col>
+			<van-col span="14">
+				<van-field value="{{domesticSewageAmount}}" border="{{ true }}" bind:change="onChange71" />
+			</van-col>
+		</van-row>
+		<van-row>
+			<van-col span="10">
+				<van-cell title="生产废水处理量" />
+			</van-col>
+			<van-col span="14">
+				<van-field value="{{wastewaterAmount}}" border="{{ true }}" bind:change="onChange72" />
+			</van-col>
+		</van-row>
+		<van-row>
+			<van-col span="10">
+				<van-cell title="脱水污泥量" />
+			</van-col>
+			<van-col span="14">
+				<van-field value="{{dewateredSludgeAmount}}" border="{{ true }}" bind:change="onChange73" />
+			</van-col>
+		</van-row>
+		<van-row>
+			<van-col span="10">
+				<van-cell title="污泥含水率" />
+			</van-col>
+			<van-col span="8">
+				<van-field value="{{moistureSludge}}" border="{{ true }}" bind:change="onChange74" />
+			</van-col>
+			<van-col span="6">
+				<van-field value="%"  disabled/>
+			</van-col>
+		</van-row>
+		<van-row>
+			<van-col span="10">
+				<van-cell title="污泥处置量" />
+			</van-col>
+			<van-col span="14">
+				<van-field value="{{sludgeAmount}}" border="{{ true }}" bind:change="onChange75" />
+			</van-col>
+		</van-row>
+</view>
   <van-row>
 		<van-col span="10">
 			<van-cell title="化验员" />
 		</van-col>
 		<van-col span="14">
 			<van-field disabled value="{{user_name}}" border="{{ true }}" />
+		</van-col>
+	</van-row>
+	<van-row>
+		<van-col span="10">
+			<van-cell title="运维审核意见" />
+		</van-col>
+		<van-col span="14">
+			<van-field disabled value="{{advice}}" border="{{ true }}" />
 		</van-col>
 	</van-row>
 	<van-button round type="info" class="submit" bindtap="agree">同意归档</van-button>

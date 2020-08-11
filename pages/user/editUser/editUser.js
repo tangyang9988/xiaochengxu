@@ -58,7 +58,7 @@ Page({
     var pages = getCurrentPages();//当前页面栈
     if (pages.length > 1) {
       var beforePage = pages[pages.length - 2];//获取上一个页面实例对象
-      beforePage.onLoad();//触发父页面中的方法
+      beforePage.onShow();//触发父页面中的方法
     }
     wx.navigateBack({
     });
@@ -86,10 +86,9 @@ Page({
               const { data } = res
               if (data.code === 200) {
                 wx.showToast({ title: '修改用户成功', icon :'success',duration: 2000 })
-                that.clearData()
+                that.changeParentData()
               } else  wx.showToast({title: data.msg, icon :"none" })
             })
-            that.changeParentData()
           } 
         }
       })
@@ -112,10 +111,9 @@ Page({
               const { data } = res
               if (data.code === 200) {
                 wx.showToast({ title: '修改用户成功', icon :'success',duration: 2000 })
-                that.clearData()
+                that.changeParentData()
               } else  wx.showToast({title: data.msg, icon :"none" })
             })
-            that.changeParentData()
           } 
         }
       })
