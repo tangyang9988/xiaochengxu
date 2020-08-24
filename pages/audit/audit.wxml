@@ -107,7 +107,7 @@
 				<span class="class_none">暂无数据</span>
 			</view>
 			<view class="cards {{pendingList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{pendingList}}" wx:for-item="item" wx:key="item">
-				<navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&is_in={{item.is_in}}&user_name={{item.user_name}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}}&wait={{wait}}'>
+				<navigator class="nav" url='../huayan/edit/edit?id={{item.id}}&is_in={{item.is_in}}&user_name={{item.user_name}}&status={{item.status}}&is_dosage={{item.is_dosage}}&usr_id={{usr_id}}&cod={{item.cod}}&bod5={{item.bod5}}&ammonia_nitrogen={{item.ammonia_nitrogen}}&phosphorus={{item.phosphorus}}&nitrogen={{item.nitrogen}}&ss={{item.ss}}&chromaticity={{item.chromaticity}}&ph={{item.ph}}&wait={{wait}}'>
 					<view class="column">
 						<view class="card-desc">
 							<view class="circle"></view>
@@ -208,7 +208,6 @@
 					<view class="card-title">提交人员：{{item.user_name}}</view>
 				</view>
 			</view>
-			<!-- 卡片与卡片的空白间隔 -->
 			<view class="space"></view>
 		</view>
 	</view>
