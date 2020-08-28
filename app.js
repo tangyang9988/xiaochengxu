@@ -85,6 +85,14 @@ App({
             key: 'company_name',
             data: res.data.data.user.company_name
           });
+          wx.setStorage({
+            key: 'tenant_id',
+            data: res.data.data.user.tenant_id
+          });
+          wx.setStorage({
+            key: 'tenant_name',
+            data: res.data.data.user.tenant_name
+          });
           setTimeout(function () {
             wx.reLaunch({
             url: '../index/index'
