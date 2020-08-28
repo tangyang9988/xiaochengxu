@@ -172,7 +172,7 @@ Page({
     this.setData({ show: false });
   },
   onLoad: function (options) {
-    debugger
+    var tenant_id = wx.getStorageSync('tenant_id');
     var usr_id = wx.getStorageSync('usr_id');
     var role_id = wx.getStorageSync('role_id');
     var user_name;
@@ -209,7 +209,8 @@ Page({
         wastewaterAmount:options.production_wastewater==undefined?"":Number(options.production_wastewater),
         dewateredSludgeAmount:options.sludge_dewatering==undefined?"":Number(options.sludge_dewatering),
         moistureSludge:options.sludge_moisture_content==undefined?"":Number(options.sludge_moisture_content),
-        sludgeAmount:options.sludge_treatment_capacity==undefined?"":Number(options.sludge_treatment_capacity)
+        sludgeAmount:options.sludge_treatment_capacity==undefined?"":Number(options.sludge_treatment_capacity),
+        "tenant_id":tenant_id
       })
   },
   agree:function(e){

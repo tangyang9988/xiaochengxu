@@ -1,4 +1,4 @@
-//app.js
+var http = require("/utils/httpUtil.js")
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -47,68 +47,61 @@ App({
   onShow:function(){
     wx.login({
       success: res => {
-        wx.request({
-          url: 'https://wx.jslcznkj.cn/maotai/app/region/openid', //仅为示例，并非真实的接口地址
-          data: {
-            "code": res.code
-          },
-          method: "POST",
-          header: {
-            'content-type': 'application/json' // 默认值
-          },
-          success(res) {
-            if(res.data.data.user){
-              wx.showToast({ title: '用户已登录', icon :'success',duration: 1000 })
-              wx.setStorage({
-                key: 'isLogin',
-                data: true
-              }); 
-              wx.setStorage({
-                key: 'usr_id',
-                data: res.data.data.user.id
-              }); 
-              wx.setStorage({
-                key: 'role_id',
-                data: res.data.data.user.role_id
-              });
-              wx.setStorage({
-                key: 'avatar_url',
-                data: res.data.data.user.avatar_url
-              }); 
-              wx.setStorage({
-                key: 'name',
-                data: res.data.data.user.name
-              }); 
-              wx.setStorage({
-                key: 'cellphone',
-                data: res.data.data.user.cellphone
-              });
-              wx.setStorage({
-                key: 'company_id',
-                data: res.data.data.user.company_id
-              }); 
-              wx.setStorage({
-                key: 'company_name',
-                data: res.data.data.user.company_name
-              });
-              setTimeout(function () {
-                wx.reLaunch({
-                url: '../index/index'
-                })
-                }, 500)
-            }else{
-              wx.showToast({ title: '用户未登录', icon :'none',duration: 1000 })
-              wx.setStorage({
-                key: 'isLogin',
-                data: false
-              }); 
-            }
-            wx.setStorage({
-              key: "open_id",
-              data: res.data.data.open_id
+        var params={
+          "code": res.code
+      }
+      http.Post('/app/region/openid', params, function (res) {
+        if(res.data.data.user){
+          wx.showToast({ title: '用户已登录', icon :'success',duration: 1000 })
+          wx.setStorage({
+            key: 'isLogin',
+            data: true
+          }); 
+          wx.setStorage({
+            key: 'usr_id',
+            data: res.data.data.user.id
+          }); 
+          wx.setStorage({
+            key: 'role_id',
+            data: res.data.data.user.role_id
+          });
+          wx.setStorage({
+            key: 'avatar_url',
+            data: res.data.data.user.avatar_url
+          }); 
+          wx.setStorage({
+            key: 'name',
+            data: res.data.data.user.name
+          }); 
+          wx.setStorage({
+            key: 'cellphone',
+            data: res.data.data.user.cellphone
+          });
+          wx.setStorage({
+            key: 'company_id',
+            data: res.data.data.user.company_id
+          }); 
+          wx.setStorage({
+            key: 'company_name',
+            data: res.data.data.user.company_name
+          });
+          setTimeout(function () {
+            wx.reLaunch({
+            url: '../index/index'
             })
-          }
+            }, 500)
+        }else{
+          wx.showToast({ title: '用户未登录', icon :'none',duration: 1000 })
+          wx.setStorage({
+            key: 'isLogin',
+            data: false
+          }); 
+        }
+        wx.setStorage({
+          key: "open_id",
+          data: res.data.data.open_id
         })
+      })
       }
     })
 

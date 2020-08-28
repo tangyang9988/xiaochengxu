@@ -30,7 +30,7 @@ Page({
         invite_code:this.data.invitation
       }
       var that =this;
-      http.Post('/v1.1/app/region/invite_code/info', params, function (res) {
+      http.Post('/app/region/invite_code/info', params, function (res) {
         if(res.data.code==200){
           var role_id=res.data.data.role_id;
           var company_id=res.data.data.company_id;
@@ -46,6 +46,15 @@ Page({
             wx.navigateTo({
               url: '/pages/login/addUser/addUser?invitation=' + invitation + '&role_id=' + role_id + '&company_id=' + company_id + '&company_name=' + company_name
             })
+            wx.setStorage({
+              key: 'tenant_id',
+              data: res.data.data.tenant_id
+            });
+            wx.setStorage({
+              key: 'tenant_name',
+              data: res.data.data.tenant_name
+            });
+            
           }
         }else{
           that.setData({

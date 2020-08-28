@@ -169,13 +169,15 @@ Page({
   },
 agree:function(){
   var that =this
+  var tenant_id = wx.getStorageSync('tenant_id');
   if(that.data.role_id==2){
     var params ={
       "dosage_id":that.data.dosage_id,
       "content":that.data.content,
       "user_id":that.data.user_id,
       "review_status":4,
-      "is_dosage":1
+      "is_dosage":1,
+      "tenant_id":tenant_id
     }
     wx.showModal({
       title: '提示',
@@ -202,7 +204,8 @@ agree:function(){
       "dosing_time":that.data.dosing_time,
       "position":that.data.position,
       "content":that.data.content,
-      "unit_id":that.data.unit_id
+      "unit_id":that.data.unit_id,
+      "tenant_id":tenant_id
     }
     wx.showModal({
       title: '提示',

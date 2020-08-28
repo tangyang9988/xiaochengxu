@@ -27,7 +27,7 @@ Page({
   },
     /**
    * 列表子项点击事件
-   * @param { item子项 } e 
+   * @param { item子项 }
    */
   disItemClick(e) {
     var usr_id = wx.getStorageSync('usr_id');

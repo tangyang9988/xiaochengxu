@@ -27,7 +27,6 @@
     "pages/login/invite/invite",
     "pages/login/licence/licence",
     "pages/index/index",
-    "pages/login/login",
 
     "pages/login/addUser/addUser",
     "pages/audit/audit",

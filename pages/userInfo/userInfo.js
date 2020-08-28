@@ -16,12 +16,15 @@ Page({
     var name = wx.getStorageSync('name');
     var cellphone = wx.getStorageSync('cellphone');
     var company_name = wx.getStorageSync('company_name');
+    var tenant_name = wx.getStorageSync('tenant_name');
     this.setData({usr_id:usr_id})
     this.setData({role_id:role_id})
     this.setData({avatar_url:avatar_url})
     this.setData({name:name})
     this.setData({cellphone:cellphone})
     this.setData({company_name:company_name})
+    this.setData({tenant_name:tenant_name})
+    
 
   }
 })

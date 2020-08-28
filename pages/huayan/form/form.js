@@ -122,6 +122,8 @@ Page({
   },
   submit:function(e){
     var usr_id = wx.getStorageSync('usr_id');
+    var company_id = wx.getStorageSync('company_id');
+    var tenant_id = wx.getStorageSync('tenant_id');
     var params ={
         "user_id":usr_id,
         "is_in":this.data.is_in,
@@ -142,7 +144,9 @@ Page({
         "chromaticity":Number(this.data.chromaticity),
         "chromaticity_name":"chromaticity",
         "ph":Number(this.data.ph),
-        "ph_name":"ph"
+        "ph_name":"ph",
+        "tenant_id":Number(tenant_id),
+        "company_id":Number(company_id)
     };
     var that =this;
     wx.showModal({

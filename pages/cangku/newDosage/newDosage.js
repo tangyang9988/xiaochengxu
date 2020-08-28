@@ -68,6 +68,7 @@ Page({
   add: function () {
     var usr_id = wx.getStorageSync('usr_id');
     var company_id = wx.getStorageSync('company_id');
+    var tenant_id = wx.getStorageSync('tenant_id');
     //http 请求是异步的，必须重新赋值this
     var that = this;
     if (that.data.is_active) {
@@ -87,7 +88,8 @@ Page({
       "minimum": parseFloat(that.data.minimum),
       "unit":that.data.unit_name,
       "conversion_factor":parseFloat(that.data.factor),
-      "user_id": usr_id
+      "user_id": usr_id,
+      "tenant_id":Number(tenant_id)
     }
     if(that.data.medicine_name.length == 0 || that.data.supplier.length == 0 ||that.data.minimum.length == 0){ 
       wx.showToast({ 

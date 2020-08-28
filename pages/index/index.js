@@ -132,6 +132,7 @@ Page({
       showModal: true
     })  
     var usr_id = wx.getStorageSync('usr_id');
+    var tenant_id = wx.getStorageSync('tenant_id');
     var company_id;
     var params;
     var role_id = wx.getStorageSync('role_id');
@@ -147,7 +148,8 @@ Page({
       params = {
         "role_id": 2,
         "company_id": company_id,
-        "user_id": usr_id
+        "user_id": usr_id,
+        "tenant_id":Number(tenant_id)
       };
     }
     var that = this

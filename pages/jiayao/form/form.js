@@ -186,30 +186,11 @@ Page({
       }
 
     })
-    // var param = {
-    // }
-    // http.Post('/app/unit/query', param, function (res) {
-    //   var storage = res.data.data;
-    //   var unitList = [];
-    //   if (storage.length > 0) {
-    //     for (var i = 0; i < storage.length; i++) {
-    //       unitList.push({
-    //         id: storage[i].id,
-    //         text: storage[i].name
-    //       });
-    //       that.setData({
-    //         "unit": Number(storage[0].id),
-    //       })
-    //     }
-    //     that.setData({
-    //       "unitOption": unitList
-    //     })
-    //   }
-
-    // })
   },
   submit: function () {
     var that = this
+    var company_id = wx.getStorageSync('company_id');
+    var tenant_id = wx.getStorageSync('tenant_id');
     var params = {
       "dosing_time": this.data.dosing_time,
       "position": this.data.position,
@@ -217,7 +198,9 @@ Page({
       "medicine_count": parseFloat(this.data.medicine_count),
       "status": 1,
       "user_id": this.data.usr_id,
-      "unit_id":this.data.unit
+      "unit_id":this.data.unit,
+      "tenant_id":Number(tenant_id),
+      "company_id":Number(company_id)
     };
     wx.showModal({
       title: '提示',
@@ -256,10 +239,10 @@ Page({
   },
   clearData() {
     this.setData({
-      dosing_time: '',
-      position: '',
-      medicine_name: '',
-      medicine_count: ''
+      dosing_time: this.data.dosing_time,
+      position: this.data.position,
+      medicine_name: this.data.medicine_name,
+      medicine_count: "",
     })
   }
 });

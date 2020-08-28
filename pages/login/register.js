@@ -49,7 +49,6 @@ Page({
   getPhoneNumber: function (e) {
     var that = this;
     if (e.detail.errMsg == "getPhoneNumber:ok") {
-      debugger
       wx.request({
         url: 'https://wx.jslcznkj.cn/maotai/app/region/bind_phone', //自己的解密地址
         data: {

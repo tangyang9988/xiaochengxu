@@ -1,10 +1,12 @@
-var baseURL = "https://wx.jslcznkj.cn/maotai"; 
+// var baseURL = "https://wx.jslcznkj.cn/maotai"; 
+var baseURL = "http://172.20.0.70:8089";
 function Post(api, params, success) {
   wx.request({
     url: baseURL +api,
     method: 'POST',
     header: {  
-      'content-type': 'application/json'
+      'content-type': 'application/json',
+      // 'token':
     },  
     data: params,
     success: function(res) {
