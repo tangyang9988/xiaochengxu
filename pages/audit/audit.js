@@ -87,7 +87,7 @@ Page({
     }
     var oldlists = this.data.totalList;
     http.Post(url, params, function (res) {
-        var dosageList=res.data.data;//res.data就是从后台接收到的值
+        var dosageList=res.data.data.dosage;//res.data就是从后台接收到的值
         var waterList=res.data.data.water_quality;//res.data就是从后台接收到的值
         var pendingListCP=[];
         var disapproveListCP=[];
