@@ -1,5 +1,5 @@
-// var baseURL = "https://wx.jslcznkj.cn/maotai"; 
-var baseURL = "http://172.20.0.70:8089";
+var baseURL = "https://wx.jslcznkj.cn/maotai"; 
+// var baseURL = "http://172.20.0.70:8089";
 function Post(api, params, success) {
   wx.request({
     url: baseURL +api,

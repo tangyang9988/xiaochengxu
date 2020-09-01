@@ -405,11 +405,10 @@ Page({
         return this.formatDate(new Date(start))
     },
     dateFormat(dateFormat) {
-        // date = (date + '').replace(/-/g, '/');
         const year = dateFormat.getFullYear() + '-';
         var monthformat = dateFormat.getMonth() + 1
         const month = (monthformat < 10 && monthformat != 0 ? '0' + monthformat : monthformat) + '-';
-        const day = dateFormat.getDate() + '';
+        var day = (dateFormat.getDate()<10 && dateFormat.getDate() != 0 ? '0' +dateFormat.getDate() :dateFormat.getDate()) + '';
         return year + month + day;
     },
     validStr(str){

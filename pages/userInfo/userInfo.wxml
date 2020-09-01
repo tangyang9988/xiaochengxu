@@ -5,7 +5,7 @@
   <van-cell title="手机号" value="{{cellphone}}"  border="{{  true }}" />
    <van-cell title="公司" value="{{company_name}}"  border="{{  true }}" />
    <van-cell title="职位" value="加药员"  border="{{  true }}" />
-   <van-cell title="租户" value="{{tenant_name}}"  border="{{  true }}" />
+   <!-- <van-cell title="租户" value="{{tenant_name}}"  border="{{  true }}" /> -->
 </van-cell-group>
 <van-cell-group wx:elif="{{role_id==2}}">
  <van-cell title="头像" border="{{ true }}"><image class="image" src="{{avatar_url}}"></image></van-cell>
@@ -13,14 +13,14 @@
   <van-cell title="手机号" value="{{cellphone}}"  border="{{  true }}" />
    <van-cell title="公司" value="{{company_name}}"  border="{{  true }}" />
     <van-cell title="职位" value="运维审核员"  border="{{  true }}" />
-   <van-cell title="租户" value="{{tenant_name}}"  border="{{  true }}" />
+   <!-- <van-cell title="租户" value="{{tenant_name}}"  border="{{  true }}" /> -->
 </van-cell-group>
 <van-cell-group wx:elif="{{role_id==3}}">
   <van-cell title="头像" border="{{ true }}"><image class="image" src="{{avatar_url}}"></image></van-cell>
   <van-cell title="姓名" value="{{name}}" border="{{  true }}" />
   <van-cell title="手机号" value="{{cellphone}}"  border="{{  true }}" />
-   <van-cell title="公司" value="茅台"  border="{{  true }}" />
-    <van-cell title="职位" value="茅台审核员"  border="{{  true }}" />
+   <van-cell title="公司" value="{{company_name}}"  border="{{  true }}" />
+    <van-cell title="职位" value="{{company_name}} 审核员"  border="{{  true }}" />
    <van-cell title="租户" value="{{tenant_name}}"  border="{{  true }}" />
 </van-cell-group>
 <van-cell-group wx:elif="{{usr_id==7}}">

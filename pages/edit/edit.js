@@ -111,7 +111,12 @@ Page({
   onLoad: function (options) {  //options专门用于接受数据的
     var usr_id = wx.getStorageSync('usr_id');
     var role_id = wx.getStorageSync('role_id');
-    var company_id = wx.getStorageSync('company_id');
+    var company_id
+    if(role_id==2){
+      company_id = wx.getStorageSync('company_id');
+    }else if(role_id==3){
+      company_id = Number(options.selectId);
+    }
     var approveStatus = options.wait;
     if(approveStatus=="wait"){
       this.setData({approveStatus:approveStatus})
@@ -200,7 +205,7 @@ agree:function(){
       "review_status":5,
       "user_id":that.data.user_id,
       "medicine_id":Number(that.data.medicine_id),
-      "medicine_count":Number(that.data.medicine_count),
+      "medicine_count":parseFloat(that.data.medicine_count),
       "dosing_time":that.data.dosing_time,
       "position":that.data.position,
       "content":that.data.content,

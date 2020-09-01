@@ -85,6 +85,7 @@ Page({
     var name = wx.getStorageSync('name');
     var cellphone = wx.getStorageSync('cellphone');
     var company_name = wx.getStorageSync('company_name');
+    var tenant_name = wx.getStorageSync('tenant_name');
     if (role_id == 1) {
       this.setData({
         desc: "加药员"
@@ -94,9 +95,9 @@ Page({
         desc: "运维审核员"
       })
     } else if (role_id == 3) {
-      company_name ="茅台总部"
+      company_name =tenant_name
       this.setData({
-        desc: "茅台审核员"
+        desc: tenant_name +"审核员"
       })
     }
     else if (role_id == 5) {

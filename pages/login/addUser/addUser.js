@@ -89,6 +89,8 @@ Page({
       role_name = "化验员"
     } else if (role_id == 2) {
       role_name = "运维"
+    }else if (role_id == 3) {
+      role_name = "租户"
     }
     var company_id = options.company_id
     var company_name = options.company_name
@@ -141,23 +143,6 @@ Page({
       if (e.detail.errMsg == "getUserInfo:ok") {
         wx.login({
           success: res => {
-            // wx.request({
-            //   // url: 'https://wx.jslcznkj.cn/maotai/app/region/openid', //仅为示例，并非真实的接口地址
-            //   url: 'http://172.20.0.70:8089/app/region/openid', //仅为示例，并非真实的接口地址
-            //   data: {
-            //     "code": res.code
-            //   },
-            //   method: "POST",
-            //   header: {
-            //     'content-type': 'application/json' // 默认值
-            //   },
-            //   success(res) {
-            //     wx.setStorage({
-            //       key: "open_id",
-            //       data: res.data.data.open_id
-            //     })
-            //   }
-            // })
             var params={
                 "code": res.code
             }
@@ -205,47 +190,6 @@ Page({
       })
     })
 
-      // wx.request({
-      //   url: 'https://wx.jslcznkj.cn/maotai/v1.1/app/region/invite_code',
-      //   data: {
-      //     "open_id": wx.getStorageSync("open_id"),
-      //     "name": that.data.name,
-      //     "cellphone": that.data.cellphone,
-      //     "role_id": Number(this.data.role_id),
-      //     "password": that.data.password,
-      //     "invite_code": this.data.invitation,
-      //     "avatarurl": wx.getStorageSync("avatar_url")
-      //   },
-      //   method: "POST",
-      //   header: {
-      //     'content-type': 'application/json' // 默认值
-      //   },
-      //   success: function (res) {
-      //     wx.setStorage({
-      //       key: 'name',
-      //       data: res.data.data.user.name
-      //     });
-      //     wx.setStorage({
-      //       key: 'company_name',
-      //       data: res.data.data.user.company_name
-      //     });
-      //     wx.setStorage({
-      //       key: 'cellphone',
-      //       data: res.data.data.user.cellphone
-      //     });
-      //     wx.setStorage({
-      //       key: 'usr_id',
-      //       data: res.data.data.user.id
-      //     });
-      //     wx.setStorage({
-      //       key: 'role_id',
-      //       data: res.data.data.user.role_id
-      //     });
-      //     wx.navigateTo({
-      //       url: '../../index/index',
-      //     })
-      //   }
-      // })
     }
   },
   goToUserLicence: function () {
