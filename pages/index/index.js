@@ -17,7 +17,7 @@ Page({
     name: "",
     cellphone: "",
     company_name: "",
-    selectName: "",
+    selectName: "无数据",
     selectId: "",
     columns: [
       // {
@@ -106,9 +106,15 @@ Page({
       }
       http.Post('/app/maotai/company/query', params, function (res) {
         var columns=res.data.data;
+        if(columns.length==0){
+          columns.push({ text: '无数据',
+          cp_id: 0});
+        }else{
           that.setData({"selectName":columns[1].name})
           that.setData({"selectId":columns[1].id})
-        that.setData({"columns":columns})
+          that.setData({"columns":columns})
+        }
+
       })
     }
     else if (role_id == 5) {
