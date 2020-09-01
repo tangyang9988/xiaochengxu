@@ -17,27 +17,28 @@ Page({
     name: "",
     cellphone: "",
     company_name: "",
-    selectName: "4000吨污水处理厂",
-    selectId: "159529683730",
-    columns: [{
-      text: '中华7000吨污水处理厂',
-      cp_id: 159529682355
-    }, {
-      text: '4000吨污水处理厂',
-      cp_id: 159529683730
-    }, {
-      text: '二合301厂5000吨污水处理厂',
-      cp_id: 159529684975
-    }, {
-      text: '201厂新寨4000吨污水处理厂',
-      cp_id: 159529686074
-    }, {
-      text: '中耀201厂3000吨污水处理厂',
-      cp_id: 15964237533997
-    },{
-      text: '贵州茅台301厂二合污水处理厂',
-      cp_id: 15964239607284
-    },
+    selectName: "",
+    selectId: "",
+    columns: [
+      // {
+      //   text: '中华7000吨污水处理厂',
+      //   cp_id: 159529682355
+      // }, {
+      //   text: '4000吨污水处理厂',
+      //   cp_id: 159529683730
+      // }, {
+      //   text: '二合301厂5000吨污水处理厂',
+      //   cp_id: 159529684975
+      // }, {
+      //   text: '201厂新寨4000吨污水处理厂',
+      //   cp_id: 159529686074
+      // }, {
+      //   text: '中耀201厂3000吨污水处理厂',
+      //   cp_id: 15964237533997
+      // },{
+      //   text: '贵州茅台301厂二合污水处理厂',
+      //   cp_id: 15964239607284
+      // },
   ],
     perColumns: [{text:'加药员',role_id:1}, {text:'化验员',role_id:5}],
     desc: "",
@@ -86,6 +87,7 @@ Page({
     var cellphone = wx.getStorageSync('cellphone');
     var company_name = wx.getStorageSync('company_name');
     var tenant_name = wx.getStorageSync('tenant_name');
+    var tenant_id = wx.getStorageSync('tenant_id');
     if (role_id == 1) {
       this.setData({
         desc: "加药员"
@@ -98,6 +100,15 @@ Page({
       company_name =tenant_name
       this.setData({
         desc: tenant_name +"审核员"
+      })
+      var params={
+        "tenant_id":Number(tenant_id)
+      }
+      http.Post('/app/maotai/company/query', params, function (res) {
+        var columns=res.data.data;
+          that.setData({"selectName":columns[1].name})
+          that.setData({"selectId":columns[1].id})
+        that.setData({"columns":columns})
       })
     }
     else if (role_id == 5) {
