@@ -93,6 +93,10 @@ App({
             key: 'tenant_name',
             data: res.data.data.user.tenant_name
           });
+          wx.setStorage({
+            key: 'token',
+            data: res.data.data.token
+          });
           setTimeout(function () {
             wx.reLaunch({
             url: '../index/index'

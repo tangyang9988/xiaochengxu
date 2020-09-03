@@ -308,7 +308,7 @@
 		<van-col span="6" >
 			<van-cell title="运维公司"/>
 		</van-col>
-		<van-col span="14" >
+		<van-col span="14">
 			<van-cell title="{{selectName}}" bind:click="showNamePopup" />
 			<van-popup show="{{ showName }}" position="bottom" custom-style="height: 35%;" bind:close="onClose">
 				<van-picker title="选择" columns="{{ columns }}" default-index="{{ 0 }}" show-toolbar bind:confirm="confirmName" bind:cancel="onCloseName" />

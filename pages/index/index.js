@@ -104,6 +104,7 @@ Page({
       var params={
         "tenant_id":Number(tenant_id)
       }
+      var that =this
       http.Post('/app/maotai/company/query', params, function (res) {
         var columns=res.data.data;
         if(columns.length==0){

@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "审核情况"
+  "usingComponents": {},
+  "navigationBarTitleText": "审核情况",
+  "onReachBottomDistance":200,
+  "enablePullDownRefresh": true
 }

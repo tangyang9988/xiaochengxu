@@ -21,7 +21,7 @@
 				<span class="class_none">暂无数据</span>
 			</view>
 			<view class="cards {{pendingList.length === 0 ? 'hidden' : 'show'}}" wx:for="{{pendingList}}" wx:for-item="item" wx:key="item">
-				<navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&user_name={{item.user_name}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}&unit_name={{item.unit_name}}&wait={{wait}}'>
+				<navigator class="nav" url='../edit/edit?usr_id={{usr_id}}&user_name={{item.user_name}}&id={{item.id}}&dosing_time={{item.dosing_time}}&position={{item.position}}&medicine_id={{item.medicine_id}}&medicine_name={{item.medicine_name}}&medicine_count={{item.medicine_count}}&unit_name={{item.unit_name}}&wait={{selectStatus}}'>
 					<view class="column">
 						<view class="card-desc">
 							<view class="circle"></view>

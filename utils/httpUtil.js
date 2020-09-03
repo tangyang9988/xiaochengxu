@@ -6,8 +6,8 @@ function Post(api, params, success) {
     method: 'POST',
     header: {  
       'content-type': 'application/json',
-      // 'token':
-    },  
+      'token': wx.getStorageSync('token')
+    },
     data: params,
     success: function(res) {
       success(res)
