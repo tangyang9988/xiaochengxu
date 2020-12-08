@@ -52,10 +52,8 @@ Page({
     }else{
       this.setData({checked:true})
     }
-
   }, 
   onLoad: function (options) { //options专门用于接受数据的
-    debugger
     var invitation =options.invitation
     var role_id =Number(options.role_id)
     var role_name;

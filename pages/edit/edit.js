@@ -109,7 +109,6 @@ Page({
   })
 },
   onLoad: function (options) {  //options专门用于接受数据的
-    debugger
     var usr_id = wx.getStorageSync('usr_id');
     var role_id = wx.getStorageSync('role_id');
     var company_id

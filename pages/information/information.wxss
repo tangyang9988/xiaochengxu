@@ -1,12 +1,12 @@
 page{
-  /* background:rgba(230, 221, 221, 0.871); */
   background:#2C65F7;
+  /* height:1000px;
+  background: linear-gradient(210deg,#579EFC 0%,#2C65F7 100%); */
 }
 /* 进度条样式覆盖 */
 .van-progress {
   margin-top: 10px;
 }
-
 /* 圆形 */
 .circle {
   display: block;
@@ -23,7 +23,7 @@ page{
   border-radius: 50%;
   height: 8px;
   width: 8px;
-  margin: 0;
+  margin-top:5px;
 }
 
 /* 水质第一行 */
@@ -41,11 +41,7 @@ page{
   margin-left: 10px;
 }
 
-/* 进度条标题 */
-.progressNote {
-  font-size: 25px;
-  font-weight: 700;
-}
+
 
 /* 选项卡的class van-ellipsis van-tap van-tap--actice style= */
 
@@ -109,17 +105,55 @@ page{
 .infoHeader {
   width: 100%;
   height: 10%;
-  /* margin-bottom: 10px; */
 }
-
+.display_row{
+  display:flex;
+  flex-wrap: wrap;
+}
+.display_header{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin:10px 20px;
+}
 .mainContent {
   border-radius: 15px;
-  width: 100%;
+  width: 90%;
   height: 100%;
   background-color: white;
-
+  margin:0px 5%;
+  margin-bottom: 10px;
 }
-
+.module{
+  margin:10px 20px;
+}
+.module_content{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content:space-between;
+}
+.p_title{
+  font-size:12px;
+  color:#999999;
+  font-weight: 400;
+  line-height: 17px;
+}
+.p_title_right{
+  font-size:10px;
+  color:#C2C2C2;
+  font-weight: 400;
+  line-height: 13px;
+  margin-top:4px;
+  margin-right:5px;
+}
+/* 进度条标题 */
+.progressNote {
+  font-size: 25px;
+  font-weight: 700;
+}
+.canvas{
+  /* margin-top:10%; */
+}
 /* 覆盖下拉框样式 */
 .van-dropdown-menu__item{
   background-color: #2C65F7 !important;
@@ -139,13 +173,6 @@ page{
   /* color: #628DFC !important; */
   color: white !important;  
 }
-
-
 scroll-view{
   width: 90% ! important;
-}
-
-.marbot20{
-  margin-bottom: 20px !important;
-  padding-bottom: 20px;
 }

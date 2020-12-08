@@ -193,7 +193,6 @@ Page({
     }
   },
   goToUserLicence: function () {
-    debugger
     wx.navigateTo({
       url: '../../login/licence/licence',
       success: function (res) {},

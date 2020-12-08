@@ -34,7 +34,7 @@ Page({
     disabled: true,
     canvsRing: '',
     "transCanvs": false,
-    "downloadLink":""
+    "downloadLink": ""
   },
   onOpen() {
     console.log("true")
@@ -57,11 +57,11 @@ Page({
     var company_id = wx.getStorageSync('company_id');
     var company_id;
     if (role_id == 2) {
-      company_id=Number(company_id)
+      company_id = Number(company_id)
     } else if (role_id == 3) {
-      company_id= Number(this.data.selectId)
+      company_id = Number(this.data.selectId)
     }
-    var url="https://wx.jslcznkj.cn/maotai/app/month_data/add?company_id="+company_id
+    var url = "https://wx.jslcznkj.cn/maotai/app/month_data/add?company_id=" + company_id
     wx.setClipboardData({
       data: url,
       success: function (res) {
@@ -76,12 +76,12 @@ Page({
     var company_id = wx.getStorageSync('company_id');
     var company_id;
     if (role_id == 2) {
-      company_id=Number(company_id)
+      company_id = Number(company_id)
     } else if (role_id == 3) {
-      company_id= Number(this.data.selectId)
+      company_id = Number(this.data.selectId)
     }
     wx.downloadFile({
-      url:"https://wx.jslcznkj.cn/maotai/app/month_data/add?company_id="+company_id,
+      url: "https://wx.jslcznkj.cn/maotai/app/month_data/add?company_id=" + company_id,
       // url: url,
       success: function (res) {
         var rr = res.tempFilePath;
@@ -107,6 +107,21 @@ Page({
     })
 
   },
+  dosingClick: function () {
+    var selectName =this.data.selectName
+    var selectId =this.data.selectId
+    wx.navigateTo({
+      url: '../dosinganalysis/dosinganalysis?selectName='+selectName+'&selectId='+selectId,
+    })
+  },
+  waterClick: function () {
+    var selectName =this.data.selectName
+    var selectId =this.data.selectId
+    wx.navigateTo({
+      url: '../wateranalysis/wateranalysis?selectName='+selectName+'&selectId='+selectId,
+    })
+  },
+
   onLoad: function (options) {
     var role_id = wx.getStorageSync('role_id');
     var company_id = wx.getStorageSync('company_id');
@@ -142,7 +157,7 @@ Page({
       var storageMedicine = [];
       var j = 0;
       var len = 0;
-      var colorArr=['#F8C322','#5553CE','#F65050','#64C676','#669AFF','#FF9100','#FFFF03','#DCC4F3','#CFF1F0','#FFB8AA','#8A2BE2','#DA70D6','#8B4500','#EED5B7','#8B1C62','#8B7D7B','#CD6600','#8B2323','#4A708B','#4F4F4F']
+      var colorArr = ['#F8C322', '#5553CE', '#F65050', '#64C676', '#669AFF', '#FF9100', '#FFFF03', '#DCC4F3', '#CFF1F0', '#FFB8AA', '#8A2BE2', '#DA70D6', '#8B4500', '#EED5B7', '#8B1C62', '#8B7D7B', '#CD6600', '#8B2323', '#4A708B', '#4F4F4F']
       for (j = 0, len = storageList.length; j < len; j++) {
         storageMedicine.push({
           name: storageList[j].medicine_name,
@@ -150,38 +165,6 @@ Page({
           stroke: false,
           color: colorArr[j]
         });
-        // switch (storageList[j].medicine_name) {
-        //   case "活性炭":
-        //     storageMedicine[j].color = '#F8C322';
-        //     break;
-        //   case "PAM(阳离子)":
-        //     storageMedicine[j].color = '#5553CE';
-        //     break;
-        //   case "PAM(阴离子)":
-        //     storageMedicine[j].color = '#F65050';
-        //     break;
-        //   case "片碱":
-        //     storageMedicine[j].color = '#64C676';
-        //     break;
-        //   case "PAC":
-        //     storageMedicine[j].color = '#669AFF';
-        //     break;
-        //   case "葡萄糖":
-        //     storageMedicine[j].color = '#FF9100';
-        //     break;
-        //   case "NaCO3":
-        //     storageMedicine[j].color = '#FFFF03';
-        //     break;
-        //   case "聚合硫酸铁":
-        //     storageMedicine[j].color = '#DCC4F3';
-        //     break;
-        //   case "硫酸亚铁":
-        //     storageMedicine[j].color = '#CFF1F0';
-        //     break;
-        //   case "次氯酸钠":
-        //     storageMedicine[j].color = '#FFB8AA';
-        //     break;
-        // }
         that.data.medicineSimpleList.push(storageList[j].medicine_name)
       }
 
@@ -210,7 +193,7 @@ Page({
       } catch (e) {
         console.error('getSystemInfoSync failed!');
       }
-      var windowWdithHalf = windowWidth / 5 * 2;
+      var windowWdithHalf = windowWidth / 5 * 2.5;
       ringChart = new wxCharts({
         animation: true,
         canvasId: 'ringCanvas',
@@ -248,9 +231,6 @@ Page({
       }, 500);
     })
     // }
-
-
-
     this.getCanvsRing()
   },
 
